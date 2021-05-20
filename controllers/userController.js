@@ -11,7 +11,8 @@ const getUser = async (req, res) => {
 }
 
 const createUser = async (req, res) => {
-    const user = req.body;
+    const username = req.body.username;
+    const password = req.body.password;
 
     const newUser = new db.User(user)
     try {
