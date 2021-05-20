@@ -19,7 +19,13 @@ if (process.env.NODE_ENV === "production") {
 app.use(routes);
 
 // Connect to the Mongo DB
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/true-story");
+mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => app.listen(PORT, () => console.log(`Server running on port: ${PORT}`)))
+  .catch((err) => console.log(err.message));
+
+mongoose.set('useFindAndModify', false)
+
+// const CONNECTION_URL = 'mongodb+srv://erenozgur98:eren123123@cluster0.vijur.mongodb.net/true-story?retryWrites=true&w=majority'
 
 // Send every request to the React app
 // Define any API routes before this runs
@@ -28,6 +34,6 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/true-story");
 // });
 
 // Start the API server
-app.listen(PORT, function() {
-  console.log(`🌎 ==> API server now on port ${PORT}!`);
-});
+// app.listen(PORT, function() {
+//   console.log(`🌎 ==> API server now on port ${PORT}!`);
+// });
