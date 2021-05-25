@@ -4,7 +4,7 @@ import { Redirect } from 'react-router';
 import API from '../../utils/API';
 
 function SignUp({ setUser, user }) {
-    const [details, setDetails] = useState({ usename: '', email: '', password: '' })
+    // const [details, setDetails] = useState({ usename: '', email: '', password: '' })
     const [redirect, setRedirect] = useState(false);
 
     useEffect(() => {
@@ -37,8 +37,8 @@ function SignUp({ setUser, user }) {
                             id='exampleInputEmail'
                             aria-describedby='emailHelp'
                             placeholder='Email'
-                            onChange={e => setDetails({ ...details, email: e.target.value })}
-                            value={details.email}
+                            // onChange={e => setDetails({ ...details, email: e.target.value })}
+                            // value={details.email}
                         />
                     </div>
                     <div className="form-group">
@@ -48,8 +48,8 @@ function SignUp({ setUser, user }) {
                             className='form-control'
                             id='exampleInputUserName'
                             placeholder='Username'
-                            onChange={e => setDetails({ ...details, username: e.target.value })}
-                            value={details.username}
+                            // onChange={e => setDetails({ ...details, username: e.target.value })}
+                            // value={details.username}
                         />
                     </div>
                     <div className="form-group">
@@ -59,8 +59,8 @@ function SignUp({ setUser, user }) {
                             className='form-control'
                             id='exampleInputPassword'
                             placeholder='Password'
-                            onChange={e => setDetails({ ...details, password: e.target.value })}
-                            value={details.password}
+                            // onChange={e => setDetails({ ...details, password: e.target.value })}
+                            // value={details.password}
                         />
                     </div>
                     <button

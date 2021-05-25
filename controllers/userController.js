@@ -11,16 +11,12 @@ const getUser = async (req, res) => {
 }
 
 const createUser = async (req, res) => {
-    const username = req.body.username;
-    const password = req.body.password;
-
-    const newUser = new db.User(user)
     try {
-        await newUser.save();
-
-        res.status(201).json(newUser);
+        const user = await db.User.findOne({ where: { username: req.body.username }})
+        console.log(user);
     } catch(err) {
-        res.status(409).json({ message: err.message })
+        console.log(err);
+        res.sendStatus(500);
     }
 }
 
