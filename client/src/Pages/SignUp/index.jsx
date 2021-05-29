@@ -3,11 +3,10 @@ import { Container } from 'react-bootstrap';
 import { Redirect } from 'react-router';
 import API from '../../utils/API';
 
-function SignUp({ setUser, user }) {
-    const isSignup = false;
+function SignUp() {
 
-    const handleSignUp = (e) => {
-
+    const handleSignUp = async (e) => {
+        e.preventDefault();
     }
 
     return (
@@ -15,7 +14,7 @@ function SignUp({ setUser, user }) {
             <Container className='signup-section'>
                 <h1>Sign Up</h1>
                 <form
-                    onClick={handleSignUp}
+                    onSubmit={handleSignUp}
                 >
                     <div className="form-group">
                         <label htmlFor="email">Email Address</label>
@@ -30,7 +29,7 @@ function SignUp({ setUser, user }) {
                     <div className="form-group">
                         <label htmlFor="username">Username</label>
                         <input
-                            type='email'
+                            type='text'
                             className='form-control'
                             id='exampleInputUserName'
                             placeholder='Username'

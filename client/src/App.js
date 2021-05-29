@@ -9,8 +9,6 @@ import SignUp from './Pages/SignUp';
 // import Discover from './Pages/Discover';
 import Header from './components/Header';
 function App() {
-  const [user, setUser] = useState({});
-
   return (
     <div>
       <Router>
@@ -19,11 +17,7 @@ function App() {
           <Route exact path='/' component={HomePage} />
           <Route exact path='/home' component={HomePage} />
           {/* <Route exact path='/login' component={Login} /> */}
-          <Route exact path='/signup' render={(props) => <SignUp {...props}
-            setUser={setUser}
-            user={user}
-          />
-          } />
+          <Route exact path='/signup' component={SignUp} />
         </div>
       </Router>
     </div>
