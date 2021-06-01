@@ -1,9 +1,10 @@
-import React, { useRef } from 'react'
+import React, { useState, useRef } from 'react'
 import { Container } from 'react-bootstrap';
-// import { Redirect } from 'react-router';
+import { Redirect } from 'react-router';
 import API from '../../utils/API';
 
 function SignUp() {
+    const [redirect, setRedirect] = useState(false);
 
     const email = useRef();
     const username = useRef();
@@ -11,7 +12,12 @@ function SignUp() {
 
     const handleSignUp = async (e) => {
         e.preventDefault();
-        const newUser = await API.signUp({email: email.current.value, username: username.current.value, password:password.current.value});
+        const newUser = await API.signUp(
+            {
+                email: email.current.value,
+                username: username.current.value,
+                password: password.current.value
+            });
         console.log(newUser);
     }
 
@@ -19,6 +25,7 @@ function SignUp() {
         <>
             <Container className='signup-section'>
                 <h1>Sign Up</h1>
+                {redirect && <Redirect to="/" />}
                 <form
                     onSubmit={handleSignUp}
                 >
