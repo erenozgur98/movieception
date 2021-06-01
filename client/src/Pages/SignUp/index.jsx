@@ -1,11 +1,9 @@
-import React, { useState, useRef } from 'react'
+import React, { useRef } from 'react'
 import { Container } from 'react-bootstrap';
 import { Redirect } from 'react-router';
 import API from '../../utils/API';
 
-function SignUp() {
-    const [redirect, setRedirect] = useState(false);
-
+function SignUp() {    
     const email = useRef();
     const username = useRef();
     const password = useRef();
@@ -25,7 +23,6 @@ function SignUp() {
         <>
             <Container className='signup-section'>
                 <h1>Sign Up</h1>
-                {redirect && <Redirect to="/" />}
                 <form
                     onSubmit={handleSignUp}
                 >
