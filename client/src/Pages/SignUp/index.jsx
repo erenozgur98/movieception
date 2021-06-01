@@ -1,9 +1,9 @@
-import React, { useEffect, useState, useRef } from 'react'
+import React, { useRef } from 'react'
 import { Container } from 'react-bootstrap';
 // import { Redirect } from 'react-router';
 import API from '../../utils/API';
 
-function SignUp({ user, setUser }) {
+function SignUp() {
 
     const email = useRef();
     const username = useRef();
@@ -13,9 +13,6 @@ function SignUp({ user, setUser }) {
         e.preventDefault();
         const newUser = await API.signUp({email: email.current.value, username: username.current.value, password:password.current.value});
         console.log(newUser);
-        // const stringified = JSON.stringify(newUser);
-        // console.log(stringified, stringified.data);
-        // setUser(stringified.data);
     }
 
     return (
