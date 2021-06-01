@@ -1,23 +1,35 @@
-const db = require('../models');
+const db = require("../models");
 
-const getUser = async (req, res) => {
-    try {
-        const users = await db.User.find();
-
-        res.status(200).json(users);
-    } catch(err) {
-        res.status(404).json({ message: err.message })
-    }
-}
-
-const createUser = async (req, res) => {
-    try {
-        const user = await db.User.findOne({ where: { username: req.body.username }})
-        console.log(user);
-    } catch(err) {
-        console.log(err);
-        res.sendStatus(500);
-    }
-}
-
-module.exports = getUser, createUser;
+module.exports = {
+  findAll: function(req, res) {
+    db.User
+      .find(req.query)
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
+  findById: function(req, res) {
+    db.User
+      .findById(req.params.id)
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
+  create: function(req, res) {
+    db.User
+      .create(req.body)
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
+  update: function(req, res) {
+    db.User
+      .findOneAndUpdate({ _id: req.params.id }, req.body)
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
+  remove: function(req, res) {
+    db.User
+      .findById({ _id: req.params.id })
+      .then(dbModel => dbModel.remove())
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  }
+};

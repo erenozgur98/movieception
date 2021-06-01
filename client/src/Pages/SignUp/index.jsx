@@ -1,12 +1,21 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import { Container } from 'react-bootstrap';
-import { Redirect } from 'react-router';
+// import { Redirect } from 'react-router';
 import API from '../../utils/API';
 
-function SignUp() {
+function SignUp({ user, setUser }) {
+
+    const email = useRef();
+    const username = useRef();
+    const password = useRef();
 
     const handleSignUp = async (e) => {
         e.preventDefault();
+        const newUser = await API.signUp({email: email.current.value, username: username.current.value, password:password.current.value});
+        console.log(newUser);
+        // const stringified = JSON.stringify(newUser);
+        // console.log(stringified, stringified.data);
+        // setUser(stringified.data);
     }
 
     return (
@@ -21,7 +30,7 @@ function SignUp() {
                         <input
                             type='email'
                             className='form-control'
-                            id='exampleInputEmail'
+                            ref={email}
                             aria-describedby='emailHelp'
                             placeholder='Email'
                         />
@@ -31,7 +40,7 @@ function SignUp() {
                         <input
                             type='text'
                             className='form-control'
-                            id='exampleInputUserName'
+                            ref={username}
                             placeholder='Username'
                         />
                     </div>
@@ -40,7 +49,7 @@ function SignUp() {
                         <input
                             type='password'
                             className='form-control'
-                            id='exampleInputPassword'
+                            ref={password}
                             placeholder='Password'
                         />
                     </div>
