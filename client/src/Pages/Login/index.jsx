@@ -1,4 +1,5 @@
 import React, { useRef } from 'react'
+import { Container } from 'react-bootstrap';
 import API from '../../utils/API';
 
 function Login() {
@@ -7,40 +8,44 @@ function Login() {
 
     const handleLogIn = async (e) => {
         e.preventDefault();
-        const newLogin = await API.logIn({username: username.current.value, password: password.current.value});
+        const newLogin = await API.logIn({ username: username.current.value, password: password.current.value });
         console.log(newLogin);
     }
 
     return (
         <div>
-            <form
-                onSubmit={handleLogIn}
-            >
-                <div className='form-group'>
-                    <label htmlFor='username'>Username</label>
-                    <input
-                        type='username'
-                        className='form-control'
-                        ref={username}
-                        placeholder='Username'
-                    />
-                </div>
-                <div className='form-group'>
-                    <label htmlFor='password'>Password</label>
-                    <input
-                        type='password'
-                        className='form-control'
-                        ref={password}
-                        placeholder='password'
-                    />
-                </div>
-                <button
-                    type='submit'
+            <Container className='login-section'>
+                <h1>Login</h1>
+                <form
                     onSubmit={handleLogIn}
                 >
-                    Login
+                    <div className='form-group'>
+                        <label htmlFor='username'>Username</label>
+                        <input
+                            type='username'
+                            className='form-control'
+                            ref={username}
+                            placeholder='Username'
+                        />
+                    </div>
+                    <div className='form-group'>
+                        <label htmlFor='password'>Password</label>
+                        <input
+                            type='password'
+                            className='form-control'
+                            ref={password}
+                            placeholder='password'
+                        />
+                    </div>
+                    <button
+                        className='btn'
+                        type='submit'
+                        onSubmit={handleLogIn}
+                    >
+                        Login
                     </button>
-            </form>
+                </form>
+            </Container>
         </div>
     )
 }

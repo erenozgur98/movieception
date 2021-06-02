@@ -3,14 +3,14 @@ import { Container } from 'react-bootstrap';
 // import { Redirect } from 'react-router';
 import API from '../../utils/API';
 
-function SignUp() {    
+function SignUp() {
     const email = useRef();
     const username = useRef();
     const password = useRef();
 
     const handleSignUp = async (e) => {
         e.preventDefault();
-        const newUser = await API.signUp({email: email.current.value, username: username.current.value, password: password.current.value});
+        const newUser = await API.signUp({ email: email.current.value, username: username.current.value, password: password.current.value });
         console.log(newUser);
     }
 
@@ -50,6 +50,7 @@ function SignUp() {
                         />
                     </div>
                     <button
+                        className='btn'
                         type='submit'
                         onSubmit={handleSignUp}
                     >
