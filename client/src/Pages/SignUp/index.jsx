@@ -1,6 +1,6 @@
 import React, { useRef } from 'react'
 import { Container } from 'react-bootstrap';
-import { Redirect } from 'react-router';
+// import { Redirect } from 'react-router';
 import API from '../../utils/API';
 
 function SignUp() {    
@@ -10,12 +10,7 @@ function SignUp() {
 
     const handleSignUp = async (e) => {
         e.preventDefault();
-        const newUser = await API.signUp(
-            {
-                email: email.current.value,
-                username: username.current.value,
-                password: password.current.value
-            });
+        const newUser = await API.signUp({email: email.current.value, username: username.current.value, password: password.current.value});
         console.log(newUser);
     }
 
