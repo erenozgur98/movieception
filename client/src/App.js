@@ -6,7 +6,7 @@ import HomePage from './Pages/Home';
 // import Shows from './Pages/Shows';
 import SignUp from './Pages/SignUp';
 import Login from './Pages/Login';
-// import Discover from './Pages/Discover';
+import Discover from './Pages/Discover';
 import Header from './components/Header';
 import './index.css'
 
@@ -22,6 +22,7 @@ function App() {
           <Route exact path='/' component={HomePage} />
           <Route exact path='/home' component={HomePage} />
           <Route exact path='/login' component={Login} />
+          <Route exact path='/discover' component={Discover} />
           <Route exact path='/signup' render={(props) => <SignUp {...props}
             setUser={setUser}
             user={user}
