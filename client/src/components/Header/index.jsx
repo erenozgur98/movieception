@@ -45,6 +45,26 @@ function Header() {
                             Sign Up
                         </div>
                     </Nav.Link>
+                    <Nav.Link as={Link} to='/discover' className='nav-link'>
+                        <div className="navLinks">
+                            Discover
+                        </div>
+                    </Nav.Link>
+                    <Nav.Link as={Link} to='/movies' className='nav-link'>
+                        <div className="navLinks">
+                            Movies
+                        </div>
+                    </Nav.Link>
+                    <Nav.Link as={Link} to='/shows' className='nav-link'>
+                        <div className="navLinks">
+                            TV Shows
+                        </div>
+                    </Nav.Link>
+                    <Nav.Link as={Link} to='/profile' className='nav-link'>
+                        <div className="navLinks">
+                            Profile
+                        </div>
+                    </Nav.Link>
                 </Nav>
             </Navbar.Collapse>
         </Navbar>
