@@ -7,7 +7,7 @@ export default {
     },
 
     getAllUsers: () => {
-        return axios.get('/api/user');
+        return axios.get('/api/users');
     },
 
     deleteUser: (id) => {
@@ -24,5 +24,9 @@ export default {
 
     logOut: () => {
         return axios.post('/api/user/logout');
+    },
+
+    loggedIn: () => {
+        return axios.get('/api/user');
     },
 }

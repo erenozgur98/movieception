@@ -2,7 +2,7 @@ import React, { useRef } from 'react'
 import { Container } from 'react-bootstrap';
 import API from '../../utils/API';
 
-function Login() {
+function Login({ setUser, user }) {
     const username = useRef();
     const password = useRef();
 
