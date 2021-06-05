@@ -1,20 +1,33 @@
-import React, { useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Container } from 'react-bootstrap';
+import { Redirect } from 'react-router';
 import API from '../../utils/API';
 
 function Login({ setUser, user }) {
     const username = useRef();
     const password = useRef();
 
+    const [redirect, setRedirect] = useState(false);
+
+    useEffect(() => {
+        if (user.username) setRedirect(true)
+    }, [user])
+
     const handleLogIn = async (e) => {
         e.preventDefault();
+        try {
         const newLogin = await API.logIn({ username: username.current.value, password: password.current.value });
+        setUser(newLogin);
         console.log(newLogin);
+        } catch(err) {
+            console.log(err)
+        }
     }
 
     return (
         <div>
             <Container className='login-section'>
+                {redirect && <Redirect to="/" />}
                 <h1>Login</h1>
                 <form
                     onSubmit={handleLogIn}
