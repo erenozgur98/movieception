@@ -3,6 +3,7 @@ import React from 'react'
 function Discover() {
     return (
         // TODO map thru the information to the cards for the discover, after user selects a genre
+        // TODO also find out why there are scroll bars showing up when we uncomment the code down below
         <div className="card-deck">
             {/* <div className="card">
                 <img className="card-img-top" src="..." alt="something" />
