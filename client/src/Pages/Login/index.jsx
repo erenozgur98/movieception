@@ -16,10 +16,10 @@ function Login({ setUser, user }) {
     const handleLogIn = async (e) => {
         e.preventDefault();
         try {
-        const newLogin = await API.logIn({ username: username.current.value, password: password.current.value });
-        setUser(newLogin);
-        console.log(newLogin);
-        } catch(err) {
+            const newLogin = await API.logIn({ username: username.current.value, password: password.current.value });
+            setUser(newLogin);
+            console.log(newLogin);
+        } catch (err) {
             console.log(err)
         }
     }
@@ -57,6 +57,8 @@ function Login({ setUser, user }) {
                     >
                         Login
                     </button>
+                    <p className="lable-text">Don't have an account?</p>
+                    <a className="redirect" href="/signup"> <p className="lable-text">Sign up here!</p></a>
                 </form>
             </Container>
         </div>
