@@ -13,6 +13,7 @@ function Profile() {
                         <a href="/" className="btn btn-danger">See Profile</a>
                     </div>
                 </div>
+                <h4>Some Header</h4>
                 <div className="card-deck">
                     <div className="card bg-primary">
                         <div className="card-body text-center">
