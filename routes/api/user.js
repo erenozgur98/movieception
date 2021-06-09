@@ -6,7 +6,7 @@ router.route('/signup')
     .post(userController.create);
 
 router
-    .route('/login/:id')
+    .route('/login')
     .get(userController.findById)
     .put(userController.update)
     .delete(userController.remove);
