@@ -12,8 +12,9 @@ function Home() {
     const searchedItem = useRef();
     // https://image.tmdb.org/t/p/original/
 
-    const redirect = () => {
-        window.location.reload();
+    const clearImage = async () => {
+        // window.location.reload();
+        await setImage([]);
     }
 
     const handleSubmit = async (e) => {
@@ -24,8 +25,6 @@ function Home() {
 
         let movieURL = `${baseUrl}search/movie/?api_key=${apiKey}&query=${searchedItem.current.value}`;
         let tvURL = `${baseUrl}search/tv/?api_key=${apiKey}&query=${searchedItem.current.value}`;
-
-        await setImage([]);
 
         await fetch(movieURL)
             .then(res => res.json())
@@ -74,7 +73,7 @@ function Home() {
                             className="btn btn-primary"
                             onClick={handleSubmit}
                         >
-                            <i className="fas fa-search"></i>
+                            Search
                         </button>
                     </div>
                 </form>
@@ -83,7 +82,7 @@ function Home() {
                         <img
                             key={x}
                             src={x}
-                            alt='tv'
+                            alt='img'
                         />
                     )
                         : null}
@@ -91,7 +90,7 @@ function Home() {
                 <button
                     type='button'
                     className='btn btn-primary'
-                    onClick={redirect}
+                    onClick={clearImage}
                 >
                     Clear
                 </button>
