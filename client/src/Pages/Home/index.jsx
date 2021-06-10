@@ -7,11 +7,11 @@ import React, { useRef, useState } from 'react'
 // Make a logo
 
 function Home() {
-    const { image, setImage } = useState([])
+    const [image, setImage] = useState([])
     const searchedItem = useRef();
     // https://image.tmdb.org/t/p/original/
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         let baseUrl = 'https://api.themoviedb.org/3/';
         let apiKey = 'af737f76cdba5b7435e17cc94568c07d';
@@ -20,24 +20,22 @@ function Home() {
         let movieURL = `${baseUrl}search/movie/?api_key=${apiKey}&query=${searchedItem.current.value}`;
         let tvURL = `${baseUrl}search/tv/?api_key=${apiKey}&query=${searchedItem.current.value}`;
 
-        fetch(movieURL)
-            .then(res => res.json())
-            .then(data => console.log(data));
+        await setImage([]);
 
-        fetch(tvURL)
+        await fetch(movieURL)
             .then(res => res.json())
-            .then(data => {
+            .then(async data => {
                 console.log(data)
-                data.results.forEach(x => {
-                    if (image.length) {
-                        setImage([...image, `${IMGurl}${x.poster_path}`])
-                    } else {
-                        setImage([`${IMGurl}${x.poster_path}`])
-                    }
+                await data.results.forEach(async x => {
+                    console.log(image)
+                    console.log(x.poster_path)
+                    await setImage([...image, `${IMGurl}${x.poster_path}`])
                 })
             });
 
-        // let images = `${IMGurl}${data.results.map()}`
+        await fetch(tvURL)
+            .then(res => res.json())
+            .then(data => console.log(data));
     }
 
 
@@ -65,7 +63,11 @@ function Home() {
             </form>
             <div>
                 {image ? image.map(x =>
-                    <img src={x} alt='tv' />
+                    <img
+                        key={x}
+                        src={x}
+                        alt='tv'
+                    />
                 )
                     : null}
             </div>

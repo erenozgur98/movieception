@@ -8,11 +8,11 @@ function SignUp({ setUser, user }) {
     const username = useRef();
     const password = useRef();
 
-    const [redirect, setRedirect] = useState(false);
+    // const [redirect, setRedirect] = useState(false);
 
-    useEffect(() => {
-        if (user.username) setRedirect(true);
-    }, [user])
+    // useEffect(() => {
+    //     if (user.username) setRedirect(true);
+    // }, [user])
 
     const handleSignUp = async (e) => {
         e.preventDefault();
@@ -28,7 +28,7 @@ function SignUp({ setUser, user }) {
     return (
         <>
             <Container className='signup-section'>
-                {redirect && <Redirect to="/" />}
+                {/* {redirect && <Redirect to="/" />} */}
                 <h1>Sign Up</h1>
                 <form
                     onSubmit={handleSignUp}
