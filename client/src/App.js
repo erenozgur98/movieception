@@ -14,17 +14,9 @@ import API from './utils/API';
 
 function App() {
   const [user, setUser] = useState({});
+  const [loggedIn, setLoggedIn] = useState(false);
 
-  useEffect(() => {
-    API.loggedIn()
-      .then(results => {
-        console.log(results.data)
-        setUser(results.data)
-      })
-      .catch(err => {
-        console.log(err)
-      })
-  })
+  
 
 
   return (
@@ -39,10 +31,12 @@ function App() {
           <Route exact path='/shows' component={Shows} />
           <Route exact path='/profile' component={Profile} />
           <Route exact path='/login' render={(props) => <Login {...props}
+            setLoggedIn={setLoggedIn}
             setUser={setUser}
             user={user}
-          />} />
+            />} />
           <Route exact path='/signup' render={(props) => <SignUp {...props}
+            setLoggedIn={setLoggedIn}
             setUser={setUser}
             user={user}
           />} />
