@@ -1,6 +1,6 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useRef } from 'react'
 import { Container } from 'react-bootstrap';
-import { Redirect } from 'react-router';
+// import { Redirect } from 'react-router';
 import API from '../../utils/API';
 
 function SignUp({ setUser, user }) {

@@ -1,4 +1,5 @@
 import React, { useRef, useState } from 'react'
+import { Container } from 'react-bootstrap'
 
 // TODOs:
 // Search bar to search for movies or tv shows
@@ -11,11 +12,15 @@ function Home() {
     const searchedItem = useRef();
     // https://image.tmdb.org/t/p/original/
 
+    const redirect = () => {
+        window.location.reload();
+    }
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         let baseUrl = 'https://api.themoviedb.org/3/';
         let apiKey = 'af737f76cdba5b7435e17cc94568c07d';
-        let IMGurl = 'https://image.tmdb.org/t/p/original'
+        let IMGurl = 'https://image.tmdb.org/t/p/w300'
 
         let movieURL = `${baseUrl}search/movie/?api_key=${apiKey}&query=${searchedItem.current.value}`;
         let tvURL = `${baseUrl}search/tv/?api_key=${apiKey}&query=${searchedItem.current.value}`;
@@ -35,43 +40,62 @@ function Home() {
 
         await fetch(tvURL)
             .then(res => res.json())
-            .then(data => console.log(data));
+            .then(async data => {
+                console.log(data)
+                await data.results.forEach(async x => {
+                    console.log(image)
+                    console.log(x.poster_path)
+                    await setImage([...image, `${IMGurl}${x.poster_path}`])
+                })
+            });
     }
 
 
     return (
         <div>
             <h1 className='text-center'>True Story</h1>
-            <form>
-                <div className="input-group">
-                    <div className="form-outline">
-                        <input
-                            type="search"
-                            id="form1"
-                            className="form-control"
-                            ref={searchedItem}
-                        />
+            <Container
+                className="d-flex align-items-center flex-column"
+            >
+                <form
+                    onSubmit={handleSubmit}
+                >
+                    <div className="input-group">
+                        <div className="form-outline">
+                            <input
+                                type="search"
+                                id="form1"
+                                className="form-control"
+                                ref={searchedItem}
+                            />
+                        </div>
+                        <button
+                            type="button"
+                            className="btn btn-primary"
+                            onClick={handleSubmit}
+                        >
+                            <i className="fas fa-search"></i>
+                        </button>
                     </div>
-                    <button
-                        type="button"
-                        className="btn btn-primary"
-                        onClick={handleSubmit}
-                    >
-                        <i className="fas fa-search"></i>
-                    </button>
+                </form>
+                <div>
+                    {image ? image.map(x =>
+                        <img
+                            key={x}
+                            src={x}
+                            alt='tv'
+                        />
+                    )
+                        : null}
                 </div>
-            </form>
-            <div>
-                {image ? image.map(x =>
-                    <img
-                        key={x}
-                        src={x}
-                        alt='tv'
-                    />
-                )
-                    : null}
-            </div>
-
+                <button
+                    type='button'
+                    className='btn btn-primary'
+                    onClick={redirect}
+                >
+                    Clear
+                </button>
+            </Container>
         </div>
     )
 }
