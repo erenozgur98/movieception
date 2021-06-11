@@ -51,7 +51,11 @@ function Home() {
                     setImage([...image, `${IMGurl}${x.poster_path}`])
                     setResult([...result, {
                         original_name: x.original_name,
-                        overview: x.overview
+                        overview: x.overview,
+                        popularity: x.popularity,
+                        vote_average: x.vote_average,
+                        vote_count: x.vote_count,
+                        key: x
                     }])
                 })
             });
@@ -87,29 +91,34 @@ function Home() {
                 </form>
                 <div>
                     {image ? image.map(x => (
-                        <img
-                            key={x}
-                            src={x}
-                            alt='img'
-                        />
+                        <div className="card" style={{ width: "18rem" }}>
+                            <img className="card-img-top" src={x} key={x} alt="Card" />
+                        </div>
+                        // <img
+                        //     key={x}
+                        //     src={x}
+                        //     alt='img'
+                        // />
                     ))
                         : null}
                 </div>
                 <div>
                     {result ? result.map(x => (
                         // <Card
-                        //     image={x.image}
-                        //     name={x.name}
+                        //     original_name={x.original_name}
                         //     overview={x.overview}
                         //     popularity={x.popularity}
                         //     vote_average={x.vote_average}
                         //     vote_count={x.vote_count}
                         //     key={x.key}
                         // />
-                        <div className="card" style={{ width: "18rem" }} key={x}>
-                            <div className="card-body">
-                                <h5 className="card-title">{x.name}</h5>
-                                <p className="card-text">{x.overview}</p>
+                        <div className="card bg-dark mb-3" style={{ width: "18rem" }} key={x}>
+                            <div className="card-body" key={x}>
+                                <h5 className="card-title text-center">{x.original_name}</h5>
+                                <p className="card-text text-center">Overview: {x.overview}</p>
+                                <p className="card-text text-center">Popularity: {x.popularity}</p>
+                                <p className="card-text text-center">Vote Average: {x.vote_average}</p>
+                                <p className="card-text text-center">Vote Count: {x.vote_count}</p>
                                 {/* <a href="/" className="btn btn-primary"></a> */}
                             </div>
                         </div>
