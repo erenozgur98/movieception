@@ -10,7 +10,6 @@ function Card(props) {
                 <p className="card-text">{props.popularity}</p>
                 <p className="card-text">{props.vote_average}</p>
                 <p className="card-text">{props.vote_count}</p>
-                {/* <a href="/" className="btn btn-primary"></a> */}
             </div>
         </div>
     )
