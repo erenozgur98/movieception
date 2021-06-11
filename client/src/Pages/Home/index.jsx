@@ -8,7 +8,8 @@ import { Container } from 'react-bootstrap'
 // Make a logo
 
 function Home() {
-    const [image, setImage] = useState([])
+    const [image, setImage] = useState([]);
+    const [result, setResult] = useState([]);
     const searchedItem = useRef();
     // https://image.tmdb.org/t/p/original/
 
@@ -41,10 +42,12 @@ function Home() {
             .then(res => res.json())
             .then(async data => {
                 console.log(data)
-                await data.results.forEach(async x => {
+                await data.results.map((x, i) => {
                     console.log(image)
                     console.log(x.poster_path)
-                    await setImage([...image, `${IMGurl}${x.poster_path}`])
+                    setImage([...image, `${IMGurl}${x.poster_path}`])
+
+
                 })
             });
     }
@@ -78,12 +81,20 @@ function Home() {
                     </div>
                 </form>
                 <div>
-                    {image ? image.map(x =>
+                    {image ? image.map((x, i) =>
                         <img
                             key={x}
                             src={x}
                             alt='img'
                         />
+                        // <div className="card" style={{ width: "18rem" }}>
+                        //     <img className="card-img-top" src={x} key={x} alt="Card" />
+                        //     <div className="card-body" key={x}>
+                        //         <h5 className="card-title">Card title</h5>
+                        //         <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        //         <a href="/" className="btn btn-primary">Go somewhere</a>
+                        //     </div>
+                        // </div>
                     )
                         : null}
                 </div>
@@ -100,3 +111,4 @@ function Home() {
 }
 
 export default Home
+
