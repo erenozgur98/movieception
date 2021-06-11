@@ -1,5 +1,6 @@
 import React, { useRef, useState } from 'react'
 import { Container } from 'react-bootstrap'
+import Card from '../../components/Card';
 
 // TODOs:
 // Search bar to search for movies or tv shows
@@ -16,6 +17,7 @@ function Home() {
     const clearImage = async () => {
         // window.location.reload();
         await setImage([]);
+        await setResult([]);
     }
 
     const handleSubmit = async (e) => {
@@ -27,26 +29,35 @@ function Home() {
         let movieURL = `${baseUrl}search/movie/?api_key=${apiKey}&query=${searchedItem.current.value}`;
         let tvURL = `${baseUrl}search/tv/?api_key=${apiKey}&query=${searchedItem.current.value}`;
 
-        await fetch(movieURL)
-            .then(res => res.json())
-            .then(async data => {
-                console.log(data)
-                await data.results.forEach(async x => {
-                    console.log(image)
-                    console.log(x.poster_path)
-                    await setImage([...image, `${IMGurl}${x.poster_path}`])
-                })
-            });
+        // await fetch(movieURL)
+        //     .then(res => res.json())
+        //     .then(async data => {
+        //         console.log(data)
+        //         await data.results.forEach(async x => {
+        //             console.log(image)
+        //             console.log(x.poster_path)
+        //             await setImage([...image, `${IMGurl}${x.poster_path}`])
+        //         })
+        //     });
 
         await fetch(tvURL)
             .then(res => res.json())
-            .then(async data => {
-                console.log(data)
-                await data.results.map((x, i) => {
+            .then(async res => {
+                console.log(res)
+                await res.results.forEach((x, i) => {
                     console.log(image)
                     console.log(x.poster_path)
                     setImage([...image, `${IMGurl}${x.poster_path}`])
-
+                    setResult({
+                        result: res.results.map((y, i) => ({
+                            name: y.name,
+                            overview: y.overview,
+                            popularity: y.popularity,
+                            vote_average: y.vote_average,
+                            vote_count: y.cote_count,
+                            key: i
+                        }))
+                    })
 
                 })
             });
@@ -81,21 +92,22 @@ function Home() {
                     </div>
                 </form>
                 <div>
-                    {image ? image.map((x, i) =>
-                        <img
-                            key={x}
-                            src={x}
-                            alt='img'
+                    {result ? result.map(x => (
+                        <Card
+                            image={x.image}
+                            name={x.name}
+                            overview={x.overview}
+                            popularity={x.popularity}
+                            vote_average={x.vote_average}
+                            vote_count={x.vote_count}
+                            key={x.key}
                         />
-                        // <div className="card" style={{ width: "18rem" }}>
-                        //     <img className="card-img-top" src={x} key={x} alt="Card" />
-                        //     <div className="card-body" key={x}>
-                        //         <h5 className="card-title">Card title</h5>
-                        //         <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        //         <a href="/" className="btn btn-primary">Go somewhere</a>
-                        //     </div>
-                        // </div>
-                    )
+                        // <img
+                        //     key={x}
+                        //     src={x}
+                        //     alt='img'
+                        // />
+                    ))
                         : null}
                 </div>
                 <button
