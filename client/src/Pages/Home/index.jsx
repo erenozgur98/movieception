@@ -26,7 +26,7 @@ function Home() {
         let apiKey = 'af737f76cdba5b7435e17cc94568c07d';
         let IMGurl = 'https://image.tmdb.org/t/p/w300'
 
-        let movieURL = `${baseUrl}search/movie/?api_key=${apiKey}&query=${searchedItem.current.value}`;
+        // let movieURL = `${baseUrl}search/movie/?api_key=${apiKey}&query=${searchedItem.current.value}`;
         let tvURL = `${baseUrl}search/tv/?api_key=${apiKey}&query=${searchedItem.current.value}`;
 
         // await fetch(movieURL)
