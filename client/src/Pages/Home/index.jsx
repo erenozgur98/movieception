@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react'
 import { Container } from 'react-bootstrap'
 import Card from '../../components/Card';
+require('dotenv').config();
 
 // TODOs:
 // Search bar to search for movies or tv shows
@@ -33,31 +34,35 @@ function Home() {
             .then(res => res.json())
             .then(async data => {
                 console.log(data)
-                await data.results.forEach(x => {
-                    console.log(result);
-                    console.log(image);
-                    setImage([...image, `${IMGurl}${x.poster_path}`])
-                    setResult([...result])
-                })
+                if (searchedItem.current.value) {
+                    await data.results.forEach(x => {
+                        console.log(result);
+                        console.log(image);
+                        setImage([...image, `${IMGurl}${x.poster_path}`])
+                        setResult([...result])
+                    })
+                }
             });
 
         await fetch(tvURL)
             .then(res => res.json())
             .then(async res => {
                 console.log(res)
-                await res.results.forEach(x => {
-                    console.log(result);
-                    console.log(image);
-                    setImage([...image, `${IMGurl}${x.poster_path}`])
-                    setResult([...result, {
-                        original_name: x.original_name,
-                        overview: x.overview,
-                        popularity: x.popularity,
-                        vote_average: x.vote_average,
-                        vote_count: x.vote_count,
-                        key: x
-                    }])
-                })
+                if (searchedItem.current.value) {
+                    await res.results.forEach(x => {
+                        console.log(result);
+                        console.log(image);
+                        setImage([...image, `${IMGurl}${x.poster_path}`])
+                        setResult([...result, {
+                            original_name: x.original_name,
+                            overview: x.overview,
+                            popularity: x.popularity,
+                            vote_average: x.vote_average,
+                            vote_count: x.vote_count,
+                            key: x
+                        }])
+                    })
+                }
             });
     }
 
