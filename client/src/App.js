@@ -16,8 +16,6 @@ function App() {
   const [user, setUser] = useState({});
   const [loggedIn, setLoggedIn] = useState(false);
 
-  
-
 
   return (
     <div>
@@ -35,7 +33,7 @@ function App() {
             setLoggedIn={setLoggedIn}
             setUser={setUser}
             user={user}
-            />} />
+          />} />
           <Route exact path='/signup' render={(props) => <SignUp {...props}
             setLoggedIn={setLoggedIn}
             setUser={setUser}
