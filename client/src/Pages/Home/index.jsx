@@ -32,7 +32,7 @@ function Home() {
         let IMGurl = 'https://image.tmdb.org/t/p/w300';
 
         let movieURL = `${baseUrl}search/movie/?api_key=${apiKey}&query=${searchedItem.current.value}`;
-        let tvURL = `${baseUrl}search/tv/?api_key=${apiKey}&query=${searchedItem.current.value}`;
+        // let tvURL = `${baseUrl}search/tv/?api_key=${apiKey}&query=${searchedItem.current.value}`;
 
         await fetch(movieURL)
             .then(res => res.json())
