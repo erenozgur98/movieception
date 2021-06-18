@@ -19,6 +19,7 @@ function Home() {
     const searchedItem = useRef();
     // https://image.tmdb.org/t/p/original/
 
+    let fetchedResult = [];
     const clearImage = async () => {
         // window.location.reload();
         await setImage([]);
@@ -36,24 +37,25 @@ function Home() {
 
         await fetch(movieURL)
             .then(res => res.json())
-            .then(async data => {
+            .then(data => {
                 console.log(data)
-                if (searchedItem.current.value) {
-                    await data.results.forEach(x => {
-                        // setImage([...image, { key: x }, `${IMGurl}${x.poster_path}`])
-                        setResult([...result, {
-                            image: `${IMGurl}${x.poster_path}`,
-                            original_name: x.original_name,
-                            overview: x.overview,
-                            popularity: x.popularity,
-                            vote_average: x.vote_average,
-                            vote_count: x.vote_count,
-                            key: x
-                        }])
-                        console.log(result);
-                        console.log(image);
-                    })
-                }
+                fetchedResult = data;
+                console.log(fetchedResult);
+                // if (searchedItem.current.value) {
+                //     data.results.forEach(x => {
+                //         // setImage([...image, { key: x }, `${IMGurl}${x.poster_path}`])
+                //         setResult([...result, {
+                //             image: `${IMGurl}${x.poster_path}`,
+                //             original_name: x.original_name,
+                //             overview: x.overview,
+                //             popularity: x.popularity,
+                //             vote_average: x.vote_average,
+                //             vote_count: x.vote_count,
+                //             key: x
+                //         }])
+                //         console.log(result);
+                //     })
+                // }
                 // else {
                 //     toast.warn('You must search for a Show or a Movie!', {
                 //         autoClose: 2500
@@ -128,6 +130,32 @@ function Home() {
                     )) : null }
                 </div> */}
                 <div>
+                    {fetchedResult.map((x, y) => (
+                        // <Card
+                        //     original_name={x.original_name}
+                        //     overview={x.overview}
+                        //     popularity={x.popularity}
+                        //     vote_average={x.vote_average}
+                        //     vote_count={x.vote_count}
+                        //     key={x.key}
+                        // />
+                        <>
+                            <div className='card' style={{ width: '18rem' }}>
+                                <img className="card-img-top" src={x.image} key={y} alt="Card" />
+                            </div>
+                            <div className="card bg-dark mb-3" style={{ width: "18rem" }} key={x}>
+                                <div className="card-body" key={x}>
+                                    <h5 className="card-title text-center">{x.original_name}</h5>
+                                    <p className="card-text text-center">{x.overview}</p>
+                                    <p className="card-text text-center">Popularity: {x.popularity}</p>
+                                    <p className="card-text text-center">Vote Average: {x.vote_average}</p>
+                                    <p className="card-text text-center">Vote Count: {x.vote_count}</p>
+                                </div>
+                            </div>
+                        </>
+                    ))}
+                </div>
+                {/* <div>
                     {result ? result.map((x, y) => (
                         // <Card
                         //     original_name={x.original_name}
@@ -153,7 +181,7 @@ function Home() {
                         </>
                     ))
                         : null}
-                </div>
+                </div> */}
                 <button
                     type='button'
                     className='btn btn-primary'
