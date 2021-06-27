@@ -74,4 +74,4 @@ function SignUp({ setUser, user }) {
     )
 }
 
-export default SignUp
+export default SignUp;
