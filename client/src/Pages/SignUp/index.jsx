@@ -62,7 +62,7 @@ function SignUp({ setUser, user }) {
                         />
                     </div>
                     <button
-                        className='btn'
+                        className='btn btn-primary'
                         type='submit'
                         onSubmit={handleSignUp}
                     >
