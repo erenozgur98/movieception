@@ -15,15 +15,15 @@ export default {
     },
 
     signUp: (userInfo) => {
-        return axios.post('/api/signup', userInfo);
+        return axios.post('/api/user/signup', userInfo);
     },
 
     logIn: (userInfo) => {
-        return axios.post('/api/login', userInfo);
+        return axios.post('/api/user/login', userInfo);
     },
 
     logOut: () => {
-        return axios.post('/api/logout');
+        return axios.post('/api/user/logout');
     },
 
     loggedIn: () => {
