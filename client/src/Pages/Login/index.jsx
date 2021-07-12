@@ -20,7 +20,9 @@ function Login({ setUser, user }) {
         e.preventDefault();
         try {
             const newLogin = await API.logIn({ username: username.current.value, password: password.current.value });
-            setUser(newLogin);
+            // delete the password so it won't be set in the state
+            delete newLogin.data.password;
+            setUser(newLogin.data);
             history.push('/');
         } catch (err) {
             console.log(err)

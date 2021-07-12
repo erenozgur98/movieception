@@ -1,5 +1,6 @@
 import React, { useRef } from 'react'
 import { Container } from 'react-bootstrap';
+import { useHistory } from 'react-router-dom';
 // import { Redirect } from 'react-router';
 import API from '../../utils/API';
 
@@ -7,6 +8,8 @@ function SignUp({ setUser, user }) {
     const email = useRef();
     const username = useRef();
     const password = useRef();
+
+    const history = useHistory();
 
     // const [redirect, setRedirect] = useState(false);
 
@@ -18,8 +21,9 @@ function SignUp({ setUser, user }) {
         e.preventDefault();
         try {
         const newUser = await API.signUp({ email: email.current.value, username: username.current.value, password: password.current.value });
-        setUser(newUser);
-        console.log(newUser);
+        delete newUser.data.password;
+        history.push('/')
+        setUser(newUser.data);
         } catch(err) {
             console.log(err);
         }

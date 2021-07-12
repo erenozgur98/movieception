@@ -40,7 +40,7 @@ function Header({ user, handleLogout }) {
                             Login
                         </div>
                     </Nav.Link>
-                    <Nav.Link as={Link} to='/discover' className='nav-link'>
+                    {/* <Nav.Link as={Link} to='/discover' className='nav-link'>
                         <div className="navLinks">
                             Discover
                         </div>
@@ -59,7 +59,7 @@ function Header({ user, handleLogout }) {
                         <div className="navLinks">
                             Profile
                         </div>
-                    </Nav.Link>
+                    </Nav.Link> */}
                     <Nav.Link as={Link} to='/' className='nav-link' onClick={handleLogout}>
                         <div className="navLinks">
                             Logout
