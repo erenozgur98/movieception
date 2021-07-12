@@ -16,6 +16,8 @@ router.get('/:id', async (req, res) => {
     try {
         if (req.session.logged_in) {
             const userInfo = {
+                _id: req.session.user_id,
+                email: req.session.email,
                 username: req.session.username,
                 logged_in: true
             };
@@ -45,6 +47,7 @@ router.post('/login', async (req, res) => {
         req.session.user_id = user.id;
         req.session.logged_in = true;
         req.session.username = user.username;
+        req.session.email = user.email;
 
         res.json(user);
 
