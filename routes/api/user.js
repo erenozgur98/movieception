@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt');
 
 router.get('/', async (req, res) => {
     try {
-        const user = await User.find({});
+        const user = await User.find();
         res.json(user);
     } catch (err) {
         console.log(err);
@@ -14,26 +14,9 @@ router.get('/', async (req, res) => {
 
 router.get('/:id', async (req, res) => {
     try {
-        const userData = await User.findByPk(req.params.id);
-        if (!userData) {
-            res.status(404).json({ message: 'No user with this id!' });
-            return;
-        }
-        res.status(200).json(userData);
-    } catch (err) {
-        res.status(500).json(err);
-    }
-});
-
-router.get('/current-user', async (req, res) => {
-    console.log('*********************** LINE 30, ', req.session, req.session.logged_in, req.session.user_id);
-    try {
         if (req.session.logged_in) {
-            const userData = await User.findByPk(req.session.user_id);
             const userInfo = {
-                role: userData.dataValues.role,
-                username: userData.dataValues.username,
-                email: userData.dataValues.email,
+                username: req.session.username,
                 logged_in: true
             };
             res.json(userInfo);
@@ -41,7 +24,7 @@ router.get('/current-user', async (req, res) => {
             res.status(403).json({ message: 'Something went wrong getting the user, could mean that you are not logged in/signedup yet ' });
         }
     } catch (err) {
-        console.log(err);
+        console.log('1278361246129371294571237129371297', err)
     };
 });
 
@@ -58,10 +41,11 @@ router.post('/login', async (req, res) => {
         );
 
         if (!validPassword) return res.status(401).json({ message: 'Incorrect Password' });
-
+        
         req.session.user_id = user.id;
         req.session.logged_in = true;
         req.session.username = user.username;
+
         res.json(user);
 
     } catch (err) {

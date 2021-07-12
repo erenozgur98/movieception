@@ -1,7 +1,7 @@
-import React, { useRef } from 'react'
+import React, { useRef, useEffect, useState } from 'react'
 import { Container } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
-// import { Redirect } from 'react-router';
+import { Redirect } from 'react-router';
 import API from '../../utils/API';
 
 function SignUp({ setUser, user }) {
@@ -11,11 +11,11 @@ function SignUp({ setUser, user }) {
 
     const history = useHistory();
 
-    // const [redirect, setRedirect] = useState(false);
+    const [redirect, setRedirect] = useState(false);
 
-    // useEffect(() => {
-    //     if (user.username) setRedirect(true);
-    // }, [user])
+    useEffect(() => {
+        if (user.username) setRedirect(true);
+    }, [user])
 
     const handleSignUp = async (e) => {
         e.preventDefault();
@@ -32,7 +32,7 @@ function SignUp({ setUser, user }) {
     return (
         <>
             <Container className='signup-section'>
-                {/* {redirect && <Redirect to="/" />} */}
+                {redirect && <Redirect to="/" />}
                 <h1>Sign Up</h1>
                 <form
                     onSubmit={handleSignUp}

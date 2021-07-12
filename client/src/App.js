@@ -27,7 +27,7 @@ function App() {
         console.log(err);
         setLoaded(true);
       })
-  }, [user])
+  }, []);
 
   const handleLogout = () => {
     setUser({});
