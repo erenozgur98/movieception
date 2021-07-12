@@ -40,14 +40,13 @@ router.get('/user', async (req, res) => {
             res.status(403).json({ message: 'Something went wrong getting the user, could mean that you are not logged in/signedup yet ' });
         }
     } catch (err) {
-        console.log('********************line 38 catch err', err);
+        console.log(err);
     };
 });
 
 router.post('/login', async (req, res) => {
-    console.log(req.body.username, req.session)
     try {
-        const user = req.body.username;
+        const user = await User.findOne({ username: req.body.username })
 
         if (!user) return res.status(403).json({ message: 'Incorrect Username' });
 
@@ -58,16 +57,11 @@ router.post('/login', async (req, res) => {
 
         // if (!validPassword) return res.status(401).json({ message: 'Incorrect Password' });
 
-        const userData = JSON.parse(JSON.stringify(user));
-
-        req.session.user_id = userData._id;
         req.session.logged_in = true;
-        req.session.username = userData.username;
-
-        res.json({ user: user });
+        res.json(user);
 
     } catch (err) {
-        console.log('------------------------------------Line 69', err);
+        console.log(err);
         res.status(400).json(err);
     }
 });
@@ -77,14 +71,12 @@ router.post('/signup', async (req, res) => {
         const newUser = await User.create(req.body);
 
         req.session.user_id = newUser._id;
-        console.log('session userid', req.session.user_id);
         req.session.logged_in = true;
         req.session.username = newUser.username;
 
-        console.log('newuser', newUser);
         res.json(newUser);
     } catch (err) {
-        console.log('***************************** Line 75', err);
+        console.log(err);
         res.status(404).json(err);
     }
 });
