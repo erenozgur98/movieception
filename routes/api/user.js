@@ -12,7 +12,22 @@ router.get('/', async (req, res) => {
     }
 });
 
-router.get('/:id', async (req, res) => {
+// commented out for now, for some reason it replaces api/users/user <-- to be checked later
+
+// router.get('/:id', async (req, res) => {
+//     try {
+//         const userData = await User.findByPk(req.params.id);
+//         if (!userData) {
+//             res.status(404).json({ message: 'No user with this id!' });
+//             return;
+//         }
+//         res.status(200).json(userData);
+//     } catch (err) {
+//         res.status(500).json(err);
+//     }
+// });
+
+router.get('/user', async (req, res) => {
     try {
         if (req.session.logged_in) {
             const userInfo = {
