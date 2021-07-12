@@ -45,17 +45,18 @@ router.get('/user', async (req, res) => {
 });
 
 router.post('/login', async (req, res) => {
+    console.log(req.body.username, req.session)
     try {
-        const user = await User.findOne({ where: { username: req.body.username }});
+        const user = req.body.username;
 
         if (!user) return res.status(403).json({ message: 'Incorrect Username' });
 
-        const validPassword = await bcrypt.compare(
-            req.body.password,
-            user.password
-        );
+        // const validPassword = await bcrypt.compare(
+        //     req.body.password,
+        //     user.password
+        // );
 
-        if (!validPassword) return res.status(401).json({ message: 'Incorrect Password' });
+        // if (!validPassword) return res.status(401).json({ message: 'Incorrect Password' });
 
         const userData = JSON.parse(JSON.stringify(user));
 
@@ -66,26 +67,22 @@ router.post('/login', async (req, res) => {
         res.json({ user: user });
 
     } catch (err) {
-        console.log('------------------------------------Line 53', err);
+        console.log('------------------------------------Line 69', err);
         res.status(400).json(err);
     }
 });
 
 router.post('/signup', async (req, res) => {
     try {
-        const email = await User.findOne({ where: { email: req.body.email }});
-        const user = await User.findOne({ where: { username: req.body.username}});
-
-        if (email) return res.status(400).json({ message: 'That email is taken' });
-        if (user) return res.status(400).json({ message: 'That username is taken' });
-
         const newUser = await User.create(req.body);
         delete newUser.password;
 
         req.session.user_id = newUser._id;
+        console.log('session userid', req.session.user_id);
         req.session.logged_in = true;
         req.session.username = newUser.username;
 
+        console.log('newuser', newUser);
         res.json(newUser);
     } catch (err) {
         console.log('***************************** Line 75', err);
