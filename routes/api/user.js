@@ -75,7 +75,6 @@ router.post('/login', async (req, res) => {
 router.post('/signup', async (req, res) => {
     try {
         const newUser = await User.create(req.body);
-        delete newUser.password;
 
         req.session.user_id = newUser._id;
         console.log('session userid', req.session.user_id);
