@@ -82,10 +82,13 @@ router.post('/signup', async (req, res) => {
 });
 
 router.post('/logout', async (req, res) => {
-    try {
-
-    } catch (err) {
-
+    if (req.session) {
+        req.session.destroy(() => {
+            res.status(204).end();
+        });
+        console.log('Now logging out');
+    } else {
+        res.status(404).end();
     }
 });
 
