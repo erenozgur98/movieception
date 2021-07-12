@@ -33,7 +33,7 @@ function Home() {
         let IMGurl = 'https://image.tmdb.org/t/p/w300';
 
         let movieURL = `${baseUrl}search/movie/?api_key=${apiKey}&query=${searchedItem.current.value}`;
-        // let tvURL = `${baseUrl}search/tv/?api_key=${apiKey}&query=${searchedItem.current.value}`;
+        let tvURL = `${baseUrl}search/tv/?api_key=${apiKey}&query=${searchedItem.current.value}`;
 
         await fetch(movieURL)
             .then(res => res.json())
@@ -41,21 +41,21 @@ function Home() {
                 console.log(data)
                 fetchedResult = data;
                 console.log(fetchedResult);
-                // if (searchedItem.current.value) {
-                //     data.results.forEach(x => {
-                //         // setImage([...image, { key: x }, `${IMGurl}${x.poster_path}`])
-                //         setResult([...result, {
-                //             image: `${IMGurl}${x.poster_path}`,
-                //             original_name: x.original_name,
-                //             overview: x.overview,
-                //             popularity: x.popularity,
-                //             vote_average: x.vote_average,
-                //             vote_count: x.vote_count,
-                //             key: x
-                //         }])
-                //         console.log(result);
-                //     })
-                // }
+                if (searchedItem.current.value) {
+                    data.results.forEach(x => {
+                        // setImage([...image, { key: x }, `${IMGurl}${x.poster_path}`])
+                        setResult([...result, {
+                            image: `${IMGurl}${x.poster_path}`,
+                            original_name: x.original_name,
+                            overview: x.overview,
+                            popularity: x.popularity,
+                            vote_average: x.vote_average,
+                            vote_count: x.vote_count,
+                            key: x
+                        }])
+                        console.log(result);
+                    })
+                }
                 // else {
                 //     toast.warn('You must search for a Show or a Movie!', {
                 //         autoClose: 2500
@@ -63,31 +63,31 @@ function Home() {
                 // }
             });
 
-        // await fetch(tvURL)
-        //     .then(res => res.json())
-        //     .then(async res => {
-        //         console.log(res)
-        //         if (searchedItem.current.value) {
-        //             await res.results.forEach(x => {
-        //                 console.log(result);
-        //                 console.log(image);
-        //                 setImage([...image, `${IMGurl}${x.poster_path}`])
-        //                 // setResult([...result, {
-        //                 //     original_name: x.original_name,
-        //                 //     overview: x.overview,
-        //                 //     popularity: x.popularity,
-        //                 //     vote_average: x.vote_average,
-        //                 //     vote_count: x.vote_count,
-        //                 //     key: x
-        //                 // }])
-        //             })
-        //         }
-        //         //  else {
-        //         //     toast.warn('You must search for a Show or a Movie!', {
-        //         //         autoClose: 2500
-        //         //     });
-        //         // }
-        //     });
+        await fetch(tvURL)
+            .then(res => res.json())
+            .then(async res => {
+                console.log(res)
+                if (searchedItem.current.value) {
+                    await res.results.forEach(x => {
+                        console.log(result);
+                        console.log(image);
+                        setImage([...image, `${IMGurl}${x.poster_path}`])
+                        // setResult([...result, {
+                        //     original_name: x.original_name,
+                        //     overview: x.overview,
+                        //     popularity: x.popularity,
+                        //     vote_average: x.vote_average,
+                        //     vote_count: x.vote_count,
+                        //     key: x
+                        // }])
+                    })
+                }
+                //  else {
+                //     toast.warn('You must search for a Show or a Movie!', {
+                //         autoClose: 2500
+                //     });
+                // }
+            });
     }
 
     return (
