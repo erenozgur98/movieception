@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import HomePage from './Pages/Home';
 import Profile from './Pages/Profile';
@@ -10,17 +10,34 @@ import Discover from './Pages/Discover';
 import Header from './components/Header';
 // import WithAuth from './components/withAuth';
 import './index.css'
-// import API from './utils/API';
+import API from './utils/API';
 
 function App() {
   const [user, setUser] = useState({});
   const [loggedIn, setLoggedIn] = useState(false);
+  const [, setLoaded] = useState(false);
 
+  useEffect(() => {
+    API.loggedIn()
+      .then(result => {
+        setUser(result.data)
+        setLoaded(true);
+      })
+      .catch(err => {
+        console.log(err);
+        setLoaded(true);
+      })
+  }, [user])
+
+  const handleLogout = () => {
+    setUser({});
+    API.logOut();
+  };
 
   return (
     <div>
       <Router>
-        <Header />
+        <Header user={user} handleLogout={handleLogout} />
         <div className='main'>
           <Route exact path='/' component={HomePage} />
           <Route exact path='/home' component={HomePage} />

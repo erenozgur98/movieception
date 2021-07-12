@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt');
 
 router.get('/', async (req, res) => {
     try {
-        const user = await User.findAll();
+        const user = await User.find({});
         res.json(user);
     } catch (err) {
         console.log(err);
@@ -25,7 +25,8 @@ router.get('/:id', async (req, res) => {
     }
 });
 
-router.get('/user', async (req, res) => {
+router.get('/current-user', async (req, res) => {
+    console.log('*********************** LINE 30, ', req.session, req.session.logged_in, req.session.user_id);
     try {
         if (req.session.logged_in) {
             const userData = await User.findByPk(req.session.user_id);
@@ -57,7 +58,9 @@ router.post('/login', async (req, res) => {
 
         if (!validPassword) return res.status(401).json({ message: 'Incorrect Password' });
 
+        req.session.user_id = user.id;
         req.session.logged_in = true;
+        req.session.username = user.username;
         res.json(user);
 
     } catch (err) {
@@ -70,7 +73,7 @@ router.post('/signup', async (req, res) => {
     try {
         const newUser = await User.create(req.body);
 
-        req.session.user_id = newUser._id;
+        req.session.user_id = newUser.id;
         req.session.logged_in = true;
         req.session.username = newUser.username;
 

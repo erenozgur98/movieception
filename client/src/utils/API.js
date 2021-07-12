@@ -27,6 +27,6 @@ export default {
     },
 
     loggedIn: () => {
-        return axios.get('/api/user');
+        return axios.get('/api/user/current-user');
     },
 }

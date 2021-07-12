@@ -1,11 +1,14 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { Container } from 'react-bootstrap';
 import { Redirect } from 'react-router';
+import { useHistory } from 'react-router-dom';
 import API from '../../utils/API';
 
 function Login({ setUser, user }) {
     const username = useRef();
     const password = useRef();
+
+    const history = useHistory();
 
     const [redirect, setRedirect] = useState(false);
 
@@ -18,7 +21,7 @@ function Login({ setUser, user }) {
         try {
             const newLogin = await API.logIn({ username: username.current.value, password: password.current.value });
             setUser(newLogin);
-            console.log(newLogin);
+            history.push('/');
         } catch (err) {
             console.log(err)
         }

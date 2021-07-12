@@ -3,7 +3,7 @@ import { Navbar, Nav, NavbarBrand } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import './style.css';
 
-function Header() {
+function Header({ user, handleLogout }) {
     const [navColor, updateColor] = useState(false);
 
     const scrollHandler = () => {
@@ -40,11 +40,6 @@ function Header() {
                             Login
                         </div>
                     </Nav.Link>
-                    <Nav.Link as={Link} to='/signup' className='nav-link'>
-                        <div className="navLinks">
-                            Sign Up
-                        </div>
-                    </Nav.Link>
                     <Nav.Link as={Link} to='/discover' className='nav-link'>
                         <div className="navLinks">
                             Discover
@@ -63,6 +58,11 @@ function Header() {
                     <Nav.Link as={Link} to='/profile' className='nav-link'>
                         <div className="navLinks">
                             Profile
+                        </div>
+                    </Nav.Link>
+                    <Nav.Link as={Link} to='/' className='nav-link' onClick={handleLogout}>
+                        <div className="navLinks">
+                            Logout
                         </div>
                     </Nav.Link>
                 </Nav>
