@@ -1,10 +1,17 @@
 const express = require("express");
 const mongoose = require('mongoose');
-// const path = require("path");
+const session = require('express-session');
 
 const PORT = process.env.PORT || 3001;
 const routes = require('./routes');
 const app = express();
+
+app.use(session({
+  secret: 'Super secret secret',
+  resave: false,
+  saveUninitialized: true
+}));
+
 
 // Define middleware
 app.use(express.urlencoded({ extended: true }));
