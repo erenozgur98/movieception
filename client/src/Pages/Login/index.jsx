@@ -53,7 +53,7 @@ function Login({ setUser, user }) {
                             type='password'
                             className='form-control'
                             ref={password}
-                            placeholder='password'
+                            placeholder='Password'
                         />
                     </div>
                     <button

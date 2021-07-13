@@ -1,5 +1,10 @@
 .form-control {
     text-align: center;
+    margin-bottom: 32px;
+}
+
+.form-group > label {
+    border-bottom: 1px solid white;
 }
 
 .login-section > h1 {
