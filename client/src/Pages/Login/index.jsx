@@ -33,7 +33,7 @@ function Login({ setUser, user }) {
         <div>
             <Container className='login-section'>
                 {redirect && <Redirect to="/" />}
-                <h1>Login</h1>
+                <h1 className='d-flex justify-content-center'>Login</h1>
                 <form
                     onSubmit={handleLogIn}
                 >
@@ -62,8 +62,8 @@ function Login({ setUser, user }) {
                     >
                         Login
                     </button>
-                    <p className="lable-text">Don't have an account?</p>
-                    <a className="redirect" href="/signup"> <p className="lable-text">Sign up here!</p></a>
+                    <p className="lable-text"></p>
+                    <a className="d-flex justify-content-center" href="/signup"><p className="lable-text">Don't have an account? Sign up here!</p></a>
                 </form>
             </Container>
         </div>
