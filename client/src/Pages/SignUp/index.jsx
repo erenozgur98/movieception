@@ -3,6 +3,7 @@ import { Container } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 import { Redirect } from 'react-router';
 import API from '../../utils/API';
+import './style.css';
 
 function SignUp({ setUser, user }) {
     const email = useRef();
@@ -66,12 +67,14 @@ function SignUp({ setUser, user }) {
                         />
                     </div>
                     <button
-                        className='btn btn-primary'
+                        className='btn btn-primary btn-block'
                         type='submit'
                         onSubmit={handleSignUp}
                     >
                         Sign Up
                     </button>
+                    <p className="lable-text"></p>
+                    <a className="d-flex justify-content-center" href="/login"><p className="lable-text">Already have an account? Log in here!</p></a>
                 </form>
             </Container>
         </>

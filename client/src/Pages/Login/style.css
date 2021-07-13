@@ -1,0 +1,9 @@
+.form-control {
+    text-align: center;
+}
+
+.login-section > h1 {
+    text-align: center;
+    border-bottom: 1px solid white;
+    margin-bottom: 32px;
+}

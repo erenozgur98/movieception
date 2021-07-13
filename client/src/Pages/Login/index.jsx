@@ -3,6 +3,7 @@ import { Container } from 'react-bootstrap';
 import { Redirect } from 'react-router';
 import { useHistory } from 'react-router-dom';
 import API from '../../utils/API';
+import './style.css'
 
 function Login({ setUser, user }) {
     const username = useRef();
@@ -33,7 +34,7 @@ function Login({ setUser, user }) {
         <div>
             <Container className='login-section'>
                 {redirect && <Redirect to="/" />}
-                <h1 className='d-flex justify-content-center'>Login</h1>
+                <h1>Login</h1>
                 <form
                     onSubmit={handleLogIn}
                 >
@@ -56,7 +57,7 @@ function Login({ setUser, user }) {
                         />
                     </div>
                     <button
-                        className='btn btn-primary'
+                        className='btn btn-primary btn-block'
                         type='submit'
                         onSubmit={handleLogIn}
                     >
