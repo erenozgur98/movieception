@@ -39,7 +39,6 @@ function SignUp({ setUser, user }) {
                     onSubmit={handleSignUp}
                 >
                     <div className="form-group">
-                        <label htmlFor="email">Email Address</label>
                         <input
                             type='email'
                             className='form-control'
@@ -49,7 +48,6 @@ function SignUp({ setUser, user }) {
                         />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="username">Username</label>
                         <input
                             type='text'
                             className='form-control'
@@ -58,7 +56,6 @@ function SignUp({ setUser, user }) {
                         />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="password">Password</label>
                         <input
                             type='password'
                             className='form-control'
