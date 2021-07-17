@@ -3,10 +3,21 @@ import axios from 'axios';
 const BASEURL = "https://www.omdbapi.com/?t=";
 const APIKEY = "&apikey=trilogy";
 
+const MOVIE = "&type=movie";
+const SHOW = "&type=series";
+
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
     search: (query) => {
-        return axios.get(BASEURL + query + APIKEY);
+        return axios.get(`${BASEURL}${query}${APIKEY}`);
+    },
+    
+    searchMovie: (query) => {
+        return axios.get(`${BASEURL}${query}${APIKEY}${MOVIE}`);
+    },
+    
+    searchShow: (query) => {
+        return axios.get(`${BASEURL}${query}${APIKEY}${SHOW}`);
     },
 
     getUser: (userId) => {
