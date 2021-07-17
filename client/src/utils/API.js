@@ -1,7 +1,14 @@
 import axios from 'axios';
 
+const BASEURL = "https://www.omdbapi.com/?t=";
+const APIKEY = "&apikey=trilogy";
+
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
+    search: (query) => {
+        return axios.get(BASEURL + query + APIKEY);
+    },
+
     getUser: (userId) => {
         return axios.get('/api/users' + userId);
     },
@@ -29,4 +36,4 @@ export default {
     loggedIn: () => {
         return axios.get('/api/users/user');
     },
-}
+};
