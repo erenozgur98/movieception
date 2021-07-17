@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Navbar, Nav, NavbarBrand } from 'react-bootstrap';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './style.css';
 
 function Header({ user, handleLogout }) {
@@ -26,7 +26,7 @@ function Header({ user, handleLogout }) {
                     sticky='top'
                     className={navColor ? 'navColor1' : 'navColor2'}
                 >
-                    <NavbarBrand className='navbar-brand' to='/'>
+                    <NavbarBrand className='navbar-brand' href='/'>
                         <img src='' className='logo' alt='logo' />
                     </NavbarBrand>
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -61,7 +61,7 @@ function Header({ user, handleLogout }) {
                     sticky='top'
                     className={navColor ? 'navColor1' : 'navColor2'}
                 >
-                    <NavbarBrand className='navbar-brand' to='/'>
+                    <NavbarBrand className='navbar-brand' href='/'>
                         <img src='' className='logo' alt='logo' />
                     </NavbarBrand>
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
