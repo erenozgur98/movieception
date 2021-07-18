@@ -87,6 +87,9 @@ export default Home;
 // function Home() {
 
 //     return (
+//         <div>
+//             <h1 className='text-center'>True Story</h1>
+//         </div>
 //     )
 // }
 
