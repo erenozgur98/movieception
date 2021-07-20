@@ -20,6 +20,9 @@ export default {
         return axios.get(`${BASEURL}${query}${APIKEY}`);
     },
     
+    // searchMovie: (query) => {
+    //     return axios.get(`${BASEURL}${APIKEY}${query}${MOVIE}`);
+    // },
     searchMovie: (query) => {
         return axios.get(`${BASEURL}${query}${APIKEY}${MOVIE}`);
     },

@@ -85,8 +85,6 @@ class Home extends Component {
 export default Home;
 
 // function Home() {
-//     const [result, setResult] = useState({});
-
 //     return (
 //         <div>
 //             <h1 className='text-center'>True Story</h1>
