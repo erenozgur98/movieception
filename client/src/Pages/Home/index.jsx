@@ -146,7 +146,7 @@ function Home() {
                         released={result.Released}
                     />
                 ) : (
-                    <h2>No Results to Display</h2>
+                    <h2>Try Again</h2>
                 )}
             </Container>
         </>
