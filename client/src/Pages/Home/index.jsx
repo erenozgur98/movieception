@@ -1,7 +1,7 @@
 import React, { Component, useState } from 'react'
 import { useRef } from 'react';
 import { Container } from 'react-bootstrap'
-import Card from '../../components/Card';
+import Details from '../../components/Details';
 import MovieDetail from '../../components/MovieDetail';
 import SearchForm from '../../components/SearchForm';
 // import { toast } from 'react-toastify';
@@ -136,15 +136,18 @@ function Home() {
                 </div>
             </Container>
             <Container className="d-flex justify-content-center">
-                <MovieDetail 
-                    title={result.Title}
-                    src={result.Poster}
-                    plot={result.Plot}
-                    rating={result.imdbRating}
-                    votes={result.imdbVotes}
-                    released={result.Released}
-                    boxOffice={result.BoxOffice}
-                />
+                {result.Title ? (
+                    <Details
+                        title={result.Title}
+                        src={result.Poster}
+                        plot={result.Plot}
+                        rating={result.imdbRating}
+                        votes={result.imdbVotes}
+                        released={result.Released}
+                    />
+                ) : (
+                    <h2>No Results to Display</h2>
+                )}
             </Container>
         </>
     )
