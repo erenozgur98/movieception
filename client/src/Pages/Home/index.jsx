@@ -115,6 +115,7 @@ function Home() {
                         onKeyPress={handleSearch}
                     />
                 </div>
+                {/* add font awesome icons, make sure it works */}
                 {/* <button type='button' className='btn btn-primary' onClick={handleSearch}>
                     <i class="fas fa-search"></i>
                 </button> */}
