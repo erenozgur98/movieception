@@ -1,11 +1,11 @@
 import axios from 'axios';
 
 // this is the one I'll use
-const BASEURL = "https://www.omdbapi.com/?";
-const APIKEY = `apikey=trilogy&s=`;
+// const BASEURL = "https://www.omdbapi.com/?";
+// const APIKEY = `apikey=trilogy&s=`;
 
-// const BASEURL = "https://www.omdbapi.com/?t=";
-// const APIKEY = `&apikey=trilogy`;
+const BASEURL = "https://www.omdbapi.com/?t=";
+const APIKEY = `&apikey=trilogy`;
 
 const MOVIE = "&type=movie";
 const SHOW = "&type=series";

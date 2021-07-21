@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, useState } from 'react'
 import { useRef } from 'react';
 import { Container } from 'react-bootstrap'
 import Card from '../../components/Card';
@@ -86,21 +86,24 @@ import API from '../../utils/API';
 // export default Home;
 
 function Home() {
+    const [result, setResult] = useState({});
 
     const search = useRef();
 
     const handleSearch = (target) => {
         if (target.charCode === 13) {
             console.log(search.current.value);
+            API.search(search.current.value)
+                .then(res => setResult(res.data));
         }
     }
 
     const randomMovie = () => {
-        console.log(search.current.value);
+        console.log('random movie');
     }
 
     const randomShow = () => {
-        console.log(search.current.value);
+        console.log('random show');
     }
 
     return (
@@ -131,6 +134,17 @@ function Home() {
                         Random Show
                     </button>
                 </div>
+            </Container>
+            <Container className="d-flex justify-content-center">
+                <MovieDetail 
+                    title={result.Title}
+                    src={result.Poster}
+                    plot={result.Plot}
+                    rating={result.imdbRating}
+                    votes={result.imdbVotes}
+                    released={result.Released}
+                    boxOffice={result.BoxOffice}
+                />
             </Container>
         </>
     )
