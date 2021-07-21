@@ -104,31 +104,35 @@ function Home() {
     }
 
     return (
-        <Container className=''>
-            <div className="input-group rounded">
-                <div className="form-outline">
-                    <input
-                        type="search"
-                        className="form-control rounded"
-                        placeholder="Search"
-                        ref={search}
-                        onKeyPress={handleSearch}
-                    />
+        <>
+            <Container className="d-flex justify-content-center">
+                <div>
+                    <div className="form-outline">
+                        <input
+                            type="search"
+                            className="form-control rounded"
+                            placeholder="Search"
+                            ref={search}
+                            onKeyPress={handleSearch}
+                        />
+                    </div>
+                    {/* add font awesome icons, make sure it works */}
+                    {/* <button type='button' className='btn btn-primary' onClick={handleSearch}>
+                        <i class="fas fa-search"></i>
+                    </button> */}
                 </div>
-                {/* add font awesome icons, make sure it works */}
-                {/* <button type='button' className='btn btn-primary' onClick={handleSearch}>
-                    <i class="fas fa-search"></i>
-                </button> */}
-            </div>
-            <div>
-                <button type='button' className='btn btn-warning' onClick={randomMovie}>
-                    Random Movie
-                </button>
-                <button type='button' className='btn btn-warning' onClick={randomShow}>
-                    Random Show
-                </button>
-            </div>
-        </Container>
+            </Container>
+            <Container className="d-flex justify-content-center">
+                <div>
+                    <button type='button' className='btn btn-warning' onClick={randomMovie}>
+                        Random Movie
+                    </button>
+                    <button type='button' className='btn btn-warning' onClick={randomShow}>
+                        Random Show
+                    </button>
+                </div>
+            </Container>
+        </>
     )
 }
 
