@@ -15,82 +15,98 @@ import API from '../../utils/API';
 // Make a logo
 // Make toast work
 
-class Home extends Component {
-    state = {
-        result: {},
-        search: ""
-    };
+// class Home extends Component {
+//     state = {
+//         result: {},
+//         search: ""
+//     };
 
-    // When this component mounts, search for the movie "The Avengers"
-    componentDidMount() {
-        this.searchMovies("The Avengers");
-    }
+//     // When this component mounts, search for the movie "The Avengers"
+//     componentDidMount() {
+//         this.searchMovies("The Avengers");
+//     }
 
-    searchMovies = query => {
-        API.search(query)
-            // .then(res => console.log(res.data))
-            .then(res => this.setState({ result: res.data }))
-            .catch(err => console.log(err));
-    };
+//     searchMovies = query => {
+//         API.search(query)
+//             // .then(res => console.log(res.data))
+//             .then(res => this.setState({ result: res.data }))
+//             .catch(err => console.log(err));
+//     };
 
-    handleInputChange = e => {
-        const value = e.target.value;
-        const name = e.target.name;
-        this.setState({
-            [name]: value
-        });
-    };
+//     handleInputChange = e => {
+//         const value = e.target.value;
+//         const name = e.target.name;
+//         this.setState({
+//             [name]: value
+//         });
+//     };
 
-    // When the form is submitted, search the OMDB API for the value of `this.state.search`
-    handleFormSubmit = e => {
-        e.preventDefault();
-        this.searchMovies(this.state.search);
-    };
+//     // When the form is submitted, search the OMDB API for the value of `this.state.search`
+//     handleFormSubmit = e => {
+//         e.preventDefault();
+//         this.searchMovies(this.state.search);
+//     };
 
-    render() {
-        return (
-            <Container>
-                <div>
-                    <h1 className='text-center'>True Story</h1>
-                </div>
-                <Card
-                    heading={this.state.result.Title || "Search for a Movie to Begin"}
-                >
-                    {this.state.result.Title ? (
-                        // this.state.result.map(movie => (
-                            <MovieDetail
-                                title={this.state.result.Title}
-                                src={this.state.result.Poster}
-                                director={this.state.result.Director}
-                                genre={this.state.result.Genre}
-                                released={this.state.result.Released}
-                            />
-                        // ))
-                    ) : (
-                        <h3>No Results to Display</h3>
-                    )}
-                </Card>
-                <Card heading="Search">
-                    <SearchForm
-                        value={this.state.search}
-                        handleInputChange={this.handleInputChange}
-                        handleFormSubmit={this.handleFormSubmit}
-                    />
-                </Card>
-            </Container>
-        );
-    }
-}
-
-export default Home;
-
-// function Home() {
-//     return (
-//         <div>
-//             <h1 className='text-center'>True Story</h1>
-//         </div>
-//     )
+//     render() {
+//         return (
+//             <Container>
+//                 <div>
+//                     <h1 className='text-center'>True Story</h1>
+//                 </div>
+//                 <Card
+//                     heading={this.state.result.Title || "Search for a Movie to Begin"}
+//                 >
+//                     {this.state.result.Title ? (
+//                         // this.state.result.map(movie => (
+//                             <MovieDetail
+//                                 title={this.state.result.Title}
+//                                 src={this.state.result.Poster}
+//                                 director={this.state.result.Director}
+//                                 genre={this.state.result.Genre}
+//                                 released={this.state.result.Released}
+//                             />
+//                         // ))
+//                     ) : (
+//                         <h3>No Results to Display</h3>
+//                     )}
+//                 </Card>
+//                 <Card heading="Search">
+//                     <SearchForm
+//                         value={this.state.search}
+//                         handleInputChange={this.handleInputChange}
+//                         handleFormSubmit={this.handleFormSubmit}
+//                     />
+//                 </Card>
+//             </Container>
+//         );
+//     }
 // }
 
-// export default Home
+// export default Home;
+
+function Home() {
+    return (
+        <Container className=''>
+            <div className="input-group">
+                <div class="form-outline">
+                    <input type="search" className="form-control" />
+                    <label className="form-label">Search</label>
+                </div>
+            </div>
+            <button type='button' className='btn btn-primary'>
+                Search
+            </button>
+            <div>
+                <button type='button' className='btn btn-warning'>
+                    Random Movie
+                </button>
+                <button type='button' className='btn btn-warning'>
+                    Random Show
+                </button>
+            </div>
+        </Container>
+    )
+}
+
+export default Home
 
