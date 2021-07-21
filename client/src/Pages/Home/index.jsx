@@ -116,7 +116,7 @@ function Home() {
                     />
                 </div>
                 {/* <button type='button' className='btn btn-primary' onClick={handleSearch}>
-                    Search
+                    <i class="fas fa-search"></i>
                 </button> */}
             </div>
             <div>
