@@ -89,7 +89,17 @@ function Home() {
 
     const search = useRef();
 
-    const something = () => {
+    const handleSearch = (target) => {
+        if (target.charCode === 13) {
+            console.log(search.current.value);
+        }
+    }
+
+    const randomMovie = () => {
+        console.log(search.current.value);
+    }
+
+    const randomShow = () => {
         console.log(search.current.value);
     }
 
@@ -101,20 +111,19 @@ function Home() {
                         type="search"
                         className="form-control rounded"
                         placeholder="Search"
-                        aria-label="Search"
-                        aria-describedby="search-addon"
                         ref={search}
+                        onKeyPress={handleSearch}
                     />
                 </div>
-                <button type='button' className='btn btn-primary' onClick={something}>
+                {/* <button type='button' className='btn btn-primary' onClick={handleSearch}>
                     Search
-                </button>
+                </button> */}
             </div>
             <div>
-                <button type='button' className='btn btn-warning'>
+                <button type='button' className='btn btn-warning' onClick={randomMovie}>
                     Random Movie
                 </button>
-                <button type='button' className='btn btn-warning'>
+                <button type='button' className='btn btn-warning' onClick={randomShow}>
                     Random Show
                 </button>
             </div>
