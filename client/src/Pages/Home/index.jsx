@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { useRef } from 'react';
 import { Container } from 'react-bootstrap'
 import Card from '../../components/Card';
 import MovieDetail from '../../components/MovieDetail';
@@ -85,17 +86,30 @@ import API from '../../utils/API';
 // export default Home;
 
 function Home() {
+
+    const search = useRef();
+
+    const something = () => {
+        console.log(search.current.value);
+    }
+
     return (
         <Container className=''>
-            <div className="input-group">
-                <div class="form-outline">
-                    <input type="search" className="form-control" />
-                    <label className="form-label">Search</label>
+            <div className="input-group rounded">
+                <div className="form-outline">
+                    <input
+                        type="search"
+                        className="form-control rounded"
+                        placeholder="Search"
+                        aria-label="Search"
+                        aria-describedby="search-addon"
+                        ref={search}
+                    />
                 </div>
+                <button type='button' className='btn btn-primary' onClick={something}>
+                    Search
+                </button>
             </div>
-            <button type='button' className='btn btn-primary'>
-                Search
-            </button>
             <div>
                 <button type='button' className='btn btn-warning'>
                     Random Movie
