@@ -114,8 +114,8 @@ function Home({ user }) {
 
     const handleRandomShow = () => {
         API.searchShowId(`tt${randomNumbers}`)
-            .then(res => setRandomShow(res.data))
-        // .then(res => console.log(res.data))
+            // .then(res => setRandomShow(res.data))
+            .then(res => console.log(res.data))
         console.log('random show');
         setResult([]);
         setRandomMovie([]);
@@ -172,43 +172,38 @@ function Home({ user }) {
                 )}
             </div>
             <div>
-                {randomMovie.imdbRating ? (
-                    <div>
-                        {randomMovie.Title ? (
-                            <Details
-                                src={randomMovie.Poster}
-                                title={randomMovie.Title}
-                                plot={randomMovie.Plot}
-                                rating={randomMovie.imdbRating}
-                                votes={randomMovie.imdbVotes}
-                                released={randomMovie.Released}
-                            />
-                        ) : (
-                            <h1>asdf2</h1>
-                        )}
-                    </div>
+                {!randomMovie.Response === "False" ? (
+                    <Details
+                        src={randomMovie.Poster}
+                        title={randomMovie.Title}
+                        plot={randomMovie.Plot}
+                        rating={randomMovie.imdbRating}
+                        votes={randomMovie.imdbVotes}
+                        released={randomMovie.Released}
+                    />
                 ) : (
-                    <h1>asdf123</h1>
+                    <Details
+                        src={randomMovie.Poster}
+                        title={randomMovie.Title}
+                        plot={randomMovie.Plot}
+                        rating={randomMovie.imdbRating}
+                        votes={randomMovie.imdbVotes}
+                        released={randomMovie.Released}
+                    />
                 )}
             </div>
             <div>
-                {randomShow.imdbRating ? (
-                    <div>
-                        {randomShow.Title ? (
-                            <Details
-                                src={randomShow.Poster}
-                                title={randomShow.Title}
-                                plot={randomShow.Plot}
-                                rating={randomShow.imdbRating}
-                                votes={randomShow.imdbVotes}
-                                released={randomShow.Released}
-                            />
-                        ) : (
-                            <h1>asdf1</h1>
-                        )}
-                    </div>
+                {!randomShow.Response === "False" ? (
+                    <Details
+                        src={randomShow.Poster}
+                        title={randomShow.Title}
+                        plot={randomShow.Plot}
+                        rating={randomShow.imdbRating}
+                        votes={randomShow.imdbVotes}
+                        released={randomShow.Released}
+                    />
                 ) : (
-                    <h1>asdf321</h1>
+                    <h3>Oops, guess not so lucky! Try again :)</h3>
                 )}
             </div>
         </div>

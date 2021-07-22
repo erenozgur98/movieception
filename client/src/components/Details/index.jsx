@@ -27,6 +27,7 @@ const Details = (props) => {
                         className='btn btn-primary'
                         onClick={() => {
                             addToFavorites()
+                            console.log(props.src)
                         }}
                     >
                         Add To Favorites
