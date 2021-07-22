@@ -93,29 +93,33 @@ function Home({ user }) {
 
     const search = useRef();
 
+    let randomNumbers = Math.floor(100000 + Math.random() * 9000000);
+
     const handleSearch = (e) => {
         if (e.charCode === 13) {
             API.search(search.current.value)
                 .then(res => setResult(res.data.Search))
-            console.log(result)
             console.log(user)
         }
-    }
+    };
 
     const handleRandomMovie = () => {
-        API.searchMovieId("tt4154796")
+        API.searchMovieId(`tt${randomNumbers}`)
             .then(res => setRandomMovie(res.data))
-            // .then(res => console.log(res.data))
+        // .then(res => console.log(res.data))
         console.log('random movie');
-    }
+        setResult([]);
+        setRandomShow([]);
+    };
 
     const handleRandomShow = () => {
-        API.searchShowId("tt4154796")
+        API.searchShowId(`tt${randomNumbers}`)
             .then(res => setRandomShow(res.data))
-            // .then(res => console.log(res.data))
+        // .then(res => console.log(res.data))
         console.log('random show');
-        setResult([])
-    }
+        setResult([]);
+        setRandomMovie([]);
+    };
 
     return (
         <div className='bg'>
@@ -168,17 +172,43 @@ function Home({ user }) {
                 )}
             </div>
             <div>
-                {randomMovie.Title ? (
-                    <Details
-                        src={randomMovie.Poster}
-                        title={randomMovie.Title}
-                        plot={randomMovie.Plot}
-                        rating={randomMovie.imdbRating}
-                        votes={randomMovie.imdbVotes}
-                        released={randomMovie.Released}
-                    />
+                {randomMovie.imdbRating ? (
+                    <div>
+                        {randomMovie.Title ? (
+                            <Details
+                                src={randomMovie.Poster}
+                                title={randomMovie.Title}
+                                plot={randomMovie.Plot}
+                                rating={randomMovie.imdbRating}
+                                votes={randomMovie.imdbVotes}
+                                released={randomMovie.Released}
+                            />
+                        ) : (
+                            <h1>asdf2</h1>
+                        )}
+                    </div>
                 ) : (
-                    <h2>No Results Have Found</h2>
+                    <h1>asdf123</h1>
+                )}
+            </div>
+            <div>
+                {randomShow.imdbRating ? (
+                    <div>
+                        {randomShow.Title ? (
+                            <Details
+                                src={randomShow.Poster}
+                                title={randomShow.Title}
+                                plot={randomShow.Plot}
+                                rating={randomShow.imdbRating}
+                                votes={randomShow.imdbVotes}
+                                released={randomShow.Released}
+                            />
+                        ) : (
+                            <h1>asdf1</h1>
+                        )}
+                    </div>
+                ) : (
+                    <h1>asdf321</h1>
                 )}
             </div>
         </div>
