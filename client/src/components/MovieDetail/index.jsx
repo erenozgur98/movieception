@@ -1,15 +1,35 @@
 import React from "react";
+import { Container, Card, Button } from 'react-bootstrap';
 
 function MovieDetail(props) {
+
+  const redirect = () => {
+    console.log('will work soon')
+  }
+
+  const addToFavorites = () => {
+    console.log('will work soon')
+  }
+
   return (
-    <div className="text-center">
-      <img alt={props.title} className="img-fluid" src={props.src} style={{ margin: "0 auto" }} />
-      <h4>{props.title}</h4>
-      <h4>Plot: {props.plot}</h4>
-      <h4>Rating: {props.rating} / 10.0</h4>
-      <h4>Votes: {props.votes}</h4>
-      <h4>Released: {props.released}</h4>
-    </div>
+    <Container className='text-center'>
+            <Card style={{ width: '15rem', backgroundColor: 'black', margin: '0 auto' }}>
+                <Card.Img onClick={redirect} variant='top' src={props.Poster} style={{ width: ''}} />
+                <Card.Body>
+                    <Card.Title>{props.Title} - {props.Year}</Card.Title>
+                    <Card.Text>
+                    </Card.Text>
+                    <Button
+                        className='btn btn-primary'
+                        onClick={() => {
+                            addToFavorites()
+                        }}
+                    >
+                        Go To {props.Title}
+                    </Button>
+                </Card.Body>
+            </Card>
+        </Container>
   );
 }
 

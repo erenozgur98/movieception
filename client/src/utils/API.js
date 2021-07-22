@@ -1,11 +1,11 @@
 import axios from 'axios';
 
 // this is the one I'll use
-// const BASEURL = "https://www.omdbapi.com/?";
-// const APIKEY = `apikey=trilogy&s=`;
+const BASEURL = "https://www.omdbapi.com/?";
+const APIKEY = `apikey=trilogy&s=`;
 
-const BASEURL = "https://www.omdbapi.com/?t=";
-const APIKEY = `&apikey=trilogy`;
+// const BASEURL = "https://www.omdbapi.com/?t=";
+// const APIKEY = `&apikey=trilogy`;
 
 const MOVIE = "&type=movie";
 const SHOW = "&type=series";
@@ -15,12 +15,12 @@ const SHOW = "&type=series";
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
     // this is the one I'll use
-    // search: (query) => {
-    //     return axios.get(`${BASEURL}${APIKEY}${query}`);
-    // },
     search: (query) => {
-        return axios.get(`${BASEURL}${query}${APIKEY}`);
+        return axios.get(`${BASEURL}${APIKEY}${query}`);
     },
+    // search: (query) => {
+    //     return axios.get(`${BASEURL}${query}${APIKEY}`);
+    // },
     
     searchMovie: (query) => {
         return axios.get(`${BASEURL}${APIKEY}${query}${MOVIE}`);

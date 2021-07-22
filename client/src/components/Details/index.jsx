@@ -13,8 +13,8 @@ const Details = (props) => {
 
     return (
         <Container className='text-center'>
-            <Card style={{ width: '25rem', backgroundColor: 'black', margin: '0 auto' }}>
-                <Card.Img onClick={redirect} variant='top' src={props.src} />
+            <Card style={{ width: '15rem', backgroundColor: 'black', margin: '0 auto' }}>
+                <Card.Img onClick={redirect} variant='top' src={props.src} style={{ width: ''}} />
                 <Card.Body>
                     <Card.Title>{props.title}</Card.Title>
                     <Card.Text>

@@ -86,16 +86,15 @@ import API from '../../utils/API';
 // export default Home;
 
 function Home() {
-    const [result, setResult] = useState({});
+    const [result, setResult] = useState([]);
 
     const search = useRef();
 
-    const handleSearch = (target) => {
-        if (target.charCode === 13) {
-            console.log(search.current.value);
-            API.search(search.current.value)
-                .then(res => setResult(res.data));
-        }
+    const handleSearch = () => {
+        console.log(search.current.value);
+        API.search(search.current.value)
+            // .then(res => console.log(res.data.Search))
+            .then(res => setResult(res.data.Search))
     }
 
     const randomMovie = () => {
@@ -116,13 +115,12 @@ function Home() {
                             className="form-control rounded"
                             placeholder="Search"
                             ref={search}
-                            onKeyPress={handleSearch}
                         />
                     </div>
                     {/* add font awesome icons, make sure it works */}
-                    {/* <button type='button' className='btn btn-primary' onClick={handleSearch}>
-                        <i class="fas fa-search"></i>
-                    </button> */}
+                    <button type='button' className='btn btn-primary' onClick={handleSearch}>
+                        Search<i class="fas fa-search"></i>
+                    </button>
                 </div>
             </Container>
             <Container className="d-flex justify-content-center">
@@ -135,8 +133,8 @@ function Home() {
                     </button>
                 </div>
             </Container>
-            <Container className="d-flex justify-content-center">
-                {result.Title ? (
+            <div className='row'>
+                {/* {result.Title ? (
                     <Details
                         title={result.Title}
                         src={result.Poster}
@@ -145,10 +143,19 @@ function Home() {
                         votes={result.imdbVotes}
                         released={result.Released}
                     />
-                ) : (
-                    <h2>Try Again</h2>
-                )}
-            </Container>
+                    ) : (
+                        <h2>No Results Have Found</h2>
+                    )} */}
+                {result.map((x, i) => (
+                    <div className="row d-flex justify-content-center" style={{ paddingBottom: '12px', paddingTop: '12px' }}>
+                        <div className="col-sm-4">
+                            <MovieDetail
+                                {...x}
+                            />
+                        </div>
+                    </div>
+                ))}
+            </div>
         </>
     )
 }
