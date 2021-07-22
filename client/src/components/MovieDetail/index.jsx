@@ -3,33 +3,29 @@ import { Container, Card, Button } from 'react-bootstrap';
 
 function MovieDetail(props) {
 
-  const redirect = () => {
-    console.log('will work soon')
-  }
-
-  const addToFavorites = () => {
+  const moviePage = () => {
     console.log('will work soon')
   }
 
   return (
     <Container className='text-center'>
-            <Card style={{ width: '15rem', backgroundColor: 'black', margin: '0 auto' }}>
-                <Card.Img onClick={redirect} variant='top' src={props.Poster} style={{ width: ''}} />
-                <Card.Body>
-                    <Card.Title>{props.Title} - {props.Year}</Card.Title>
+      <Card style={{ minWidth: '14rem', maxWidth:'15rem', backgroundColor: '' }}>
+        {/* <Card.Title>{props.Title}</Card.Title> */}
+        <Card.Img onClick={moviePage} src={props.Poster} style={{ width: '' }} />
+        {/* <Card.Body>
                     <Card.Text>
                     </Card.Text>
                     <Button
                         className='btn btn-primary'
                         onClick={() => {
-                            addToFavorites()
+                            moviePage()
                         }}
                     >
-                        Go To {props.Title}
+                        Go To Movie
                     </Button>
-                </Card.Body>
-            </Card>
-        </Container>
+                </Card.Body> */}
+      </Card>
+    </Container>
   );
 }
 

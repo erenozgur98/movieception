@@ -93,8 +93,8 @@ function Home() {
     const handleSearch = () => {
         console.log(search.current.value);
         API.search(search.current.value)
-            // .then(res => console.log(res.data.Search))
-            .then(res => setResult(res.data.Search))
+        .then(res => setResult(res.data.Search))
+        console.log(result)
     }
 
     const randomMovie = () => {
@@ -133,28 +133,22 @@ function Home() {
                     </button>
                 </div>
             </Container>
-            <div className='row'>
-                {/* {result.Title ? (
-                    <Details
-                        title={result.Title}
-                        src={result.Poster}
-                        plot={result.Plot}
-                        rating={result.imdbRating}
-                        votes={result.imdbVotes}
-                        released={result.Released}
-                    />
-                    ) : (
-                        <h2>No Results Have Found</h2>
-                    )} */}
-                {result.map((x, i) => (
-                    <div className="row d-flex justify-content-center" style={{ paddingBottom: '12px', paddingTop: '12px' }}>
-                        <div className="col-sm-4">
-                            <MovieDetail
-                                {...x}
-                            />
-                        </div>
+            <div>
+                {!result.Title ? (
+                    <div className='row'>
+                        {result.map((x, i) => (
+                            <div className="row d-flex justify-content-center" style={{ paddingBottom: '12px', paddingTop: '12px' }}>
+                                <div className="col-sm-4">
+                                    <MovieDetail
+                                        {...x}
+                                    />
+                                </div>
+                            </div>
+                        ))}
                     </div>
-                ))}
+                ) : (
+                    <h2>No Results Have Found</h2>
+                )}
             </div>
         </>
     )
