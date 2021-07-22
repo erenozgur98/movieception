@@ -11,7 +11,7 @@ function MovieDetail(props) {
     <Container className='text-center'>
       <Card style={{ minWidth: '14rem', maxWidth:'15rem', backgroundColor: '' }}>
         {/* <Card.Title>{props.Title}</Card.Title> */}
-        <Card.Img onClick={moviePage} src={props.Poster} style={{ width: '' }} />
+        <Card.Img onClick={moviePage} src={props.Poster === "N/A" ? "https://via.placeholder.com/600" : props.Poster} style={{ width: '' }} />
         {/* <Card.Body>
                     <Card.Text>
                     </Card.Text>
