@@ -121,6 +121,10 @@ function Home({ user }) {
         setRandomMovie([]);
     };
 
+    const clear = () => {
+        setResult([])
+    }
+
     return (
         <div className='bg'>
             <Container className="d-flex justify-content-center">
@@ -153,6 +157,13 @@ function Home({ user }) {
                     </button>
                 </div>
             </Container>
+            <Container className="d-flex justify-content-center">
+                <div>
+                    <button type='button' className='btn btn-danger' onClick={clear}>
+                        Clear
+                    </button>
+                </div>
+            </Container>
             <div>
                 {!result.Title ? (
                     <div className='row'>
@@ -171,7 +182,7 @@ function Home({ user }) {
                     <h2>No Results Have Found</h2>
                 )}
             </div>
-            <div>
+            {/* <div>
                 {!randomMovie.Response === "False" ? (
                     <Details
                         src={randomMovie.Poster}
@@ -182,14 +193,7 @@ function Home({ user }) {
                         released={randomMovie.Released}
                     />
                 ) : (
-                    <Details
-                        src={randomMovie.Poster}
-                        title={randomMovie.Title}
-                        plot={randomMovie.Plot}
-                        rating={randomMovie.imdbRating}
-                        votes={randomMovie.imdbVotes}
-                        released={randomMovie.Released}
-                    />
+                    <h3>Oops, guess not so lucky! Try again :)</h3>
                 )}
             </div>
             <div>
@@ -205,7 +209,7 @@ function Home({ user }) {
                 ) : (
                     <h3>Oops, guess not so lucky! Try again :)</h3>
                 )}
-            </div>
+            </div> */}
         </div>
     )
 }

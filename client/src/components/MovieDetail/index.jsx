@@ -9,7 +9,7 @@ function MovieDetail(props) {
 
   return (
     <Container className='text-center'>
-      <Card style={{ minWidth: '14rem', maxWidth: '15rem', backgroundColor: '' }}>
+      <Card style={{ minWidth: '12rem', maxWidth: '14rem', backgroundColor: '' }}>
         {/* <Card.Title>{props.Title}</Card.Title> */}
         <Card.Img
           onClick={moviePage}
