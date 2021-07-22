@@ -7,6 +7,8 @@ const APIKEY = `apikey=trilogy&s=`;
 const BASEURL1 = "https://www.omdbapi.com/?t=";
 const APIKEY1 = `&apikey=trilogy`;
 
+const BASEURL_ID = "https://www.omdbapi.com/?i="
+
 const MOVIE = "&type=movie";
 const SHOW = "&type=series";
 
@@ -28,9 +30,17 @@ export default {
     searchMovie: (query) => {
         return axios.get(`${BASEURL}${APIKEY}${query}${MOVIE}${PAGE}`);
     },
+
+    searchMovieId: (query) => {
+        return axios.get(`${BASEURL_ID}${query}${APIKEY1}${MOVIE}`);
+    },
     
     searchShow: (query) => {
         return axios.get(`${BASEURL}${APIKEY}${query}${SHOW}${PAGE}`);
+    },
+
+    searchShowId: (query) => {
+        return axios.get(`${BASEURL_ID}${query}${APIKEY1}${SHOW}`);
     },
 
     getUser: (userId) => {

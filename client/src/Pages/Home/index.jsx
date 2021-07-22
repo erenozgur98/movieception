@@ -88,6 +88,8 @@ import API from '../../utils/API';
 
 function Home({ user }) {
     const [result, setResult] = useState([]);
+    const [randomMovie, setRandomMovie] = useState({});
+    const [randomShow, setRandomShow] = useState({});
 
     const search = useRef();
 
@@ -100,12 +102,19 @@ function Home({ user }) {
         }
     }
 
-    const randomMovie = () => {
+    const handleRandomMovie = () => {
+        API.searchMovieId("tt4154796")
+            .then(res => setRandomMovie(res.data))
+            // .then(res => console.log(res.data))
         console.log('random movie');
     }
 
-    const randomShow = () => {
+    const handleRandomShow = () => {
+        API.searchShowId("tt4154796")
+            .then(res => setRandomShow(res.data))
+            // .then(res => console.log(res.data))
         console.log('random show');
+        setResult([])
     }
 
     return (
@@ -132,10 +141,10 @@ function Home({ user }) {
             </Container>
             <Container className="d-flex justify-content-center">
                 <div>
-                    <button type='button' className='btn btn-warning' onClick={randomMovie}>
+                    <button type='button' className='btn btn-warning' onClick={handleRandomMovie}>
                         Random Movie
                     </button>
-                    <button type='button' className='btn btn-warning' onClick={randomShow}>
+                    <button type='button' className='btn btn-warning' onClick={handleRandomShow}>
                         Random Show
                     </button>
                 </div>
@@ -154,6 +163,20 @@ function Home({ user }) {
                             </div>
                         ))}
                     </div>
+                ) : (
+                    <h2>No Results Have Found</h2>
+                )}
+            </div>
+            <div>
+                {randomMovie.Title ? (
+                    <Details
+                        src={randomMovie.Poster}
+                        title={randomMovie.Title}
+                        plot={randomMovie.Plot}
+                        rating={randomMovie.imdbRating}
+                        votes={randomMovie.imdbVotes}
+                        released={randomMovie.Released}
+                    />
                 ) : (
                     <h2>No Results Have Found</h2>
                 )}
