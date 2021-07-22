@@ -21,11 +21,11 @@ function SignUp({ setUser, user }) {
     const handleSignUp = async (e) => {
         e.preventDefault();
         try {
-        const newUser = await API.signUp({ email: email.current.value, username: username.current.value, password: password.current.value });
-        delete newUser.data.password;
-        history.push('/')
-        setUser(newUser.data);
-        } catch(err) {
+            const newUser = await API.signUp({ email: email.current.value, username: username.current.value, password: password.current.value });
+            delete newUser.data.password;
+            history.push('/')
+            setUser(newUser.data);
+        } catch (err) {
             console.log(err);
         }
     }

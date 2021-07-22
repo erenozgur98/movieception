@@ -1,4 +1,5 @@
 import React, { Component, useState } from 'react'
+import { useEffect } from 'react';
 import { useRef } from 'react';
 import { Container } from 'react-bootstrap'
 import Details from '../../components/Details';
@@ -85,7 +86,7 @@ import API from '../../utils/API';
 
 // export default Home;
 
-function Home() {
+function Home({ user }) {
     const [result, setResult] = useState([]);
 
     const search = useRef();
@@ -95,6 +96,7 @@ function Home() {
             API.search(search.current.value)
                 .then(res => setResult(res.data.Search))
             console.log(result)
+            console.log(user)
         }
     }
 
@@ -109,6 +111,9 @@ function Home() {
     return (
         <div className='bg'>
             <Container className="d-flex justify-content-center">
+                {/* <div>
+                    {user.username === null ? <h3>Good morning, user.username</h3> : <h3>Good morning! You can <a href='/login'>login</a> or <a href='/signup'>signup</a>!</h3>}
+                </div> */}
                 <div>
                     <div className="form-outline">
                         <input

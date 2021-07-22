@@ -22,6 +22,7 @@ function App() {
       .then(result => {
         setUser(result.data)
         setLoaded(true);
+        console.log(result.data)
       })
       .catch(err => {
         console.log(err);
@@ -40,7 +41,7 @@ function App() {
         <Header user={user} handleLogout={handleLogout} />
         <div className='main'>
           <Route exact path='/' component={HomePage} />
-          <Route exact path='/home' component={HomePage} />
+          <Route exact path='/home' render={(props) => <HomePage {...props} user={user} />} />
           <Route exact path='/discover' component={Discover} />
           <Route exact path='/movies' component={Movies} />
           <Route exact path='/shows' component={Shows} />

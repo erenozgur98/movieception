@@ -24,6 +24,7 @@ function Login({ setUser, user }) {
             // delete the password so it won't be set in the state
             delete newLogin.data.password;
             setUser(newLogin.data);
+            console.log(newLogin.data)
             history.push('/');
         } catch (err) {
             console.log(err)
