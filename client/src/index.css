@@ -23,3 +23,9 @@ body {
   min-height: 100vh;
   height: 100%;
 }
+
+.bg {
+  background-image: url(./images/barneeey.jpg);
+  background-size: 100%;
+  background-repeat: no-repeat;
+}

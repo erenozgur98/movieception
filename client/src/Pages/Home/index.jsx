@@ -107,7 +107,7 @@ function Home() {
     }
 
     return (
-        <>
+        <div className='bg'>
             <Container className="d-flex justify-content-center">
                 <div>
                     <div className="form-outline">
@@ -153,7 +153,7 @@ function Home() {
                     <h2>No Results Have Found</h2>
                 )}
             </div>
-        </>
+        </div>
     )
 }
 

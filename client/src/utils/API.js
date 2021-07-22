@@ -4,8 +4,8 @@ import axios from 'axios';
 const BASEURL = "https://www.omdbapi.com/?";
 const APIKEY = `apikey=trilogy&s=`;
 
-// const BASEURL = "https://www.omdbapi.com/?t=";
-// const APIKEY = `&apikey=trilogy`;
+const BASEURL1 = "https://www.omdbapi.com/?t=";
+const APIKEY1 = `&apikey=trilogy`;
 
 const MOVIE = "&type=movie";
 const SHOW = "&type=series";
@@ -20,9 +20,10 @@ export default {
     search: (query) => {
         return axios.get(`${BASEURL}${APIKEY}${query}${PAGE}`);
     },
-    // search: (query) => {
-    //     return axios.get(`${BASEURL}${query}${APIKEY}`);
-    // },
+
+    searchOne: (query) => {
+        return axios.get(`${BASEURL1}${query}${APIKEY1}`);
+    },
     
     searchMovie: (query) => {
         return axios.get(`${BASEURL}${APIKEY}${query}${MOVIE}${PAGE}`);
