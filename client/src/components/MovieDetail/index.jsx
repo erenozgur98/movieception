@@ -4,7 +4,7 @@ import { Container, Card, Button } from 'react-bootstrap';
 function MovieDetail(props) {
 
   const moviePage = () => {
-    console.log('will work soon')
+    console.log(props.Title)
   }
 
   return (

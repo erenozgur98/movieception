@@ -90,10 +90,12 @@ function Home() {
 
     const search = useRef();
 
-    const handleSearch = () => {
-        API.search(search.current.value)
-            .then(res => setResult(res.data.Search))
-        console.log(result)
+    const handleSearch = (e) => {
+        if (e.charCode === 13) {
+            API.search(search.current.value)
+                .then(res => setResult(res.data.Search))
+            console.log(result)
+        }
     }
 
     const randomMovie = () => {
@@ -113,13 +115,14 @@ function Home() {
                             type="search"
                             className="form-control rounded"
                             placeholder="Search"
+                            onKeyPress={handleSearch}
                             ref={search}
                         />
                     </div>
                     {/* add font awesome icons, make sure it works */}
-                    <button type='button' className='btn btn-primary' onClick={handleSearch}>
-                        Search<i class="fas fa-search"></i>
-                    </button>
+                    {/* <button type='button' className='btn btn-primary' onClick={handleSearch}>
+                        <i class="fas fa-search"></i>
+                    </button> */}
                 </div>
             </Container>
             <Container className="d-flex justify-content-center">
