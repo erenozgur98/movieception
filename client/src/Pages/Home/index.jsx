@@ -91,9 +91,8 @@ function Home() {
     const search = useRef();
 
     const handleSearch = () => {
-        console.log(search.current.value);
         API.search(search.current.value)
-        .then(res => setResult(res.data.Search))
+            .then(res => setResult(res.data.Search))
         console.log(result)
     }
 
@@ -140,6 +139,7 @@ function Home() {
                             <div className="row d-flex justify-content-center" style={{ paddingBottom: '12px', paddingTop: '12px' }}>
                                 <div className="col-sm-4">
                                     <MovieDetail
+                                        key={i}
                                         {...x}
                                     />
                                 </div>
