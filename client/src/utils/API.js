@@ -10,27 +10,26 @@ const APIKEY = `apikey=trilogy&s=`;
 const MOVIE = "&type=movie";
 const SHOW = "&type=series";
 
+const PAGE = "&page=1"
+
 // const YEAR = "&y2021"
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
     // this is the one I'll use
     search: (query) => {
-        return axios.get(`${BASEURL}${APIKEY}${query}`);
+        return axios.get(`${BASEURL}${APIKEY}${query}${PAGE}`);
     },
     // search: (query) => {
     //     return axios.get(`${BASEURL}${query}${APIKEY}`);
     // },
     
     searchMovie: (query) => {
-        return axios.get(`${BASEURL}${APIKEY}${query}${MOVIE}`);
+        return axios.get(`${BASEURL}${APIKEY}${query}${MOVIE}${PAGE}`);
     },
-    // searchMovie: (query) => {
-    //     return axios.get(`${BASEURL}${query}${APIKEY}${MOVIE}`);
-    // },
     
     searchShow: (query) => {
-        return axios.get(`${BASEURL}${query}${APIKEY}${SHOW}`);
+        return axios.get(`${BASEURL}${APIKEY}${query}${SHOW}${PAGE}`);
     },
 
     getUser: (userId) => {
