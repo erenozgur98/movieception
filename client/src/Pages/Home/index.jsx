@@ -106,7 +106,6 @@ function Home({ user }) {
     const handleRandomMovie = () => {
         API.searchMovieId(`tt${randomNumbers}`)
             .then(res => setRandomMovie(res.data))
-        // .then(res => console.log(res.data))
         console.log('random movie');
         setResult([]);
         setRandomShow([]);
