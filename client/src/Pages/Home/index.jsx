@@ -113,7 +113,6 @@ function Home({ user }) {
 
     const handleRandomShow = () => {
         API.searchShowId(`tt${randomNumbers}`)
-            // .then(res => setRandomShow(res.data))
             .then(res => console.log(res.data))
         console.log('random show');
         setResult([]);
