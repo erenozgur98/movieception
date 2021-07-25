@@ -95,7 +95,12 @@ function Home({ user }) {
 
     let randomNumbers = Math.floor(100000 + Math.random() * 9000000);
 
-    const handleSearch = (e) => {
+    const handleSearch = () => {
+        API.search(search.current.value)
+            .then(res => setResult(res.data.Search))
+    }
+
+    const handleSearchEnter = (e) => {
         if (e.charCode === 13) {
             API.search(search.current.value)
                 .then(res => setResult(res.data.Search))
@@ -134,12 +139,11 @@ function Home({ user }) {
                             type="search"
                             className="form-control rounded"
                             placeholder="Search"
-                            onKeyPress={handleSearch}
+                            onKeyPress={handleSearchEnter}
                             ref={search}
                         />
                     </div>
                 </div>
-                {/* add font awesome icons, make sure it works */}
                 <button type='button' className='btn btn-primary' onClick={handleSearch}>
                     <i className="fas fa-search"></i>
                 </button>
