@@ -82,7 +82,7 @@ function Header({ user, handleLogout }) {
                             {/* <Nav.Link href='/profile' className='nav-link'>
                                 Profile
                             </Nav.Link> */}
-                            <Nav.Link href='/' className='nav-link'>
+                            <Nav.Link href='/login' className='nav-link'>
                                 Login
                             </Nav.Link>
                         </Nav>

@@ -98,7 +98,6 @@ function Home({ user }) {
 
     useEffect(() => {
         if (user) setCurrentUser(user.username)
-        console.log(currentUser)
     }, [user])
 
     const handleSearch = () => {
@@ -141,11 +140,13 @@ function Home({ user }) {
 
     return (
         <div className='bg'>
-            <Container className='d-flex justify-content-center'>
+            <Container className="d-flex justify-content-center">
                 <div>
-                    <h4>
-                        {currentUser ? `Good morning! ${currentUser}` : `Good morning! You can <a href='/login'>login</a> or <a href='/signup'>signup</a>!`}
-                    </h4>
+                    {currentUser ? (
+                        `Good morning, ${currentUser}!`
+                    ) : (
+                        <p>You can login from <a href='/login'>here</a></p>
+                    )}
                 </div>
             </Container>
             <Container className="d-flex justify-content-center">
