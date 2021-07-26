@@ -25,17 +25,17 @@ function MovieDetail(props) {
           style={{ width: '' }}
         />
         {/* <Card.Body>
-                    <Card.Text>
-                    </Card.Text>
-                    <Button
-                        className='btn btn-primary'
-                        onClick={() => {
-                            moviePage()
-                        }}
-                    >
-                        Go To Movie
-                    </Button>
-                </Card.Body> */}
+          <Card.Text>
+          </Card.Text>
+          <Button
+            className='btn btn-primary'
+            onClick={() => {
+              moviePage()
+            }}
+          >
+            Go To Movie
+          </Button>
+        </Card.Body> */}
       </Card>
     </Container>
   );

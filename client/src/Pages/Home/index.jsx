@@ -90,10 +90,16 @@ function Home({ user }) {
     const [result, setResult] = useState([]);
     const [randomMovie, setRandomMovie] = useState({});
     const [randomShow, setRandomShow] = useState({});
+    const [currentUser, setCurrentUser] = useState({});
 
     const search = useRef();
 
     let randomNumbers = Math.floor(100000 + Math.random() * 9000000);
+
+    useEffect(() => {
+        if (user) setCurrentUser(user.username)
+        console.log(currentUser)
+    }, [user])
 
     const handleSearch = () => {
         API.search(search.current.value)
@@ -109,16 +115,22 @@ function Home({ user }) {
 
     const handleRandomMovie = () => {
         API.searchMovieId(`tt${randomNumbers}`)
-            .then(res => setRandomMovie(res.data))
-        console.log('random movie');
+            // .then(res => setRandomMovie(res.data))
+            .then(res => {
+                console.log(res)
+                console.log(res.data)
+            })
         setResult([]);
         setRandomShow([]);
     };
 
     const handleRandomShow = () => {
         API.searchShowId(`tt${randomNumbers}`)
-            .then(res => console.log(res.data))
-        console.log('random show');
+            .then(res => {
+                console.log(res.data)
+                console.log(res)
+            })
+        // .then(res => setRandomShow(res.data))
         setResult([]);
         setRandomMovie([]);
     };
@@ -129,10 +141,14 @@ function Home({ user }) {
 
     return (
         <div className='bg'>
+            <Container className='d-flex justify-content-center'>
+                <div>
+                    <h4>
+                        {currentUser ? `Good morning! ${currentUser}` : `Good morning! You can <a href='/login'>login</a> or <a href='/signup'>signup</a>!`}
+                    </h4>
+                </div>
+            </Container>
             <Container className="d-flex justify-content-center">
-                {/* <div>
-                    {user.username === null ? <h3>Good morning, user.username</h3> : <h3>Good morning! You can <a href='/login'>login</a> or <a href='/signup'>signup</a>!</h3>}
-                </div> */}
                 <div>
                     <div className="form-outline">
                         <input
