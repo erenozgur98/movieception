@@ -99,18 +99,18 @@ function Home({ user }) {
 
     let rightNow = ''
 
-    useEffect(() => {
-        const today = new Date()
-        const time = today.getHours() + ':' + today.getMinutes()
+    // useEffect(() => {
+    //     const today = new Date()
+    //     const time = today.getHours() + ':' + today.getMinutes()
 
-        if (time < '12:00') {
-            rightNow = 'morning'
-        } else if (time < '18:00') {
-            rightNow = 'afternoon'
-        } else {
-            rightNow = 'evening'
-        }
-    }, []);
+    //     if (time < '12:00') {
+    //         rightNow = 'morning'
+    //     } else if (time < '18:00') {
+    //         rightNow = 'afternoon'
+    //     } else {
+    //         rightNow = 'evening'
+    //     }
+    // }, []);
 
     const search = useRef();
 
@@ -131,7 +131,8 @@ function Home({ user }) {
     };
 
     const handleRandomMovie = () => {
-        API.searchMovieId(`tt${randomNumbers}`)
+        // API.searchMovieId(`tt${randomNumbers}`)
+        API.searchMovieId(`tt0145487`)
             // .then(res => setRandomMovie(res.data))
             .then(res => {
                 console.log(res)
@@ -154,7 +155,7 @@ function Home({ user }) {
 
     const clear = () => {
         setResult([])
-    }
+    };
 
     return (
         <div className='bg'>

@@ -5,6 +5,7 @@ function MovieDetail(props) {
 
   const moviePage = () => {
     console.log(props.Title)
+    console.log(props)
   }
 
   return (
