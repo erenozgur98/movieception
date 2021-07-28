@@ -88,8 +88,8 @@ import API from '../../utils/API';
 
 function Home({ user }) {
     const [result, setResult] = useState([]);
-    const [randomMovie, setRandomMovie] = useState({});
-    const [randomShow, setRandomShow] = useState({});
+    // const [randomMovie, setRandomMovie] = useState({});
+    // const [randomShow, setRandomShow] = useState({});
     const [currentUser, setCurrentUser] = useState({});
     const [currentTime, setCurrentTime] = useState();
 
