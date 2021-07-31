@@ -97,7 +97,7 @@ function Home({ user }) {
         if (user) setCurrentUser(user.username)
     }, [user]);
 
-    let rightNow = ''
+    // let rightNow = ''
 
     // useEffect(() => {
     //     const today = new Date()
