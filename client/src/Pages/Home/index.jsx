@@ -91,32 +91,14 @@ function Home({ user }) {
     const [randomMovie, setRandomMovie] = useState({});
     const [randomShow, setRandomShow] = useState({});
     const [currentUser, setCurrentUser] = useState({});
-    const [currentTime, setCurrentTime] = useState();
 
-    // useEffect(() => {
-    //     if (user) setCurrentUser(user.username)
-    // }, [user]);
-
-    // let rightNow = ''
-
-    // useEffect(() => {
-    //     const today = new Date()
-    //     const time = today.getHours() + ':' + today.getMinutes()
-
-    //     if (time < '12:00') {
-    //         rightNow = 'morning'
-    //     } else if (time < '18:00') {
-    //         rightNow = 'afternoon'
-    //     } else {
-    //         rightNow = 'evening'
-    //     }
-    // }, []);
+    useEffect(() => {
+        if (user) setCurrentUser(user.username)
+    }, [user]);
 
     const search = useRef();
 
     const randomNumbers = Math.floor(100000 + Math.random() * 9000000);
-
-
 
     const handleSearch = () => {
         API.search(search.current.value)
@@ -160,13 +142,13 @@ function Home({ user }) {
     return (
         <div className='bg'>
             <Container className="d-flex justify-content-center">
-                <div>
+                {/* <div>
                     {currentUser ? (
-                        `Good ${rightNow}, ${currentUser}!`
+                        `Hello, ${currentUser}!`
                     ) : (
                         <p>You can login from <a href='/login'>here</a></p>
                     )}
-                </div>
+                </div> */}
             </Container>
             <Container className="d-flex justify-content-center">
                 <div>
