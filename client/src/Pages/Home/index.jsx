@@ -63,8 +63,7 @@ function Home({ user }) {
     };
 
     return (
-        <div className='bg'>
-            <Banner />
+        <div>
             <Container className="d-flex justify-content-center">
                 {/* <div>
                     {currentUser ? (

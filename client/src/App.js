@@ -11,6 +11,7 @@ import Header from './components/Header';
 // import WithAuth from './components/withAuth';
 import './index.css'
 import API from './utils/API';
+import Banner from './components/Banner';
 
 function App() {
   const [user, setUser] = useState({});
@@ -39,6 +40,7 @@ function App() {
     <div>
       <Router>
         <Header user={user} handleLogout={handleLogout} />
+        <Banner />
         <div className='main'>
           <Route exact path='/' component={HomePage} />
           <Route exact path='/home' render={(props) => <HomePage {...props} user={user} />} />
