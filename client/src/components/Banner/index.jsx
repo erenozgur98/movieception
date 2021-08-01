@@ -14,7 +14,14 @@ function Banner() {
                     backgroundPosition: 'center center'
                 }}
             >
-                <div className="banner-description"></div>
+                <div className="banner-contents">
+                    <h1 className="banner-title">
+                        
+                    </h1>
+                </div>
+                <h1 className="banner-description">
+                    
+                </h1>
                 <div className="banner--fadeBottom"></div>
             </header>
         </div>
