@@ -13,7 +13,11 @@ function Row({ fetchUrl, title }) {
             setMovies(request.data.results);
         }
         fetchData();
-    }, [])
+    }, []);
+
+    const handleClick = (movie) => {
+        console.log(movie);
+    };
 
     return (
         <div className='row'>
@@ -22,6 +26,7 @@ function Row({ fetchUrl, title }) {
                 {movies.map((movie) => (
                     <img 
                         key={movie.id}
+                        onClick={() => handleClick(movie)}
                         className='row-poster'
                         src={`${base_url}${movie.poster_path}`}
                         alt={movie.name}
