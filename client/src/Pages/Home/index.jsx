@@ -7,7 +7,8 @@ import MovieDetail from '../../components/MovieDetail';
 import SearchForm from '../../components/SearchForm';
 // import { toast } from 'react-toastify';
 import API from '../../utils/API';
-import Banner from '../../components/Banner';
+import Row from '../../components/Row';
+import requests from '../../components/Requests';
 
 function Home({ user }) {
     const [result, setResult] = useState([]);
@@ -64,6 +65,7 @@ function Home({ user }) {
 
     return (
         <div>
+            <Row fetchUrl={requests.fetchDramaMovies} title='Title'/>
             <Container className="d-flex justify-content-center">
                 {/* <div>
                     {currentUser ? (
