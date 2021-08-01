@@ -8,84 +8,6 @@ import SearchForm from '../../components/SearchForm';
 // import { toast } from 'react-toastify';
 import API from '../../utils/API';
 
-// toast.configure();
-
-// TODOs:
-// Search bar to search for movies or tv shows
-// Drop down / something similar for the genres so people can sort the listings ( discover, movies, shows )
-// Home will have random show or a movie(s) (3 in a row maybe) underneath the search bar( behind the search bar put the Barney picture )
-// Make a logo
-// Make toast work
-
-// class Home extends Component {
-//     state = {
-//         result: {},
-//         search: ""
-//     };
-
-//     // When this component mounts, search for the movie "The Avengers"
-//     componentDidMount() {
-//         this.searchMovies("The Avengers");
-//     }
-
-//     searchMovies = query => {
-//         API.search(query)
-//             // .then(res => console.log(res.data))
-//             .then(res => this.setState({ result: res.data }))
-//             .catch(err => console.log(err));
-//     };
-
-//     handleInputChange = e => {
-//         const value = e.target.value;
-//         const name = e.target.name;
-//         this.setState({
-//             [name]: value
-//         });
-//     };
-
-//     // When the form is submitted, search the OMDB API for the value of `this.state.search`
-//     handleFormSubmit = e => {
-//         e.preventDefault();
-//         this.searchMovies(this.state.search);
-//     };
-
-//     render() {
-//         return (
-//             <Container>
-//                 <div>
-//                     <h1 className='text-center'>True Story</h1>
-//                 </div>
-//                 <Card
-//                     heading={this.state.result.Title || "Search for a Movie to Begin"}
-//                 >
-//                     {this.state.result.Title ? (
-//                         // this.state.result.map(movie => (
-//                             <MovieDetail
-//                                 title={this.state.result.Title}
-//                                 src={this.state.result.Poster}
-//                                 director={this.state.result.Director}
-//                                 genre={this.state.result.Genre}
-//                                 released={this.state.result.Released}
-//                             />
-//                         // ))
-//                     ) : (
-//                         <h3>No Results to Display</h3>
-//                     )}
-//                 </Card>
-//                 <Card heading="Search">
-//                     <SearchForm
-//                         value={this.state.search}
-//                         handleInputChange={this.handleInputChange}
-//                         handleFormSubmit={this.handleFormSubmit}
-//                     />
-//                 </Card>
-//             </Container>
-//         );
-//     }
-// }
-
-// export default Home;
-
 function Home({ user }) {
     const [result, setResult] = useState([]);
     const [randomMovie, setRandomMovie] = useState({});
@@ -98,7 +20,7 @@ function Home({ user }) {
 
     const search = useRef();
 
-    const randomNumbers = Math.floor(100000 + Math.random() * 9000000);
+    // const randomNumbers = Math.floor(100000 + Math.random() * 9000000);
 
     const handleSearch = () => {
         API.search(search.current.value)
@@ -125,7 +47,7 @@ function Home({ user }) {
     };
 
     const handleRandomShow = () => {
-        API.searchShowId(`tt${randomNumbers}`)
+        API.searchShowId(`tt0145487`)
             .then(res => {
                 console.log(res.data)
                 console.log(res)
