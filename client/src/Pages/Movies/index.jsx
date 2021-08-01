@@ -12,13 +12,7 @@ function Movies() {
         // TODO do the mapping you are going to do to the Discover page here too
         // only change the genre for the movies only
         <div>
-            {/* <Card heading="Search">
-                <SearchForm
-                    value={this.state.search}
-                    handleInputChange={this.handleInputChange}
-                    handleFormSubmit={this.handleFormSubmit}
-                />
-            </Card> */}
+            
         </div>
     )
 }
