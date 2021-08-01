@@ -6,9 +6,10 @@ import Details from '../../components/Details';
 import MovieDetail from '../../components/MovieDetail';
 import SearchForm from '../../components/SearchForm';
 // import { toast } from 'react-toastify';
-import API from '../../utils/API';
 import Row from '../../components/Row';
 import requests from '../../components/Requests';
+import Banner from '../../components/Banner';
+import axios from '../../components/Axios';
 
 function Home({ user }) {
     const [result, setResult] = useState([]);
@@ -25,8 +26,14 @@ function Home({ user }) {
     // const randomNumbers = Math.floor(100000 + Math.random() * 9000000);
 
     const handleSearch = () => {
-        // API.search(search.current.value)
-        //     .then(res => setResult(res.data.Search))
+        // const fetchData = async () => {
+        //     const request = await axios.get(`${requests.fetchSearchMulti}${search.current.value}`)
+        //     console.log(request)
+        //     setResult(request.data.results)
+        // }
+        // fetchData();
+        const searchedMovie = search.current.value
+        setResult(searchedMovie)
     }
 
     const handleSearchEnter = (e) => {
@@ -65,6 +72,7 @@ function Home({ user }) {
 
     return (
         <div>
+            <Banner />
             <Container className="d-flex justify-content-center">
                 {/* <div>
                     {currentUser ? (
@@ -108,51 +116,8 @@ function Home({ user }) {
                 </div>
             </Container>
             <div>
-                {!result.Title ? (
-                    <div className='row'>
-                        {result.map((x, i) => (
-                            <div className="row d-flex justify-content-center" style={{ paddingBottom: '12px', paddingTop: '12px' }}>
-                                <div className="col-sm-4">
-                                    <MovieDetail
-                                        key={i}
-                                        {...x}
-                                    />
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                ) : (
-                    <h2>No Results Have Found</h2>
-                )}
+                <Row fetchUrl={`${requests.fetchSearchMulti}${result}`} title='Searched Movie' />
             </div>
-            {/* <div>
-                {!randomMovie.Response === "False" ? (
-                    <Details
-                        src={randomMovie.Poster}
-                        title={randomMovie.Title}
-                        plot={randomMovie.Plot}
-                        rating={randomMovie.imdbRating}
-                        votes={randomMovie.imdbVotes}
-                        released={randomMovie.Released}
-                    />
-                ) : (
-                    <h3>Oops, guess not so lucky! Try again :)</h3>
-                )}
-            </div>
-            <div>
-                {!randomShow.Response === "False" ? (
-                    <Details
-                        src={randomShow.Poster}
-                        title={randomShow.Title}
-                        plot={randomShow.Plot}
-                        rating={randomShow.imdbRating}
-                        votes={randomShow.imdbVotes}
-                        released={randomShow.Released}
-                    />
-                ) : (
-                    <h3>Oops, guess not so lucky! Try again :)</h3>
-                )}
-            </div> */}
         </div>
     )
 }
