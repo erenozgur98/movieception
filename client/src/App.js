@@ -40,7 +40,7 @@ function App() {
     <div>
       <Router>
         <Header user={user} handleLogout={handleLogout} />
-        <Banner />
+        {/* <Banner /> */}
         <div className='main'>
           <Route exact path='/' component={HomePage} />
           <Route exact path='/home' render={(props) => <HomePage {...props} user={user} />} />
