@@ -26,48 +26,29 @@ function Home({ user }) {
     // const randomNumbers = Math.floor(100000 + Math.random() * 9000000);
 
     const handleSearch = () => {
-        // const fetchData = async () => {
-        //     const request = await axios.get(`${requests.fetchSearchMulti}${search.current.value}`)
-        //     console.log(request)
-        //     setResult(request.data.results)
-        // }
-        // fetchData();
         const searchedMovie = search.current.value
         setResult(searchedMovie)
     }
 
     const handleSearchEnter = (e) => {
-        // if (e.charCode === 13) {
-        //     API.search(search.current.value)
-        //         .then(res => setResult(res.data.Search))
-        // }
+        if (e.charCode === 13) {
+            const searchedMovie = search.current.value
+            setResult(searchedMovie)
+        }
     };
 
     const handleRandomMovie = () => {
-        // API.searchMovieId(`tt${randomNumbers}`)
-        // API.searchMovieId(`tt0145487`)
-        //     // .then(res => setRandomMovie(res.data))
-        //     .then(res => {
-        //         console.log(res)
-        //         console.log(res.data)
-        //     })
-        setResult([]);
-        setRandomShow([]);
+        // setResult([]);
+        // setRandomShow([]);
     };
 
     const handleRandomShow = () => {
-        // API.searchShowId(`tt0145487`)
-        //     .then(res => {
-        //         console.log(res.data)
-        //         console.log(res)
-        //     })
-        // .then(res => setRandomShow(res.data))
-        setResult([]);
-        setRandomMovie([]);
+        // setResult([]);
+        // setRandomMovie([]);
     };
 
     const clear = () => {
-        setResult([])
+        // setResult([])
     };
 
     return (
@@ -116,7 +97,7 @@ function Home({ user }) {
                 </div>
             </Container>
             <div>
-                <Row fetchUrl={`${requests.fetchSearchMulti}${result}`} title='Searched Movie' />
+                <MovieDetail fetchUrl={`${requests.fetchSearchMulti}${result}`} />
             </div>
         </div>
     )

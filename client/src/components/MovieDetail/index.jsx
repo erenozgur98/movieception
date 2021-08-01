@@ -1,44 +1,36 @@
-import React from "react";
-import { Container, Card, Button } from 'react-bootstrap';
+import React, { useState } from "react";
+import { useEffect } from "react";
+import axios from '../Axios';
+import './MovieDetail.css'
 
-function MovieDetail(props) {
+const base_url = 'https://image.tmdb.org/t/p/original/';
 
-  const moviePage = () => {
-    console.log(props.Title)
-    console.log(props)
-  }
+function MovieDetail({ fetchUrl }) {
+  const [movies, setMovies] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const request = await axios.get(fetchUrl);
+      console.log(request.data.results)
+      setMovies(request.data.results);
+    }
+    fetchData();
+  }, [fetchUrl])
+
+  console.log(movies);
 
   return (
-    <Container className='text-center'>
-      <Card style={{ minWidth: '12rem', maxWidth: '14rem', backgroundColor: '' }}>
-        {/* <Card.Title>{props.Title}</Card.Title> */}
-        <Card.Img
-          onClick={moviePage}
-          src=
-          {
-            props.Poster === "N/A"
-              ?
-              // placeholder image if no poster available, will change later
-              "https://via.placeholder.com/600"
-              :
-            props.Poster
-          }
-          style={{ width: '' }}
+    <div className='movie-detail'>
+      {!movies ?
+        <img
+          key={movies[0]?.id}
+          className='movie-detail-poster'
+          src={`${base_url}${movies[0]?.poster_path || movies[0]?.profile_path}`}
+          alt={movies[0]?.name}
         />
-        {/* <Card.Body>
-          <Card.Text>
-          </Card.Text>
-          <Button
-            className='btn btn-primary'
-            onClick={() => {
-              moviePage()
-            }}
-          >
-            Go To Movie
-          </Button>
-        </Card.Body> */}
-      </Card>
-    </Container>
+        : null
+      }
+    </div>
   );
 }
 
