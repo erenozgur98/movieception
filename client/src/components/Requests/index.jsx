@@ -28,3 +28,6 @@ const requests = {
 export default requests;
 
 // https://api.themoviedb.org/3/search/multi?api_key=${apiKey}&language=${language}&query=${query}&page=1&include_adult=false
+
+// https://api.themoviedb.org/3/discover/tv?api_key=af737f76cdba5b7435e17cc94568c07d&with_genres=28
+// https://api.themoviedb.org/3/discover/tv?api_key=af737f76cdba5b7435e17cc94568c07d&with_genres=
