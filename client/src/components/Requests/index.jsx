@@ -19,7 +19,9 @@ const requests = {
     fetchMusicMovies: `/discover/movie?api_key=${apiKey}&with_genres=10402`,
     fetchMysteryMovies: `/discover/movie?api_key=${apiKey}&with_genres=9648`,
     fetchWarMovies: `/discover/movie?api_key=${apiKey}&with_genres=10752`,
-    fetchSearch: `/search/multi?api_key=${apiKey}&language=en-US&query=`
+    fetchSearchMulti: `/search/multi?api_key=${apiKey}&language=en-US&query=`,
+    fetchSearchMovie: `/search/movie?api_key=${apiKey}&language=en-US&query=`,
+    fetchSearchShow: `/search/tv?api_key=${apiKey}&language=en-US&query=`,
 }
 
 export default requests;
