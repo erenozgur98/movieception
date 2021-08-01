@@ -35,9 +35,9 @@ function Header({ user, handleLogout }) {
                             <Nav.Link href='/home' className='nav-link'>
                                 Home
                             </Nav.Link>
-                            {/* <Nav.Link href='/discover' className='nav-link'>
+                            <Nav.Link href='/discover' className='nav-link'>
                                 Discover
-                            </Nav.Link> */}
+                            </Nav.Link>
                             <Nav.Link href='/movies' className='nav-link'>
                                 Movies
                             </Nav.Link>
@@ -70,9 +70,9 @@ function Header({ user, handleLogout }) {
                             <Nav.Link href='/home' className='nav-link'>
                                 Home
                             </Nav.Link>
-                            {/* <Nav.Link href='/discover' className='nav-link'>
+                            <Nav.Link href='/discover' className='nav-link'>
                                 Discover
-                            </Nav.Link> */}
+                            </Nav.Link>
                             <Nav.Link href='/movies' className='nav-link'>
                                 Movies
                             </Nav.Link>

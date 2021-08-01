@@ -25,35 +25,35 @@ function Home({ user }) {
     // const randomNumbers = Math.floor(100000 + Math.random() * 9000000);
 
     const handleSearch = () => {
-        API.search(search.current.value)
-            .then(res => setResult(res.data.Search))
+        // API.search(search.current.value)
+        //     .then(res => setResult(res.data.Search))
     }
 
     const handleSearchEnter = (e) => {
-        if (e.charCode === 13) {
-            API.search(search.current.value)
-                .then(res => setResult(res.data.Search))
-        }
+        // if (e.charCode === 13) {
+        //     API.search(search.current.value)
+        //         .then(res => setResult(res.data.Search))
+        // }
     };
 
     const handleRandomMovie = () => {
         // API.searchMovieId(`tt${randomNumbers}`)
-        API.searchMovieId(`tt0145487`)
-            // .then(res => setRandomMovie(res.data))
-            .then(res => {
-                console.log(res)
-                console.log(res.data)
-            })
+        // API.searchMovieId(`tt0145487`)
+        //     // .then(res => setRandomMovie(res.data))
+        //     .then(res => {
+        //         console.log(res)
+        //         console.log(res.data)
+        //     })
         setResult([]);
         setRandomShow([]);
     };
 
     const handleRandomShow = () => {
-        API.searchShowId(`tt0145487`)
-            .then(res => {
-                console.log(res.data)
-                console.log(res)
-            })
+        // API.searchShowId(`tt0145487`)
+        //     .then(res => {
+        //         console.log(res.data)
+        //         console.log(res)
+        //     })
         // .then(res => setRandomShow(res.data))
         setResult([]);
         setRandomMovie([]);
@@ -65,7 +65,6 @@ function Home({ user }) {
 
     return (
         <div>
-            <Row fetchUrl={requests.fetchDramaMovies} title='Title'/>
             <Container className="d-flex justify-content-center">
                 {/* <div>
                     {currentUser ? (

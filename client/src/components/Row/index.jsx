@@ -13,7 +13,7 @@ function Row({ fetchUrl, title }) {
             setMovies(request.data.results);
         }
         fetchData();
-    }, []);
+    }, [fetchUrl]);
 
     const handleClick = (movie) => {
         console.log(movie);
