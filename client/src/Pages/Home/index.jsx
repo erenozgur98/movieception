@@ -93,9 +93,9 @@ function Home({ user }) {
     const [currentUser, setCurrentUser] = useState({});
     const [currentTime, setCurrentTime] = useState();
 
-    useEffect(() => {
-        if (user) setCurrentUser(user.username)
-    }, [user]);
+    // useEffect(() => {
+    //     if (user) setCurrentUser(user.username)
+    // }, [user]);
 
     // let rightNow = ''
 
