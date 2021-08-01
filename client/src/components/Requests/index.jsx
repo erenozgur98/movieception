@@ -19,6 +19,9 @@ const requests = {
     fetchMusicMovies: `/discover/movie?api_key=${apiKey}&with_genres=10402`,
     fetchMysteryMovies: `/discover/movie?api_key=${apiKey}&with_genres=9648`,
     fetchWarMovies: `/discover/movie?api_key=${apiKey}&with_genres=10752`,
+    fetchSearch: `/search/multi?api_key=${apiKey}&language=en-US&query=`
 }
 
 export default requests;
+
+// https://api.themoviedb.org/3/search/multi?api_key=${apiKey}&language=${language}&query=${query}&page=1&include_adult=false
