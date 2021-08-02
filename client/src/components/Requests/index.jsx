@@ -23,7 +23,6 @@ const requests = {
 
     fetchActionShows: `/discover/tv?api_key=${apiKey}&with_genres=10759`,
     fetchComedyShows: `/discover/tv?api_key=${apiKey}&with_genres=35`,
-    fetchHorrorShows: `/discover/tv?api_key=${apiKey}&with_genres=27`,
     fetchRomanceShows: `/discover/tv?api_key=${apiKey}&with_genres=10749`,
     fetchDocumentariesShows: `/discover/tv?api_key=${apiKey}&with_genres=99`,
     fetchDramaShows: `/discover/tv?api_key=${apiKey}&with_genres=18`,

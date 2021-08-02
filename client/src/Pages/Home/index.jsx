@@ -1,20 +1,16 @@
-import React, { Component, useState } from 'react'
+import React, { useState } from 'react'
 import { useEffect } from 'react';
 import { useRef } from 'react';
 import { Container } from 'react-bootstrap'
-import Details from '../../components/Details';
 import MovieDetail from '../../components/MovieDetail';
-import SearchForm from '../../components/SearchForm';
 // import { toast } from 'react-toastify';
-import Row from '../../components/Row';
 import requests from '../../components/Requests';
 import Banner from '../../components/Banner';
-import axios from '../../components/Axios';
 
 function Home({ user }) {
     const [result, setResult] = useState([]);
-    const [randomMovie, setRandomMovie] = useState({});
-    const [randomShow, setRandomShow] = useState({});
+    // const [randomMovie, setRandomMovie] = useState({});
+    // const [randomShow, setRandomShow] = useState({});
     const [currentUser, setCurrentUser] = useState({});
 
     useEffect(() => {

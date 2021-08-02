@@ -21,7 +21,7 @@ function MovieDetail({ fetchUrl }) {
 
   return (
     <div className='movie-detail'>
-      {!movies ?
+      {/* {!movies ?
         <img
           key={movies[0]?.id}
           className='movie-detail-poster'
@@ -29,7 +29,15 @@ function MovieDetail({ fetchUrl }) {
           alt={movies[0]?.name}
         />
         : null
-      }
+      } */}
+      {movies.map((movie) => (
+        <img
+          key={movie?.id}
+          className='movie-detail-poster'
+          src={`${base_url}${movie?.poster_path || movie?.profile_path}`}
+          alt={movie?.name}
+        />
+      ))}
     </div>
   );
 }
