@@ -21,6 +21,6 @@ function Movies() {
             <Row fetchUrl={requests.fetchMusicMovies} title='Music Movies' />
         </div>
     )
-}
+};
 
-export default Movies
+export default Movies;

@@ -24,8 +24,8 @@ function Discover() {
             <Row fetchUrl={requests.fetchDocumentariesMovies} title='Documentary Movies' />
         </div>
     )
-}
+};
 
-export default Discover
+export default Discover;
 
 
