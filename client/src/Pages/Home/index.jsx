@@ -6,6 +6,7 @@ import MovieDetail from '../../components/MovieDetail';
 // import { toast } from 'react-toastify';
 import requests from '../../components/Requests';
 import Banner from '../../components/Banner';
+import Details from '../../components/Details';
 
 function Home({ user }) {
     const [result, setResult] = useState([]);

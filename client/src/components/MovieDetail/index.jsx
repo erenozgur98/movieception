@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
 import axios from '../Axios';
+import Details from "../Details";
 import './MovieDetail.css'
 
 const base_url = 'https://image.tmdb.org/t/p/original/';
@@ -16,6 +17,11 @@ function MovieDetail({ fetchUrl }) {
     }
     fetchData();
   }, [fetchUrl])
+
+  const handleClick = (movie) => {
+    console.log(movie);
+    <Details movie={movie} />
+  }
 
   console.log(movies);
 
@@ -34,6 +40,7 @@ function MovieDetail({ fetchUrl }) {
         <img
           key={movie?.id}
           className='movie-detail-poster'
+          onClick={() => handleClick(movie)}
           src={`${base_url}${movie?.poster_path || movie?.profile_path}`}
           alt={movie?.name}
         />
