@@ -4,12 +4,12 @@ import { Card, Container, Button } from 'react-bootstrap';
 const Details = ({ movie }) => {
 
     const redirect = (movie) => {
-        console.log('will work soon')
+        console.log('redirect, will work soon')
         console.log(movie)
     }
 
     const addToFavorites = (movie) => {
-        console.log('will work soon')
+        console.log('add to favorites, will work soon')
         console.log(movie)
     }
 
