@@ -32,7 +32,7 @@ function Row({ fetchUrl, title }) {
                     //     src={`${base_url}${movie.poster_path}`}
                     //     alt={movie.name}
                     // />
-                        <Details movie={movie} />
+                        <Details key={movie.id} movie={movie} />
                 ))}
             </div>
         </div>
