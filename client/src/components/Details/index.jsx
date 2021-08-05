@@ -22,7 +22,16 @@ const Details = ({ movie }) => {
     return (
         <Container className='text-center'>
             <Card style={{ width: '18rem', backgroundColor: 'black', margin: '0 auto' }}>
-                <Card.Img onClick={() => redirect(movie)} variant='top' src={movie?.poster_path ? `${base_url}${movie?.poster_path}` : "https://via.placeholder.com/300"} />
+                <Card.Img
+                    onClick={() => redirect(movie)}
+                    variant='top'
+                    src={
+                        movie?.poster_path ?
+                            `${base_url}${movie?.poster_path}`
+                            :
+                            "https://via.placeholder.com/300"
+                    }
+                />
                 <Card.Body>
                     <Card.Title>{movie?.title || movie?.original_name}</Card.Title>
                     <Card.Text>
