@@ -3,12 +3,14 @@ import { Card, Container, Button } from 'react-bootstrap';
 
 const Details = ({ movie }) => {
 
-    const redirect = () => {
+    const redirect = (movie) => {
         console.log('will work soon')
+        console.log(movie)
     }
 
-    const addToFavorites = () => {
+    const addToFavorites = (movie) => {
         console.log('will work soon')
+        console.log(movie)
     }
 
     const base_url = 'https://image.tmdb.org/t/p/original/';
@@ -20,7 +22,7 @@ const Details = ({ movie }) => {
     return (
         <Container className='text-center'>
             <Card style={{ width: '18rem', backgroundColor: 'black', margin: '0 auto' }}>
-                <Card.Img onClick={redirect} variant='top' src={`${base_url}${movie?.poster_path}`} style={{ width: '' }} />
+                <Card.Img onClick={() => redirect(movie)} variant='top' src={`${base_url}${movie?.poster_path}`} style={{ width: '' }} />
                 <Card.Body>
                     <Card.Title>{movie?.title}</Card.Title>
                     <Card.Text>
@@ -32,7 +34,7 @@ const Details = ({ movie }) => {
                     <Button
                         className='btn btn-primary'
                         onClick={() => {
-                            addToFavorites()
+                            addToFavorites(movie)
                         }}
                     >
                         Add To Favorites

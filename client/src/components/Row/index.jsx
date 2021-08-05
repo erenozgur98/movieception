@@ -25,14 +25,14 @@ function Row({ fetchUrl, title }) {
             <h2>{title}</h2>
             <div className="row-posters">
                 {movies.map((movie) => (
-                    <img
-                        key={movie.id}
-                        onClick={() => handleClick(movie)}
-                        className='row-poster'
-                        src={`${base_url}${movie.poster_path}`}
-                        alt={movie.name}
-                    />
-                        // <Details movie={movie} />
+                    // <img
+                    //     key={movie.id}
+                    //     onClick={() => handleClick(movie)}
+                    //     className='row-poster'
+                    //     src={`${base_url}${movie.poster_path}`}
+                    //     alt={movie.name}
+                    // />
+                        <Details movie={movie} />
                 ))}
             </div>
         </div>
