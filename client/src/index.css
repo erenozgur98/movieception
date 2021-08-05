@@ -24,3 +24,16 @@ body {
   height: 100%;
   overflow-x: hidden;
 }
+
+.truncate {
+  /* max-height: 200px; */
+  /* overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap; */
+  overflow: hidden;
+  display: -webkit-box;
+  display: -moz-box;
+  -webkit-line-clamp: 5;
+  -moz-box-orient: vertical;
+  -webkit-box-orient: vertical;
+}

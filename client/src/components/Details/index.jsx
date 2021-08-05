@@ -35,7 +35,8 @@ const Details = ({ movie }) => {
                 <Card.Body>
                     <Card.Title>{movie?.title || movie?.original_name}</Card.Title>
                     <Card.Text>
-                        <p>{truncate(movie?.overview, 150)}</p>
+                        {/* <p className='truncate'>{truncate(movie?.overview, 150)}</p> */}
+                        <p className='truncate'>{movie?.overview}</p>
                         <p>Rating: {movie?.vote_average} / 10.0</p>
                         <p>Votes: {movie?.vote_count}</p>
                         <p>Relase Date: {movie?.release_date || movie?.first_air_date}</p>

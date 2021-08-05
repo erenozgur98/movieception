@@ -4,6 +4,7 @@ const requests = {
     fetchTrendingMovies: `/trending/movie/week?api_key=${apiKey}&language=en-US`,
     fetchTrendingShows: `/trending/tv/week?api_key=${apiKey}&language=en-US`,
     fetchNetflixOriginals: `/discover/tv?api_key=${apiKey}&with_networks=213`,
+    // fetchNetflixOriginalss: `/discover/tv?api_key=${apiKey}&with_networks=170`,
     fetchTopRated: `/movie/top_rated?api_key=${apiKey}&language=en-US`,
     fetchActionMovies: `/discover/movie?api_key=${apiKey}&with_genres=28`,
     fetchComedyMovies: `/discover/movie?api_key=${apiKey}&with_genres=35`,

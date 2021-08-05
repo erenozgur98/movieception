@@ -5,6 +5,7 @@ import requests from '../../components/Requests';
 function Shows() {
     return (
         <div className='show'>
+            {/* <Row fetchUrl={requests.fetchNetflixOriginalss} title='Trending Shows' /> */}
             <Row fetchUrl={requests.fetchTrendingShows} title='Trending Shows' />
             <Row fetchUrl={requests.fetchActionShows} title='Action Shows' />
             <Row fetchUrl={requests.fetchComedyShows} title='Comedy Shows' />
