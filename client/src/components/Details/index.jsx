@@ -24,7 +24,7 @@ const Details = ({ movie }) => {
             <Card style={{ width: '18rem', backgroundColor: 'black', margin: '0 auto' }}>
                 <Card.Img onClick={() => redirect(movie)} variant='top' src={`${base_url}${movie?.poster_path}`} style={{ width: '' }} />
                 <Card.Body>
-                    <Card.Title>{movie?.title}</Card.Title>
+                    <Card.Title>{movie?.title || movie?.original_name}</Card.Title>
                     <Card.Text>
                         <p>{truncate(movie?.overview, 150)}</p>
                         <p>Rating: {movie?.vote_average} / 10.0</p>
