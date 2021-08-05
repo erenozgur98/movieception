@@ -29,7 +29,7 @@ const Details = ({ movie }) => {
                         <p>{truncate(movie?.overview, 150)}</p>
                         <p>Rating: {movie?.vote_average} / 10.0</p>
                         <p>Votes: {movie?.vote_count}</p>
-                        <p>Relase Date: {movie?.release_date}</p>
+                        <p>Relase Date: {movie?.release_date || movie?.first_air_date}</p>
                     </Card.Text>
                     <Button
                         className='btn btn-primary'
