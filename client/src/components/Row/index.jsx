@@ -16,9 +16,9 @@ function Row({ fetchUrl, title }) {
         fetchData();
     }, [fetchUrl]);
 
-    const handleClick = (movie) => {
-        console.log(movie);
-    };
+    // const handleClick = (movie) => {
+    //     console.log(movie);
+    // };
 
     return (
         <div className='row'>
