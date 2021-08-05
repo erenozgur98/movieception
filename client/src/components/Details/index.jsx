@@ -15,7 +15,7 @@ const Details = ({ movie }) => {
 
     const base_url = 'https://image.tmdb.org/t/p/original/';
 
-    function truncate(str, n) {
+    const truncate = (str, n) => {
         return str?.length > n ? str.substr(0, n - 1) + '...' : str;
     }
 
