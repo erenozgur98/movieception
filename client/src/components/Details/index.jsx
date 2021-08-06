@@ -15,9 +15,9 @@ const Details = ({ movie }) => {
 
     const base_url = 'https://image.tmdb.org/t/p/original/';
 
-    const truncate = (str, n) => {
-        return str?.length > n ? str.substr(0, n - 1) + '...' : str;
-    }
+    // const truncate = (str, n) => {
+    //     return str?.length > n ? str.substr(0, n - 1) + '...' : str;
+    // }
 
     return (
         <Container className='text-center'>
