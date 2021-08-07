@@ -46,7 +46,8 @@ function Home({ user }) {
     };
 
     const clear = () => {
-        // setResult([])
+        setResult([])
+        window.location.reload();
     };
 
     return (
