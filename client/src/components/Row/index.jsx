@@ -16,23 +16,28 @@ function Row({ fetchUrl, title }) {
         fetchData();
     }, [fetchUrl]);
 
-    // const handleClick = (movie) => {
-    //     console.log(movie);
-    // };
+    const handleClick = (movie) => {
+        console.log(movie);
+    };
 
     return (
         <div className='row'>
             <h2 className='row-title'>{title}</h2>
             <div className="row-posters">
                 {movies.map((movie) => (
-                    // <img
-                    //     key={movie.id}
-                    //     onClick={() => handleClick(movie)}
-                    //     className='row-poster'
-                    //     src={`${base_url}${movie.poster_path}`}
-                    //     alt={movie.name}
-                    // />
-                        <Details key={movie.id} movie={movie} />
+                    <img
+                        key={movie?.id}
+                        onClick={() => handleClick(movie)}
+                        className='row-poster'
+                        src={
+                            movie?.poster_path ?
+                            `${base_url}${movie?.poster_path}`
+                            :
+                            "https://via.placeholder.com/300"
+                        }
+                        alt={movie?.name}
+                    />
+                    // <Details key={movie.id} movie={movie} />
                 ))}
             </div>
         </div>

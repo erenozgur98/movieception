@@ -7,6 +7,7 @@ import MovieDetail from '../../components/MovieDetail';
 import requests from '../../components/Requests';
 import Banner from '../../components/Banner';
 import Details from '../../components/Details';
+import Row from '../../components/Row';
 
 function Home({ user }) {
     const [result, setResult] = useState([]);
@@ -94,7 +95,8 @@ function Home({ user }) {
                 </div>
             </Container>
             <div>
-                <MovieDetail fetchUrl={`${requests.fetchSearchMulti}${result}`} />
+                {/* <MovieDetail fetchUrl={`${requests.fetchSearchMulti}${result}`} /> */}
+                <Row fetchUrl={`${requests.fetchSearchMulti}${result}`} title={'Search Results'} />
             </div>
         </div>
     )
