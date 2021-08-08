@@ -36,12 +36,12 @@ function Home({ user }) {
     };
 
     const handleRandomMovie = () => {
-        // setResult([]);
+        setResult([]);
         // setRandomShow([]);
     };
 
     const handleRandomShow = () => {
-        // setResult([]);
+        setResult([]);
         // setRandomMovie([]);
     };
 
