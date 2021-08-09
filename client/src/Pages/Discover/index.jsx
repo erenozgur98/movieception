@@ -5,7 +5,7 @@ import requests from '../../components/Requests';
 function Discover() {
     return (
         <div className="discover">
-            <Row fetchUrl={requests.fetchTopRated} title='Top Rated Movies' />
+            {/* <Row fetchUrl={requests.fetchTopRated} title='Top Rated Movies' /> */}
             <Row fetchUrl={requests.fetchTrendingMovies} title='Trending Movies' />
             <Row fetchUrl={requests.fetchActionMovies} title='Action Movies' />
             <Row fetchUrl={requests.fetchComedyMovies} title='Comedy Movies' />
