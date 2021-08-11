@@ -9,16 +9,6 @@ mongoose.connect(
 );
 
 const userSeed = [
-  {
-    email: "shawnisthe@goat.com",
-    username: "shawnthegoat",
-    password: "shawnthegoat"
-  },
-  {
-    email: "erenisthebest@gmail.com",
-    username: "erenisawesome",
-    password: "erenisawesome"
-  }
 ];
 
 db.User
