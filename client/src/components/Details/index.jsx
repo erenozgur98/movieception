@@ -54,10 +54,11 @@ const Details = ({ movie }) => {
         // </Container>
         <Container className='details'>
             <img
+                className='details-image'
                 style={{ width: '18rem' }}
                 src={
                     movie?.poster_path ?
-                        `${base_url}${movie?.poster_path}`
+                        `${base_url}${movie?.backdrop_path}`
                         :
                         "https://via.placeholder.com/300"
                 }
