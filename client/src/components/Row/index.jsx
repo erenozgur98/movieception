@@ -41,7 +41,7 @@ function Row({ fetchUrl, title }) {
                 ))}
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default Row
+export default Row;
