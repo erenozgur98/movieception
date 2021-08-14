@@ -54,6 +54,7 @@ const Details = ({ movie }) => {
         // </Container>
         <Container className='details'>
             <img
+                onClick={() => redirect(movie)}
                 className='details-image'
                 style={{ width: '18rem' }}
                 src={
