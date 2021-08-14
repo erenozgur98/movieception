@@ -56,7 +56,7 @@ const Details = ({ movie }) => {
             <img
                 onClick={() => redirect(movie)}
                 className='details-image'
-                style={{ width: '18rem' }}
+                style={{ width: '18rem' }} //this is here for now, will update on css file later
                 src={
                     movie?.poster_path ?
                         `${base_url}${movie?.backdrop_path}`
