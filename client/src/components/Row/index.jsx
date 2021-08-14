@@ -31,13 +31,17 @@ function Row({ fetchUrl, title }) {
                         className='row-poster'
                         src={
                             movie?.poster_path ?
-                            `${base_url}${movie?.poster_path}`
-                            :
-                            "https://via.placeholder.com/300"
+                                `${base_url}${movie?.poster_path}`
+                                :
+                                "https://via.placeholder.com/300"
                         }
                         alt={movie?.name}
                     />
-                    // <Details key={movie.id} movie={movie} />
+                ))}
+            </div>
+            <div className="row-description">
+                {movies.map((movie) => (
+                    <Details key={movie.id} movie={movie} />
                 ))}
             </div>
         </div>
