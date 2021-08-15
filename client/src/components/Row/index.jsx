@@ -3,7 +3,7 @@ import axios from '../Axios';
 import './Row.css'
 import Details from '../Details';
 
-const base_url = 'https://image.tmdb.org/t/p/original/'; // change original to w200
+const base_url = 'https://image.tmdb.org/t/p/original/'; // change original to w200 or w300
 
 function Row({ fetchUrl, title }) {
     const [movies, setMovies] = useState([]);
