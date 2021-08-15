@@ -1,7 +1,7 @@
 import React from "react";
 import { Card, Container, Button } from 'react-bootstrap';
 
-const Details = ({ movie }) => {
+const Details = ({ movie, handleClose }) => {
 
     const redirect = (movie) => {
         console.log('redirect, will work soon')
@@ -69,6 +69,7 @@ const Details = ({ movie }) => {
                 }
                 alt={movie?.title || movie?.original_name}
             />
+            <button onClick={handleClose}>CLOSE</button>
         </Container>
     );
 }

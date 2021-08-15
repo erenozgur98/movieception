@@ -18,13 +18,18 @@ function Row({ fetchUrl, title }) {
     }, [fetchUrl]);
 
     const handleClick = (movie) => {
-        if (!currentMovie) {
-            setCurrentMovie([])
+        if (currentMovie) {
+            setCurrentMovie(null);
         } else {
-            setCurrentMovie(movie)
+            setCurrentMovie(movie);
         }
-        console.log(currentMovie)
+        console.log(currentMovie);
     };
+
+    const handleClose = () => {
+        setCurrentMovie(null)
+        console.log(currentMovie)
+    }
 
     return (
         <div className='row'>
@@ -46,7 +51,7 @@ function Row({ fetchUrl, title }) {
                 ))}
             </div>
             <div className="row-description">
-                {currentMovie && <Details key={currentMovie.id} movie={currentMovie} />}
+                {currentMovie && <Details key={currentMovie.id} movie={currentMovie} handleClose={handleClose} />}
             </div>
         </div>
     );
