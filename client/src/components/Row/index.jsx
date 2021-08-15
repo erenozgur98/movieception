@@ -7,6 +7,7 @@ const base_url = 'https://image.tmdb.org/t/p/original/'; // change original to w
 
 function Row({ fetchUrl, title }) {
     const [movies, setMovies] = useState([]);
+    const [currentMovie, setCurrentMovie] = useState([]);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -17,7 +18,12 @@ function Row({ fetchUrl, title }) {
     }, [fetchUrl]);
 
     const handleClick = (movie) => {
-        console.log(movie);
+        if (!currentMovie) {
+            setCurrentMovie([])
+        } else {
+            setCurrentMovie(movie)
+        }
+        console.log(currentMovie)
     };
 
     return (
@@ -40,9 +46,7 @@ function Row({ fetchUrl, title }) {
                 ))}
             </div>
             <div className="row-description">
-                {movies.map((movie) => (
-                    <Details key={movie.id} movie={movie} />
-                ))}
+                {currentMovie && <Details key={currentMovie.id} movie={currentMovie} />}
             </div>
         </div>
     );

@@ -53,6 +53,10 @@ const Details = ({ movie }) => {
         //     </Card>
         // </Container>
         <Container className='details'>
+            <div className="truncate">{movie?.overview}</div>
+            <div>Rating: {movie?.vote_average} / 10.0</div>
+            <div>Votes: {movie?.vote_count}</div>
+            <div>Release Date: {movie?.release_date || movie?.first_air_date}</div>
             <img
                 onClick={() => redirect(movie)}
                 className='details-image'
@@ -65,10 +69,6 @@ const Details = ({ movie }) => {
                 }
                 alt={movie?.title || movie?.original_name}
             />
-            <div className="truncate">{movie?.overview}</div>
-            <div>Rating: {movie?.vote_average} / 10.0</div>
-            <div>Votes: {movie?.vote_count}</div>
-            <div>Release Date: {movie?.release_date || movie?.first_air_date}</div>
         </Container>
     );
 }
