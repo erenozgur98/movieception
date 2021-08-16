@@ -37,11 +37,3 @@ body {
   -moz-box-orient: vertical;
   -webkit-box-orient: vertical;
 }
-
-.details {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 30px;
-}

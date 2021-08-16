@@ -1,5 +1,6 @@
 import React from "react";
 import { Card, Container, Button } from 'react-bootstrap';
+import './Details.css'
 
 const Details = ({ movie, handleClose }) => {
 
@@ -53,7 +54,7 @@ const Details = ({ movie, handleClose }) => {
         //     </Card>
         // </Container>
         <Container className='details'>
-            <div>
+            <div className='content'>
                 <h2>{movie?.title || movie?.original_name}</h2>
                 <div>
                     <div className="truncate">{movie?.overview}</div>
@@ -65,8 +66,8 @@ const Details = ({ movie, handleClose }) => {
             </div>
             <img
                 onClick={() => redirect(movie)}
-                className='details-image'
-                style={{ width: '18rem' }} //this is here for now, will update on css file later
+                className='image'
+                // style={{ width: '18rem' }} //this is here for now, will update on css file later
                 src={
                     movie?.poster_path ?
                         `${base_url}${movie?.backdrop_path}`

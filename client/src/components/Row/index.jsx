@@ -18,11 +18,12 @@ function Row({ fetchUrl, title }) {
     }, [fetchUrl]);
 
     const handleClick = (movie) => {
-        if (currentMovie) {
-            setCurrentMovie(null);
-        } else {
-            setCurrentMovie(movie);
-        }
+        // if (!currentMovie) {
+        //     setCurrentMovie(null);
+        // } else {
+        //     setCurrentMovie(movie);
+        // }
+        setCurrentMovie(movie)
         console.log(currentMovie);
     };
 
