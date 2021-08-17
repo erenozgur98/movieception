@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Container, Button } from 'react-bootstrap';
+import { Container, Button } from 'react-bootstrap';
 import './Details.css'
 
 const Details = ({ movie, handleClose }) => {
