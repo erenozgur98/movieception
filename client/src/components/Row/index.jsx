@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from '../Axios';
 import './Row.css'
 import Details from '../Details';
+import { Container } from 'react-bootstrap';
 
 const base_url = 'https://image.tmdb.org/t/p/original/'; // change original to w200 or w300
 
@@ -18,11 +19,6 @@ function Row({ fetchUrl, title }) {
     }, [fetchUrl]);
 
     const handleClick = (movie) => {
-        // if (!currentMovie) {
-        //     setCurrentMovie(null);
-        // } else {
-        //     setCurrentMovie(movie);
-        // }
         setCurrentMovie(movie)
         console.log(currentMovie);
     };
