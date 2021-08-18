@@ -6,8 +6,8 @@ function Discover() {
     return (
         <div className="discover">
             {/* <Row fetchUrl={requests.fetchTopRated} title='Top Rated Movies' /> */}
-            <Row fetchUrl={requests.fetchTrendingMovies} title='Trending Movies' />
-            <Row fetchUrl={requests.fetchTrendingShows} title='Trending Shows' />
+            {/* <Row fetchUrl={requests.fetchTrendingMovies} title='Trending Movies' /> */}
+            {/* <Row fetchUrl={requests.fetchTrendingShows} title='Trending Shows' /> */}
             <Row fetchUrl={requests.fetchTrending} title='Trending' />
             {/* <Row fetchUrl={requests.fetchActionMovies} title='Action Movies' /> */}
             {/* <Row fetchUrl={requests.fetchComedyMovies} title='Comedy Movies' /> */}

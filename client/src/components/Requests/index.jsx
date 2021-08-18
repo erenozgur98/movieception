@@ -3,7 +3,7 @@ const apiKey = 'af737f76cdba5b7435e17cc94568c07d';
 const requests = {
 
     // fetching trending data / netflix originals
-    fetchTrending: `/trending/week?api_key=${apiKey}&language=en-US`,
+    fetchTrending: `/trending/all/week?api_key=${apiKey}&language=en-US`,
     fetchTrendingMovies: `/trending/movie/week?api_key=${apiKey}&language=en-US`,
     fetchTrendingShows: `/trending/tv/week?api_key=${apiKey}&language=en-US`,
     fetchNetflixOriginals: `/discover/tv?api_key=${apiKey}&with_networks=213`,
