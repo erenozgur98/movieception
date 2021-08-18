@@ -1,5 +1,4 @@
 .row {
-  /* padding-left: 20px; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -16,33 +15,28 @@
 .row-map {
   display: flex;
   flex-direction: column;
+  border: solid white 2px;
+  margin: 5px;
+  /* padding: 2px; */
 }
-
-/* if row-posters has flex, this has to be used to hide the scroll bar */
-/* .row-posters::-webkit-scrollbar {
-  display: none;
-} */
 
 .row-poster {
   object-fit: contain;
-  /* width: 100%; */
+  width: 100%;
   max-height: 350px;
   max-width: 250px;
-  /* margin-right: 10px; */
   margin: 0px 10px 10px 0px;
-  /* padding: 10px; */
   transition: transform 450ms;
 }
 
 .row-poster:hover {
-  /* transform: scale(1.09); */
   cursor: pointer;
 }
 
 .fas {
-  /* display: flex;
+  display: flex;
   justify-content: flex-end;
-  margin: 5px; */
+  padding: 0px 8px 1px 0px;
 }
 
 .fas:hover {
