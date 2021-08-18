@@ -26,25 +26,32 @@ function Row({ fetchUrl, title }) {
     const handleClose = () => {
         setCurrentMovie(null)
         console.log(currentMovie)
-    }
+    };
+
+    const addToFavorite = (movie) => {
+        console.log(movie)
+    };
 
     return (
         <div className='row'>
             <h2 className='row-title'>{title}</h2>
             <div className="row-posters">
                 {movies.map((movie) => (
-                    <img
-                        key={movie?.id}
-                        onClick={() => handleClick(movie)}
-                        className='row-poster'
-                        src={
-                            movie?.poster_path ?
-                                `${base_url}${movie?.poster_path}`
-                                :
-                                "https://via.placeholder.com/300"
-                        }
-                        alt={movie?.name}
-                    />
+                    <div>
+                        <img
+                            key={movie?.id}
+                            onClick={() => handleClick(movie)}
+                            className='row-poster'
+                            src={
+                                movie?.poster_path ?
+                                    `${base_url}${movie?.poster_path}`
+                                    :
+                                    "https://via.placeholder.com/300"
+                            }
+                            alt={movie?.name}
+                        />
+                        <i onClick={() => addToFavorite(movie)} class="fas fa-heart"></i>
+                    </div>
                 ))}
             </div>
             <div className="row-description">
