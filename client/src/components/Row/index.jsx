@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react'
 import axios from '../Axios';
 import './Row.css'
 import Details from '../Details';
-import { Container } from 'react-bootstrap';
+// import { Container } from 'react-bootstrap';
 
-const base_url = 'https://image.tmdb.org/t/p/original/'; // change original to w200 or w300
+const base_url = 'https://image.tmdb.org/t/p/original/'; // change original to w200 or w300 if not styled
 
 function Row({ fetchUrl, title }) {
     const [movies, setMovies] = useState([]);
-    const [currentMovie, setCurrentMovie] = useState([]);
+    const [currentMovie, setCurrentMovie] = useState();
 
     useEffect(() => {
         const fetchData = async () => {
@@ -55,7 +55,15 @@ function Row({ fetchUrl, title }) {
                 ))}
             </div>
             <div className="row-description">
-                {currentMovie && <Details key={currentMovie.id} movie={currentMovie} handleClose={handleClose} />}
+                {
+                    currentMovie
+                    &&
+                    <Details
+                        key={currentMovie.id}
+                        movie={currentMovie}
+                        handleClose={handleClose}
+                    />
+                }
             </div>
         </div>
     );
