@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from '../Axios';
 import './Row.css'
 import Details from '../Details';
-// import { Container } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 
 const base_url = 'https://image.tmdb.org/t/p/original/'; // change original to w200 or w300 if not styled
 
@@ -37,7 +37,7 @@ function Row({ fetchUrl, title }) {
             <h2 className='row-title'>{title}</h2>
             <div className="row-posters">
                 {movies.map((movie) => (
-                    <div>
+                    <div className="row-map">
                         <img
                             key={movie?.id}
                             onClick={() => handleClick(movie)}

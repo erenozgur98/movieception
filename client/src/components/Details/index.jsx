@@ -54,17 +54,6 @@ const Details = ({ movie, handleClose }) => {
         //     </Card>
         // </Container>
         <Container className='details'>
-            <div className='content'>
-                <h2>{movie?.title || movie?.original_name}</h2>
-                <div>
-                    <div className="truncate">{movie?.overview}</div>
-                    <div>Rating: {movie?.vote_average} / 10.0</div>
-                    <div>Votes: {movie?.vote_count}</div>
-                    <div>Release Date: {movie?.release_date || movie?.first_air_date}</div>
-                </div>
-                <Button className="btn btn-warning" onClick={addToFavorites}>Add To Favorites</Button>
-                <Button className="btn btn-danger" onClick={handleClose}>CLOSE</Button>
-            </div>
             <img
                 onClick={() => redirect(movie)}
                 className='image'
@@ -76,6 +65,17 @@ const Details = ({ movie, handleClose }) => {
                 }
                 alt={movie?.title || movie?.original_name}
             />
+            <div className='content'>
+                <h2>{movie?.title || movie?.original_name}</h2>
+                <div>
+                    <div className="truncate">{movie?.overview}</div>
+                    <div>Rating: {movie?.vote_average} / 10.0</div>
+                    <div>Votes: {movie?.vote_count}</div>
+                    <div>Release Date: {movie?.release_date || movie?.first_air_date}</div>
+                </div>
+                <Button className="btn btn-warning" onClick={addToFavorites}>Add To Favorites</Button>
+                <Button className="btn btn-danger" onClick={handleClose}>CLOSE</Button>
+            </div>
         </Container>
     );
 }

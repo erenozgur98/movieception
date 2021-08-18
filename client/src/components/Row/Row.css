@@ -1,36 +1,47 @@
 .row {
-  padding-left: 20px;
-  color: white;
-}
-
-.row-title {
-
+  /* padding-left: 20px; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .row-posters {
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  overflow-y: hidden;
-  overflow-x: scroll;
-  padding: 20px;
+  grid-template-columns: repeat(5, 1fr);
+  /* overflow-y: hidden; */
+  /* overflow-x: scroll; */
 }
 
-.row-posters::-webkit-scrollbar {
-  display: none;
+.row-map {
+  display: flex;
+  flex-direction: column;
 }
+
+/* if row-posters has flex, this has to be used to hide the scroll bar */
+/* .row-posters::-webkit-scrollbar {
+  display: none;
+} */
 
 .row-poster {
   object-fit: contain;
-  width: 100%;
-  max-height: 300px;
+  /* width: 100%; */
+  max-height: 250px;
   /* margin-right: 10px; */
   margin: 0px 10px 10px 0px;
+  /* padding: 10px; */
   transition: transform 450ms;
 }
 
 .row-poster:hover {
   /* transform: scale(1.09); */
   cursor: pointer;
+}
+
+.fas {
+  /* display: flex;
+  justify-content: flex-end;
+  margin: 5px; */
 }
 
 .fas:hover {
