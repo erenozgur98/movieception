@@ -1,10 +1,14 @@
 const apiKey = 'af737f76cdba5b7435e17cc94568c07d';
 
 const requests = {
+
+    // fetching trending data / netflix originals
+    fetchTrending: `/trending/week?api_key=${apiKey}&language=en-US`,
     fetchTrendingMovies: `/trending/movie/week?api_key=${apiKey}&language=en-US`,
     fetchTrendingShows: `/trending/tv/week?api_key=${apiKey}&language=en-US`,
     fetchNetflixOriginals: `/discover/tv?api_key=${apiKey}&with_networks=213`,
-    // fetchNetflixOriginalss: `/discover/tv?api_key=${apiKey}&with_networks=170`,
+
+    // fetching movie data
     fetchTopRated: `/movie/top_rated?api_key=${apiKey}&language=en-US`,
     fetchActionMovies: `/discover/movie?api_key=${apiKey}&with_genres=28`,
     fetchComedyMovies: `/discover/movie?api_key=${apiKey}&with_genres=35`,
@@ -22,6 +26,7 @@ const requests = {
     fetchMysteryMovies: `/discover/movie?api_key=${apiKey}&with_genres=9648`,
     fetchWarMovies: `/discover/movie?api_key=${apiKey}&with_genres=10752`,
 
+    // fetching show data
     fetchActionShows: `/discover/tv?api_key=${apiKey}&with_genres=10759`,
     fetchComedyShows: `/discover/tv?api_key=${apiKey}&with_genres=35`,
     fetchRomanceShows: `/discover/tv?api_key=${apiKey}&with_genres=10749`,
@@ -36,8 +41,13 @@ const requests = {
     fetchMysteryShows: `/discover/tv?api_key=${apiKey}&with_genres=9648`,
     fetchWarShows: `/discover/tv?api_key=${apiKey}&with_genres=10752`,
 
+    // searching multi; shows, movies, actors
     fetchSearchMulti: `/search/multi?api_key=${apiKey}&language=en-US&query=`,
+
+    // searching movies only 
     fetchSearchMovie: `/search/movie?api_key=${apiKey}&language=en-US&query=`,
+
+    // searching shows only
     fetchSearchShow: `/search/tv?api_key=${apiKey}&language=en-US&query=`,
 }
 
