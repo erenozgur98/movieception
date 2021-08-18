@@ -1,12 +1,13 @@
 .details {
     display: flex;
-    padding: 30px;
+    padding: 20px 0px;
     align-items: center;
-    text-align: center;
+    /* text-align: center; */
 }
 
 .image {
     max-width: 50%;
+    margin-right: 20px;
 }
 
 .content > i {
