@@ -7,12 +7,12 @@ const Details = ({ movie, handleClose }) => {
     const redirect = (movie) => {
         console.log('redirect, will work soon')
         console.log(movie)
-    }
+    };
 
     const addToFavorites = (movie) => {
         console.log('add to favorites, will work soon')
         console.log(movie)
-    }
+    };
 
     const base_url = 'https://image.tmdb.org/t/p/original/';
 
