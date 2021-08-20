@@ -54,13 +54,13 @@ function Home({ user }) {
         <div>
             <Banner />
             <Container className="d-flex justify-content-center">
-                {/* <div>
+                <div>
                     {currentUser ? (
                         `Hello, ${currentUser}!`
                     ) : (
                         <p>You can login from <a href='/login'>here</a></p>
                     )}
-                </div> */}
+                </div>
             </Container>
             <Container className="d-flex justify-content-center">
                 <div>
