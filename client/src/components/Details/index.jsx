@@ -71,7 +71,7 @@ const Details = ({ movie, handleClose }) => {
                 <div>
                     <div className="truncate">{movie?.overview}</div>
                     <div>Rating: {movie?.vote_average} / 10.0</div>
-                    <div>Votes: {movie?.vote_count}</div>
+                    {/* <div>Votes: {movie?.vote_count}</div> */}
                     <div>Release Date: {movie?.release_date || movie?.first_air_date}</div>
                 </div>
                 <Button className="btn btn-warning" onClick={addToFavorites}>Add To Favorites</Button>
