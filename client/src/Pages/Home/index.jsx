@@ -2,11 +2,11 @@ import React, { useState } from 'react'
 import { useEffect } from 'react';
 import { useRef } from 'react';
 import { Container } from 'react-bootstrap'
-import MovieDetail from '../../components/MovieDetail';
+// import MovieDetail from '../../components/MovieDetail';
 // import { toast } from 'react-toastify';
 import requests from '../../components/Requests';
 import Banner from '../../components/Banner';
-import Details from '../../components/Details';
+// import Details from '../../components/Details';
 import Row from '../../components/Row';
 
 function Home({ user }) {
@@ -97,7 +97,7 @@ function Home({ user }) {
             </Container>
             <div>
                 {/* <MovieDetail fetchUrl={`${requests.fetchSearchMulti}${result}`} /> */}
-                <Row fetchUrl={`${requests.fetchSearchMulti}${result}`} title={'Search Results'} />
+                { result && <Row fetchUrl={`${requests.fetchSearchMulti}${result}`} title='Search Results' />}
             </div>
         </div>
     )
