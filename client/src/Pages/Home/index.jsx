@@ -52,7 +52,7 @@ function Home({ user }) {
 
     return (
         <div>
-            <Banner />
+            {/* <Banner /> */}
             <Container className="d-flex justify-content-center">
                 <div>
                     {currentUser ? (
@@ -97,7 +97,7 @@ function Home({ user }) {
             </Container>
             <div>
                 {/* <MovieDetail fetchUrl={`${requests.fetchSearchMulti}${result}`} /> */}
-                { result && <Row fetchUrl={`${requests.fetchSearchMulti}${result}`} title='Search Results' />}
+                {result && <Row fetchUrl={`${requests.fetchSearchMulti}${result}`} title='Search Results' />}
             </div>
         </div>
     )
