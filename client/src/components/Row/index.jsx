@@ -4,7 +4,8 @@ import './Row.css'
 import Details from '../Details';
 // import { Container } from 'react-bootstrap';
 
-const base_url = 'https://image.tmdb.org/t/p/original/'; // change original to w200 or w300 if not styled
+// change original to w200 or w300 if not styled
+const base_url = 'https://image.tmdb.org/t/p/original/';
 
 function Row({ fetchUrl, title }) {
     const [movies, setMovies] = useState([]);
@@ -19,7 +20,8 @@ function Row({ fetchUrl, title }) {
     }, [fetchUrl]);
 
     const handleClick = (movie) => {
-        setCurrentMovie(movie)
+        setCurrentMovie(movie);
+        <a href="#detils">a</a>
         console.log(currentMovie);
     };
 
@@ -54,7 +56,7 @@ function Row({ fetchUrl, title }) {
                     </div>
                 ))}
             </div>
-            <div className="row-description">
+            <div className="row-description" id="details">
                 {
                     currentMovie
                     &&
