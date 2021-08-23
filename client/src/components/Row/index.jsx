@@ -39,9 +39,8 @@ function Row({ fetchUrl, title }) {
             <h2 className='row-title'>{title}</h2>
             <div className="row-posters">
                 {movies.map((movie) => (
-                    <div className="row-map">
+                    <div className="row-map" key={movie?.id}>
                         <img
-                            key={movie?.id}
                             onClick={() => handleClick(movie)}
                             className='row-poster'
                             src={
@@ -52,7 +51,7 @@ function Row({ fetchUrl, title }) {
                             }
                             alt={movie?.name}
                         />
-                        <i onClick={() => addToFavorite(movie)} class="fas fa-heart"></i>
+                        <i onClick={() => addToFavorite(movie)} className="fas fa-heart"></i>
                     </div>
                 ))}
             </div>
