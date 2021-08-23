@@ -22,7 +22,6 @@ function Row({ fetchUrl, title }) {
 
     const handleClick = (movie) => {
         setCurrentMovie(movie);
-        <a href="#details">a</a>
         console.log(currentMovie);
     };
 

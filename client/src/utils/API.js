@@ -1,47 +1,7 @@
 import axios from 'axios';
 
-// this is the one I'll use
-// const BASEURL = "https://www.omdbapi.com/?";
-// const APIKEY = `apikey=trilogy&s=`;
-
-// const BASEURL1 = "https://www.omdbapi.com/?t=";
-// const APIKEY1 = `&apikey=trilogy`;
-
-// const BASEURL_ID = "https://www.omdbapi.com/?i="
-
-// const MOVIE = "&type=movie";
-// const SHOW = "&type=series";
-
-// const PAGE = "&page=1"
-
-// const YEAR = "&y2021"
-
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
-    // search: (query) => {
-    //     return axios.get(`${BASEURL}${APIKEY}${query}${PAGE}`);
-    // },
-
-    // searchOne: (query) => {
-    //     return axios.get(`${BASEURL1}${query}${APIKEY1}`);
-    // },
-    
-    // searchMovie: (query) => {
-    //     return axios.get(`${BASEURL}${APIKEY}${query}${MOVIE}${PAGE}`);
-    // },
-
-    // searchMovieId: (query) => {
-    //     return axios.get(`${BASEURL_ID}${query}${APIKEY1}${MOVIE}`);
-    // },
-    
-    // searchShow: (query) => {
-    //     return axios.get(`${BASEURL}${APIKEY}${query}${SHOW}${PAGE}`);
-    // },
-
-    // searchShowId: (query) => {
-    //     return axios.get(`${BASEURL_ID}${query}${APIKEY1}${SHOW}`);
-    // },
-
     getUser: (userId) => {
         return axios.get('/api/users' + userId);
     },
@@ -68,6 +28,10 @@ export default {
 
     loggedIn: () => {
         return axios.get('/api/users/user');
+    },
+
+    favorite: (favorite) => {
+        return axios.get('/api/favorite', favorite);
     },
 };
 
