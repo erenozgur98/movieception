@@ -6,7 +6,7 @@ SALT_WORK_FACTOR = 10;
 
 const FavoriteSchema = new Schema(
     {
-        userFrom: {
+        userId: {
             type: Schema.Types.ObjectId,
             required: true,
         },
