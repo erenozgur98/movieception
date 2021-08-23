@@ -74,7 +74,7 @@ const Details = ({ movie, handleClose }) => {
                     {/* <div>Votes: {movie?.vote_count}</div> */}
                     <div>Release Date: {movie?.release_date || movie?.first_air_date}</div>
                 </div>
-                <Button className="btn btn-warning" onClick={addToFavorites}>Add To Favorites</Button>
+                <Button className="btn btn-warning" onClick={() => addToFavorites(movie)}>Add To Favorites</Button>
                 {/* <Button className="btn btn-danger" onClick={handleClose}>CLOSE</Button> */}
             </div>
         </Container>

@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react'
 import axios from '../Axios';
 import './Row.css'
 import Details from '../Details';
-import { Container } from 'react-bootstrap';
+import Favorite from '../Favorite';
+// import { Container } from 'react-bootstrap';
 
 // change original to w200 or w300 if not styled
 const base_url = 'https://image.tmdb.org/t/p/original/';
@@ -21,7 +22,7 @@ function Row({ fetchUrl, title }) {
 
     const handleClick = (movie) => {
         setCurrentMovie(movie);
-        <a href="#detils">a</a>
+        <a href="#details">a</a>
         console.log(currentMovie);
     };
 
@@ -31,6 +32,7 @@ function Row({ fetchUrl, title }) {
     };
 
     const addToFavorite = (movie) => {
+        <Favorite movie={movie} />
         console.log(movie)
     };
 
