@@ -5,7 +5,7 @@ import { Container } from 'react-bootstrap'
 // import MovieDetail from '../../components/MovieDetail';
 // import { toast } from 'react-toastify';
 import requests from '../../components/Requests';
-import Banner from '../../components/Banner';
+// import Banner from '../../components/Banner';
 // import Details from '../../components/Details';
 import Row from '../../components/Row';
 

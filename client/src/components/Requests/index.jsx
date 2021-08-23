@@ -1,7 +1,7 @@
 const apiKey = 'af737f76cdba5b7435e17cc94568c07d';
 
 const requests = {
-
+    
     // fetching trending data / netflix originals
     fetchTrending: `/trending/all/week?api_key=${apiKey}&language=en-US`,
     fetchTrendingMovies: `/trending/movie/week?api_key=${apiKey}&language=en-US`,
@@ -28,7 +28,7 @@ const requests = {
     fetchScienceFictionMovies: `/discover/movie?api_key=${apiKey}&with_genres=878`,
     fetchThrillerMovies: `/discover/movie?api_key=${apiKey}&with_genres=53`,
     fetchTVMovies: `/discover/movie?api_key=${apiKey}&with_genres=10770`,
-
+    
     // fetching show data
     fetchActionShows: `/discover/tv?api_key=${apiKey}&with_genres=10759`,
     fetchComedyShows: `/discover/tv?api_key=${apiKey}&with_genres=35`,
@@ -43,13 +43,17 @@ const requests = {
     fetchRealityShows: `/discover/tv?api_key=${apiKey}&with_genres=10764`,
     fetchMysteryShows: `/discover/tv?api_key=${apiKey}&with_genres=9648`,
     fetchWarShows: `/discover/tv?api_key=${apiKey}&with_genres=10752`,
+    
+    // getting the episodes for tv shows => 
+    // https://api.themoviedb.org/3/tv/{tv_id}/season/{season_number}?api_key={apiKey}
+
 
     // searching multi; shows, movies, actors
     fetchSearchMulti: `/search/multi?api_key=${apiKey}&language=en-US&query=`,
-
+    
     // searching movies only 
     fetchSearchMovie: `/search/movie?api_key=${apiKey}&language=en-US&query=`,
-
+    
     // searching shows only
     fetchSearchShow: `/search/tv?api_key=${apiKey}&language=en-US&query=`,
 }

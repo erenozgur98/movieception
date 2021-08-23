@@ -4,7 +4,7 @@ function Favorite({ movie }) {
 
     return (
         <div>
-            
+
         </div>
     )
 }
