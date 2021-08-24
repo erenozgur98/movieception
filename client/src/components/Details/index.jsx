@@ -67,7 +67,7 @@ const Details = ({ movie, handleClose }) => {
             />
             <div className='content'>
                 <i onClick={handleClose} class="fas fa-times"></i>
-                <h2>{movie?.title || movie?.original_name}</h2>
+                <h3>{movie?.title || movie?.original_name}</h3>
                 <div>
                     <div className="truncate">{movie?.overview}</div>
                     <div>Rating: {movie?.vote_average} / 10.0</div>
