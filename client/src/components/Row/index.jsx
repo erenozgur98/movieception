@@ -48,7 +48,7 @@ function Row({ fetchUrl, title }) {
                                 movie?.poster_path ?
                                     `${base_url}${movie?.poster_path}`
                                     :
-                                    "https://via.placeholder.com/300"
+                                    `${base_url}${movie?.profile_path}`
                             }
                             alt={movie?.name}
                         />
