@@ -26,8 +26,8 @@ const Details = ({ movie, handleClose }) => {
                 onClick={() => redirect(movie)}
                 className='image'
                 src={
-                    movie ?
-                        `${base_url}${movie?.backdrop_path || movie?.poster_path}`
+                    movie?.backdrop_path || movie?.poster_path || movie?.profile_path ?
+                        `${base_url}${movie?.backdrop_path || movie?.poster_path || movie?.profile_path}`
                         :
                         "https://via.placeholder.com/300"
                 }
