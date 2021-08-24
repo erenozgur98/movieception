@@ -21,52 +21,20 @@ const Details = ({ movie, handleClose }) => {
     // }
 
     return (
-        // <Container className='text-center'>
-        //     <Card style={{ width: '18rem', backgroundColor: 'black', margin: '0 auto' }}>
-        //         <Card.Img
-        //             onClick={() => redirect(movie)}
-        //             variant='top'
-        //             src={
-        //                 movie?.poster_path ?
-        //                     `${base_url}${movie?.poster_path}`
-        //                     :
-        //                     "https://via.placeholder.com/300"
-        //             }
-        //         />
-        //         <Card.Body>
-        //             <Card.Title>{movie?.title || movie?.original_name}</Card.Title>
-        //             <Card.Text>
-        //                 {/* <p className='truncate'>{truncate(movie?.overview, 150)}</p> */}
-        //                 <p className='truncate'>{movie?.overview}</p>
-        //                 <p>Rating: {movie?.vote_average} / 10.0</p>
-        //                 <p>Votes: {movie?.vote_count}</p>
-        //                 <p>Relase Date: {movie?.release_date || movie?.first_air_date}</p>
-        //             </Card.Text>
-        //             <Button
-        //                 className='btn btn-primary'
-        //                 onClick={() => {
-        //                     addToFavorites(movie)
-        //                 }}
-        //             >
-        //                 Add To Favorites
-        //             </Button>
-        //         </Card.Body>
-        //     </Card>
-        // </Container>
         <Container className='details'>
             <img
                 onClick={() => redirect(movie)}
                 className='image'
                 src={
-                    movie?.poster_path ?
-                        `${base_url}${movie?.backdrop_path}`
+                    movie ?
+                        `${base_url}${movie?.backdrop_path || movie?.poster_path}`
                         :
                         "https://via.placeholder.com/300"
                 }
                 alt={movie?.title || movie?.original_name}
             />
             <div className='content'>
-                <i onClick={handleClose} class="fas fa-times"></i>
+                <i onClick={handleClose} className="fas fa-times"></i>
                 <h3>{movie?.title || movie?.original_name}</h3>
                 <div>
                     <div className="truncate">{movie?.overview}</div>
