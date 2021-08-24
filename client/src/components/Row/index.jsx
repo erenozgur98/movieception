@@ -45,7 +45,10 @@ function Row({ fetchUrl, title }) {
                             onClick={() => handleClick(movie)}
                             className='row-poster'
                             src={
-                                    `${base_url}${movie?.poster_path || movie?.profile_path || movie?.backdrop_path}`
+                                movie?.poster_path || movie?.backdrop_path || movie?.profile_path ?
+                                    `${base_url}${movie?.poster_path || movie?.backdrop_path || movie?.profile_path}`
+                                    :
+                                    "https://via.placeholder.com/300"
                             }
                             alt={movie?.name}
                         />
