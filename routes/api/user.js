@@ -27,6 +27,7 @@ router.get('/', async (req, res) => {
 //     }
 // });
 
+// get user
 router.get('/user', async (req, res) => {
     try {
         if (req.session.logged_in) {
@@ -45,6 +46,63 @@ router.get('/user', async (req, res) => {
     };
 });
 
+// get one specific user by username
+router.get('/:Username', (req, res) => {
+    console.log(req.params)
+    console.log(req.params.Username)
+    User.findOne({ Username: req.params.Username })
+        .then((user) => {
+            res.json(user)
+        })
+        .catch((err) => {
+            console.log(err)
+            res.status(500).send('Error: ' + err)
+        })
+});
+
+// add a movie/show to user's list of favorites
+router.post('/:Username/movies/:MovieID', (req, res) => {
+    User.findOneAndUpdate({
+        Username: req.params.Username
+    }, {
+        $push: {
+            favoriteMovies: req.params.MovieID
+        }
+    }, {
+        new: true
+    },
+        function (err, updatedUser) {
+            if (err) {
+                console.log(err)
+                res.status(500).send('Error: ' + err)
+            } else {
+                res.json(updatedUser)
+            }
+        }
+    )
+});
+
+// remove a movie/show from user's list of favorites
+router.delete('/:Username/favoriteMovies/:MovieID', (req, res) => {
+    User.findOneAndUpdate({
+        Username: req.params.Username
+    }, {
+        $push: {
+            favoriteMovies: req.params.MovieID
+        }
+    }, {
+        new: true
+    },
+    function (err, updatedUser) {
+        if (err) {
+            console.log(err)
+            res.status(500).send('Error: ' + err)
+        } else {
+            res.json(updatedUser)
+        }
+    })
+});
+
 router.post('/login', async (req, res) => {
     try {
         const user = await User.findOne({ username: req.body.username })
@@ -58,7 +116,7 @@ router.post('/login', async (req, res) => {
         );
 
         if (!validPassword) return res.status(401).json({ message: 'Incorrect Password' });
-        
+
         req.session.user_id = user.id;
         req.session.logged_in = true;
         req.session.username = user.username;
