@@ -51,7 +51,8 @@ router.get('/:Username', (req, res) => {
     console.log(req.params)
     console.log(req.params.Username)
     User.findOne({ Username: req.params.Username })
-        .then((user) => {
+        .then(user => {
+            console.log(user)
             res.json(user)
         })
         .catch((err) => {

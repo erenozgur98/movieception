@@ -6,7 +6,7 @@ function Profile() {
         <>
             <Container>
                 <div className="card bg-dark">
-                    <img className="card-img-top" src="img_avatar1.png" alt="Card" />
+                    <img className="card-img-top" src="" alt="Card" />
                     <div className="card-body">
                         <h4 className="card-title">Some Example Header</h4>
                         <p className="card-text">Some example text</p>
