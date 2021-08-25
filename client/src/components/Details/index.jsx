@@ -1,5 +1,6 @@
 import React from "react";
 import { Container, Button } from 'react-bootstrap';
+import Favorite from "../Favorite";
 import './Details.css'
 
 const Details = ({ movie, handleClose }) => {
@@ -10,7 +11,7 @@ const Details = ({ movie, handleClose }) => {
     };
 
     const addToFavorites = (movie) => {
-        console.log('add to favorites, will work soon')
+        <Favorite movie={movie} />
         console.log(movie)
     };
 
@@ -39,7 +40,6 @@ const Details = ({ movie, handleClose }) => {
                 <div>
                     <div className="truncate">{movie?.overview}</div>
                     <div>Rating: {movie?.vote_average} / 10.0</div>
-                    {/* <div>Votes: {movie?.vote_count}</div> */}
                     <div>Release Date: {movie?.release_date || movie?.first_air_date}</div>
                 </div>
                 <Button className="btn btn-warning" onClick={() => addToFavorites(movie)}>Add To Favorites</Button>
