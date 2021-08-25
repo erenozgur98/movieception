@@ -66,7 +66,7 @@ router.post('/:Username/movies/:MovieID', (req, res) => {
         Username: req.params.Username
     }, {
         $push: {
-            favoriteMovies: req.params.MovieID
+            favorites: req.params.MovieID
         }
     }, {
         new: true
@@ -83,12 +83,12 @@ router.post('/:Username/movies/:MovieID', (req, res) => {
 });
 
 // remove a movie/show from user's list of favorites
-router.delete('/:Username/favoriteMovies/:MovieID', (req, res) => {
+router.delete('/:Username/favorites/:MovieID', (req, res) => {
     User.findOneAndUpdate({
         Username: req.params.Username
     }, {
         $push: {
-            favoriteMovies: req.params.MovieID
+            favorites: req.params.MovieID
         }
     }, {
         new: true
