@@ -47,13 +47,13 @@ router.get('/user', async (req, res) => {
 });
 
 // get one specific user by username
-router.get('/:Username', (req, res) => {
+router.get('/:username', (req, res) => {
     console.log(req.params)
-    console.log(req.params.Username)
-    User.findOne({ Username: req.params.Username })
+    console.log(req.params.username)
+    User.findOne({ username: req.params.username })
         .then(user => {
             console.log(user)
-            res.json(user)
+            res.json(user.username)
         })
         .catch((err) => {
             console.log(err)
@@ -118,6 +118,9 @@ router.post('/login', async (req, res) => {
 
         if (!validPassword) return res.status(401).json({ message: 'Incorrect Password' });
 
+        // this is not working
+        delete user.password
+
         req.session.user_id = user.id;
         req.session.logged_in = true;
         req.session.username = user.username;
@@ -134,6 +137,9 @@ router.post('/login', async (req, res) => {
 router.post('/signup', async (req, res) => {
     try {
         const newUser = await User.create(req.body);
+
+        // this is not working
+        delete newUser.password;
 
         req.session.user_id = newUser.id;
         req.session.logged_in = true;
