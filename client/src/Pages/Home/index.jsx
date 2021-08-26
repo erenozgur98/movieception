@@ -78,7 +78,7 @@ function Home({ user }) {
                     <i className="fas fa-search"></i>
                 </button>
             </Container>
-            <Container className="d-flex justify-content-center">
+            {/* <Container className="d-flex justify-content-center">
                 <div>
                     <button type='button' className='btn btn-warning' onClick={handleRandomMovie}>
                         Random Movie
@@ -87,7 +87,7 @@ function Home({ user }) {
                         Random Show
                     </button>
                 </div>
-            </Container>
+            </Container> */}
             <Container className="d-flex justify-content-center">
                 <div>
                     <button type='button' className='btn btn-danger' onClick={clear}>

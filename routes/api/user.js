@@ -53,7 +53,7 @@ router.get('/:username', (req, res) => {
     User.findOne({ username: req.params.username })
         .then(user => {
             console.log(user)
-            res.json(user.username)
+            res.json(user)
         })
         .catch((err) => {
             console.log(err)
@@ -61,13 +61,35 @@ router.get('/:username', (req, res) => {
         })
 });
 
-// add a movie/show to user's list of favorites
+// add a movie to user's list of favorites
 router.post('/:username/movies/:movieId', (req, res) => {
     User.findOneAndUpdate({
         username: req.params.username
     }, {
         $push: {
             favorites: req.params.movieId
+        }
+    }, {
+        new: true
+    },
+        function (err, updatedUser) {
+            if (err) {
+                console.log(err)
+                res.status(500).send('Error: ' + err)
+            } else {
+                res.json(updatedUser)
+            }
+        }
+    )
+});
+
+// add a movie to user's list of favorites
+router.post('/:username/shows/:showId', (req, res) => {
+    User.findOneAndUpdate({
+        username: req.params.username
+    }, {
+        $push: {
+            favorites: req.params.showId
         }
     }, {
         new: true
