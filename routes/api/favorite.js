@@ -6,7 +6,7 @@ router.post('/', async (req, res) => {
     await Favorite.find({"movieId": req.body.movieId})
         .then((err, favorite) => {
             if (err) return res.status(400).send(err)
-            res.status(200).json({ Message: "Success", favorite: favorite.length })
+            res.status(200).json({ message: "Success" })
         })
 });
 

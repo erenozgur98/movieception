@@ -39,7 +39,7 @@ router.get('/user', async (req, res) => {
             };
             res.json(userInfo);
         } else {
-            res.status(403).json({ message: 'Something went wrong getting the user, could mean that you are not logged in/signedup yet ' });
+            res.status(403).json({ message: 'Something went wrong getting the user, could mean that you are not logged in/signedup yet' });
         }
     } catch (err) {
         console.log('1278361246129371294571237129371297', err)
