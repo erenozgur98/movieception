@@ -62,12 +62,12 @@ router.get('/:username', (req, res) => {
 });
 
 // add a movie/show to user's list of favorites
-router.post('/:Username/movies/:MovieID', (req, res) => {
+router.post('/:username/movies/:movieId', (req, res) => {
     User.findOneAndUpdate({
-        Username: req.params.Username
+        username: req.params.username
     }, {
         $push: {
-            favorites: req.params.MovieID
+            favorites: req.params.movieId
         }
     }, {
         new: true
@@ -84,12 +84,12 @@ router.post('/:Username/movies/:MovieID', (req, res) => {
 });
 
 // remove a movie/show from user's list of favorites
-router.delete('/:Username/favorites/:MovieID', (req, res) => {
+router.delete('/:username/favorites/:movieId', (req, res) => {
     User.findOneAndUpdate({
-        Username: req.params.Username
+        username: req.params.username
     }, {
         $push: {
-            favorites: req.params.MovieID
+            favorites: req.params.movieId
         }
     }, {
         new: true
@@ -108,7 +108,7 @@ router.post('/login', async (req, res) => {
     try {
         const user = await User.findOne({ username: req.body.username })
 
-        if (!user) return res.status(403).json({ message: 'Incorrect Username' });
+        if (!user) return res.status(403).json({ message: 'Incorrect username' });
 
         // checking to see if the passwords match
         const validPassword = await bcrypt.compare(
