@@ -50,6 +50,7 @@ function ActorProfilePage() {
             {/* /person/{person_id}/tagged_images <-- to get tagged images, more on that later */}
             {/* /person/{person_id}/tv_credits <-- to get tv_credits */}
             {/* /person/{person_id}/movie_credits <-- to get movie_credits */}
+            
 
 
         </Container>

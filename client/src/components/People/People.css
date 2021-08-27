@@ -1,0 +1,44 @@
+.row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  .row-posters {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    /* overflow-y: hidden; */
+    /* overflow-x: scroll; */
+  }
+  
+  .row-map {
+    display: flex;
+    flex-direction: column;
+    border: solid white 2px;
+    margin: 5px;
+    /* padding: 2px; */
+  }
+  
+  .row-poster {
+    object-fit: contain;
+    width: 100%;
+    max-height: 350px;
+    max-width: 250px;
+    margin: 0px 10px 10px 0px;
+    transition: transform 450ms;
+  }
+  
+  .row-poster:hover {
+    cursor: pointer;
+  }
+  
+  .fas {
+    display: flex;
+    justify-content: flex-end;
+    padding: 0px 8px 1px 0px;
+  }
+  
+  .fas:hover {
+    cursor: pointer;
+  }

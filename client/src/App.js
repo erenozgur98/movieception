@@ -4,6 +4,7 @@ import HomePage from './Pages/Home';
 import Profile from './Pages/Profile';
 import Movies from './Pages/Movies';
 import Shows from './Pages/Shows';
+import Actors from './Pages/Actors';
 import SignUp from './Pages/SignUp';
 import Login from './Pages/Login';
 import Discover from './Pages/Discover';
@@ -51,6 +52,7 @@ function App() {
           <Route exact path='/movies/:MovieId' component={MoviePage} />
           <Route exact path='/shows' component={Shows} />
           <Route exact path='/shows/:ShowId' component={ShowPage} />
+          <Route exact path='/actors' component={Actors} />
           <Route exact path='/actors/:ActorId' component={ActorProfilePage} />
           <Route exact path='/profile' component={Profile} />
           <Route exact path='/login' render={(props) => <Login {...props}
