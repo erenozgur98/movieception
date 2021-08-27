@@ -1,6 +1,6 @@
 import React from 'react'
 
-function SingleMovie() {
+function ShowPage() {
     return (
         <div>
             
@@ -8,4 +8,4 @@ function SingleMovie() {
     )
 }
 
-export default SingleMovie
+export default ShowPage
