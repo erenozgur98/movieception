@@ -20,7 +20,17 @@ const UserSchema = new Schema(
         password: {
             type: String,
             required: true
-        }
+        },
+        movieFavorites: [
+            {
+                type: Number,
+            }
+        ],
+        showFavorites: [
+            {
+                type: Number,
+            }
+        ]
     }
 );
 

@@ -7,18 +7,6 @@ const FavoriteSchema = new Schema(
             type: Schema.Types.ObjectId,
             required: true,
         },
-        movieId: {
-            type: String,
-            required: true,
-        },
-        movieTitle: {
-            type: String,
-            required: true
-        },
-        movieImage: {
-            type: String,
-            required: true
-        },
     }
 );
 
