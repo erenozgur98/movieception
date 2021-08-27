@@ -9,7 +9,6 @@ import SignUp from './Pages/SignUp';
 import Login from './Pages/Login';
 import Discover from './Pages/Discover';
 import Header from './components/Header';
-// import WithAuth from './components/withAuth';
 import './index.css'
 import API from './utils/API';
 import MoviePage from './Pages/MoviePage';
