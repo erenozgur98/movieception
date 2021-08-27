@@ -11,7 +11,7 @@ import Header from './components/Header';
 // import WithAuth from './components/withAuth';
 import './index.css'
 import API from './utils/API';
-import Banner from './components/Banner';
+// import Banner from './components/Banner';
 
 function App() {
   const [user, setUser] = useState({});
@@ -46,7 +46,9 @@ function App() {
           <Route exact path='/home' render={(props) => <HomePage {...props} user={user} />} />
           <Route exact path='/discover' component={Discover} />
           <Route exact path='/movies' component={Movies} />
+          <Route exact path='/movies/:MovieId' component={Movies} />
           <Route exact path='/shows' component={Shows} />
+          <Route exact path='/shows/:ShowId' component={Shows} />
           <Route exact path='/profile' component={Profile} />
           <Route exact path='/login' render={(props) => <Login {...props}
             loggedIn={loggedIn}

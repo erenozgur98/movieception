@@ -62,12 +62,12 @@ router.get('/:username', (req, res) => {
 });
 
 // add a movie to user's list of favorites
-router.post('/:username/movies/:movieId', (req, res) => {
+router.post('/:username/movies/:MovieId', (req, res) => {
     User.findOneAndUpdate({
         username: req.params.username
     }, {
         $push: {
-            favorites: req.params.movieId
+            favorites: req.params.MovieId
         }
     }, {
         new: true
@@ -84,12 +84,12 @@ router.post('/:username/movies/:movieId', (req, res) => {
 });
 
 // add a movie to user's list of favorites
-router.post('/:username/shows/:showId', (req, res) => {
+router.post('/:username/shows/:ShowId', (req, res) => {
     User.findOneAndUpdate({
         username: req.params.username
     }, {
         $push: {
-            favorites: req.params.showId
+            favorites: req.params.ShowId
         }
     }, {
         new: true
@@ -106,12 +106,12 @@ router.post('/:username/shows/:showId', (req, res) => {
 });
 
 // remove a movie/show from user's list of favorites
-router.delete('/:username/favorites/:movieId', (req, res) => {
+router.delete('/:username/favorites/:MovieId', (req, res) => {
     User.findOneAndUpdate({
         username: req.params.username
     }, {
         $push: {
-            favorites: req.params.movieId
+            favorites: req.params.MovieId
         }
     }, {
         new: true
