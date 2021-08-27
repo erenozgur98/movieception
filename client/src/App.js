@@ -45,7 +45,7 @@ function App() {
         <Header user={user} handleLogout={handleLogout} />
         {/* <Banner /> */}
         <div className='main'>
-          <Route exact path='/' component={HomePage} />
+          <Route exact path='/' render={(props) => <HomePage {...props} user={user} />} />
           <Route exact path='/home' render={(props) => <HomePage {...props} user={user} />} />
           <Route exact path='/discover' component={Discover} />
           <Route exact path='/movies' component={Movies} />
@@ -55,6 +55,7 @@ function App() {
           <Route exact path='/actors' component={Actors} />
           <Route exact path='/actors/:ActorId' component={ActorProfilePage} />
           <Route exact path='/profile' component={Profile} />
+          <Route exact path='/profile/:username' component={Profile} />
           <Route exact path='/login' render={(props) => <Login {...props}
             loggedIn={loggedIn}
             setLoggedIn={setLoggedIn}

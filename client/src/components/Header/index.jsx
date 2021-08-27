@@ -42,11 +42,14 @@ function Header({ user, handleLogout }) {
                                 Movies
                             </Nav.Link>
                             <Nav.Link href='/shows' className='nav-link'>
-                                TV Shows
+                                Shows
                             </Nav.Link>
-                            {/* <Nav.Link href='/profile' className='nav-link'>
+                            <Nav.Link href='/actors' className='nav-link'>
+                                Actors
+                            </Nav.Link>
+                            <Nav.Link href='/profile' className='nav-link'>
                                 Profile
-                            </Nav.Link> */}
+                            </Nav.Link>
                             <Nav.Link href='/' className='nav-link' onClick={handleLogout}>
                                 Logout
                             </Nav.Link>
@@ -77,11 +80,11 @@ function Header({ user, handleLogout }) {
                                 Movies
                             </Nav.Link>
                             <Nav.Link href='/shows' className='nav-link'>
-                                TV Shows
+                                Shows
                             </Nav.Link>
-                            {/* <Nav.Link href='/profile' className='nav-link'>
-                                Profile
-                            </Nav.Link> */}
+                            <Nav.Link href='/actors' className='nav-link'>
+                                Actors
+                            </Nav.Link>
                             <Nav.Link href='/login' className='nav-link'>
                                 Login
                             </Nav.Link>
