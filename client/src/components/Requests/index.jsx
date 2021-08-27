@@ -43,6 +43,9 @@ const requests = {
     fetchRealityShows: `/discover/tv?api_key=${apiKey}&with_genres=10764`,
     fetchMysteryShows: `/discover/tv?api_key=${apiKey}&with_genres=9648`,
     fetchWarShows: `/discover/tv?api_key=${apiKey}&with_genres=10752`,
+
+    // fetching actors
+    fetchActors : `/person/popular?api_key=${apiKey}`,
     
     // getting the episodes for tv shows => 
     // https://api.themoviedb.org/3/tv/{tv_id}/season/{season_number}?api_key={apiKey}

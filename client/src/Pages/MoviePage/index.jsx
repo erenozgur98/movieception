@@ -37,7 +37,6 @@ function MoviePage() {
             {/* actors, with names */}
             <section className="top-section">
                 <div className="background-picture">
-                    {/* change w500 / w200 to original after styling */}
                     <img src="https://image.tmdb.org/t/p/original/dq18nCTTLpy9PmtzZI6Y2yAgdw5.jpg" alt="black-widow" className='movie-background' />
                 </div>
                 <div className="poster-picture">
