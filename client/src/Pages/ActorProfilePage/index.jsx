@@ -14,26 +14,20 @@ function ActorProfilePage() {
 
     return (
         <Container>
-            {/* banner, has actor's backdrop path */}
+            {/* banner, has actor's movies? backdrop path */}
 
             {/* actual actor picture */}
             {/* make the actor picture sticky after scroll? will look into that later when styling */}
 
-            {/* under actor picture external id's eg FB link, IG link, twitter link */}
+            {/* under actor picture external id's eg FB link, IG link, twitter link if available */}
 
-            {/* link to where to watch the actor */}
+            {/* actor name */}
 
-            {/* actor title */}
+            {/* age born: day,yr,place */}
 
-            {/* Release date, country, language, genres */}
+            {/* actor biography */}
 
-            {/* actor description */}
-
-            {/* videos, select type: 'trailer' , 'featurette', 'teaser' */}
-
-            {/* video link type: youtube.com/watch?v=${key} <-- key being the video link key from the api */}
-
-            {/* actors, with names */}
+            {/* credits -> get movie/shows credits which movie/show the actor played in */}
         </Container>
     )
 }
