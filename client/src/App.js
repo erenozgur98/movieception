@@ -13,6 +13,7 @@ import './index.css'
 import API from './utils/API';
 import MoviePage from './Pages/MoviePage';
 import ShowPage from './Pages/ShowPage';
+import ActorProfilePage from './Pages/ActorProfilePage';
 // import Banner from './components/Banner';
 
 function App() {
@@ -25,7 +26,6 @@ function App() {
       .then(result => {
         setUser(result.data)
         setLoaded(true);
-        console.log(result.data)
       })
       .catch(err => {
         console.log(err);
@@ -51,6 +51,7 @@ function App() {
           <Route exact path='/movies/:MovieId' component={MoviePage} />
           <Route exact path='/shows' component={Shows} />
           <Route exact path='/shows/:ShowId' component={ShowPage} />
+          <Route exact path='/actors/:ActorId' component={ActorProfilePage} />
           <Route exact path='/profile' component={Profile} />
           <Route exact path='/login' render={(props) => <Login {...props}
             loggedIn={loggedIn}
