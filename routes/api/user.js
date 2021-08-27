@@ -46,6 +46,9 @@ router.get('/user', async (req, res) => {
     };
 });
 
+
+////////// FAVORITES //////////
+
 // get one specific user by username
 router.get('/:username', (req, res) => {
     console.log(req.params)
@@ -105,13 +108,13 @@ router.post('/:username/favorite/shows/:ShowId', (req, res) => {
     )
 });
 
-// remove a movie/show from user's list of favorites
-router.delete('/:username/favorites/:MovieId', (req, res) => {
+// remove a movie from user's list of favorites
+router.delete('/:username/favorite/movies/:MovieId', (req, res) => {
     User.findOneAndUpdate({
         username: req.params.username
     }, {
         $push: {
-            favorites: req.params.MovieId
+            movieFavorites: req.params.MovieId
         }
     }, {
         new: true
@@ -125,6 +128,30 @@ router.delete('/:username/favorites/:MovieId', (req, res) => {
         }
     })
 });
+
+// remove a show from user's list of favorites
+router.delete('/:username/favorite/shows/:ShowId', (req, res) => {
+    User.findOneAndUpdate({
+        username: req.params.username
+    }, {
+        $push: {
+            showFavorites: req.params.ShowId
+        }
+    }, {
+        new: true
+    },
+    function (err, updatedUser) {
+        if (err) {
+            console.log(err)
+            res.status(500).send('Error: ' + err)
+        } else {
+            res.json(updatedUser)
+        }
+    })
+});
+
+
+////////// LOGIN - SIGNUP - LOGOUT //////////
 
 router.post('/login', async (req, res) => {
     try {
