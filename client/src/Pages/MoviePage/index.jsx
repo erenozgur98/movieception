@@ -11,8 +11,12 @@ function MoviePage() {
 
     useEffect(() => {
         // API.getOneMovie, will be set later
+        setMovie(MovieId.data)
+        console.log(MovieId)
     }, [MovieId])
-
+    
+    console.log(movie)
+    
     return (
         <div>
             {/* banner, has movie's backdrop path */}

@@ -30,6 +30,18 @@ export default {
         return axios.get('/api/users/user');
     },
 
+    getOneMovie: () => {
+        
+    },
+
+    getOneShow: () => {
+
+    },
+
+    getOneActor: () => {
+
+    },
+
     favorite: (favorite) => {
         return axios.get('/api/favorite', favorite);
     },
