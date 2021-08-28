@@ -8,6 +8,7 @@
 .row-posters {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
+  max-width: 90%;
   /* overflow-y: hidden; */
   /* overflow-x: scroll; */
 }
@@ -23,9 +24,9 @@
 .row-poster {
   object-fit: contain;
   width: 100%;
-  max-height: 350px;
-  max-width: 250px;
-  margin: 0px 10px 10px 0px;
+  /* max-height: 350px; */
+  /* max-width: 250px; */
+  /* margin: 0px 0px 10px 0px; */
   transition: transform 450ms;
 }
 
@@ -36,7 +37,8 @@
 .fas {
   display: flex;
   justify-content: flex-end;
-  padding: 0px 8px 1px 0px;
+  /* padding: 0px 8px 1px 0px; */
+  padding: 6px;
 }
 
 .fas:hover {

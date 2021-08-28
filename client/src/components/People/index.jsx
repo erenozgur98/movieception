@@ -23,14 +23,14 @@ function People({ fetchUrl, title }) {
     };
 
     return (
-        <div className='row'>
-            <h2 className='row-title'>{title}</h2>
-            <div className="row-posters">
+        <div className='people'>
+            <h2 className='people-title'>{title}</h2>
+            <div className="people-posters">
                 {actors.map((actor) => (
-                    <div className="row-map" key={actor?.id}>
+                    <div className="people-map" key={actor?.id}>
                         <img
                             onClick={() => handleClick(actor)}
-                            className='row-poster'
+                            className='people-poster'
                             src={
                                 actor?.poster_path || actor?.backdrop_path || actor?.profile_path ?
                                     `${base_url}${actor?.poster_path || actor?.backdrop_path || actor?.profile_path}`
