@@ -45,7 +45,7 @@ function MoviePage() {
             {/* video link type: youtube.com/watch?v=${key} <-- key being the video link key from the api */}
 
             {/* actors, with names */}
-            <section className="top-section">
+            <div className="top-section">
                 <div className="background-picture">
                     <img src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`} alt="movie-poster" className='movie-background' />
                 </div>
@@ -53,8 +53,8 @@ function MoviePage() {
                     <img src={`https://image.tmdb.org/t/p/original${movie.poster_path}`} alt="black-widow" className='movie-poster' />
                     <h2>{movie.original_title}</h2>
                 </div>
-            </section>
-            <section className="bottom-section">
+            </div>
+            <div className="bottom-section">
                 <div className="movie-overview">
                     <div>
                         <a href={movie?.homepage}>Homepage</a>
@@ -63,13 +63,13 @@ function MoviePage() {
                         Release Date: {movie?.release_date}
                     </div>
                     <div>
-                        Genres: {movie?.genres.map(x => x.name)}
+                        {/* Genres: {movie?.genres.map(x => x.name)} */}
                     </div>
                     <div>
                         Language: {movie?.original_language}
                     </div>
                     <div>
-                        Spoken Languages: {movie?.spoken_languages.map(x => x.english_name)}
+                        {/* Spoken Languages: {movie?.spoken_languages.map(x => x.english_name)} */}
                     </div>
                     <div>
                         Runtime: {movie?.runtime} minutes
@@ -84,11 +84,11 @@ function MoviePage() {
                         Revenue: {movie?.revenue}
                     </div>
                     <div>
-                        Country: {movie?.production_countries.map(x => x.name)}
+                        {/* Country: {movie?.production_countries.map(x => x.name)} */}
                     </div>
                     <div>
                         {/* add logos to companies later */}
-                        Production Companies: {movie?.production_companies.map(x => x.name)}
+                        {/* Production Companies: {movie?.production_companies.map(x => x.name)} */}
                     </div>
                     <div>
                         {/* maybe add this too? will consider */}
@@ -101,7 +101,7 @@ function MoviePage() {
                         {movie?.overview}
                     </div>
                 </div>
-            </section>
+            </div>
         </div>
     )
 }

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { useHistory } from 'react-router-dom';
 import axios from '../Axios';
 import Details from '../Details';
 import Favorite from '../Favorite';
@@ -12,6 +13,8 @@ function Row({ fetchUrl, title }) {
     const [movies, setMovies] = useState([]);
     const [currentMovie, setCurrentMovie] = useState();
 
+    const history = useHistory()
+
     useEffect(() => {
         const fetchData = async () => {
             const request = await axios.get(fetchUrl);
@@ -21,8 +24,13 @@ function Row({ fetchUrl, title }) {
     }, [fetchUrl]);
 
     const handleClick = (movie) => {
-        setCurrentMovie(movie);
-        console.log(currentMovie);
+        // setCurrentMovie(movie);
+        if (movie.media_type === 'tv') {
+            history.push(`/shows/${movie.id}`)
+        } else {
+            history.push(`/movies/${movie.id}`)
+        }
+        // console.log(currentMovie);
     };
 
     const handleClose = () => {
@@ -31,7 +39,6 @@ function Row({ fetchUrl, title }) {
     };
 
     const addToFavorite = (movie) => {
-        <Favorite movie={movie} />
         console.log(movie)
     };
 
