@@ -57,7 +57,7 @@ function MoviePage() {
             <div className="bottom-section">
                 <div className="movie-overview">
                     <div>
-                        <a href={movie?.homepage}>Homepage</a>
+                    <a href={movie?.homepage} target="_blank" rel="noreferrer">Homepage</a>
                     </div>
                     <div>
                         Release Date: {movie?.release_date}
