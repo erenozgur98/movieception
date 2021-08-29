@@ -42,6 +42,7 @@ function App() {
     <div>
       <Router>
         <Header user={user} handleLogout={handleLogout} />
+        {/* Banner here? or no banner? */}
         {/* <Banner /> */}
         <div className='main'>
           <Route exact path='/' render={(props) => <HomePage {...props} user={user} />} />
@@ -54,6 +55,7 @@ function App() {
           <Route exact path='/actors' component={Actors} />
           <Route exact path='/actors/:ActorId' component={ActorProfilePage} />
           <Route exact path='/profile' component={Profile} />
+          {/* create UserProfile page, replace profile */}
           <Route exact path='/profile/:username' component={Profile} />
           <Route exact path='/login' render={(props) => <Login {...props}
             loggedIn={loggedIn}
