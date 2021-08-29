@@ -23,7 +23,7 @@ function ShowPage() {
     console.log(show)
 
     return (
-        <div>
+        <Container>
             {/* banner, has show's backdrop path */}
 
             {/* actual show picture */}
@@ -105,7 +105,7 @@ function ShowPage() {
                     </div>
                 </div>
             </div>
-        </div>
+        </Container>
     )
 }
 

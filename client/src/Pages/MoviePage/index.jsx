@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { useEffect } from 'react';
 import { Container } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
-import API from '../../utils/API';
 import axios from '../../components/Axios';
 import "./MoviePage.css"
 
@@ -24,7 +23,7 @@ function MoviePage() {
     console.log(movie)
 
     return (
-        <div>
+        <Container>
             {/* banner, has movie's backdrop path */}
 
             {/* actual movie picture */}
@@ -57,7 +56,7 @@ function MoviePage() {
             <div className="bottom-section">
                 <div className="movie-overview">
                     <div>
-                    <a href={movie?.homepage} target="_blank" rel="noreferrer">Homepage</a>
+                        <a href={movie?.homepage} target="_blank" rel="noreferrer">Homepage</a>
                     </div>
                     <div>
                         Release Date: {movie?.release_date}
@@ -102,7 +101,7 @@ function MoviePage() {
                     </div>
                 </div>
             </div>
-        </div>
+        </Container>
     )
 }
 
