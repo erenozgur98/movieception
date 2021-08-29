@@ -56,7 +56,7 @@ function ShowPage() {
             <div className="bottom-section">
                 <div className="movie-overview">
                     <div>
-                        <a href={show?.homepage}>Homepage</a>
+                        <a href={show?.homepage} target="_blank" rel="noreferrer">Homepage</a>
                     </div>
                     <div>
                         First Air Date: {show?.first_air_date}
@@ -80,7 +80,8 @@ function ShowPage() {
                         {/* Spoken Languages: {show?.spoken_languages.map(x => x.english_name)} */}
                     </div>
                     <div>
-                        Runtime: {show?.episode_run_time[0]} minutes
+                        {/* the [0] is doesn't seem to be working, added todo */}
+                        {/* Runtime: {show?.episode_run_time[0]} minutes */}
                     </div>
                     <div>
                         Vote Average: {show?.vote_average} / 10
