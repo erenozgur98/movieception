@@ -4,8 +4,8 @@ const requests = {
     
     // fetching trending data / netflix originals
     fetchTrending: `/trending/all/day?api_key=${apiKey}&language=en-US`,
-    fetchTrendingMovies: `/trending/movie/week?api_key=${apiKey}&language=en-US`,
-    fetchTrendingShows: `/trending/tv/week?api_key=${apiKey}&language=en-US`,
+    fetchTrendingMovies: `/trending/movie/day?api_key=${apiKey}&language=en-US`,
+    fetchTrendingShows: `/trending/tv/day?api_key=${apiKey}&language=en-US`,
     fetchNetflixOriginals: `/discover/tv?api_key=${apiKey}&with_networks=213`,
 
     // fetching movie data

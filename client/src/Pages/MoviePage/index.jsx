@@ -49,19 +49,19 @@ function MoviePage() {
             {/* actors, with names */}
             {movie.poster_path ?
                 <div>
-                    <div className="top-section">
-                        {/* background-poster picture suspended for now */}
-                        {/* <div className="background-picture">
-                    <img src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`} alt="movie-poster" className='movie-background' />
-                </div> */}
-                        <div className="poster-picture">
-                            <img src={`https://image.tmdb.org/t/p/original${movie.poster_path}`} alt={movie?.original_title} className='movie-poster' />
-                            <h2>{movie?.original_title}</h2>
+                    <div>
+                        <div>
+                            {/* background-poster picture suspended for now */}
+                            {/* <div className="background-picture">
+                        <img src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`} alt="movie-poster" className='movie-background' />
+                        </div> */}
+                            <div className="poster-picture">
+                                <img src={`https://image.tmdb.org/t/p/original${movie.poster_path}`} alt={movie?.original_title} className='movie-poster' />
+                                <h2>{movie?.original_title}</h2>
+                            </div>
                         </div>
-                    </div>
-                    <div className="bottom-section">
-                        <div className="movie-overview">
-                            <div>
+                        <div className="bottom-section">
+                            <div className="movie-overview">
                                 <a href={movie?.homepage} target="_blank" rel="noreferrer">Homepage</a>
                             </div>
                             <div>
@@ -147,11 +147,10 @@ function MoviePage() {
                             <div>
                                 {movie?.overview}
                             </div>
-                            {/* <WatchProviders movie={movie} /> */}
-                            <Credits movie={movie} />
-                            <WatchProviders movie={movie} />
                         </div>
                     </div>
+                    <Credits movie={movie} />
+                    <WatchProviders movie={movie} />
                 </div>
                 :
                 <>
