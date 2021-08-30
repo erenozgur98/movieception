@@ -25,16 +25,9 @@ function ActorPage() {
         <Container>
             {/* banner, has actor's movies? backdrop path */}
 
-            {/* actual actor picture */}
             {/* make the actor picture sticky after scroll? will look into that later when styling */}
 
             {/* under actor picture external id's eg FB link, IG link, twitter link if available */}
-
-            {/* actor name */}
-
-            {/* age born: day,yr,place */}
-
-            {/* actor biography */}
 
             {/* credits -> get movie/shows credits which movie/show the actor played in */}
             <div className="actor-picture">
@@ -42,9 +35,12 @@ function ActorPage() {
                 <h2>{actor?.name}</h2>
             </div>
             <div>
-                {/* imdb.png will come here */}
-                <a href={`https://www.imdb.com/name/${actor?.imdb_id}/`} target="_blank" rel="noreferrer">IMDB</a>
-            </div>
+                        {/* imdb.png will come here, will fix the looks later */}
+                        <a href={`https://www.imdb.com/name/${actor?.imdb_id}/`} target="_blank" rel="noreferrer">
+                        <i class="fab fa-imdb" style={{fontSize: "42px"}}></i>
+                            {/* IMDB */}
+                        </a>
+                    </div>
             <div>
                 Birthday: {actor?.birthday}
             </div>

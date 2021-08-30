@@ -26,18 +26,12 @@ function ShowPage() {
         <Container>
             {/* banner, has show's backdrop path */}
 
-            {/* actual show picture */}
             {/* make the show picture sticky after scroll? will look into that later when styling */}
 
             {/* under show picture external id's eg FB link, IG link, twitter link */}
 
             {/* link to where to watch the show */}
 
-            {/* show title */}
-
-            {/* Release date, country, language, genres */}
-
-            {/* show description */}
 
             {/* videos, select type: 'trailer' , 'featurette', 'teaser' */}
 

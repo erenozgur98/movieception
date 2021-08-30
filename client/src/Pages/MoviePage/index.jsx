@@ -26,18 +26,11 @@ function MoviePage() {
         <Container>
             {/* banner, has movie's backdrop path */}
 
-            {/* actual movie picture */}
             {/* make the movie picture sticky after scroll? will look into that later when styling */}
 
             {/* under movie picture external id's eg FB link, IG link, twitter link */}
 
             {/* link to where to watch the movie */}
-
-            {/* movie title */}
-
-            {/* Release date, country, language, genres */}
-
-            {/* movie description */}
 
             {/* videos, select type: 'trailer' , 'featurette', 'teaser' */}
 
@@ -60,8 +53,11 @@ function MoviePage() {
                         <a href={movie?.homepage} target="_blank" rel="noreferrer">Homepage</a>
                     </div>
                     <div>
-                        {/* imdb.png will come here */}
-                        <a href={`https://www.imdb.com/title/${movie?.imdb_id}/`} target="_blank" rel="noreferrer">IMDB</a>
+                        {/* imdb.png will come here, will fix the looks later */}
+                        <a href={`https://www.imdb.com/title/${movie?.imdb_id}/`} target="_blank" rel="noreferrer">
+                        <i class="fab fa-imdb" style={{fontSize: "42px"}}></i>
+                            {/* IMDB */}
+                        </a>
                     </div>
                     <div>
                         Release Date: {movie?.release_date}
