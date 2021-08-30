@@ -86,10 +86,10 @@ function MoviePage() {
                         Vote Average: {movie?.vote_average} / 10
                     </div>
                     <div>
-                        Budget: {movie?.budget}
+                        Budget: ${movie?.budget}
                     </div>
                     <div>
-                        Revenue: {movie?.revenue}
+                        Revenue: ${movie?.revenue}
                     </div>
                     <div>
                         {/* Country: {movie?.production_countries.map(x => x.name)} */}
