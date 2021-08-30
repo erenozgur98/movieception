@@ -49,7 +49,7 @@ function MoviePage() {
             {/* actors, with names */}
             {movie.poster_path ?
                 <div>
-                    <div>
+                    <div className='page-organization'>
                         <div>
                             {/* background-poster picture suspended for now */}
                             {/* <div className="background-picture">
@@ -57,10 +57,10 @@ function MoviePage() {
                         </div> */}
                             <div className="poster-picture">
                                 <img src={`https://image.tmdb.org/t/p/original${movie.poster_path}`} alt={movie?.original_title} className='movie-poster' />
-                                <h2>{movie?.original_title}</h2>
                             </div>
                         </div>
                         <div className="bottom-section">
+                            <h2>{movie?.original_title}</h2>
                             <div className="movie-overview">
                                 <a href={movie?.homepage} target="_blank" rel="noreferrer">Homepage</a>
                             </div>
