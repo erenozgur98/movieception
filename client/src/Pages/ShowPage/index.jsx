@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { Container } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 import axios from '../../components/Axios'
+import Credits from '../../components/Credits';
 
 function ShowPage() {
     const [show, setShow] = useState({});
@@ -115,6 +116,7 @@ function ShowPage() {
                                 Instagram: {externalId?.instagram_id},
                                 Twitter: {externalId?.twitter_id}
                             </div>
+                            <Credits show={show} />
                         </div>
                     </div>
                 </div>
