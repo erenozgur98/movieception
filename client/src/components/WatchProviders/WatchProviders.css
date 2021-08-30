@@ -1,0 +1,22 @@
+.provider-name {
+    font-size: 0.5rem;
+}
+
+.providers {
+    display: flex;
+    overflow-y: hidden;
+    overflow-x: scroll;
+    padding: 20px;
+}
+
+.providers::-webkit-scrollbar {
+    display: none;
+}
+
+.provider-logo {
+    object-fit: contain;
+    width: 100%;
+    max-height: 50px;
+    margin-right: 10px;
+    font-size: 0.5rem;
+}
