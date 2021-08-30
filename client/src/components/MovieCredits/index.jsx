@@ -39,7 +39,7 @@ function MovieCredits({ actor }) {
                     onClick={() => redirect(credits)}
                     src={`${base_url}${credits?.poster_path}`}
                     alt={credits?.original_name}
-                    className='movie-poster'
+                    className='actor-movie-poster'
                 />
             ))}
         </div>
