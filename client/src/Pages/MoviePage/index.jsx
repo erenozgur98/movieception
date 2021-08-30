@@ -45,9 +45,10 @@ function MoviePage() {
 
             {/* actors, with names */}
             <div className="top-section">
-                <div className="background-picture">
+                {/* background-poster picture idea suspended for now */}
+                {/* <div className="background-picture">
                     <img src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`} alt="movie-poster" className='movie-background' />
-                </div>
+                </div> */}
                 <div className="poster-picture">
                     <img src={`https://image.tmdb.org/t/p/original${movie.poster_path}`} alt="black-widow" className='movie-poster' />
                     <h2>{movie.original_title}</h2>
