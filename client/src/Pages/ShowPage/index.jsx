@@ -7,6 +7,7 @@ import API from '../../utils/API';
 
 function ShowPage() {
     const [show, setShow] = useState({});
+    const [externalId, setExternalId] = useState();
     const { ShowId } = useParams();
 
     const apiKey = 'af737f76cdba5b7435e17cc94568c07d';
@@ -15,12 +16,15 @@ function ShowPage() {
         // API.getOneMovie, will be set later
         const fetchData = async () => {
             const request = await axios.get(`/tv/${ShowId}?api_key=${apiKey}`);
-            setShow(request.data)
+            const requestExternalId = await axios.get(`tv/${ShowId}/external_ids?api_key=${apiKey}`);
+            setShow(request.data);
+            setExternalId(requestExternalId.data);
         }
         fetchData();
     }, [ShowId])
 
     console.log(show)
+    console.log(externalId)
 
     return (
         <Container>
@@ -97,6 +101,11 @@ function ShowPage() {
                     </div>
                     <div>
                         {show?.overview}
+                    </div>
+                    <div>
+                        Facebook: {externalId?.facebook_id},
+                        Instagram: {externalId?.instagram_id},
+                        Twitter: {externalId?.twitter_id}
                     </div>
                 </div>
             </div>

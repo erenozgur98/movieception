@@ -7,6 +7,7 @@ import "./MoviePage.css"
 
 function MoviePage() {
     const [movie, setMovie] = useState({});
+    const [externalId, setExternalId] = useState();
     const { MovieId } = useParams();
 
     const apiKey = 'af737f76cdba5b7435e17cc94568c07d';
@@ -15,12 +16,15 @@ function MoviePage() {
         // API.getOneMovie, will be set later
         const fetchData = async () => {
             const request = await axios.get(`/movie/${MovieId}?api_key=${apiKey}`);
-            setMovie(request.data)
+            const requestExternalId = await axios.get(`movie/${MovieId}/external_ids?api_key=${apiKey}`);
+            setMovie(request.data);
+            setExternalId(requestExternalId.data)
         }
         fetchData();
     }, [MovieId])
 
     console.log(movie)
+    console.log(externalId)
 
     return (
         <Container>
@@ -55,7 +59,7 @@ function MoviePage() {
                     <div>
                         {/* imdb.png will come here, will fix the looks later */}
                         <a href={`https://www.imdb.com/title/${movie?.imdb_id}/`} target="_blank" rel="noreferrer">
-                        <i class="fab fa-imdb" style={{fontSize: "42px"}}></i>
+                            <i class="fab fa-imdb" style={{ fontSize: "42px" }}></i>
                             {/* IMDB */}
                         </a>
                     </div>
@@ -99,6 +103,11 @@ function MoviePage() {
                     </div>
                     <div>
                         {movie?.overview}
+                    </div>
+                    <div>
+                        Facebook: {externalId?.facebook_id},
+                        Instagram: {externalId?.instagram_id},
+                        Twitter: {externalId?.twitter_id}
                     </div>
                 </div>
             </div>

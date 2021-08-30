@@ -6,6 +6,7 @@ import axios from '../../components/Axios';
 
 function ActorPage() {
     const [actor, setActor] = useState({});
+    const [externalId, setExternalId] = useState();
     const { ActorId } = useParams();
 
     const apiKey = 'af737f76cdba5b7435e17cc94568c07d';
@@ -14,7 +15,9 @@ function ActorPage() {
         // API.getOneActor, will be set later
         const fetchData = async () => {
             const request = await axios.get(`/person/${ActorId}?api_key=${apiKey}`);
-            setActor(request.data)
+            const requestExternalId = await axios.get(`person/${ActorId}/external_ids?api_key=${apiKey}`);
+            setActor(request.data);
+            setExternalId(requestExternalId.data);
         }
         fetchData()
     }, [ActorId])
@@ -35,12 +38,12 @@ function ActorPage() {
                 <h2>{actor?.name}</h2>
             </div>
             <div>
-                        {/* imdb.png will come here, will fix the looks later */}
-                        <a href={`https://www.imdb.com/name/${actor?.imdb_id}/`} target="_blank" rel="noreferrer">
-                        <i class="fab fa-imdb" style={{fontSize: "42px"}}></i>
-                            {/* IMDB */}
-                        </a>
-                    </div>
+                {/* imdb.png will come here, will fix the looks later */}
+                <a href={`https://www.imdb.com/name/${actor?.imdb_id}/`} target="_blank" rel="noreferrer">
+                    <i class="fab fa-imdb" style={{ fontSize: "42px" }}></i>
+                    {/* IMDB */}
+                </a>
+            </div>
             <div>
                 Birthday: {actor?.birthday}
             </div>
@@ -49,6 +52,11 @@ function ActorPage() {
             </div>
             <div>
                 Biography: {actor?.biography}
+            </div>
+            <div>
+                Facebook: {externalId?.facebook_id},
+                Instagram: {externalId?.instagram_id},
+                Twitter: {externalId?.twitter_id}
             </div>
             {/* /person/{person_id}/images <-- to get images */}
             {/* /person/{person_id}/tagged_images <-- to get tagged images, more on that later */}
