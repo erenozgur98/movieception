@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { Container } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 import axios from '../../components/Axios';
+import MovieCredits from '../../components/MovieCredits';
 
 function ActorPage() {
     const [actor, setActor] = useState({});
@@ -78,6 +79,7 @@ function ActorPage() {
                     <div>
                         Biography: {actor?.biography}
                     </div>
+                    <MovieCredits actor={actor} />
                 </div>
                 :
                 <>

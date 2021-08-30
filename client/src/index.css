@@ -33,7 +33,7 @@ body {
   overflow: hidden;
   display: -webkit-box;
   display: -moz-box;
-  -webkit-line-clamp: 4;
+  -webkit-line-clamp: 5;
   -moz-box-orient: vertical;
   -webkit-box-orient: vertical;
 }
