@@ -4,6 +4,7 @@ import { Container } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 import axios from '../../components/Axios';
 import Credits from '../../components/Credits';
+import WatchProviders from '../../components/WatchProviders';
 import "./MoviePage.css"
 
 function MoviePage() {
@@ -136,6 +137,7 @@ function MoviePage() {
                             </div>
                             {/* <WatchProviders movie={movie} /> */}
                             <Credits movie={movie} />
+                            <WatchProviders movie={movie} />
                         </div>
                     </div>
                 </div>
