@@ -129,9 +129,6 @@ function MoviePage() {
                 :
                 <>
                     <div>
-                        No movie found, go back to <a href='/movies'>movie</a> page
-                    </div>
-                    <div>
                         Oops, something went wrong, go back to <a href='/movies'>movie</a> page
                     </div>
                 </>

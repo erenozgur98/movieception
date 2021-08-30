@@ -64,9 +64,6 @@ function ActorPage() {
                 :
                 <>
                     <div>
-                        No actor found, go back to <a href='/actors'>actor</a> page
-                    </div>
-                    <div>
                         Oops, something went wrong, go back to <a href='/actors'>actor</a> page
                     </div>
                 </>

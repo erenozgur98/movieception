@@ -122,9 +122,6 @@ function ShowPage() {
                 :
                 <>
                     <div>
-                        No show found, go back to <a href='/shows'>show</a> page
-                    </div>
-                    <div>
                         Oops, something went wrong, go back to <a href='/shows'>show</a> page
                     </div>
                 </>
