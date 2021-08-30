@@ -59,6 +59,10 @@ function MoviePage() {
                         <a href={movie?.homepage} target="_blank" rel="noreferrer">Homepage</a>
                     </div>
                     <div>
+                        {/* imdb.png will come here */}
+                        <a href={`https://www.imdb.com/title/${movie?.imdb_id}/`} target="_blank" rel="noreferrer">IMDB</a>
+                    </div>
+                    <div>
                         Release Date: {movie?.release_date}
                     </div>
                     <div>

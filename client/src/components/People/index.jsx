@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { useHistory } from 'react-router-dom';
 import axios from '../Axios';
 import './People.css'
 
@@ -9,6 +10,8 @@ function People({ fetchUrl, title }) {
     const [actors, setActors] = useState([]);
     const [currentActor, setCurrentActor] = useState();
 
+    const history = useHistory()
+
     useEffect(() => {
         const fetchData = async () => {
             const request = await axios.get(fetchUrl);
@@ -18,8 +21,9 @@ function People({ fetchUrl, title }) {
     }, [fetchUrl]);
 
     const handleClick = (actor) => {
-        setCurrentActor(actor);
-        console.log(currentActor);
+        // setCurrentActor(actor);
+        // console.log(currentActor);
+        history.push(`/actors/${actor.id}`)
     };
 
     return (

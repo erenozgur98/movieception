@@ -27,8 +27,10 @@ function Row({ fetchUrl, title }) {
         // setCurrentMovie(movie);
         if (movie.media_type === 'tv') {
             history.push(`/shows/${movie.id}`)
-        } else {
+        } else if(movie.media_type === 'movie') {
             history.push(`/movies/${movie.id}`)
+        } else {
+            history.push(`/actors/${movie.id}`)
         }
         // console.log(currentMovie);
     };

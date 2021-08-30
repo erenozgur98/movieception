@@ -13,7 +13,7 @@ import './index.css'
 import API from './utils/API';
 import MoviePage from './Pages/MoviePage';
 import ShowPage from './Pages/ShowPage';
-import ActorProfilePage from './Pages/ActorProfilePage';
+import ActorPage from './Pages/ActorPage';
 // import Banner from './components/Banner';
 
 function App() {
@@ -53,7 +53,7 @@ function App() {
           <Route exact path='/shows' component={Shows} />
           <Route exact path='/shows/:ShowId' component={ShowPage} />
           <Route exact path='/actors' component={Actors} />
-          <Route exact path='/actors/:ActorId' component={ActorProfilePage} />
+          <Route exact path='/actors/:ActorId' component={ActorPage} />
           <Route exact path='/profile' component={Profile} />
           {/* create UserProfile page, replace profile */}
           <Route exact path='/profile/:username' component={Profile} />
