@@ -3,7 +3,6 @@ import { useEffect } from 'react';
 import { Container } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 import axios from '../../components/Axios'
-import API from '../../utils/API';
 
 function ShowPage() {
     const [show, setShow] = useState({});

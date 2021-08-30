@@ -42,7 +42,7 @@ function ActorPage() {
                     <div>
                         {/* imdb.png will come here, will fix the looks later */}
                         <a href={`https://www.imdb.com/name/${actor?.imdb_id}/`} target="_blank" rel="noreferrer">
-                            <i class="fab fa-imdb" style={{ fontSize: "42px" }}></i>
+                            <i className="fab fa-imdb" style={{ fontSize: "42px" }}></i>
                             {/* IMDB */}
                         </a>
                     </div>

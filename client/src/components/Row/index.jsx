@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom';
 import axios from '../Axios';
 import Details from '../Details';
-import Favorite from '../Favorite';
 // import { Container } from 'react-bootstrap';
 import './Row.css'
 
@@ -22,6 +21,8 @@ function Row({ fetchUrl, title }) {
         }
         fetchData();
     }, [fetchUrl]);
+
+    console.log(movies)
 
     const handleClick = (movie) => {
         // setCurrentMovie(movie);

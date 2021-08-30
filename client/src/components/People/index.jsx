@@ -8,7 +8,6 @@ const base_url = 'https://image.tmdb.org/t/p/original/';
 
 function People({ fetchUrl, title }) {
     const [actors, setActors] = useState([]);
-    const [currentActor, setCurrentActor] = useState();
 
     const history = useHistory()
 

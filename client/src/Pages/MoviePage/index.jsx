@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { Container } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 import axios from '../../components/Axios';
+import Credits from '../../components/Credits';
 import "./MoviePage.css"
 
 function MoviePage() {
@@ -54,7 +55,7 @@ function MoviePage() {
                 </div> */}
                         <div className="poster-picture">
                             <img src={`https://image.tmdb.org/t/p/original${movie.poster_path}`} alt={movie?.original_title} className='movie-poster' />
-                            <h2>{movie.original_title}</h2>
+                            <h2>{movie?.original_title}</h2>
                         </div>
                     </div>
                     <div className="bottom-section">
@@ -115,14 +116,8 @@ function MoviePage() {
                                 Instagram: {externalId?.instagram_id},
                                 Twitter: {externalId?.twitter_id}
                             </div>
-                            {/* watch providers a little bit more complex, the additions: buy, flatrate,rent and categorized by country. needs more than just a map */}
-                            {/* <div>
-                        Watch Provider(s): {watchProviders.map(x => (
-                            <div>
-
-                            </div>
-                        ))}
-                    </div> */}
+                            {/* <WatchProviders movie={movie} /> */}
+                            <Credits movie={movie} />
                         </div>
                     </div>
                 </div>
