@@ -15,7 +15,7 @@
     transition: transform 450ms;
 }
 
-.movie-posters::-webkit-scrollbar {
+.movie-credits::-webkit-scrollbar {
     /* width: 2vw; */
     /* color: white; */
     /* background-color: gray; */
