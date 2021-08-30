@@ -45,84 +45,97 @@ function MoviePage() {
             {/* video link type: youtube.com/watch?v=${key} <-- key being the video link key from the api */}
 
             {/* actors, with names */}
-            <div className="top-section">
-                {/* background-poster picture idea suspended for now */}
-                {/* <div className="background-picture">
+            {movie.poster_path ?
+                <div>
+                    <div className="top-section">
+                        {/* background-poster picture suspended for now */}
+                        {/* <div className="background-picture">
                     <img src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`} alt="movie-poster" className='movie-background' />
                 </div> */}
-                <div className="poster-picture">
-                    <img src={`https://image.tmdb.org/t/p/original${movie.poster_path}`} alt="black-widow" className='movie-poster' />
-                    <h2>{movie.original_title}</h2>
-                </div>
-            </div>
-            <div className="bottom-section">
-                <div className="movie-overview">
-                    <div>
-                        <a href={movie?.homepage} target="_blank" rel="noreferrer">Homepage</a>
+                        <div className="poster-picture">
+                            <img src={`https://image.tmdb.org/t/p/original${movie.poster_path}`} alt={movie?.original_title} className='movie-poster' />
+                            <h2>{movie.original_title}</h2>
+                        </div>
                     </div>
-                    <div>
-                        {/* imdb.png will come here, will fix the looks later */}
-                        <a href={`https://www.imdb.com/title/${movie?.imdb_id}/`} target="_blank" rel="noreferrer">
-                            <i className="fab fa-imdb" style={{ fontSize: "42px" }}></i>
-                            {/* IMDB */}
-                        </a>
-                    </div>
-                    <div>
-                        Release Date: {movie?.release_date}
-                    </div>
-                    <div>
-                        {/* Genres: {movie?.genres.map(x => x.name)} */}
-                    </div>
-                    <div>
-                        Language: {movie?.original_language}
-                    </div>
-                    <div>
-                        {/* Spoken Languages: {movie?.spoken_languages.map(x => x.english_name)} */}
-                    </div>
-                    <div>
-                        Runtime: {movie?.runtime} minutes
-                    </div>
-                    <div>
-                        Vote Average: {movie?.vote_average} / 10
-                    </div>
-                    <div>
-                        Budget: ${movie?.budget}
-                    </div>
-                    <div>
-                        Revenue: ${movie?.revenue}
-                    </div>
-                    <div>
-                        {/* Country: {movie?.production_countries.map(x => x.name)} */}
-                    </div>
-                    <div>
-                        {/* add logos to companies later */}
-                        {/* Production Companies: {movie?.production_companies.map(x => x.name)} */}
-                    </div>
-                    <div>
-                        {/* maybe add this too? will consider */}
-                        {/* {movie?.belongs_to_collection} */}
-                    </div>
-                    <div>
-                        {movie?.tagline}
-                    </div>
-                    <div>
-                        {movie?.overview}
-                    </div>
-                    <div>
-                        Facebook: {externalId?.facebook_id},
-                        Instagram: {externalId?.instagram_id},
-                        Twitter: {externalId?.twitter_id}
-                    </div>
-                    {/* watch providers a little bit more complex, the additions: buy, flatrate,rent and categorized by country. needs more than just a map */}
-                    {/* <div>
+                    <div className="bottom-section">
+                        <div className="movie-overview">
+                            <div>
+                                <a href={movie?.homepage} target="_blank" rel="noreferrer">Homepage</a>
+                            </div>
+                            <div>
+                                {/* imdb.png will come here, will fix the looks later */}
+                                <a href={`https://www.imdb.com/title/${movie?.imdb_id}/`} target="_blank" rel="noreferrer">
+                                    <i className="fab fa-imdb" style={{ fontSize: "42px" }}></i>
+                                    {/* IMDB */}
+                                </a>
+                            </div>
+                            <div>
+                                Release Date: {movie?.release_date}
+                            </div>
+                            <div>
+                                {/* Genres: {movie?.genres.map(x => x.name)} */}
+                            </div>
+                            <div>
+                                Language: {movie?.original_language}
+                            </div>
+                            <div>
+                                {/* Spoken Languages: {movie?.spoken_languages.map(x => x.english_name)} */}
+                            </div>
+                            <div>
+                                Runtime: {movie?.runtime} minutes
+                            </div>
+                            <div>
+                                Vote Average: {movie?.vote_average} / 10
+                            </div>
+                            <div>
+                                Budget: ${movie?.budget}
+                            </div>
+                            <div>
+                                Revenue: ${movie?.revenue}
+                            </div>
+                            <div>
+                                {/* Country: {movie?.production_countries.map(x => x.name)} */}
+                            </div>
+                            <div>
+                                {/* add logos to companies later */}
+                                {/* Production Companies: {movie?.production_companies.map(x => x.name)} */}
+                            </div>
+                            <div>
+                                {/* maybe add this too? will consider */}
+                                {/* {movie?.belongs_to_collection} */}
+                            </div>
+                            <div>
+                                {movie?.tagline}
+                            </div>
+                            <div>
+                                {movie?.overview}
+                            </div>
+                            <div>
+                                Facebook: {externalId?.facebook_id},
+                                Instagram: {externalId?.instagram_id},
+                                Twitter: {externalId?.twitter_id}
+                            </div>
+                            {/* watch providers a little bit more complex, the additions: buy, flatrate,rent and categorized by country. needs more than just a map */}
+                            {/* <div>
                         Watch Provider(s): {watchProviders.map(x => (
                             <div>
 
                             </div>
                         ))}
                     </div> */}
+                        </div>
+                    </div>
                 </div>
-            </div>
+                :
+                <>
+                    <div>
+                        No movie found, go back to <a href='/movies'>movie</a> page
+                    </div>
+                    <div>
+                        Oops, something went wrong, go back to <a href='/movies'>movie</a> page
+                    </div>
+                </>
+            }
         </Container>
     )
 }
