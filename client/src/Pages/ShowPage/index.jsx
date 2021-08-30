@@ -67,6 +67,29 @@ function ShowPage() {
                                 </a>
                             </div>
                             <div>
+                                <a
+                                    href={`https://www.facebook.com/${externalId?.facebook_id}`}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                >
+                                    <i className="fab fa-facebook-square" style={{ fontSize: "42px" }}></i>
+                                </a>
+                                <a
+                                    href={`https://www.instagram.com/${externalId?.facebook_id}`}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                >
+                                    <i className="fab fa-instagram-square" style={{ fontSize: "42px" }}></i>
+                                </a>
+                                <a
+                                    href={`https://www.twitter.com/${externalId?.facebook_id}`}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                >
+                                    <i className="fab fa-twitter-square" style={{ fontSize: "42px" }}></i>
+                                </a>
+                            </div>
+                            <div>
                                 First Air Date: {show?.first_air_date}
                             </div>
                             <div>
@@ -110,29 +133,6 @@ function ShowPage() {
                             </div>
                             <div>
                                 {show?.overview}
-                            </div>
-                            <div>
-                                <a
-                                    href={`https://www.facebook.com/${externalId?.facebook_id}`}
-                                    target="_blank"
-                                    rel="noreferrer"
-                                >
-                                    <i className="fab fa-facebook-square" style={{ fontSize: "42px" }}></i>
-                                </a>
-                                <a
-                                    href={`https://www.instagram.com/${externalId?.facebook_id}`}
-                                    target="_blank"
-                                    rel="noreferrer"
-                                >
-                                    <i className="fab fa-instagram-square" style={{ fontSize: "42px" }}></i>
-                                </a>
-                                <a
-                                    href={`https://www.twitter.com/${externalId?.facebook_id}`}
-                                    target="_blank"
-                                    rel="noreferrer"
-                                >
-                                    <i className="fab fa-twitter-square" style={{ fontSize: "42px" }}></i>
-                                </a>
                             </div>
                             <Credits show={show} />
                         </div>

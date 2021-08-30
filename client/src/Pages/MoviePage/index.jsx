@@ -71,6 +71,29 @@ function MoviePage() {
                                 </a>
                             </div>
                             <div>
+                                <a
+                                    href={`https://www.facebook.com/${externalId?.facebook_id}`}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                >
+                                    <i className="fab fa-facebook-square" style={{ fontSize: "42px" }}></i>
+                                </a>
+                                <a
+                                    href={`https://www.instagram.com/${externalId?.facebook_id}`}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                >
+                                    <i className="fab fa-instagram-square" style={{ fontSize: "42px" }}></i>
+                                </a>
+                                <a
+                                    href={`https://www.twitter.com/${externalId?.facebook_id}`}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                >
+                                    <i className="fab fa-twitter-square" style={{ fontSize: "42px" }}></i>
+                                </a>
+                            </div>
+                            <div>
                                 Release Date: {movie?.release_date}
                             </div>
                             <div>
@@ -110,29 +133,6 @@ function MoviePage() {
                             </div>
                             <div>
                                 {movie?.overview}
-                            </div>
-                            <div>
-                                <a
-                                    href={`https://www.facebook.com/${externalId?.facebook_id}`}
-                                    target="_blank"
-                                    rel="noreferrer"
-                                >
-                                    <i className="fab fa-facebook-square" style={{ fontSize: "42px" }}></i>
-                                </a>
-                                <a
-                                    href={`https://www.instagram.com/${externalId?.facebook_id}`}
-                                    target="_blank"
-                                    rel="noreferrer"
-                                >
-                                    <i className="fab fa-instagram-square" style={{ fontSize: "42px" }}></i>
-                                </a>
-                                <a
-                                    href={`https://www.twitter.com/${externalId?.facebook_id}`}
-                                    target="_blank"
-                                    rel="noreferrer"
-                                >
-                                    <i className="fab fa-twitter-square" style={{ fontSize: "42px" }}></i>
-                                </a>
                             </div>
                             {/* <WatchProviders movie={movie} /> */}
                             <Credits movie={movie} />

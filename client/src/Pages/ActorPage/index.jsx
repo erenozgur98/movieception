@@ -47,15 +47,6 @@ function ActorPage() {
                         </a>
                     </div>
                     <div>
-                        Birthday: {actor?.birthday}
-                    </div>
-                    <div>
-                        Birth Place: {actor?.place_of_birth}
-                    </div>
-                    <div>
-                        Biography: {actor?.biography}
-                    </div>
-                    <div>
                         <a
                             href={`https://www.facebook.com/${externalId?.facebook_id}`}
                             target="_blank"
@@ -77,6 +68,15 @@ function ActorPage() {
                         >
                             <i className="fab fa-twitter-square" style={{ fontSize: "42px" }}></i>
                         </a>
+                    </div>
+                    <div>
+                        Birthday: {actor?.birthday}
+                    </div>
+                    <div>
+                        Birth Place: {actor?.place_of_birth}
+                    </div>
+                    <div>
+                        Biography: {actor?.biography}
                     </div>
                 </div>
                 :
