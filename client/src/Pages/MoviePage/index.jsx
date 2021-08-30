@@ -8,6 +8,7 @@ import "./MoviePage.css"
 function MoviePage() {
     const [movie, setMovie] = useState({});
     const [externalId, setExternalId] = useState();
+    const [watchProviders, setWatchProviders] = useState();
     const { MovieId } = useParams();
 
     const apiKey = 'af737f76cdba5b7435e17cc94568c07d';
@@ -17,14 +18,17 @@ function MoviePage() {
         const fetchData = async () => {
             const request = await axios.get(`/movie/${MovieId}?api_key=${apiKey}`);
             const requestExternalId = await axios.get(`movie/${MovieId}/external_ids?api_key=${apiKey}`);
+            const requestWatchProviders = await axios.get(`movie/${MovieId}/watch/providers?api_key=${apiKey}`)
             setMovie(request.data);
-            setExternalId(requestExternalId.data)
+            setExternalId(requestExternalId.data);
+            setWatchProviders(requestWatchProviders.data.results.US);
         }
         fetchData();
     }, [MovieId])
 
     console.log(movie)
     console.log(externalId)
+    console.log(watchProviders);
 
     return (
         <Container>
@@ -59,7 +63,7 @@ function MoviePage() {
                     <div>
                         {/* imdb.png will come here, will fix the looks later */}
                         <a href={`https://www.imdb.com/title/${movie?.imdb_id}/`} target="_blank" rel="noreferrer">
-                            <i class="fab fa-imdb" style={{ fontSize: "42px" }}></i>
+                            <i className="fab fa-imdb" style={{ fontSize: "42px" }}></i>
                             {/* IMDB */}
                         </a>
                     </div>
@@ -109,6 +113,14 @@ function MoviePage() {
                         Instagram: {externalId?.instagram_id},
                         Twitter: {externalId?.twitter_id}
                     </div>
+                    {/* watch providers a little bit more complex, the additions: buy, flatrate,rent and categorized by country. needs more than just a map */}
+                    {/* <div>
+                        Watch Provider(s): {watchProviders.map(x => (
+                            <div>
+
+                            </div>
+                        ))}
+                    </div> */}
                 </div>
             </div>
         </Container>
