@@ -58,6 +58,13 @@ function ShowPage() {
                         <a href={show?.homepage} target="_blank" rel="noreferrer">Homepage</a>
                     </div>
                     <div>
+                        {/* imdb.png will come here, will fix the looks later */}
+                        <a href={`https://www.imdb.com/title/${externalId?.imdb_id}/`} target="_blank" rel="noreferrer">
+                            <i className="fab fa-imdb" style={{ fontSize: "42px" }}></i>
+                            {/* IMDB */}
+                        </a>
+                    </div>
+                    <div>
                         First Air Date: {show?.first_air_date}
                     </div>
                     <div>
