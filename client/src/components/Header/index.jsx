@@ -3,6 +3,7 @@ import { Navbar, Nav, NavbarBrand } from 'react-bootstrap';
 // import { Link } from 'react-router-dom';
 import './style.css';
 import SearchForm from '../SearchForm';
+import CurrentUser from '../CurrentUser';
 
 function Header({ user, handleLogout }) {
     const [navColor, updateColor] = useState(false);
@@ -28,9 +29,10 @@ function Header({ user, handleLogout }) {
                     className={navColor ? 'navColor1' : 'navColor2'}
                 >
                     <SearchForm />
-                    <NavbarBrand className='navbar-brand' href='/'>
+                    {/* <NavbarBrand className='navbar-brand' href='/'>
                         <img src='' className='logo' alt='logo' />
-                    </NavbarBrand>
+                    </NavbarBrand> */}
+                    <CurrentUser user={user} />
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav className='ml-auto'>
@@ -67,9 +69,9 @@ function Header({ user, handleLogout }) {
                     className={navColor ? 'navColor1' : 'navColor2'}
                 >
                     <SearchForm />
-                    <NavbarBrand className='navbar-brand' href='/'>
+                    {/* <NavbarBrand className='navbar-brand' href='/'>
                         <img src='' className='logo' alt='logo' />
-                    </NavbarBrand>
+                    </NavbarBrand> */}
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav className='ml-auto'>
