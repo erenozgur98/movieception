@@ -54,7 +54,7 @@ function ActorPage() {
                                         target="_blank"
                                         rel="noreferrer"
                                     >
-                                        <i className="fab fa-facebook-square" style={{ fontSize: "42px" }}></i>
+                                        <i className="fab fa-facebook-square" style={{ fontSize: "32px" }}></i>
                                     </a>
                                     :
                                     null
@@ -65,7 +65,7 @@ function ActorPage() {
                                         target="_blank"
                                         rel="noreferrer"
                                     >
-                                        <i className="fab fa-instagram-square" style={{ fontSize: "42px" }}></i>
+                                        <i className="fab fa-instagram-square" style={{ fontSize: "32px" }}></i>
                                     </a>
                                     :
                                     null
@@ -76,7 +76,7 @@ function ActorPage() {
                                         target="_blank"
                                         rel="noreferrer"
                                     >
-                                        <i className="fab fa-twitter-square" style={{ fontSize: "42px" }}></i>
+                                        <i className="fab fa-twitter-square" style={{ fontSize: "32px" }}></i>
                                     </a>
                                     :
                                     null
@@ -95,16 +95,7 @@ function ActorPage() {
                             <div>
                                 {actor?.birthday ?
                                     <div>
-                                        Birthday: {actor?.birthday}
-                                    </div>
-                                    :
-                                    null
-                                }
-                            </div>
-                            <div>
-                                {actor?.place_of_birth ?
-                                    <div>
-                                        Birth Place: {actor?.place_of_birth}
+                                        Born {actor?.birthday} in {actor?.place_of_birth}
                                     </div>
                                     :
                                     null
@@ -113,7 +104,7 @@ function ActorPage() {
                             <div className='truncate'>
                                 {actor?.biography ?
                                     <div>
-                                        Biography: {actor?.biography}
+                                        {actor?.biography}
                                     </div>
                                     :
                                     null
