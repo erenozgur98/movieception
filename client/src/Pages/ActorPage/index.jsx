@@ -110,7 +110,7 @@ function ActorPage() {
                                     null
                                 }
                             </div>
-                            <div>
+                            <div className='truncate'>
                                 {actor?.biography ?
                                     <div>
                                         Biography: {actor?.biography}
