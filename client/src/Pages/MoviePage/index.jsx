@@ -65,7 +65,7 @@ function MoviePage() {
                                         target="_blank"
                                         rel="noreferrer"
                                     >
-                                        <i className="fab fa-facebook-square" style={{ fontSize: "42px" }}></i>
+                                        <i className="fab fa-facebook-square" style={{ fontSize: "32px" }}></i>
                                     </a>
                                     :
                                     null
@@ -76,7 +76,7 @@ function MoviePage() {
                                         target="_blank"
                                         rel="noreferrer"
                                     >
-                                        <i className="fab fa-instagram-square" style={{ fontSize: "42px" }}></i>
+                                        <i className="fab fa-instagram-square" style={{ fontSize: "32px" }}></i>
                                     </a>
                                     :
                                     null
@@ -87,7 +87,7 @@ function MoviePage() {
                                         target="_blank"
                                         rel="noreferrer"
                                     >
-                                        <i className="fab fa-twitter-square" style={{ fontSize: "42px" }}></i>
+                                        <i className="fab fa-twitter-square" style={{ fontSize: "32px" }}></i>
                                     </a>
                                     :
                                     null
