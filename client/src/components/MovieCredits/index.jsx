@@ -20,9 +20,6 @@ function MovieCredits({ actor }) {
         fetchData();
     }, [actor?.id]);
 
-    // useEffect(() => {
-    // }, [show?.id])
-
     const redirect = (credits) => {
         if (credits.media_type === 'tv') {
             history.push(`/shows/${credits.id}`)
