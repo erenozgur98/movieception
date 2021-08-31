@@ -55,6 +55,41 @@ function ShowPage() {
                             <div className="poster-picture">
                                 <img src={`https://image.tmdb.org/t/p/original${show?.poster_path}`} alt="black-widow" className='movie-poster' />
                             </div>
+                            <div className="social-media-links">
+                                {externalId?.facebook_id ?
+                                    <a
+                                        href={`https://www.facebook.com/${externalId?.facebook_id}`}
+                                        target="_blank"
+                                        rel="noreferrer"
+                                    >
+                                        <i className="fab fa-facebook-square" style={{ fontSize: "42px" }}></i>
+                                    </a>
+                                    :
+                                    null
+                                }
+                                {externalId?.instagram_id ?
+                                    <a
+                                        href={`https://www.instagram.com/${externalId?.instagram_id}`}
+                                        target="_blank"
+                                        rel="noreferrer"
+                                    >
+                                        <i className="fab fa-instagram-square" style={{ fontSize: "42px" }}></i>
+                                    </a>
+                                    :
+                                    null
+                                }
+                                {externalId?.twitter_id ?
+                                    <a
+                                        href={`https://www.twitter.com/${externalId?.twitter_id}`}
+                                        target="_blank"
+                                        rel="noreferrer"
+                                    >
+                                        <i className="fab fa-twitter-square" style={{ fontSize: "42px" }}></i>
+                                    </a>
+                                    :
+                                    null
+                                }
+                            </div>
                         </div>
                         <div className="bottom-section">
                             <h2>{show?.original_name}</h2>
@@ -68,41 +103,6 @@ function ShowPage() {
                                         <i className="fab fa-imdb" style={{ fontSize: "42px" }}></i>
                                         {/* IMDB */}
                                     </a>
-                                </div>
-                                <div>
-                                    {externalId?.facebook_id ?
-                                        <a
-                                            href={`https://www.facebook.com/${externalId?.facebook_id}`}
-                                            target="_blank"
-                                            rel="noreferrer"
-                                        >
-                                            <i className="fab fa-facebook-square" style={{ fontSize: "42px" }}></i>
-                                        </a>
-                                        :
-                                        null
-                                    }
-                                    {externalId?.instagram_id ?
-                                        <a
-                                            href={`https://www.instagram.com/${externalId?.instagram_id}`}
-                                            target="_blank"
-                                            rel="noreferrer"
-                                        >
-                                            <i className="fab fa-instagram-square" style={{ fontSize: "42px" }}></i>
-                                        </a>
-                                        :
-                                        null
-                                    }
-                                    {externalId?.twitter_id ?
-                                        <a
-                                            href={`https://www.twitter.com/${externalId?.twitter_id}`}
-                                            target="_blank"
-                                            rel="noreferrer"
-                                        >
-                                            <i className="fab fa-twitter-square" style={{ fontSize: "42px" }}></i>
-                                        </a>
-                                        :
-                                        null
-                                    }
                                 </div>
                                 <div>
                                     First Air Date: {show?.first_air_date}
@@ -152,8 +152,8 @@ function ShowPage() {
                             </div>
                         </div>
                     </div>
-                    <Credits show={show} />
                     <WatchProviders show={show} />
+                    <Credits show={show} />
                 </div>
                 :
                 <>

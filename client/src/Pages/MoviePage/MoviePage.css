@@ -21,3 +21,14 @@
 .bottom-section {
     padding-left: 30px;
 }
+
+
+.social-media-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.social-media-links > a {
+    padding: 10px 0px 0px 10px;
+}

@@ -149,8 +149,8 @@ function MoviePage() {
                             </div>
                         </div>
                     </div>
-                    <Credits movie={movie} />
                     <WatchProviders movie={movie} />
+                    <Credits movie={movie} />
                 </div>
                 :
                 <>

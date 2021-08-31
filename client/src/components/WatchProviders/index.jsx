@@ -22,7 +22,7 @@ function WatchProviders({ movie, show }) {
         } else {
             const fetchData = async () => {
                 const requestShow = await axios.get(`/tv/${show?.id}/watch/providers?api_key=${apiKey}`);
-                setShowProviders(requestShow?.data.results.US);
+                setShowProviders(requestShow?.data.results);
             }
             fetchData();
         }
@@ -41,9 +41,9 @@ function WatchProviders({ movie, show }) {
         <div>
             {movie?.id ?
                 <div className=''>
-                    {movieProviders?.buy ?
+                    {movieProviders?.US?.buy ?
                         <div className='providers'>
-                            {movieProviders?.buy?.map((provider) => (
+                            {movieProviders?.US?.buy?.map((provider) => (
                                 <div>
                                     <img
                                         key={provider?.id}
@@ -59,9 +59,9 @@ function WatchProviders({ movie, show }) {
                         :
                         null
                     }
-                    {movieProviders?.rent ?
+                    {movieProviders?.US?.rent ?
                         <div className='providers'>
-                            {movieProviders?.rent?.map((provider) => (
+                            {movieProviders?.US?.rent?.map((provider) => (
                                 <div>
                                     <img
                                         key={provider?.id}
@@ -77,9 +77,9 @@ function WatchProviders({ movie, show }) {
                         :
                         null
                     }
-                    {movieProviders?.flatrate ?
+                    {movieProviders?.US?.flatrate ?
                         <div className='providers'>
-                            {movieProviders?.flatrate?.map((provider) => (
+                            {movieProviders?.US?.flatrate?.map((provider) => (
                                 <div>
                                     <img
                                         key={provider?.id}
@@ -95,9 +95,9 @@ function WatchProviders({ movie, show }) {
                         :
                         null
                     }
-                    {movieProviders?.flatrate_and_buy ?
+                    {movieProviders?.US?.flatrate_and_buy ?
                         <div className='providers'>
-                            {movieProviders?.flatrate_and_buy?.map((provider) => (
+                            {movieProviders?.US?.flatrate_and_buy?.map((provider) => (
                                 <div>
                                     <img
                                         key={provider?.id}
@@ -116,9 +116,9 @@ function WatchProviders({ movie, show }) {
                 </div>
                 :
                 <div className=''>
-                    {showProviders?.buy ?
+                    {showProviders?.US?.buy ?
                         <div className='providers'>
-                            {showProviders?.buy?.map((provider) => (
+                            {showProviders?.US.buy?.map((provider) => (
                                 <div>
                                     <img
                                         key={provider?.id}
@@ -134,9 +134,9 @@ function WatchProviders({ movie, show }) {
                         :
                         null
                     }
-                    {showProviders?.rent ?
+                    {showProviders?.US?.rent ?
                         <div className='providers'>
-                            {showProviders?.rent?.map((provider) => (
+                            {showProviders?.US.rent?.map((provider) => (
                                 <div>
                                     <img
                                         key={provider?.id}
@@ -152,9 +152,9 @@ function WatchProviders({ movie, show }) {
                         :
                         null
                     }
-                    {showProviders.flatrate ?
+                    {showProviders?.US?.flatrate ?
                         <div className='providers'>
-                            {showProviders?.flatrate?.map((provider) => (
+                            {showProviders?.US.flatrate?.map((provider) => (
                                 <div>
                                     <img
                                         key={provider?.id}
@@ -170,9 +170,9 @@ function WatchProviders({ movie, show }) {
                         :
                         null
                     }
-                    {showProviders?.flatrate_and_buy ?
+                    {showProviders?.US?.flatrate_and_buy ?
                         <div className='providers'>
-                            {showProviders?.flatrate_and_buy?.map((provider) => (
+                            {showProviders?.US.flatrate_and_buy?.map((provider) => (
                                 <div>
                                     <img
                                         key={provider?.id}
