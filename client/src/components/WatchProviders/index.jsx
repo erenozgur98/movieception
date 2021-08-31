@@ -22,7 +22,7 @@ function WatchProviders({ movie, show }) {
         } else {
             const fetchData = async () => {
                 const requestShow = await axios.get(`/tv/${show?.id}/watch/providers?api_key=${apiKey}`);
-                setShowProviders(requestShow?.data.reslts.US);
+                setShowProviders(requestShow?.data.results.US);
             }
             fetchData();
         }
@@ -39,95 +39,155 @@ function WatchProviders({ movie, show }) {
 
     return (
         <div>
-            {movie.id ?
+            {movie?.id ?
                 <div className=''>
-                    <div className='providers'>
-                        {movieProviders?.buy?.map((provider) => (
-                            <div>
-                                <img
-                                    key={provider?.id}
-                                    onClick={() => redirect(provider)}
-                                    src={`${base_url}${provider?.logo_path}`}
-                                    alt={provider?.provider_name}
-                                    className='provider-logo'
-                                />
-                                {/* <h2 className='provider-name'>{provider?.provider_name}</h2> */}
-                            </div>
-                        ))}
-                    </div>
-                    <div className='providers'>
-                        {movieProviders?.rent?.map((provider) => (
-                            <div>
-                                <img
-                                    key={provider?.id}
-                                    onClick={() => redirect(provider)}
-                                    src={`${base_url}${provider?.logo_path}`}
-                                    alt={provider?.provider_name}
-                                    className='provider-logo'
-                                />
-                                {/* <h2 className='provider-name'>{provider?.provider_name}</h2> */}
-                            </div>
-                        ))}
-                    </div>
-                    <div className='providers'>
-                        {movieProviders?.flatrate_and_buy?.map((provider) => (
-                            <div>
-                                <img
-                                    key={provider?.id}
-                                    onClick={() => redirect(provider)}
-                                    src={`${base_url}${provider?.logo_path}`}
-                                    alt={provider?.provider_name}
-                                    className='provider-logo'
-                                />
-                                {/* <h2 className='provider-name'>{provider?.provider_name}</h2> */}
-                            </div>
-                        ))}
-                    </div>
+                    {movieProviders?.buy ?
+                        <div className='providers'>
+                            {movieProviders?.buy?.map((provider) => (
+                                <div>
+                                    <img
+                                        key={provider?.id}
+                                        onClick={() => redirect(provider)}
+                                        src={`${base_url}${provider?.logo_path}`}
+                                        alt={provider?.provider_name}
+                                        className='provider-logo'
+                                    />
+                                    {/* <h2 className='provider-name'>{provider?.provider_name}</h2> */}
+                                </div>
+                            ))}
+                        </div>
+                        :
+                        null
+                    }
+                    {movieProviders?.rent ?
+                        <div className='providers'>
+                            {movieProviders?.rent?.map((provider) => (
+                                <div>
+                                    <img
+                                        key={provider?.id}
+                                        onClick={() => redirect(provider)}
+                                        src={`${base_url}${provider?.logo_path}`}
+                                        alt={provider?.provider_name}
+                                        className='provider-logo'
+                                    />
+                                    {/* <h2 className='provider-name'>{provider?.provider_name}</h2> */}
+                                </div>
+                            ))}
+                        </div>
+                        :
+                        null
+                    }
+                    {movieProviders?.flatrate ?
+                        <div className='providers'>
+                            {movieProviders?.flatrate?.map((provider) => (
+                                <div>
+                                    <img
+                                        key={provider?.id}
+                                        onClick={() => redirect(provider)}
+                                        src={`${base_url}${provider?.logo_path}`}
+                                        alt={provider?.provider_name}
+                                        className='provider-logo'
+                                    />
+                                    {/* <h2 className='provider-name'>{provider?.provider_name}</h2> */}
+                                </div>
+                            ))}
+                        </div>
+                        :
+                        null
+                    }
+                    {movieProviders?.flatrate_and_buy ?
+                        <div className='providers'>
+                            {movieProviders?.flatrate_and_buy?.map((provider) => (
+                                <div>
+                                    <img
+                                        key={provider?.id}
+                                        onClick={() => redirect(provider)}
+                                        src={`${base_url}${provider?.logo_path}`}
+                                        alt={provider?.provider_name}
+                                        className='provider-logo'
+                                    />
+                                    {/* <h2 className='provider-name'>{provider?.provider_name}</h2> */}
+                                </div>
+                            ))}
+                        </div>
+                        :
+                        null
+                    }
                 </div>
                 :
                 <div className=''>
-                    <div className='providers'>
-                        {showProviders?.buy?.map((provider) => (
-                            <div>
-                                <img
-                                    key={provider?.id}
-                                    onClick={() => redirect(provider)}
-                                    src={`${base_url}${provider?.logo_path}`}
-                                    alt={provider?.provider_name}
-                                    className='provider-logo'
-                                />
-                                {/* <h2 className='provider-name'>{provider?.provider_name}</h2> */}
-                            </div>
-                        ))}
-                    </div>
-                    <div className='providers'>
-                        {showProviders?.rent?.map((provider) => (
-                            <div>
-                                <img
-                                    key={provider?.id}
-                                    onClick={() => redirect(provider)}
-                                    src={`${base_url}${provider?.logo_path}`}
-                                    alt={provider?.provider_name}
-                                    className='provider-logo'
-                                />
-                                {/* <h2 className='provider-name'>{provider?.provider_name}</h2> */}
-                            </div>
-                        ))}
-                    </div>
-                    <div className='providers'>
-                        {showProviders?.flatrate?.map((provider) => (
-                            <div>
-                                <img
-                                    key={provider?.id}
-                                    onClick={() => redirect(provider)}
-                                    src={`${base_url}${provider?.logo_path}`}
-                                    alt={provider?.provider_name}
-                                    className='provider-logo'
-                                />
-                                {/* <h2 className='provider-name'>{provider?.provider_name}</h2> */}
-                            </div>
-                        ))}
-                    </div>
+                    {showProviders?.buy ?
+                        <div className='providers'>
+                            {showProviders?.buy?.map((provider) => (
+                                <div>
+                                    <img
+                                        key={provider?.id}
+                                        onClick={() => redirect(provider)}
+                                        src={`${base_url}${provider?.logo_path}`}
+                                        alt={provider?.provider_name}
+                                        className='provider-logo'
+                                    />
+                                    {/* <h2 className='provider-name'>{provider?.provider_name}</h2> */}
+                                </div>
+                            ))}
+                        </div>
+                        :
+                        null
+                    }
+                    {showProviders?.rent ?
+                        <div className='providers'>
+                            {showProviders?.rent?.map((provider) => (
+                                <div>
+                                    <img
+                                        key={provider?.id}
+                                        onClick={() => redirect(provider)}
+                                        src={`${base_url}${provider?.logo_path}`}
+                                        alt={provider?.provider_name}
+                                        className='provider-logo'
+                                    />
+                                    {/* <h2 className='provider-name'>{provider?.provider_name}</h2> */}
+                                </div>
+                            ))}
+                        </div>
+                        :
+                        null
+                    }
+                    {showProviders.flatrate ?
+                        <div className='providers'>
+                            {showProviders?.flatrate?.map((provider) => (
+                                <div>
+                                    <img
+                                        key={provider?.id}
+                                        onClick={() => redirect(provider)}
+                                        src={`${base_url}${provider?.logo_path}`}
+                                        alt={provider?.provider_name}
+                                        className='provider-logo'
+                                    />
+                                    {/* <h2 className='provider-name'>{provider?.provider_name}</h2> */}
+                                </div>
+                            ))}
+                        </div>
+                        :
+                        null
+                    }
+                    {showProviders?.flatrate_and_buy ?
+                        <div className='providers'>
+                            {showProviders?.flatrate_and_buy?.map((provider) => (
+                                <div>
+                                    <img
+                                        key={provider?.id}
+                                        onClick={() => redirect(provider)}
+                                        src={`${base_url}${provider?.logo_path}`}
+                                        alt={provider?.provider_name}
+                                        className='provider-logo'
+                                    />
+                                    {/* <h2 className='provider-name'>{provider?.provider_name}</h2> */}
+                                </div>
+                            ))}
+                        </div>
+                        :
+                        null
+                    }
                 </div>
             }
         </div>
