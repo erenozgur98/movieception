@@ -89,17 +89,38 @@ function ActorPage() {
                                 </a>
                             </div>
                             <div>
-                                Birthday: {actor?.birthday}
+                                {actor?.birthday ?
+                                    <div>
+                                        Birthday: {actor?.birthday}
+                                    </div>
+                                    :
+                                    null
+                                }
                             </div>
                             <div>
-                                Birth Place: {actor?.place_of_birth}
+                                {actor?.place_of_birth ?
+                                    <div>
+                                        Birth Place: {actor?.place_of_birth}
+                                    </div>
+                                    :
+                                    null
+                                }
                             </div>
                             <div>
-                                Biography: {actor?.biography}
+                                {actor?.biography ?
+                                    <div>
+                                        Biography: {actor?.biography}
+                                    </div>
+                                    :
+                                    null
+                                }
                             </div>
                         </div>
                     </div>
-                    <MovieCredits actor={actor} />
+                    <div>
+                        <h4>Known For</h4>
+                        <MovieCredits actor={actor} />
+                    </div>
                 </div>
                 :
                 <>
