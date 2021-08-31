@@ -5,6 +5,12 @@
 
 .actor-pictures {
     display: flex;
+    overflow-y: hidden;
+    overflow-x: scroll;
+}
+
+.actor-pictures::-webkit-scrollbar {
+    /* display: none; */
 }
 
 .actor-images {
