@@ -1,25 +1,31 @@
-import React from "react";
+import React, { useRef } from "react";
+import { useHistory } from 'react-router-dom';
 
-function SearchForm(props) {
+function SearchForm() {
+  const search = useRef();
+  const history = useHistory();
+
+  const handleSearchEnter = (e) => {
+    if (e.charCode === 13) {
+      const searchedMovie = search.current.value
+      history.push(`/search/query=${searchedMovie}`);
+    }
+  };
+
   return (
-    <form>
-      <div className="form-group">
-        <label htmlFor="search">Search:</label>
-        <input
-          onChange={props.handleInputChange}
-          value={props.value}
-          name="search"
-          type="text"
-          className="form-control"
-          placeholder="Search For a Movie"
-          id="search"
-        />
-        <br />
-        <button onClick={props.handleFormSubmit} className="btn btn-primary">
-          Search
-        </button>
+    <div>
+      <div>
+        <div className="form-outline">
+          <input
+            type="search"
+            className="form-control rounded"
+            placeholder="Search"
+            onKeyPress={handleSearchEnter}
+            ref={search}
+          />
+        </div>
       </div>
-    </form>
+    </div>
   );
 }
 

@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Navbar, Nav, NavbarBrand } from 'react-bootstrap';
 // import { Link } from 'react-router-dom';
 import './style.css';
+import SearchForm from '../SearchForm';
 
 function Header({ user, handleLogout }) {
     const [navColor, updateColor] = useState(false);
@@ -26,6 +27,7 @@ function Header({ user, handleLogout }) {
                     sticky='top'
                     className={navColor ? 'navColor1' : 'navColor2'}
                 >
+                    <SearchForm />
                     <NavbarBrand className='navbar-brand' href='/'>
                         <img src='' className='logo' alt='logo' />
                     </NavbarBrand>
@@ -64,6 +66,7 @@ function Header({ user, handleLogout }) {
                     sticky='top'
                     className={navColor ? 'navColor1' : 'navColor2'}
                 >
+                    <SearchForm />
                     <NavbarBrand className='navbar-brand' href='/'>
                         <img src='' className='logo' alt='logo' />
                     </NavbarBrand>
@@ -90,6 +93,7 @@ function Header({ user, handleLogout }) {
                             </Nav.Link>
                         </Nav>
                     </Navbar.Collapse>
+                    
                 </Navbar>
             )}
         </div>

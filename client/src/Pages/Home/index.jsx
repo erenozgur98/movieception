@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useEffect } from 'react';
 import { useRef } from 'react';
 import { Container } from 'react-bootstrap'
+import { useHistory } from 'react-router-dom';
 // import MovieDetail from '../../components/MovieDetail';
 // import { toast } from 'react-toastify';
 import requests from '../../components/Requests';
@@ -15,23 +16,27 @@ function Home({ user }) {
     // const [randomShow, setRandomShow] = useState({});
     const [currentUser, setCurrentUser] = useState({});
 
+    const search = useRef();
+    const history = useHistory();
+
     useEffect(() => {
         if (user) setCurrentUser(user.username)
     }, [user]);
 
-    const search = useRef();
 
     // const randomNumbers = Math.floor(100000 + Math.random() * 9000000);
 
     const handleSearch = () => {
         const searchedMovie = search.current.value
         setResult(searchedMovie)
+        history.push(`/search/query=${searchedMovie}`);
     }
 
     const handleSearchEnter = (e) => {
         if (e.charCode === 13) {
             const searchedMovie = search.current.value
             setResult(searchedMovie)
+            history.push(`/search/query=${searchedMovie}`);
         }
     };
 
@@ -53,6 +58,7 @@ function Home({ user }) {
     return (
         <div>
             {/* <Banner /> */}
+            {/* add this to header/nav instead of homepage */}
             <Container className="d-flex justify-content-center">
                 <div>
                     {currentUser ? (

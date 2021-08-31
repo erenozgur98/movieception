@@ -14,6 +14,7 @@ import API from './utils/API';
 import MoviePage from './Pages/MoviePage';
 import ShowPage from './Pages/ShowPage';
 import ActorPage from './Pages/ActorPage';
+import SearchResults from './components/SearchResults';
 // import Banner from './components/Banner';
 
 function App() {
@@ -47,6 +48,7 @@ function App() {
         <div className='main'>
           <Route exact path='/' render={(props) => <HomePage {...props} user={user} />} />
           <Route exact path='/home' render={(props) => <HomePage {...props} user={user} />} />
+          <Route exact path='/search/query=:searchResults' component={SearchResults} />
           <Route exact path='/discover' component={Discover} />
           <Route exact path='/movies' component={Movies} />
           <Route exact path='/movies/:MovieId' component={MoviePage} />
