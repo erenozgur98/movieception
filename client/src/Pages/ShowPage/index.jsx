@@ -95,9 +95,6 @@ function ShowPage() {
                             <h2>{show?.original_name}</h2>
                             <div className="movie-overview">
                                 <div>
-                                    <a href={show?.homepage} target="_blank" rel="noreferrer">Homepage</a>
-                                </div>
-                                <div>
                                     {/* imdb.png will come here, will fix the looks later */}
                                     <a href={`https://www.imdb.com/title/${externalId?.imdb_id}/`} target="_blank" rel="noreferrer">
                                         <i className="fab fa-imdb" style={{ fontSize: "42px" }}></i>
@@ -105,22 +102,55 @@ function ShowPage() {
                                     </a>
                                 </div>
                                 <div>
-                                    First Air Date: {show?.first_air_date}
+                                    <a href={show?.homepage} target="_blank" rel="noreferrer">Homepage</a>
                                 </div>
                                 <div>
-                                    Last Air Date: {show?.last_air_date}
+                                    {show?.first_air_date ?
+                                        <div>
+                                            First Air Date: {show?.first_air_date}
+                                        </div>
+                                        :
+                                        null
+                                    }
                                 </div>
                                 <div>
-                                    Seasons: {show?.number_of_seasons}
+                                    {show?.last_air_date ?
+                                        <div>
+                                            Last Air Date: {show?.last_air_date}
+                                        </div>
+                                        :
+                                        null
+                                    }
                                 </div>
                                 <div>
-                                    Episodes: {show?.number_of_episodes}
+                                    {show?.number_of_seasons ?
+                                        <div>
+                                            Seasons: {show?.number_of_seasons}
+                                        </div>
+                                        :
+                                        null
+                                    }
+                                </div>
+                                <div>
+                                    {show?.number_of_episodes ?
+                                        <div>
+                                            Episodes: {show?.number_of_episodes}
+                                        </div>
+                                        :
+                                        null
+                                    }
                                 </div>
                                 <div>
                                     {/* Genres: {show?.genres.map(x => x.name)} */}
                                 </div>
                                 <div>
-                                    Language: {show?.original_language}
+                                    {show?.original_language === 'en' ?
+                                        <div>
+                                            Language: English
+                                        </div>
+                                        :
+                                        null
+                                    }
                                 </div>
                                 <div>
                                     {/* Spoken Languages: {show?.spoken_languages.map(x => x.english_name)} */}
@@ -130,7 +160,13 @@ function ShowPage() {
                                     {/* Runtime: {show?.episode_run_time[0]} minutes */}
                                 </div>
                                 <div>
-                                    Vote Average: {show?.vote_average} / 10
+                                    {show?.vote_average ?
+                                        <div>
+                                            Vote Average: {show?.vote_average} / 10
+                                        </div>
+                                        :
+                                        null
+                                    }
                                 </div>
                                 <div>
                                     {/* Country: {show?.production_countries.map(x => x.name)} */}

@@ -58,20 +58,7 @@ function MoviePage() {
                             <div className="poster-picture">
                                 <img src={`https://image.tmdb.org/t/p/original${movie.poster_path}`} alt={movie?.original_title} className='movie-poster' />
                             </div>
-                        </div>
-                        <div className="bottom-section">
-                            <h2>{movie?.original_title}</h2>
-                            <div className="movie-overview">
-                                <a href={movie?.homepage} target="_blank" rel="noreferrer">Homepage</a>
-                            </div>
-                            <div>
-                                {/* imdb.png will come here, will fix the looks later */}
-                                <a href={`https://www.imdb.com/title/${movie?.imdb_id}/`} target="_blank" rel="noreferrer">
-                                    <i className="fab fa-imdb" style={{ fontSize: "42px" }}></i>
-                                    {/* IMDB */}
-                                </a>
-                            </div>
-                            <div>
+                            <div className='social-media-links'>
                                 {externalId?.facebook_id ?
                                     <a
                                         href={`https://www.facebook.com/${externalId?.facebook_id}`}
@@ -106,51 +93,115 @@ function MoviePage() {
                                     null
                                 }
                             </div>
+                        </div>
+                        <div className="bottom-section">
+                            <h2>{movie?.original_title}</h2>
                             <div>
-                                Release Date: {movie?.release_date}
+                                {/* imdb.png will come here, will fix the looks later */}
+                                <a href={`https://www.imdb.com/title/${movie?.imdb_id}/`} target="_blank" rel="noreferrer">
+                                    <i className="fab fa-imdb" style={{ fontSize: "42px" }}></i>
+                                    {/* IMDB */}
+                                </a>
+                            </div>
+                            <div className="movie-overview">
+                                <a href={movie?.homepage} target="_blank" rel="noreferrer">Homepage</a>
+                            </div>
+                            <div>
+                                {movie?.release_date ?
+                                    <div>
+                                        Release Date: {movie?.release_date}
+                                    </div>
+                                    :
+                                    null
+                                }
                             </div>
                             <div>
                                 {/* Genres: {movie?.genres.map(x => x.name)} */}
                             </div>
                             <div>
-                                Language: {movie?.original_language}
+                                {movie?.original_language === 'en' ?
+                                    <div>
+                                        Language: English
+                                    </div>
+                                    :
+                                    null
+                                }
                             </div>
                             <div>
                                 {/* Spoken Languages: {movie?.spoken_languages.map(x => x.english_name)} */}
                             </div>
                             <div>
-                                Runtime: {movie?.runtime} minutes
+                                {movie?.runtime ?
+                                    <div>
+                                        Runtime: {movie?.runtime} minutes
+                                    </div>
+                                    :
+                                    null
+                                }
                             </div>
                             <div>
-                                Vote Average: {movie?.vote_average} / 10
+                                {movie?.vote_average ?
+                                    <div>
+                                        Vote Average: {movie?.vote_average} / 10
+                                    </div>
+                                    :
+                                    null
+                                }
                             </div>
                             <div>
-                                Budget: ${movie?.budget}
+                                {movie?.budget ?
+                                    <div>
+                                        Budget: ${movie?.budget}
+                                    </div>
+                                    :
+                                    null
+                                }
                             </div>
                             <div>
-                                Revenue: ${movie?.revenue}
+                                {movie?.revenue ?
+                                    <div>
+                                        Revenue: ${movie?.revenue}
+                                    </div>
+                                    :
+                                    null
+                                }
                             </div>
                             <div>
-                                {/* Country: {movie?.production_countries.map(x => x.name)} */}
+                                Country: {movie?.production_countries[0]?.name}
                             </div>
                             <div>
                                 {/* add logos to companies later */}
-                                {/* Production Companies: {movie?.production_companies.map(x => x.name)} */}
+                                Production Companie(s): {movie?.production_companies[0]?.name}
                             </div>
                             <div>
                                 {/* maybe add this too? will consider */}
-                                {/* {movie?.belongs_to_collection} */}
+                                {/* {movie?.belongs_to_collection[0]?.name} */}
                             </div>
                             <div>
-                                {movie?.tagline}
+                                {movie?.tagline ?
+                                    <div>
+                                        {movie?.tagline}
+                                    </div>
+                                    :
+                                    null
+                                }
                             </div>
                             <div>
-                                {movie?.overview}
+                                {movie?.overview ?
+                                    <div>
+                                        {movie?.overview}
+                                    </div>
+                                    :
+                                    null
+                                }
                             </div>
                         </div>
                     </div>
                     <WatchProviders movie={movie} />
-                    <Credits movie={movie} />
+                    <div>
+                        <h4>Cast</h4>
+                        <Credits movie={movie} />
+                    </div>
                 </div>
                 :
                 <>
