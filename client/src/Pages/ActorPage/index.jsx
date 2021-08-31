@@ -8,9 +8,11 @@ import './ActorPage.css'
 
 function ActorPage() {
     const [actor, setActor] = useState({});
+    const [actorPictures, setActorPictures] = useState([]);
     const [externalId, setExternalId] = useState();
     const { ActorId } = useParams();
 
+    const base_url = 'https://image.tmdb.org/t/p/original/';
     const apiKey = 'af737f76cdba5b7435e17cc94568c07d';
 
     useEffect(() => {
@@ -18,8 +20,10 @@ function ActorPage() {
         const fetchData = async () => {
             const request = await axios.get(`/person/${ActorId}?api_key=${apiKey}`);
             const requestExternalId = await axios.get(`person/${ActorId}/external_ids?api_key=${apiKey}`);
+            const requestActorImages = await axios.get(`person/${ActorId}/images?api_key=${apiKey}`)
             setActor(request.data);
             setExternalId(requestExternalId.data);
+            setActorPictures(requestActorImages.data.profiles)
         }
         fetchData()
     }, [ActorId])
@@ -121,6 +125,16 @@ function ActorPage() {
                         <h4>Known For</h4>
                         <MovieCredits actor={actor} />
                     </div>
+                    <h4>{actor?.name}'s Images</h4>
+                    <div className='actor-pictures'>
+                        {actorPictures.map((x) => (
+                            <img
+                                src={`${base_url}${x.file_path}`}
+                                alt={x?.width}
+                                className='actor-images'
+                            />
+                        ))}
+                    </div>
                 </div>
                 :
                 <>
@@ -131,8 +145,6 @@ function ActorPage() {
             }
             {/* /person/{person_id}/images <-- to get images */}
             {/* /person/{person_id}/tagged_images <-- to get tagged images, more on that later */}
-            {/* /person/{person_id}/tv_credits <-- to get tv_credits */}
-            {/* /person/{person_id}/movie_credits <-- to get movie_credits */}
         </Container>
     )
 }
