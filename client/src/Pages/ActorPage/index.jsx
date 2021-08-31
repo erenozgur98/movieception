@@ -4,6 +4,7 @@ import { Container } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 import axios from '../../components/Axios';
 import MovieCredits from '../../components/MovieCredits';
+import './ActorPage.css'
 
 function ActorPage() {
     const [actor, setActor] = useState({});
@@ -37,60 +38,66 @@ function ActorPage() {
             {/* credits -> get movie/shows credits which movie/show the actor played in */}
             {actor.profile_path ?
                 <div>
-                    <div className="actor-picture">
-                        <img src={`https://image.tmdb.org/t/p/w300/${actor?.profile_path}`} alt={actor?.name} className='actor-background' />
-                        <h2>{actor?.name}</h2>
-                    </div>
-                    <div>
-                        {/* imdb.png will come here, will fix the looks later */}
-                        <a href={`https://www.imdb.com/name/${actor?.imdb_id}/`} target="_blank" rel="noreferrer">
-                            <i className="fab fa-imdb" style={{ fontSize: "42px" }}></i>
-                            {/* IMDB */}
-                        </a>
-                    </div>
-                    <div>
-                        {externalId?.facebook_id ?
-                            <a
-                                href={`https://www.facebook.com/${externalId?.facebook_id}`}
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                <i className="fab fa-facebook-square" style={{ fontSize: "42px" }}></i>
-                            </a>
-                            :
-                            null
-                        }
-                        {externalId?.instagram_id ?
-                            <a
-                                href={`https://www.instagram.com/${externalId?.instagram_id}`}
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                <i className="fab fa-instagram-square" style={{ fontSize: "42px" }}></i>
-                            </a>
-                            :
-                            null
-                        }
-                        {externalId?.twitter_id ?
-                            <a
-                                href={`https://www.twitter.com/${externalId?.twitter_id}`}
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                <i className="fab fa-twitter-square" style={{ fontSize: "42px" }}></i>
-                            </a>
-                            :
-                            null
-                        }
-                    </div>
-                    <div>
-                        Birthday: {actor?.birthday}
-                    </div>
-                    <div>
-                        Birth Place: {actor?.place_of_birth}
-                    </div>
-                    <div>
-                        Biography: {actor?.biography}
+                    <div className='page-organization'>
+                        <div>
+                            <div className="actor-picture">
+                                <img src={`https://image.tmdb.org/t/p/original/${actor?.profile_path}`} alt={actor?.name} className='actor-background' />
+                            </div>
+                            <div className='social-media-links'>
+                                {externalId?.facebook_id ?
+                                    <a
+                                        href={`https://www.facebook.com/${externalId?.facebook_id}`}
+                                        target="_blank"
+                                        rel="noreferrer"
+                                    >
+                                        <i className="fab fa-facebook-square" style={{ fontSize: "42px" }}></i>
+                                    </a>
+                                    :
+                                    null
+                                }
+                                {externalId?.instagram_id ?
+                                    <a
+                                        href={`https://www.instagram.com/${externalId?.instagram_id}`}
+                                        target="_blank"
+                                        rel="noreferrer"
+                                    >
+                                        <i className="fab fa-instagram-square" style={{ fontSize: "42px" }}></i>
+                                    </a>
+                                    :
+                                    null
+                                }
+                                {externalId?.twitter_id ?
+                                    <a
+                                        href={`https://www.twitter.com/${externalId?.twitter_id}`}
+                                        target="_blank"
+                                        rel="noreferrer"
+                                    >
+                                        <i className="fab fa-twitter-square" style={{ fontSize: "42px" }}></i>
+                                    </a>
+                                    :
+                                    null
+                                }
+                            </div>
+                        </div>
+                        <div className='bottom-section'>
+                            <h2>{actor?.name}</h2>
+                            <div>
+                                {/* imdb.png will come here, will fix the looks later */}
+                                <a href={`https://www.imdb.com/name/${actor?.imdb_id}/`} target="_blank" rel="noreferrer">
+                                    <i className="fab fa-imdb" style={{ fontSize: "42px" }}></i>
+                                    {/* IMDB */}
+                                </a>
+                            </div>
+                            <div>
+                                Birthday: {actor?.birthday}
+                            </div>
+                            <div>
+                                Birth Place: {actor?.place_of_birth}
+                            </div>
+                            <div>
+                                Biography: {actor?.biography}
+                            </div>
+                        </div>
                     </div>
                     <MovieCredits actor={actor} />
                 </div>
