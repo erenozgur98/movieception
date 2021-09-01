@@ -28,7 +28,7 @@ function Header({ user, handleLogout }) {
                     sticky='top'
                     className={navColor ? 'navColor1' : 'navColor2'}
                 >
-                    <NavbarBrand>
+                    <NavbarBrand href='/'>
                         <h3>True Story</h3>
                     </NavbarBrand>
                     <SearchForm />
