@@ -1,3 +1,14 @@
+.home-movie {
+    /* height: 900px;
+    width: 600px; */
+}
+
 .home-movie-poster {
+    /* max-height: 450px;
+    max-width: 450px; */
     cursor: pointer;
+}
+
+.home-movie-background {
+
 }
