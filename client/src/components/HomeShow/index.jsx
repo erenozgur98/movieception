@@ -34,7 +34,8 @@ function HomeShow({ fetchUrl }) {
                 }
                 alt={shows[count]?.name}
             />
-            <div onClick={() => setCount(count + 1)}>ARROW</div>
+            <div onClick={() => setCount(count + 1)}>ARROW +</div>
+            <div onClick={() => setCount(count - 1)}>ARROW -</div>
         </div>
     );
 };
