@@ -46,8 +46,8 @@ function App() {
         {/* Banner here? or no banner? */}
         {/* <Banner /> */}
         <div className='main'>
-          <Route exact path='/' render={(props) => <HomePage {...props} user={user} />} />
-          <Route exact path='/home' render={(props) => <HomePage {...props} user={user} />} />
+          <Route exact path='/' component={HomePage} />
+          <Route exact path='/home' component={HomePage} />
           <Route exact path='/search/query=:searchResults' component={SearchResults} />
           <Route exact path='/discover' component={Discover} />
           <Route exact path='/movies' component={Movies} />

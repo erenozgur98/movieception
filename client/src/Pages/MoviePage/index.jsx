@@ -171,7 +171,7 @@ function MoviePage() {
                             </div>
                             <div>
                                 {/* add logos to companies later */}
-                                Production Companie(s): {movie?.production_companies[0]?.name}
+                                Production Company: {movie?.production_companies[0]?.name}
                             </div>
                             <div>
                                 {/* maybe add this too? will consider */}
