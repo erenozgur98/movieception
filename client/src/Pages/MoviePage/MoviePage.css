@@ -32,3 +32,9 @@
 .social-media-links > a {
     padding: 10px 0px 0px 10px;
 }
+
+.favorite-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

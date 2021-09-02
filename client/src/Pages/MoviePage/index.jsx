@@ -93,6 +93,9 @@ function MoviePage() {
                                     null
                                 }
                             </div>
+                            <div className='favorite-btn'>
+                                <button className='btn btn-warning'>Add To Favorite</button>
+                            </div>
                         </div>
                         <div className="bottom-section">
                             <h2>{movie?.original_title}</h2>
