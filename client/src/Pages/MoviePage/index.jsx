@@ -28,6 +28,11 @@ function MoviePage() {
         fetchData();
     }, [MovieId])
 
+    const addToFavorite = (movie) => {
+        // just need the movie id to add to favorites, will work later.
+        console.log(movie);
+    }
+
     console.log(movie)
     console.log(externalId)
     console.log(watchProviders);
@@ -94,7 +99,7 @@ function MoviePage() {
                                 }
                             </div>
                             <div className='favorite-btn'>
-                                <button className='btn btn-warning'>Add To Favorite</button>
+                                <button onClick={() => addToFavorite(movie)} className='btn btn-warning'>Add To Favorite</button>
                             </div>
                         </div>
                         <div className="bottom-section">
