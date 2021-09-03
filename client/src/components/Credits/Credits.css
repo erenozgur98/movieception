@@ -19,7 +19,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    /* padding-left: 8px; */
+    padding-left: 8px;
 }
 
 .cast-poster {
