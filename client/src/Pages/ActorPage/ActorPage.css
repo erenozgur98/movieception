@@ -10,11 +10,11 @@
 }
 
 .actor-pictures::-webkit-scrollbar {
-    /* display: none; */
+    display: none;
 }
 
 .actor-images {
-    max-width: 200px;
-    max-height: 200px;
+    max-width: 180px;
+    max-height: 180px;
     margin-right: 10px;
 }
