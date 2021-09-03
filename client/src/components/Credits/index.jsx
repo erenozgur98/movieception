@@ -41,13 +41,16 @@ function Credits({ movie, show }) {
             {movie?.id ?
                 <div className="casts-posters">
                     {movieCast.map((theCast) => (
-                        <img
-                            key={theCast.id}
-                            onClick={() => redirect(theCast)}
-                            src={`${base_url}${theCast?.profile_path}`}
-                            alt={theCast?.original_name}
-                            className='cast-poster'
-                        />
+                        <div className='casts-map'>
+                            <img
+                                key={theCast.id}
+                                onClick={() => redirect(theCast)}
+                                src={`${base_url}${theCast?.profile_path}`}
+                                alt={theCast?.original_name}
+                                className='cast-poster'
+                            />
+                            <div className='casts-name'>{theCast?.original_name}</div>
+                        </div>
                     ))}
                 </div>
                 :

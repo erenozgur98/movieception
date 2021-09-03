@@ -2,15 +2,30 @@
     display: flex;
     overflow-y: hidden;
     overflow-x: scroll;
-    padding: 20px;
-    scrollbar-width: 2vw;
-    scrollbar-color: green;
+    padding: 10px;
+}
+
+.casts-map {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    /* border: solid white 2px; */
+    /* margin: 5px; */
+    transition: transform 450ms;
+}
+
+.casts-name {
+    width: 8em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    /* padding-left: 8px; */
 }
 
 .cast-poster {
     object-fit: contain;
-    width: 100%;
-    max-height: 130px;
+    width: 130px;
+    /* height: 230px; */
     margin-right: 10px;
     transition: transform 450ms;
 }
@@ -22,7 +37,8 @@
     display: none;
 }
 
-.cast-poster:hover {
+.casts-map:hover {
     cursor: pointer;
     transform: scale(1.09);
+    white-space: normal;
 }
