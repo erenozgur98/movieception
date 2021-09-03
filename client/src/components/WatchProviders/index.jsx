@@ -16,7 +16,7 @@ function WatchProviders({ movie, show }) {
         if (movie?.id) {
             const fetchData = async () => {
                 const requestMovie = await axios.get(`/movie/${movie?.id}/watch/providers?api_key=${apiKey}`);
-                setMovieProviders(requestMovie?.data.results.US);
+                setMovieProviders(requestMovie?.data.results);
             }
             fetchData();
         } else {
@@ -43,6 +43,7 @@ function WatchProviders({ movie, show }) {
                 <div className=''>
                     {movieProviders?.US?.buy ?
                         <div className='providers'>
+                            <h4>Buy From</h4>
                             {movieProviders?.US?.buy?.map((provider) => (
                                 <div>
                                     <img
@@ -61,6 +62,7 @@ function WatchProviders({ movie, show }) {
                     }
                     {movieProviders?.US?.rent ?
                         <div className='providers'>
+                            <h4>Rent From</h4>
                             {movieProviders?.US?.rent?.map((provider) => (
                                 <div>
                                     <img
@@ -79,6 +81,7 @@ function WatchProviders({ movie, show }) {
                     }
                     {movieProviders?.US?.flatrate ?
                         <div className='providers'>
+                            <h4>Watch From</h4>
                             {movieProviders?.US?.flatrate?.map((provider) => (
                                 <div>
                                     <img
@@ -97,6 +100,7 @@ function WatchProviders({ movie, show }) {
                     }
                     {movieProviders?.US?.flatrate_and_buy ?
                         <div className='providers'>
+                            <h4>Watch and Buy From</h4>
                             {movieProviders?.US?.flatrate_and_buy?.map((provider) => (
                                 <div>
                                     <img
