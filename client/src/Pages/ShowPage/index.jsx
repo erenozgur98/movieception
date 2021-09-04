@@ -9,6 +9,7 @@ import ExternalId from '../../components/ExternalId';
 import WatchProviders from '../../components/WatchProviders';
 import YouTube from 'react-youtube';
 import '../MoviePage/MoviePage.css';
+import Overview from '../../components/Overview';
 
 function ShowPage() {
     const [show, setShow] = useState({});
@@ -45,7 +46,7 @@ function ShowPage() {
         width: '100%',
     };
 
-    console.log(videos);
+    console.log(show);
 
     return (
         <div>
@@ -66,99 +67,7 @@ function ShowPage() {
                                 </div>
                             </div>
                             <div className="bottom-section">
-                                <h2>{show?.original_name}</h2>
-                                <div className="movie-overview">
-                                    <div>
-                                        {/* imdb.png will come here, will fix the looks later */}
-                                        <a href={`https://www.imdb.com/title/${externalId?.imdb_id}/`} target="_blank" rel="noreferrer">
-                                            <i className="fab fa-imdb" style={{ fontSize: "42px" }}></i>
-                                            {/* IMDB */}
-                                        </a>
-                                    </div>
-                                    <div>
-                                        <a href={show?.homepage} target="_blank" rel="noreferrer">Homepage</a>
-                                    </div>
-                                    <div>
-                                        {show?.first_air_date ?
-                                            <div>
-                                                First Air Date: {show?.first_air_date}
-                                            </div>
-                                            :
-                                            null
-                                        }
-                                    </div>
-                                    <div>
-                                        {show?.last_air_date ?
-                                            <div>
-                                                Last Air Date: {show?.last_air_date}
-                                            </div>
-                                            :
-                                            null
-                                        }
-                                    </div>
-                                    <div>
-                                        {show?.number_of_seasons ?
-                                            <div>
-                                                Seasons: {show?.number_of_seasons}
-                                            </div>
-                                            :
-                                            null
-                                        }
-                                    </div>
-                                    <div>
-                                        {show?.number_of_episodes ?
-                                            <div>
-                                                Episodes: {show?.number_of_episodes}
-                                            </div>
-                                            :
-                                            null
-                                        }
-                                    </div>
-                                    <div>
-                                        {/* Genres: {show?.genres.map(x => x.name)} */}
-                                    </div>
-                                    <div>
-                                        {show?.original_language === 'en' ?
-                                            <div>
-                                                Language: English
-                                            </div>
-                                            :
-                                            null
-                                        }
-                                    </div>
-                                    <div>
-                                        {/* the [0] is doesn't seem to be working, added todo */}
-                                        {/* Runtime: {show?.episode_run_time[0]} minutes */}
-                                    </div>
-                                    <div>
-                                        {show?.vote_average ?
-                                            <div>
-                                                Vote Average: {show?.vote_average} / 10
-                                            </div>
-                                            :
-                                            null
-                                        }
-                                    </div>
-                                    <div>
-                                        Country: {show?.production_countries[0]?.name}
-                                    </div>
-                                    <div>
-                                        {/* add logos to companies later */}
-                                        Production Company: {show?.production_companies[0]?.name}
-                                    </div>
-                                    <div>
-                                        Created by: {show?.created_by[0]?.name}
-                                    </div>
-                                    <div>
-                                        Status: {show?.status}
-                                    </div>
-                                    <div>
-                                        {show?.tagline}
-                                    </div>
-                                    <div>
-                                        {show?.overview}
-                                    </div>
-                                </div>
+                                <Overview link={show} />
                                 <button className='btn btn-danger' onClick={playTrailer}>Play Trailer</button>
                                 {trailerUrl && <YouTube videoId={trailerUrl} opts={opts} />}
                             </div>

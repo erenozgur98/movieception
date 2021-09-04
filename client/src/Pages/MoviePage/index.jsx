@@ -9,6 +9,7 @@ import ExternalId from '../../components/ExternalId';
 import WatchProviders from '../../components/WatchProviders';
 import YouTube from 'react-youtube';
 import "./MoviePage.css"
+import Overview from '../../components/Overview';
 
 function MoviePage() {
     const [movie, setMovie] = useState({});
@@ -74,109 +75,7 @@ function MoviePage() {
                                 </div>
                             </div>
                             <div className="bottom-section">
-                                <h2>{movie?.original_title}</h2>
-                                <div>
-                                    {/* imdb.png will come here, will fix the looks later */}
-                                    <a href={`https://www.imdb.com/title/${movie?.imdb_id}/`} target="_blank" rel="noreferrer">
-                                        <i className="fab fa-imdb" style={{ fontSize: "42px" }}></i>
-                                        {/* IMDB */}
-                                    </a>
-                                </div>
-                                <div className="movie-overview">
-                                    <a href={movie?.homepage} target="_blank" rel="noreferrer">Homepage</a>
-                                </div>
-                                <div>
-                                    {movie?.release_date ?
-                                        <div>
-                                            Release Date: {movie?.release_date}
-                                        </div>
-                                        :
-                                        null
-                                    }
-                                </div>
-                                <div>
-                                    {/* Genres: {movie?.genres.map(x => x.name)} */}
-                                </div>
-                                <div>
-                                    {movie?.original_language === 'en' ?
-                                        <div>
-                                            Language: English
-                                        </div>
-                                        :
-                                        null
-                                    }
-                                </div>
-                                <div>
-                                    {movie?.runtime ?
-                                        <div>
-                                            Runtime: {movie?.runtime} minutes
-                                        </div>
-                                        :
-                                        null
-                                    }
-                                </div>
-                                <div>
-                                    {movie?.vote_average ?
-                                        <div>
-                                            Vote Average: {movie?.vote_average} / 10
-                                        </div>
-                                        :
-                                        null
-                                    }
-                                </div>
-                                <div>
-                                    {movie?.budget ?
-                                        <div>
-                                            Budget: ${movie?.budget}
-                                        </div>
-                                        :
-                                        null
-                                    }
-                                </div>
-                                <div>
-                                    {movie?.revenue ?
-                                        <div>
-                                            Revenue: ${movie?.revenue}
-                                        </div>
-                                        :
-                                        null
-                                    }
-                                </div>
-                                <div>
-                                    Country: {movie?.production_countries[0]?.name}
-                                </div>
-                                <div>
-                                    {/* add logos to companies later */}
-                                    Production Company: {movie?.production_companies[0]?.name}
-                                </div>
-                                <div>
-                                    {/* maybe add this too? will consider */}
-                                    {movie?.belongs_to_collection ?
-                                        <div>
-                                            Collection: {movie?.belongs_to_collection?.name}
-                                        </div>
-                                        :
-                                        null
-                                    }
-                                </div>
-                                <div>
-                                    {movie?.tagline ?
-                                        <div>
-                                            {movie?.tagline}
-                                        </div>
-                                        :
-                                        null
-                                    }
-                                </div>
-                                <div>
-                                    {movie?.overview ?
-                                        <div>
-                                            {movie?.overview}
-                                        </div>
-                                        :
-                                        null
-                                    }
-                                </div>
+                                <Overview link={movie} />
                                 <button className='btn btn-danger' onClick={playTrailer}>Play Trailer</button>
                                 {trailerUrl && <YouTube videoId={trailerUrl} opts={opts} />}
                             </div>
