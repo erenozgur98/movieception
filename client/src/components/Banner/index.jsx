@@ -18,9 +18,6 @@ function Banner({ link, title }) {
                         {title}
                     </h2>
                 </div>
-                <h1 className="banner-description">
-                    
-                </h1>
                 <div className="banner--fadeBottom"></div>
             </header>
         </div>
