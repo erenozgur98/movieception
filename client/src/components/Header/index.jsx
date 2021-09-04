@@ -26,7 +26,8 @@ function Header({ user, handleLogout }) {
                     expand='lg'
                     variant='dark'
                     sticky='top'
-                    className={navColor ? 'navColor1' : 'navColor2'}
+                    className='nav'
+                    // className={navColor ? 'navColor1' : 'navColor2'}
                 >
                     <NavbarBrand href='/'>
                         <h3>True Story</h3>
@@ -39,25 +40,25 @@ function Header({ user, handleLogout }) {
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav className='ml-auto'>
-                            <Nav.Link href='/home' className='nav-link'>
+                            <Nav.Link href='/home' className='nav-link' style={{ color: 'white' }}>
                                 Home
                             </Nav.Link>
-                            <Nav.Link href='/discover' className='nav-link'>
+                            <Nav.Link href='/discover' className='nav-link' style={{ color: 'white' }}>
                                 Discover
                             </Nav.Link>
-                            <Nav.Link href='/movies' className='nav-link'>
+                            <Nav.Link href='/movies' className='nav-link' style={{ color: 'white' }}>
                                 Movies
                             </Nav.Link>
-                            <Nav.Link href='/shows' className='nav-link'>
+                            <Nav.Link href='/shows' className='nav-link' style={{ color: 'white' }}>
                                 Shows
                             </Nav.Link>
-                            <Nav.Link href='/actors' className='nav-link'>
+                            <Nav.Link href='/actors' className='nav-link' style={{ color: 'white' }}>
                                 Actors
                             </Nav.Link>
-                            <Nav.Link href='/profile' className='nav-link'>
+                            <Nav.Link href='/profile' className='nav-link' style={{ color: 'white' }}>
                                 Profile
                             </Nav.Link>
-                            <Nav.Link href='/' className='nav-link' onClick={handleLogout}>
+                            <Nav.Link href='/' className='nav-link' onClick={handleLogout} style={{ color: 'white' }}>
                                 Logout
                             </Nav.Link>
                         </Nav>
@@ -81,22 +82,22 @@ function Header({ user, handleLogout }) {
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav className='ml-auto'>
-                            <Nav.Link href='/home' className='nav-link'>
+                            <Nav.Link href='/home' className='nav-link' style={{ color: 'white' }}>
                                 Home
                             </Nav.Link>
-                            <Nav.Link href='/discover' className='nav-link'>
+                            <Nav.Link href='/discover' className='nav-link' style={{ color: 'white' }}>
                                 Discover
                             </Nav.Link>
-                            <Nav.Link href='/movies' className='nav-link'>
+                            <Nav.Link href='/movies' className='nav-link' style={{ color: 'white' }}>
                                 Movies
                             </Nav.Link>
-                            <Nav.Link href='/shows' className='nav-link'>
+                            <Nav.Link href='/shows' className='nav-link' style={{ color: 'white' }}>
                                 Shows
                             </Nav.Link>
-                            <Nav.Link href='/actors' className='nav-link'>
+                            <Nav.Link href='/actors' className='nav-link' style={{ color: 'white' }}>
                                 Actors
                             </Nav.Link>
-                            <Nav.Link href='/login' className='nav-link'>
+                            <Nav.Link href='/login' className='nav-link' style={{ color: 'white' }}>
                                 Login
                             </Nav.Link>
                         </Nav>
