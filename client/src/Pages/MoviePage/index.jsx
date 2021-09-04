@@ -92,7 +92,7 @@ function MoviePage() {
                     :
                     <>
                         <Container style={{ textAlign: 'center', paddingTop: '70px' }}>
-                            Oops, something went wrong, go back to <a href='/movies'>movie</a> page
+                            Oops, something went wrong, go back to <a href='/movies'>movie</a> or <a href='/'>home</a> page
                         </Container>
                     </>
                 }
