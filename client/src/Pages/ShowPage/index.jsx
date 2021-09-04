@@ -139,7 +139,10 @@ function ShowPage() {
                                     </div>
                                     <div>
                                         {/* maybe add this too? will consider */}
-                                        {/* {show?.belongs_to_collection} */}
+                                        Created by: {show?.created_by[0]?.name}
+                                    </div>
+                                    <div>
+                                        Status: {show?.status}
                                     </div>
                                     <div>
                                         {show?.tagline}
