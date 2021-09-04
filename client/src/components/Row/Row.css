@@ -5,6 +5,10 @@
   flex-direction: column;
 }
 
+.row-title {
+  padding-top: 48px;
+}
+
 .row-posters {
   display: grid;
   grid-template-columns: repeat(5, 1fr);

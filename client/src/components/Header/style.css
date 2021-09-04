@@ -1,3 +1,9 @@
+.main-nav {
+    position: absolute;
+    right: 0;
+    left: 0;
+}
+
 .logo {
     max-width: 175px;
     max-height: 175px;

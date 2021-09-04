@@ -9,8 +9,7 @@ const base_url = 'https://image.tmdb.org/t/p/original/';
 
 function Row({ fetchUrl, title }) {
     const [movies, setMovies] = useState([]);
-    const [currentMovie, setCurrentMovie] = useState();
-    const [loading, setLoading] = useState(false);
+    const [, setLoading] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
     const [moviesPerPage, setMoviesPerPage] = useState(5);
 

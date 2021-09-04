@@ -4,6 +4,10 @@
     align-items: center;
     flex-direction: column;
   }
+
+  .people-title {
+    padding-top: 48px;
+  }
   
   .people-posters {
     display: grid;

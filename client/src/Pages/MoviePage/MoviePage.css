@@ -10,8 +10,8 @@
 }
 
 .movie-poster {
-    max-width: 300px;
-    max-height: 300px;
+    max-width: 240px;
+    /* height: 350px; */
 }
 
 .page-organization {
