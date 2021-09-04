@@ -50,6 +50,8 @@ function MoviePage() {
         width: '100%',
     };
 
+    console.log(movie)
+
     return (
         <div>
             <Banner link={movie?.backdrop_path} title={movie?.original_title} />
@@ -149,7 +151,13 @@ function MoviePage() {
                                 </div>
                                 <div>
                                     {/* maybe add this too? will consider */}
-                                    {/* {movie?.belongs_to_collection[0]?.name} */}
+                                    {movie?.belongs_to_collection ?
+                                        <div>
+                                            Collection: {movie?.belongs_to_collection?.name}
+                                        </div>
+                                        :
+                                        null
+                                    }
                                 </div>
                                 <div>
                                     {movie?.tagline ?
