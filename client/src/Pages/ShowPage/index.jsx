@@ -50,7 +50,10 @@ function ShowPage() {
 
     return (
         <div>
-            <Banner link={show?.backdrop_path} title={show?.original_name} />
+            {show?.poster_path ?
+                <Banner link={show?.backdrop_path} title={show?.original_name} />
+                :
+                null}
             <Container>
                 {/* make the show picture sticky after scroll? will look into that later when styling */}
                 {/* videos, select type: 'trailer' , 'featurette', 'teaser' */}
@@ -77,7 +80,7 @@ function ShowPage() {
                     </div>
                     :
                     <>
-                        <Container>
+                        <Container style={{ textAlign: 'center', paddingTop: '70px' }}>
                             Oops, something went wrong, go back to <a href='/shows'>show</a> page
                         </Container>
                     </>

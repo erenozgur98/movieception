@@ -55,7 +55,10 @@ function MoviePage() {
 
     return (
         <div>
-            <Banner link={movie?.backdrop_path} title={movie?.original_title} />
+            {movie?.poster_path ?
+                <Banner link={movie?.backdrop_path} title={movie?.original_title} />
+                :
+                null}
             <Container>
                 {/* banner, has movie's backdrop path */}
                 {/* videos, select type: 'trailer' , 'featurette', 'teaser' */}
@@ -88,7 +91,7 @@ function MoviePage() {
                     </div>
                     :
                     <>
-                        <Container>
+                        <Container style={{ textAlign: 'center', paddingTop: '70px' }}>
                             Oops, something went wrong, go back to <a href='/movies'>movie</a> page
                         </Container>
                     </>

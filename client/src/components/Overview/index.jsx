@@ -5,9 +5,12 @@ function Overview({ link }) {
         <div>
             <h2>{link?.original_title || link?.name}</h2>
             <div>
-                <a href={`https://www.imdb.com/title/${link?.imdb_id}/`} target="_blank" rel="noreferrer">
-                    <i className="fab fa-imdb" style={{ fontSize: "42px" }}></i>
-                </a>
+                {link?.imdb_id ?
+                    <a href={`https://www.imdb.com/title/${link?.imdb_id}/`} target="_blank" rel="noreferrer">
+                        <i className="fab fa-imdb" style={{ fontSize: "42px" }}></i>
+                    </a>
+                    :
+                    null}
             </div>
             <div className="movie-overview">
                 <a href={link?.homepage} target="_blank" rel="noreferrer">Homepage</a>
