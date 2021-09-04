@@ -32,7 +32,7 @@ function ShowPage() {
         fetchData();
     }, [ShowId]);
 
-    const playTrailer = (show) => {
+    const playTrailer = () => {
         if (trailerUrl) {
             setTrailerUrl('');
         } else {
@@ -159,11 +159,7 @@ function ShowPage() {
                                         {show?.overview}
                                     </div>
                                 </div>
-                                {show ?
-                                    <button className='btn btn-danger' onClick={() => playTrailer(show)}>Play Trailer</button>
-                                    :
-                                    null
-                                }
+                                <button className='btn btn-danger' onClick={playTrailer}>Play Trailer</button>
                                 {trailerUrl && <YouTube videoId={trailerUrl} opts={opts} />}
                             </div>
                         </div>

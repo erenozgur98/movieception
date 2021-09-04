@@ -7,12 +7,14 @@ import Banner from '../../components/Banner';
 import Credits from '../../components/Credits';
 import ExternalId from '../../components/ExternalId';
 import WatchProviders from '../../components/WatchProviders';
+import YouTube from 'react-youtube';
 import "./MoviePage.css"
 
 function MoviePage() {
     const [movie, setMovie] = useState({});
     const [externalId, setExternalId] = useState();
-    const [watchProviders, setWatchProviders] = useState();
+    const [videos, setVideos] = useState();
+    const [trailerUrl, setTrailerUrl] = useState('');
     const { MovieId } = useParams();
 
     const apiKey = 'af737f76cdba5b7435e17cc94568c07d';
@@ -22,10 +24,10 @@ function MoviePage() {
         const fetchData = async () => {
             const request = await axios.get(`/movie/${MovieId}?api_key=${apiKey}`);
             const requestExternalId = await axios.get(`movie/${MovieId}/external_ids?api_key=${apiKey}`);
-            const requestWatchProviders = await axios.get(`movie/${MovieId}/watch/providers?api_key=${apiKey}`)
+            const requestVideos = await axios.get(`/movie/${MovieId}/videos?api_key=${apiKey}`)
             setMovie(request.data);
             setExternalId(requestExternalId.data);
-            setWatchProviders(requestWatchProviders.data.results.US);
+            setVideos(requestVideos.data.results);
         }
         fetchData();
     }, [MovieId])
@@ -35,9 +37,18 @@ function MoviePage() {
         console.log(movie);
     }
 
-    console.log(movie)
-    console.log(externalId)
-    console.log(watchProviders);
+    const playTrailer = () => {
+        if (trailerUrl) {
+            setTrailerUrl('');
+        } else {
+            setTrailerUrl(videos[0]?.key);
+        }
+    };
+
+    const opts = {
+        heigth: '390',
+        width: '100%',
+    };
 
     return (
         <div>
@@ -158,6 +169,8 @@ function MoviePage() {
                                         null
                                     }
                                 </div>
+                                <button className='btn btn-danger' onClick={playTrailer}>Play Trailer</button>
+                                {trailerUrl && <YouTube videoId={trailerUrl} opts={opts} />}
                             </div>
                         </div>
                         <WatchProviders movie={movie} />
