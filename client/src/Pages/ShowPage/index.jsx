@@ -7,11 +7,14 @@ import Banner from '../../components/Banner';
 import Credits from '../../components/Credits';
 import ExternalId from '../../components/ExternalId';
 import WatchProviders from '../../components/WatchProviders';
+import YouTube from 'react-youtube';
 import '../MoviePage/MoviePage.css';
 
 function ShowPage() {
     const [show, setShow] = useState({});
     const [externalId, setExternalId] = useState();
+    const [videos, setVideos] = useState();
+    const [trailerUrl, setTrailerUrl] = useState('');
     const { ShowId } = useParams();
 
     const apiKey = 'af737f76cdba5b7435e17cc94568c07d';
@@ -21,20 +24,33 @@ function ShowPage() {
         const fetchData = async () => {
             const request = await axios.get(`/tv/${ShowId}?api_key=${apiKey}`);
             const requestExternalId = await axios.get(`tv/${ShowId}/external_ids?api_key=${apiKey}`);
+            const requestVideos = await axios.get(`tv/${ShowId}/videos?api_key=${apiKey}`);
             setShow(request.data);
             setExternalId(requestExternalId.data);
+            setVideos(requestVideos.data.results);
         }
         fetchData();
-    }, [ShowId])
+    }, [ShowId]);
 
-    console.log(show)
-    console.log(externalId)
+    const playTrailer = (show) => {
+        if (trailerUrl) {
+            setTrailerUrl('');
+        } else {
+            setTrailerUrl(videos[0]?.key);
+        }
+    };
+
+    const opts = {
+        heigth: '390',
+        width: '100%',
+    };
+
+    console.log(videos);
 
     return (
         <div>
             <Banner link={show?.backdrop_path} title={show?.original_name} />
             <Container>
-                {/* banner, has show's backdrop path */}
                 {/* make the show picture sticky after scroll? will look into that later when styling */}
                 {/* videos, select type: 'trailer' , 'featurette', 'teaser' */}
                 {/* video link type: youtube.com/watch?v=${key} <-- key being the video link key from the api */}
@@ -42,10 +58,6 @@ function ShowPage() {
                     <div>
                         <div className="page-organization">
                             <div>
-                                {/* background-poster picture suspended for now */}
-                                {/* <div className="background-picture">
-                        <img src={`https://image.tmdb.org/t/p/original${show?.backdrop_path}`} alt="movie-poster" className='movie-background' />
-                        </div> */}
                                 <div className="poster-picture">
                                     <img src={`https://image.tmdb.org/t/p/original${show?.poster_path}`} alt="black-widow" className='movie-poster' />
                                 </div>
@@ -115,9 +127,6 @@ function ShowPage() {
                                         }
                                     </div>
                                     <div>
-                                        {/* Spoken Languages: {show?.spoken_languages.map(x => x.english_name)} */}
-                                    </div>
-                                    <div>
                                         {/* the [0] is doesn't seem to be working, added todo */}
                                         {/* Runtime: {show?.episode_run_time[0]} minutes */}
                                     </div>
@@ -138,7 +147,6 @@ function ShowPage() {
                                         Production Company: {show?.production_companies[0]?.name}
                                     </div>
                                     <div>
-                                        {/* maybe add this too? will consider */}
                                         Created by: {show?.created_by[0]?.name}
                                     </div>
                                     <div>
@@ -151,6 +159,12 @@ function ShowPage() {
                                         {show?.overview}
                                     </div>
                                 </div>
+                                {show ?
+                                    <button className='btn btn-danger' onClick={() => playTrailer(show)}>Play Trailer</button>
+                                    :
+                                    null
+                                }
+                                {trailerUrl && <YouTube videoId={trailerUrl} opts={opts} />}
                             </div>
                         </div>
                         <WatchProviders show={show} />

@@ -33,10 +33,6 @@ function WatchProviders({ movie, show }) {
         history.push(``);
     }
 
-    console.log(movieProviders);
-    // movie-showProviders.buy, .flatrate, .link, .rent
-    console.log(showProviders);
-
     return (
         <div>
             {movie?.id ?
