@@ -1,7 +1,9 @@
 import React from 'react'
+// import image from '../../images/barney-stinson-1.jpg';
 import './Banner.css'
 
-function Banner({ link, title }) {
+
+function Banner({ link, title, image }) {
 
     return (
         <div>
@@ -9,7 +11,7 @@ function Banner({ link, title }) {
                 className='banner'
                 style={{
                     backgroundSize: 'cover',
-                    backgroundImage: `url(https://image.tmdb.org/t/p/original${link})` || {link},
+                    backgroundImage: `url(https://image.tmdb.org/t/p/original${link})` || `url(${image})`,
                     // backgroundPosition: 'center center'
                 }}
             >
