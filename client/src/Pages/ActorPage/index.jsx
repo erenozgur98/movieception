@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { Container } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 import axios from '../../components/Axios';
+import ExternalId from '../../components/ExternalId';
 import MovieCredits from '../../components/MovieCredits';
 import './ActorPage.css'
 
@@ -48,39 +49,7 @@ function ActorPage() {
                                 <img src={`https://image.tmdb.org/t/p/original/${actor?.profile_path}`} alt={actor?.name} className='actor-background' />
                             </div>
                             <div className='social-media-links'>
-                                {externalId?.facebook_id ?
-                                    <a
-                                        href={`https://www.facebook.com/${externalId?.facebook_id}`}
-                                        target="_blank"
-                                        rel="noreferrer"
-                                    >
-                                        <i className="fab fa-facebook-square" style={{ fontSize: "32px" }}></i>
-                                    </a>
-                                    :
-                                    null
-                                }
-                                {externalId?.instagram_id ?
-                                    <a
-                                        href={`https://www.instagram.com/${externalId?.instagram_id}`}
-                                        target="_blank"
-                                        rel="noreferrer"
-                                    >
-                                        <i className="fab fa-instagram-square" style={{ fontSize: "32px" }}></i>
-                                    </a>
-                                    :
-                                    null
-                                }
-                                {externalId?.twitter_id ?
-                                    <a
-                                        href={`https://www.twitter.com/${externalId?.twitter_id}`}
-                                        target="_blank"
-                                        rel="noreferrer"
-                                    >
-                                        <i className="fab fa-twitter-square" style={{ fontSize: "32px" }}></i>
-                                    </a>
-                                    :
-                                    null
-                                }
+                                <ExternalId externalId={externalId} />
                             </div>
                         </div>
                         <div className='bottom-section'>

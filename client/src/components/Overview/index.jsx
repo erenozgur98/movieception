@@ -5,7 +5,6 @@ function Overview({ link }) {
         <div>
             <h2>{link?.original_title || link?.name}</h2>
             <div>
-                {/* imdb.png will come here, will fix the looks later */}
                 <a href={`https://www.imdb.com/title/${link?.imdb_id}/`} target="_blank" rel="noreferrer">
                     <i className="fab fa-imdb" style={{ fontSize: "42px" }}></i>
                 </a>
