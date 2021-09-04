@@ -36,7 +36,10 @@ function ActorPage() {
     return (
         <div>
             {/* for now, todo: add algorithm to randomize backdrop_path for actor's movies */}
-            <Banner link={"/5BMwFwNzSidVYArn561acqtktxv.jpg"} />
+            {actor?.profile_path ?
+                <Banner link={"/5BMwFwNzSidVYArn561acqtktxv.jpg"} />
+            :
+            null}
             <Container>
                 {/* banner, has actor's movies? backdrop path */}
                 {/* make the actor picture sticky after scroll? will look into that later when styling */}
@@ -99,9 +102,9 @@ function ActorPage() {
                     </div>
                     :
                     <>
-                        <div>
+                        <Container style={{ textAlign: 'center', paddingTop: '70px' }}>
                             Oops, something went wrong, go back to <a href='/actors'>actor</a> page
-                        </div>
+                        </Container>
                     </>
                 }
                 {/* /person/{person_id}/images <-- to get images */}

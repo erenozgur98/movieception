@@ -18,7 +18,7 @@ function Overview({ link }) {
             <div>
                 {link?.release_date || link?.first_air_date ?
                     <div>
-                        Release Date: {link?.release_date}
+                        Release Date: {link?.release_date || link?.first_air_date}
                     </div>
                     :
                     null
