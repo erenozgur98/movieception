@@ -50,10 +50,6 @@ function MoviePage() {
                     <div>
                         <div className='page-organization'>
                             <div>
-                                {/* background-poster picture suspended for now */}
-                                {/* <div className="background-picture">
-                            <img src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`} alt="movie-poster" className='movie-background' />
-                            </div> */}
                                 <div className="poster-picture">
                                     <img src={`https://image.tmdb.org/t/p/original${movie.poster_path}`} alt={movie?.original_title} className='movie-poster' />
                                 </div>
@@ -96,9 +92,6 @@ function MoviePage() {
                                         :
                                         null
                                     }
-                                </div>
-                                <div>
-                                    {/* Spoken Languages: {movie?.spoken_languages.map(x => x.english_name)} */}
                                 </div>
                                 <div>
                                     {movie?.runtime ?

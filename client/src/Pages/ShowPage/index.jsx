@@ -131,11 +131,11 @@ function ShowPage() {
                                         }
                                     </div>
                                     <div>
-                                        {/* Country: {show?.production_countries.map(x => x.name)} */}
+                                        Country: {show?.production_countries[0]?.name}
                                     </div>
                                     <div>
                                         {/* add logos to companies later */}
-                                        {/* Production Companies: {show?.production_companies.map(x => x.name)} */}
+                                        Production Company: {show?.production_companies[0]?.name}
                                     </div>
                                     <div>
                                         {/* maybe add this too? will consider */}
