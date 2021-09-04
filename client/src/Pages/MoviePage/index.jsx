@@ -39,178 +39,180 @@ function MoviePage() {
     console.log(watchProviders);
 
     return (
-        <Container>
-            {/* banner, has movie's backdrop path */}
-            {/* videos, select type: 'trailer' , 'featurette', 'teaser' */}
-            {/* video link type: youtube.com/watch?v=${key} <-- key being the video link key from the api */}
-            <Banner link={movie?.backdrop_path} />
-            {movie.poster_path ?
-                <div>
-                    <div className='page-organization'>
-                        <div>
-                            {/* background-poster picture suspended for now */}
-                            {/* <div className="background-picture">
+        <div>
+            <Banner link={movie?.backdrop_path} title={movie?.original_title} />
+            <Container>
+                {/* banner, has movie's backdrop path */}
+                {/* videos, select type: 'trailer' , 'featurette', 'teaser' */}
+                {/* video link type: youtube.com/watch?v=${key} <-- key being the video link key from the api */}
+                {movie.poster_path ?
+                    <div>
+                        <div className='page-organization'>
+                            <div>
+                                {/* background-poster picture suspended for now */}
+                                {/* <div className="background-picture">
                             <img src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`} alt="movie-poster" className='movie-background' />
                             </div> */}
-                            <div className="poster-picture">
-                                <img src={`https://image.tmdb.org/t/p/original${movie.poster_path}`} alt={movie?.original_title} className='movie-poster' />
+                                <div className="poster-picture">
+                                    <img src={`https://image.tmdb.org/t/p/original${movie.poster_path}`} alt={movie?.original_title} className='movie-poster' />
+                                </div>
+                                <div className='social-media-links'>
+                                    {externalId?.facebook_id ?
+                                        <a
+                                            href={`https://www.facebook.com/${externalId?.facebook_id}`}
+                                            target="_blank"
+                                            rel="noreferrer"
+                                        >
+                                            <i className="fab fa-facebook-square" style={{ fontSize: "32px" }}></i>
+                                        </a>
+                                        :
+                                        null
+                                    }
+                                    {externalId?.instagram_id ?
+                                        <a
+                                            href={`https://www.instagram.com/${externalId?.instagram_id}`}
+                                            target="_blank"
+                                            rel="noreferrer"
+                                        >
+                                            <i className="fab fa-instagram-square" style={{ fontSize: "32px" }}></i>
+                                        </a>
+                                        :
+                                        null
+                                    }
+                                    {externalId?.twitter_id ?
+                                        <a
+                                            href={`https://www.twitter.com/${externalId?.twitter_id}`}
+                                            target="_blank"
+                                            rel="noreferrer"
+                                        >
+                                            <i className="fab fa-twitter-square" style={{ fontSize: "32px" }}></i>
+                                        </a>
+                                        :
+                                        null
+                                    }
+                                </div>
+                                <div className='favorite-btn'>
+                                    <button onClick={() => addToFavorite(movie)} className='btn btn-warning'>Add To Favorite</button>
+                                </div>
                             </div>
-                            <div className='social-media-links'>
-                                {externalId?.facebook_id ?
-                                    <a
-                                        href={`https://www.facebook.com/${externalId?.facebook_id}`}
-                                        target="_blank"
-                                        rel="noreferrer"
-                                    >
-                                        <i className="fab fa-facebook-square" style={{ fontSize: "32px" }}></i>
+                            <div className="bottom-section">
+                                <h2>{movie?.original_title}</h2>
+                                <div>
+                                    {/* imdb.png will come here, will fix the looks later */}
+                                    <a href={`https://www.imdb.com/title/${movie?.imdb_id}/`} target="_blank" rel="noreferrer">
+                                        <i className="fab fa-imdb" style={{ fontSize: "42px" }}></i>
+                                        {/* IMDB */}
                                     </a>
-                                    :
-                                    null
-                                }
-                                {externalId?.instagram_id ?
-                                    <a
-                                        href={`https://www.instagram.com/${externalId?.instagram_id}`}
-                                        target="_blank"
-                                        rel="noreferrer"
-                                    >
-                                        <i className="fab fa-instagram-square" style={{ fontSize: "32px" }}></i>
-                                    </a>
-                                    :
-                                    null
-                                }
-                                {externalId?.twitter_id ?
-                                    <a
-                                        href={`https://www.twitter.com/${externalId?.twitter_id}`}
-                                        target="_blank"
-                                        rel="noreferrer"
-                                    >
-                                        <i className="fab fa-twitter-square" style={{ fontSize: "32px" }}></i>
-                                    </a>
-                                    :
-                                    null
-                                }
-                            </div>
-                            <div className='favorite-btn'>
-                                <button onClick={() => addToFavorite(movie)} className='btn btn-warning'>Add To Favorite</button>
+                                </div>
+                                <div className="movie-overview">
+                                    <a href={movie?.homepage} target="_blank" rel="noreferrer">Homepage</a>
+                                </div>
+                                <div>
+                                    {movie?.release_date ?
+                                        <div>
+                                            Release Date: {movie?.release_date}
+                                        </div>
+                                        :
+                                        null
+                                    }
+                                </div>
+                                <div>
+                                    {/* Genres: {movie?.genres.map(x => x.name)} */}
+                                </div>
+                                <div>
+                                    {movie?.original_language === 'en' ?
+                                        <div>
+                                            Language: English
+                                        </div>
+                                        :
+                                        null
+                                    }
+                                </div>
+                                <div>
+                                    {/* Spoken Languages: {movie?.spoken_languages.map(x => x.english_name)} */}
+                                </div>
+                                <div>
+                                    {movie?.runtime ?
+                                        <div>
+                                            Runtime: {movie?.runtime} minutes
+                                        </div>
+                                        :
+                                        null
+                                    }
+                                </div>
+                                <div>
+                                    {movie?.vote_average ?
+                                        <div>
+                                            Vote Average: {movie?.vote_average} / 10
+                                        </div>
+                                        :
+                                        null
+                                    }
+                                </div>
+                                <div>
+                                    {movie?.budget ?
+                                        <div>
+                                            Budget: ${movie?.budget}
+                                        </div>
+                                        :
+                                        null
+                                    }
+                                </div>
+                                <div>
+                                    {movie?.revenue ?
+                                        <div>
+                                            Revenue: ${movie?.revenue}
+                                        </div>
+                                        :
+                                        null
+                                    }
+                                </div>
+                                <div>
+                                    Country: {movie?.production_countries[0]?.name}
+                                </div>
+                                <div>
+                                    {/* add logos to companies later */}
+                                    Production Company: {movie?.production_companies[0]?.name}
+                                </div>
+                                <div>
+                                    {/* maybe add this too? will consider */}
+                                    {/* {movie?.belongs_to_collection[0]?.name} */}
+                                </div>
+                                <div>
+                                    {movie?.tagline ?
+                                        <div>
+                                            {movie?.tagline}
+                                        </div>
+                                        :
+                                        null
+                                    }
+                                </div>
+                                <div>
+                                    {movie?.overview ?
+                                        <div>
+                                            {movie?.overview}
+                                        </div>
+                                        :
+                                        null
+                                    }
+                                </div>
                             </div>
                         </div>
-                        <div className="bottom-section">
-                            <h2>{movie?.original_title}</h2>
-                            <div>
-                                {/* imdb.png will come here, will fix the looks later */}
-                                <a href={`https://www.imdb.com/title/${movie?.imdb_id}/`} target="_blank" rel="noreferrer">
-                                    <i className="fab fa-imdb" style={{ fontSize: "42px" }}></i>
-                                    {/* IMDB */}
-                                </a>
-                            </div>
-                            <div className="movie-overview">
-                                <a href={movie?.homepage} target="_blank" rel="noreferrer">Homepage</a>
-                            </div>
-                            <div>
-                                {movie?.release_date ?
-                                    <div>
-                                        Release Date: {movie?.release_date}
-                                    </div>
-                                    :
-                                    null
-                                }
-                            </div>
-                            <div>
-                                {/* Genres: {movie?.genres.map(x => x.name)} */}
-                            </div>
-                            <div>
-                                {movie?.original_language === 'en' ?
-                                    <div>
-                                        Language: English
-                                    </div>
-                                    :
-                                    null
-                                }
-                            </div>
-                            <div>
-                                {/* Spoken Languages: {movie?.spoken_languages.map(x => x.english_name)} */}
-                            </div>
-                            <div>
-                                {movie?.runtime ?
-                                    <div>
-                                        Runtime: {movie?.runtime} minutes
-                                    </div>
-                                    :
-                                    null
-                                }
-                            </div>
-                            <div>
-                                {movie?.vote_average ?
-                                    <div>
-                                        Vote Average: {movie?.vote_average} / 10
-                                    </div>
-                                    :
-                                    null
-                                }
-                            </div>
-                            <div>
-                                {movie?.budget ?
-                                    <div>
-                                        Budget: ${movie?.budget}
-                                    </div>
-                                    :
-                                    null
-                                }
-                            </div>
-                            <div>
-                                {movie?.revenue ?
-                                    <div>
-                                        Revenue: ${movie?.revenue}
-                                    </div>
-                                    :
-                                    null
-                                }
-                            </div>
-                            <div>
-                                Country: {movie?.production_countries[0]?.name}
-                            </div>
-                            <div>
-                                {/* add logos to companies later */}
-                                Production Company: {movie?.production_companies[0]?.name}
-                            </div>
-                            <div>
-                                {/* maybe add this too? will consider */}
-                                {/* {movie?.belongs_to_collection[0]?.name} */}
-                            </div>
-                            <div>
-                                {movie?.tagline ?
-                                    <div>
-                                        {movie?.tagline}
-                                    </div>
-                                    :
-                                    null
-                                }
-                            </div>
-                            <div>
-                                {movie?.overview ?
-                                    <div>
-                                        {movie?.overview}
-                                    </div>
-                                    :
-                                    null
-                                }
-                            </div>
+                        <WatchProviders movie={movie} />
+                        <div>
+                            <h4>Cast</h4>
+                            <Credits movie={movie} />
                         </div>
                     </div>
-                    <WatchProviders movie={movie} />
-                    <div>
-                        <h4>Cast</h4>
-                        <Credits movie={movie} />
-                    </div>
-                </div>
-                :
-                <>
-                    <div>
-                        Oops, something went wrong, go back to <a href='/movies'>movie</a> page
-                    </div>
-                </>
-            }
-        </Container>
+                    :
+                    <>
+                        <Container>
+                            Oops, something went wrong, go back to <a href='/movies'>movie</a> page
+                        </Container>
+                    </>
+                }
+            </Container>
+        </div>
     )
 }
 

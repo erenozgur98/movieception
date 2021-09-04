@@ -1,7 +1,7 @@
 import React from 'react'
 import './Banner.css'
 
-function Banner({ link }) {
+function Banner({ link, title }) {
 
     return (
         <div>
@@ -14,9 +14,9 @@ function Banner({ link }) {
                 }}
             >
                 <div className="banner-contents">
-                    <h1 className="banner-title">
-                        
-                    </h1>
+                    <h2 className="banner-title">
+                        {title}
+                    </h2>
                 </div>
                 <h1 className="banner-description">
                     

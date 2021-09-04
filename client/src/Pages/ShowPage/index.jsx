@@ -30,167 +30,169 @@ function ShowPage() {
     console.log(externalId)
 
     return (
-        <Container>
-            {/* banner, has show's backdrop path */}
-            {/* make the show picture sticky after scroll? will look into that later when styling */}
-            {/* videos, select type: 'trailer' , 'featurette', 'teaser' */}
-            {/* video link type: youtube.com/watch?v=${key} <-- key being the video link key from the api */}
-            <Banner link={show?.backdrop_path} />
-            {show.poster_path ?
-                <div>
-                    <div className="page-organization">
-                        <div>
-                            {/* background-poster picture suspended for now */}
-                            {/* <div className="background-picture">
+        <div>
+            <Banner link={show?.backdrop_path} title={show?.original_name} />
+            <Container>
+                {/* banner, has show's backdrop path */}
+                {/* make the show picture sticky after scroll? will look into that later when styling */}
+                {/* videos, select type: 'trailer' , 'featurette', 'teaser' */}
+                {/* video link type: youtube.com/watch?v=${key} <-- key being the video link key from the api */}
+                {show.poster_path ?
+                    <div>
+                        <div className="page-organization">
+                            <div>
+                                {/* background-poster picture suspended for now */}
+                                {/* <div className="background-picture">
                         <img src={`https://image.tmdb.org/t/p/original${show?.backdrop_path}`} alt="movie-poster" className='movie-background' />
                         </div> */}
-                            <div className="poster-picture">
-                                <img src={`https://image.tmdb.org/t/p/original${show?.poster_path}`} alt="black-widow" className='movie-poster' />
+                                <div className="poster-picture">
+                                    <img src={`https://image.tmdb.org/t/p/original${show?.poster_path}`} alt="black-widow" className='movie-poster' />
+                                </div>
+                                <div className="social-media-links">
+                                    {externalId?.facebook_id ?
+                                        <a
+                                            href={`https://www.facebook.com/${externalId?.facebook_id}`}
+                                            target="_blank"
+                                            rel="noreferrer"
+                                        >
+                                            <i className="fab fa-facebook-square" style={{ fontSize: "32px" }}></i>
+                                        </a>
+                                        :
+                                        null
+                                    }
+                                    {externalId?.instagram_id ?
+                                        <a
+                                            href={`https://www.instagram.com/${externalId?.instagram_id}`}
+                                            target="_blank"
+                                            rel="noreferrer"
+                                        >
+                                            <i className="fab fa-instagram-square" style={{ fontSize: "32px" }}></i>
+                                        </a>
+                                        :
+                                        null
+                                    }
+                                    {externalId?.twitter_id ?
+                                        <a
+                                            href={`https://www.twitter.com/${externalId?.twitter_id}`}
+                                            target="_blank"
+                                            rel="noreferrer"
+                                        >
+                                            <i className="fab fa-twitter-square" style={{ fontSize: "32px" }}></i>
+                                        </a>
+                                        :
+                                        null
+                                    }
+                                </div>
                             </div>
-                            <div className="social-media-links">
-                                {externalId?.facebook_id ?
-                                    <a
-                                        href={`https://www.facebook.com/${externalId?.facebook_id}`}
-                                        target="_blank"
-                                        rel="noreferrer"
-                                    >
-                                        <i className="fab fa-facebook-square" style={{ fontSize: "32px" }}></i>
-                                    </a>
-                                    :
-                                    null
-                                }
-                                {externalId?.instagram_id ?
-                                    <a
-                                        href={`https://www.instagram.com/${externalId?.instagram_id}`}
-                                        target="_blank"
-                                        rel="noreferrer"
-                                    >
-                                        <i className="fab fa-instagram-square" style={{ fontSize: "32px" }}></i>
-                                    </a>
-                                    :
-                                    null
-                                }
-                                {externalId?.twitter_id ?
-                                    <a
-                                        href={`https://www.twitter.com/${externalId?.twitter_id}`}
-                                        target="_blank"
-                                        rel="noreferrer"
-                                    >
-                                        <i className="fab fa-twitter-square" style={{ fontSize: "32px" }}></i>
-                                    </a>
-                                    :
-                                    null
-                                }
+                            <div className="bottom-section">
+                                <h2>{show?.original_name}</h2>
+                                <div className="movie-overview">
+                                    <div>
+                                        {/* imdb.png will come here, will fix the looks later */}
+                                        <a href={`https://www.imdb.com/title/${externalId?.imdb_id}/`} target="_blank" rel="noreferrer">
+                                            <i className="fab fa-imdb" style={{ fontSize: "42px" }}></i>
+                                            {/* IMDB */}
+                                        </a>
+                                    </div>
+                                    <div>
+                                        <a href={show?.homepage} target="_blank" rel="noreferrer">Homepage</a>
+                                    </div>
+                                    <div>
+                                        {show?.first_air_date ?
+                                            <div>
+                                                First Air Date: {show?.first_air_date}
+                                            </div>
+                                            :
+                                            null
+                                        }
+                                    </div>
+                                    <div>
+                                        {show?.last_air_date ?
+                                            <div>
+                                                Last Air Date: {show?.last_air_date}
+                                            </div>
+                                            :
+                                            null
+                                        }
+                                    </div>
+                                    <div>
+                                        {show?.number_of_seasons ?
+                                            <div>
+                                                Seasons: {show?.number_of_seasons}
+                                            </div>
+                                            :
+                                            null
+                                        }
+                                    </div>
+                                    <div>
+                                        {show?.number_of_episodes ?
+                                            <div>
+                                                Episodes: {show?.number_of_episodes}
+                                            </div>
+                                            :
+                                            null
+                                        }
+                                    </div>
+                                    <div>
+                                        {/* Genres: {show?.genres.map(x => x.name)} */}
+                                    </div>
+                                    <div>
+                                        {show?.original_language === 'en' ?
+                                            <div>
+                                                Language: English
+                                            </div>
+                                            :
+                                            null
+                                        }
+                                    </div>
+                                    <div>
+                                        {/* Spoken Languages: {show?.spoken_languages.map(x => x.english_name)} */}
+                                    </div>
+                                    <div>
+                                        {/* the [0] is doesn't seem to be working, added todo */}
+                                        {/* Runtime: {show?.episode_run_time[0]} minutes */}
+                                    </div>
+                                    <div>
+                                        {show?.vote_average ?
+                                            <div>
+                                                Vote Average: {show?.vote_average} / 10
+                                            </div>
+                                            :
+                                            null
+                                        }
+                                    </div>
+                                    <div>
+                                        {/* Country: {show?.production_countries.map(x => x.name)} */}
+                                    </div>
+                                    <div>
+                                        {/* add logos to companies later */}
+                                        {/* Production Companies: {show?.production_companies.map(x => x.name)} */}
+                                    </div>
+                                    <div>
+                                        {/* maybe add this too? will consider */}
+                                        {/* {show?.belongs_to_collection} */}
+                                    </div>
+                                    <div>
+                                        {show?.tagline}
+                                    </div>
+                                    <div>
+                                        {show?.overview}
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div className="bottom-section">
-                            <h2>{show?.original_name}</h2>
-                            <div className="movie-overview">
-                                <div>
-                                    {/* imdb.png will come here, will fix the looks later */}
-                                    <a href={`https://www.imdb.com/title/${externalId?.imdb_id}/`} target="_blank" rel="noreferrer">
-                                        <i className="fab fa-imdb" style={{ fontSize: "42px" }}></i>
-                                        {/* IMDB */}
-                                    </a>
-                                </div>
-                                <div>
-                                    <a href={show?.homepage} target="_blank" rel="noreferrer">Homepage</a>
-                                </div>
-                                <div>
-                                    {show?.first_air_date ?
-                                        <div>
-                                            First Air Date: {show?.first_air_date}
-                                        </div>
-                                        :
-                                        null
-                                    }
-                                </div>
-                                <div>
-                                    {show?.last_air_date ?
-                                        <div>
-                                            Last Air Date: {show?.last_air_date}
-                                        </div>
-                                        :
-                                        null
-                                    }
-                                </div>
-                                <div>
-                                    {show?.number_of_seasons ?
-                                        <div>
-                                            Seasons: {show?.number_of_seasons}
-                                        </div>
-                                        :
-                                        null
-                                    }
-                                </div>
-                                <div>
-                                    {show?.number_of_episodes ?
-                                        <div>
-                                            Episodes: {show?.number_of_episodes}
-                                        </div>
-                                        :
-                                        null
-                                    }
-                                </div>
-                                <div>
-                                    {/* Genres: {show?.genres.map(x => x.name)} */}
-                                </div>
-                                <div>
-                                    {show?.original_language === 'en' ?
-                                        <div>
-                                            Language: English
-                                        </div>
-                                        :
-                                        null
-                                    }
-                                </div>
-                                <div>
-                                    {/* Spoken Languages: {show?.spoken_languages.map(x => x.english_name)} */}
-                                </div>
-                                <div>
-                                    {/* the [0] is doesn't seem to be working, added todo */}
-                                    {/* Runtime: {show?.episode_run_time[0]} minutes */}
-                                </div>
-                                <div>
-                                    {show?.vote_average ?
-                                        <div>
-                                            Vote Average: {show?.vote_average} / 10
-                                        </div>
-                                        :
-                                        null
-                                    }
-                                </div>
-                                <div>
-                                    {/* Country: {show?.production_countries.map(x => x.name)} */}
-                                </div>
-                                <div>
-                                    {/* add logos to companies later */}
-                                    {/* Production Companies: {show?.production_companies.map(x => x.name)} */}
-                                </div>
-                                <div>
-                                    {/* maybe add this too? will consider */}
-                                    {/* {show?.belongs_to_collection} */}
-                                </div>
-                                <div>
-                                    {show?.tagline}
-                                </div>
-                                <div>
-                                    {show?.overview}
-                                </div>
-                            </div>
-                        </div>
+                        <WatchProviders show={show} />
+                        <Credits show={show} />
                     </div>
-                    <WatchProviders show={show} />
-                    <Credits show={show} />
-                </div>
-                :
-                <>
-                    <div>
-                        Oops, something went wrong, go back to <a href='/shows'>show</a> page
-                    </div>
-                </>
-            }
-        </Container>
+                    :
+                    <>
+                        <Container>
+                            Oops, something went wrong, go back to <a href='/shows'>show</a> page
+                        </Container>
+                    </>
+                }
+            </Container>
+        </div>
     )
 }
 
