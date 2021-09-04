@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 import axios from '../../components/Axios'
 import Banner from '../../components/Banner';
 import Credits from '../../components/Credits';
+import ExternalId from '../../components/ExternalId';
 import WatchProviders from '../../components/WatchProviders';
 import '../MoviePage/MoviePage.css';
 
@@ -49,39 +50,7 @@ function ShowPage() {
                                     <img src={`https://image.tmdb.org/t/p/original${show?.poster_path}`} alt="black-widow" className='movie-poster' />
                                 </div>
                                 <div className="social-media-links">
-                                    {externalId?.facebook_id ?
-                                        <a
-                                            href={`https://www.facebook.com/${externalId?.facebook_id}`}
-                                            target="_blank"
-                                            rel="noreferrer"
-                                        >
-                                            <i className="fab fa-facebook-square" style={{ fontSize: "32px" }}></i>
-                                        </a>
-                                        :
-                                        null
-                                    }
-                                    {externalId?.instagram_id ?
-                                        <a
-                                            href={`https://www.instagram.com/${externalId?.instagram_id}`}
-                                            target="_blank"
-                                            rel="noreferrer"
-                                        >
-                                            <i className="fab fa-instagram-square" style={{ fontSize: "32px" }}></i>
-                                        </a>
-                                        :
-                                        null
-                                    }
-                                    {externalId?.twitter_id ?
-                                        <a
-                                            href={`https://www.twitter.com/${externalId?.twitter_id}`}
-                                            target="_blank"
-                                            rel="noreferrer"
-                                        >
-                                            <i className="fab fa-twitter-square" style={{ fontSize: "32px" }}></i>
-                                        </a>
-                                        :
-                                        null
-                                    }
+                                    <ExternalId externalId={externalId} />
                                 </div>
                             </div>
                             <div className="bottom-section">
