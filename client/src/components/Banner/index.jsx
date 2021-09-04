@@ -10,12 +10,12 @@ function Banner({ link, title }) {
                 style={{
                     backgroundSize: 'cover',
                     backgroundImage: `url(https://image.tmdb.org/t/p/original${link})`,
-                    backgroundPosition: 'center center'
+                    // backgroundPosition: 'center center'
                 }}
             >
                 <div className="banner-contents">
                     <h2 className="banner-title">
-                        {title}
+                        {/* {title} */}
                     </h2>
                 </div>
                 <div className="banner--fadeBottom"></div>
