@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { Container } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 import axios from '../../components/Axios'
+import Banner from '../../components/Banner';
 import Credits from '../../components/Credits';
 import WatchProviders from '../../components/WatchProviders';
 import '../MoviePage/MoviePage.css';
@@ -31,19 +32,10 @@ function ShowPage() {
     return (
         <Container>
             {/* banner, has show's backdrop path */}
-
             {/* make the show picture sticky after scroll? will look into that later when styling */}
-
-            {/* under show picture external id's eg FB link, IG link, twitter link */}
-
-            {/* link to where to watch the show */}
-
-
             {/* videos, select type: 'trailer' , 'featurette', 'teaser' */}
-
             {/* video link type: youtube.com/watch?v=${key} <-- key being the video link key from the api */}
-
-            {/* actors, with names */}
+            <Banner link={show?.backdrop_path} />
             {show.poster_path ?
                 <div>
                     <div className="page-organization">
