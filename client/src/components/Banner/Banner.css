@@ -1,10 +1,12 @@
 .banner {
   object-fit: contain;
-  height: 448px;
+  /* original 448px */
+  height: 548px;
 }
 
 .banner-title {
-  height: 322px;
+  /* original 322px */
+  height: 422px;
 }
 
 .banner--fadeBottom {
