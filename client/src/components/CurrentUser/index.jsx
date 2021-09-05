@@ -14,15 +14,13 @@ function CurrentUser({ user }) {
         const setTime = async () => {
             let time = new Date();
             let hours = time.getHours();
-    
+
             if (hours < 12) {
                 setGreeting('morning');
             } else if (hours >= 12 && hours <= 17) {
                 setGreeting('afternoon');
-            } else if (hours >= 17 && hours <= 24) {
-                setGreeting('evening');
             } else {
-                setGreeting('night');
+                setGreeting('evening');
             }
         }
         setTime();
