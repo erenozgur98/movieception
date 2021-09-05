@@ -18,7 +18,6 @@ function ShowPage() {
     const [externalId, setExternalId] = useState();
     const [videos, setVideos] = useState();
     const [trailerUrl, setTrailerUrl] = useState('');
-    const [recommendations, setRecommendations] = useState([]);
     const { ShowId } = useParams();
 
     const apiKey = 'af737f76cdba5b7435e17cc94568c07d';
@@ -30,11 +29,9 @@ function ShowPage() {
             const request = await axios.get(`/tv/${ShowId}?api_key=${apiKey}`);
             const requestExternalId = await axios.get(`tv/${ShowId}/external_ids?api_key=${apiKey}`);
             const requestVideos = await axios.get(`tv/${ShowId}/videos?api_key=${apiKey}`);
-            const requestRecommendations = await axios.get(`tv/${ShowId}/recommendations?api_key=${apiKey}`);
             setShow(request.data);
             setExternalId(requestExternalId.data);
             setVideos(requestVideos.data.results);
-            setRecommendations(requestRecommendations.data.results);
             setLoading(false);
         }
         fetchData();
@@ -54,7 +51,6 @@ function ShowPage() {
     };
 
     console.log(show);
-    console.log(recommendations);
 
     return (
         <div>
@@ -84,8 +80,10 @@ function ShowPage() {
                             </div>
                         </div>
                         <WatchProviders show={show} />
+                        <div>The cast of {show.name}:</div>
                         <Credits show={show} />
-                        <Recommendations link={recommendations} />
+                        <div>Since you are looking at {show.name}, you might like these:</div>
+                        <Recommendations show={show} />
                     </div>
                     :
                     <>

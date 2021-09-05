@@ -1,0 +1,44 @@
+.recommendations-posters {
+    display: flex;
+    overflow-y: hidden;
+    overflow-x: scroll;
+    padding: 10px;
+}
+
+.recommendations-map {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    /* border: solid white 2px; */
+    /* margin: 5px; */
+    transition: transform 450ms;
+}
+
+.recommendations-name {
+    width: 8em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding-left: 8px;
+}
+
+.recommendations-poster {
+    object-fit: contain;
+    width: 130px;
+    /* height: 230px; */
+    margin-right: 10px;
+    transition: transform 450ms;
+}
+
+.recommendations-posters::-webkit-scrollbar {
+    /* width: 2vw; */
+    /* color: white; */
+    /* background-color: gray; */
+    display: none;
+}
+
+.recommendations-map:hover {
+    cursor: pointer;
+    transform: scale(1.09);
+    white-space: normal;
+}
