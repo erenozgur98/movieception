@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom';
 import axios from '../Axios';
-// import { Container } from 'react-bootstrap';
+import { DropdownButton, Dropdown } from 'react-bootstrap';
 import './Row.css'
 
 // change original to w200 or w300 if not styled
@@ -11,9 +11,13 @@ function Row({ fetchUrl, title }) {
     const [movies, setMovies] = useState([]);
     const [, setLoading] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
-    const [moviesPerPage, setMoviesPerPage] = useState(5);
+    const [moviesPerPage, setMoviesPerPage] = useState(20);
 
     const history = useHistory()
+
+    const handleSelect = (e) => {
+        setMoviesPerPage(e);
+    }
 
     useEffect(() => {
         const fetchData = async () => {
@@ -30,7 +34,7 @@ function Row({ fetchUrl, title }) {
     const handleClick = (movie) => {
         if (movie.media_type === 'tv') {
             history.push(`/shows/${movie.id}`)
-        } else if(movie.media_type === 'movie') {
+        } else if (movie.media_type === 'movie') {
             history.push(`/movies/${movie.id}`)
         } else {
             history.push(`/actors/${movie.id}`)
@@ -44,14 +48,25 @@ function Row({ fetchUrl, title }) {
     const indexOfLastMovie = currentPage * moviesPerPage;
     const indexOfFirstMovie = indexOfLastMovie - moviesPerPage;
     const currentMovies = movies.slice(indexOfFirstMovie, indexOfLastMovie);
-
     console.log(currentMovies);
 
     return (
         <div className='row'>
             <h2 className='row-title'>{title}</h2>
+            <DropdownButton
+                id="dropdown-button-dark-example2"
+                variant="secondary"
+                menuVariant="dark"
+                title="Results Per Page"
+                className="mt-2"
+                onSelect={handleSelect}
+            >
+                <Dropdown.Item eventKey="1">1</Dropdown.Item>
+                <Dropdown.Item eventKey="5">5</Dropdown.Item>
+                <Dropdown.Item eventKey="20" active>20</Dropdown.Item>
+            </DropdownButton>
             <div className="row-posters">
-                {movies.map((movie) => (
+                {currentMovies.map((movie) => (
                     <div className="row-map" key={movie?.id}>
                         <img
                             onClick={() => handleClick(movie)}
