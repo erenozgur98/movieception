@@ -49,7 +49,7 @@ function Recommendations({ movie, show }) {
                         null
                         :
                         <div>
-                            <div>Since you are looking at {movie?.original_title}, you might like these titles:</div>
+                            <div>Since you are looking at {movie?.original_title}, you might like these movies:</div>
                             <div className="recommendations-posters">
                                 {movieRecommendations?.map((recommendations) => (
                                     <div className='recommendations-map'>
@@ -71,7 +71,7 @@ function Recommendations({ movie, show }) {
                         null
                         :
                         <div>
-                            <div>Since you are looking at {show?.name}, you might like these titles:</div>
+                            <div>Since you are looking at {show?.name}, you might like these shows:</div>
                             <div className="recommendations-posters">
                                 {showRecommendations?.map((recommendations) => (
                                     <div className='recommendations-map'>
