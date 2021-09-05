@@ -15,10 +15,6 @@ function Row({ fetchUrl, title }) {
 
     const history = useHistory()
 
-    const handleSelect = (e) => {
-        setMoviesPerPage(e);
-    }
-
     useEffect(() => {
         const fetchData = async () => {
             setLoading(true);
@@ -50,11 +46,14 @@ function Row({ fetchUrl, title }) {
     const currentMovies = movies.slice(indexOfFirstMovie, indexOfLastMovie);
     console.log(currentMovies);
 
+    const handleSelect = (e) => {
+        setMoviesPerPage(e);
+    };
+
     return (
         <div className='row'>
             <h2 className='row-title'>{title}</h2>
             <DropdownButton
-                id="dropdown-button-dark-example2"
                 variant="secondary"
                 menuVariant="dark"
                 title="Results Per Page"
