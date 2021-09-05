@@ -77,7 +77,7 @@ function WatchProviders({ movie, show }) {
                     } */}
                     {movieProviders?.US?.flatrate ?
                         <div className='providers'>
-                            <h4>Watch From</h4>
+                            <h4>Available on:</h4>
                             {movieProviders?.US?.flatrate?.map((provider) => (
                                 <div>
                                     <img
