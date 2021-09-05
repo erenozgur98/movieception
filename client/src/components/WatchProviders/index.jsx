@@ -106,7 +106,7 @@ function WatchProviders({ movie, show }) {
                                         alt={provider?.provider_name}
                                         className='provider-logo'
                                     />
-                                    <h2 className='provider-name'>{provider?.provider_name}</h2>
+                                    {/* <h2 className='provider-name'>{provider?.provider_name}</h2> */}
                                 </div>
                             ))}
                         </div>
@@ -116,7 +116,7 @@ function WatchProviders({ movie, show }) {
                 </div>
                 :
                 <div className=''>
-                    {showProviders?.US?.buy ?
+                    {/* {showProviders?.US?.buy ?
                         <div className='providers'>
                             <h4>Buy From</h4>
                             {showProviders?.US.buy?.map((provider) => (
@@ -153,10 +153,10 @@ function WatchProviders({ movie, show }) {
                         </div>
                         :
                         null
-                    }
+                    } */}
                     {showProviders?.US?.flatrate ?
                         <div className='providers'>
-                            <h4>Watch From</h4>
+                            <h4>Available on:</h4>
                             {showProviders?.US.flatrate?.map((provider) => (
                                 <div>
                                     <img
@@ -166,7 +166,7 @@ function WatchProviders({ movie, show }) {
                                         alt={provider?.provider_name}
                                         className='provider-logo'
                                     />
-                                    <h2 className='provider-name'>{provider?.provider_name}</h2>
+                                    {/* <h2 className='provider-name'>{provider?.provider_name}</h2> */}
                                 </div>
                             ))}
                         </div>
@@ -184,7 +184,7 @@ function WatchProviders({ movie, show }) {
                                         alt={provider?.provider_name}
                                         className='provider-logo'
                                     />
-                                    <h2 className='provider-name'>{provider?.provider_name}</h2>
+                                    {/* <h2 className='provider-name'>{provider?.provider_name}</h2> */}
                                 </div>
                             ))}
                         </div>

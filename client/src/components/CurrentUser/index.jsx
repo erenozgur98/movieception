@@ -4,21 +4,41 @@ import { Container } from 'react-bootstrap'
 
 function CurrentUser({ user }) {
     const [currentUser, setCurrentUser] = useState({});
+    const [greeting, setGreeting] = useState('');
 
     useEffect(() => {
         if (user) setCurrentUser(user.username)
     }, [user]);
 
+    useEffect(() => {
+        const setTime = async () => {
+            let time = new Date();
+            let hours = time.getHours();
+    
+            if (hours < 12) {
+                setGreeting('morning');
+            } else if (hours >= 12 && hours <= 17) {
+                setGreeting('afternoon');
+            } else if (hours >= 17 && hours <= 24) {
+                setGreeting('evening');
+            } else {
+                setGreeting('night');
+            }
+        }
+        setTime();
+    }, [])
+
+
+    console.log(greeting);
+
     return (
         <div>
-            {/* <Banner /> */}
-            {/* add this to header/nav instead of homepage */}
             <Container className="d-flex justify-content-center">
                 <div>
                     {currentUser ? (
-                        `Hello, ${currentUser}!`
+                        `Good ${greeting}, ${currentUser}!`
                     ) : (
-                        null
+                        `Good ${greeting}!`
                     )}
                 </div>
             </Container>
