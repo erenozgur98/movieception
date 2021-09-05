@@ -24,10 +24,7 @@ function CurrentUser({ user }) {
             }
         }
         setTime();
-    }, [])
-
-
-    console.log(greeting);
+    }, []);
 
     return (
         <div>
