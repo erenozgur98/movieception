@@ -10,12 +10,15 @@ import WatchProviders from '../../components/WatchProviders';
 import YouTube from 'react-youtube';
 import '../MoviePage/MoviePage.css';
 import Overview from '../../components/Overview';
+import Recommendations from '../../components/Recommendations';
 
 function ShowPage() {
+    const [, setLoading] = useState(false);
     const [show, setShow] = useState({});
     const [externalId, setExternalId] = useState();
     const [videos, setVideos] = useState();
     const [trailerUrl, setTrailerUrl] = useState('');
+    const [recommendations, setRecommendations] = useState([]);
     const { ShowId } = useParams();
 
     const apiKey = 'af737f76cdba5b7435e17cc94568c07d';
@@ -23,12 +26,16 @@ function ShowPage() {
     useEffect(() => {
         // API.getOneMovie, will be set later
         const fetchData = async () => {
+            setLoading(true);
             const request = await axios.get(`/tv/${ShowId}?api_key=${apiKey}`);
             const requestExternalId = await axios.get(`tv/${ShowId}/external_ids?api_key=${apiKey}`);
             const requestVideos = await axios.get(`tv/${ShowId}/videos?api_key=${apiKey}`);
+            const requestRecommendations = await axios.get(`tv/${ShowId}/recommendations?api_key=${apiKey}`);
             setShow(request.data);
             setExternalId(requestExternalId.data);
             setVideos(requestVideos.data.results);
+            setRecommendations(requestRecommendations.data.results);
+            setLoading(false);
         }
         fetchData();
     }, [ShowId]);
@@ -47,6 +54,7 @@ function ShowPage() {
     };
 
     console.log(show);
+    console.log(recommendations);
 
     return (
         <div>
@@ -77,6 +85,7 @@ function ShowPage() {
                         </div>
                         <WatchProviders show={show} />
                         <Credits show={show} />
+                        <Recommendations link={recommendations} />
                     </div>
                     :
                     <>
