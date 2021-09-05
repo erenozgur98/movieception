@@ -37,7 +37,7 @@ function WatchProviders({ movie, show }) {
         <div>
             {movie?.id ?
                 <div className=''>
-                    {movieProviders?.US?.buy ?
+                    {/* {movieProviders?.US?.buy ?
                         <div className='providers'>
                             <h4>Buy From</h4>
                             {movieProviders?.US?.buy?.map((provider) => (
@@ -74,7 +74,7 @@ function WatchProviders({ movie, show }) {
                         </div>
                         :
                         null
-                    }
+                    } */}
                     {movieProviders?.US?.flatrate ?
                         <div className='providers'>
                             <h4>Watch From</h4>
@@ -87,7 +87,7 @@ function WatchProviders({ movie, show }) {
                                         alt={provider?.provider_name}
                                         className='provider-logo'
                                     />
-                                    <h2 className='provider-name'>{provider?.provider_name}</h2>
+                                    {/* <h2 className='provider-name'>{provider?.provider_name}</h2> */}
                                 </div>
                             ))}
                         </div>
