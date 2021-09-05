@@ -38,14 +38,14 @@ function Recommendations({ movie, show }) {
         }
     }
 
-    console.log(movieRecommendations);
-    console.log(showRecommendations);
+    console.log('movie recom: ', movieRecommendations);
+    console.log('show recom: ', showRecommendations);
 
     return (
         <div className='recommendations'>
             {movie?.id ?
                 <div>
-                    {movieRecommendations === [] ?
+                    {movieRecommendations.length === 0 ?
                         null
                         :
                         <div>
@@ -67,7 +67,7 @@ function Recommendations({ movie, show }) {
                 </div>
                 :
                 <div>
-                    {showRecommendations === [] ?
+                    {showRecommendations.length === 0 ?
                         null
                         :
                         <div>
