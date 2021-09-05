@@ -77,7 +77,7 @@ function WatchProviders({ movie, show }) {
                     } */}
                     {movieProviders?.US?.flatrate ?
                         <div className='providers'>
-                            <h4>Available on:</h4>
+                            <div>Available on:</div>
                             {movieProviders?.US?.flatrate?.map((provider) => (
                                 <div>
                                     <img
@@ -96,7 +96,7 @@ function WatchProviders({ movie, show }) {
                     }
                     {movieProviders?.US?.flatrate_and_buy ?
                         <div className='providers'>
-                            <h4>Watch and Buy From</h4>
+                            <div>Watch and Buy From</div>
                             {movieProviders?.US?.flatrate_and_buy?.map((provider) => (
                                 <div>
                                     <img
@@ -156,7 +156,7 @@ function WatchProviders({ movie, show }) {
                     } */}
                     {showProviders?.US?.flatrate ?
                         <div className='providers'>
-                            <h4>Available on:</h4>
+                            <div>Available on:</div>
                             {showProviders?.US.flatrate?.map((provider) => (
                                 <div>
                                     <img
