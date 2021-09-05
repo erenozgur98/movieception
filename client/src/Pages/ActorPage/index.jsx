@@ -14,7 +14,7 @@ function ActorPage() {
     const [externalId, setExternalId] = useState();
     const { ActorId } = useParams();
 
-    const base_url = 'https://image.tmdb.org/t/p/original/';
+    const base_url = 'https://image.tmdb.org/t/p/original';
     const apiKey = 'af737f76cdba5b7435e17cc94568c07d';
 
     useEffect(() => {
@@ -30,16 +30,13 @@ function ActorPage() {
         fetchData()
     }, [ActorId])
 
-    console.log(actor)
-    console.log(externalId)
-
     return (
         <div>
-            {/* for now, todo: add algorithm to randomize backdrop_path for actor's movies */}
+            {/* for now placeholder image, todo: add algorithm to randomize backdrop_path for actor's movies */}
             {actor?.profile_path ?
                 <Banner link={"/5BMwFwNzSidVYArn561acqtktxv.jpg"} />
-            :
-            null}
+                :
+                null}
             <Container>
                 {/* banner, has actor's movies? backdrop path */}
                 {/* make the actor picture sticky after scroll? will look into that later when styling */}
@@ -107,8 +104,6 @@ function ActorPage() {
                         </Container>
                     </>
                 }
-                {/* /person/{person_id}/images <-- to get images */}
-                {/* /person/{person_id}/tagged_images <-- to get tagged images, more on that later */}
             </Container>
         </div>
     )
