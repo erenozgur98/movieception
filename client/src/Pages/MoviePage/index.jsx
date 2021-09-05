@@ -10,6 +10,7 @@ import WatchProviders from '../../components/WatchProviders';
 import YouTube from 'react-youtube';
 import "./MoviePage.css"
 import Overview from '../../components/Overview';
+import Recommendations from '../../components/Recommendations';
 
 function MoviePage() {
     const [movie, setMovie] = useState({});
@@ -84,10 +85,9 @@ function MoviePage() {
                             </div>
                         </div>
                         <WatchProviders movie={movie} />
-                        <div>
-                            <h4>Cast</h4>
-                            <Credits movie={movie} />
-                        </div>
+                        <div>The cast of {movie.original_title}:</div>
+                        <Credits movie={movie} />
+                        <Recommendations movie={movie} />
                     </div>
                     :
                     <>

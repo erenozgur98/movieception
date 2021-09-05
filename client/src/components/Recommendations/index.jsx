@@ -44,32 +44,48 @@ function Recommendations({ movie, show }) {
     return (
         <div className='recommendations'>
             {movie?.id ?
-                <div className="recommendations-posters">
-                    {movieRecommendations.map((recommendations) => (
-                        <div className='recommendations-map'>
-                            <img
-                                key={recommendations.id}
-                                onClick={() => redirect(recommendations)}
-                                src={`${base_url}${recommendations?.poster_path}`}
-                                alt={recommendations?.original_name}
-                                className='recommendations-poster'
-                            />
-                        </div>
-                    ))}
+                <div>
+                    {movieRecommendations === [] ?
+                        null
+                        :
+                        <div>
+                            <div>Since you are looking at {movie?.original_title}, you might like these titles:</div>
+                            <div className="recommendations-posters">
+                                {movieRecommendations?.map((recommendations) => (
+                                    <div className='recommendations-map'>
+                                        <img
+                                            key={recommendations.id}
+                                            onClick={() => redirect(recommendations)}
+                                            src={`${base_url}${recommendations?.poster_path}`}
+                                            alt={recommendations?.original_name}
+                                            className='recommendations-poster'
+                                        />
+                                    </div>
+                                ))}
+                            </div>
+                        </div>}
                 </div>
                 :
-                <div className="recommendations-posters">
-                    {showRecommendations.map((recommendations) => (
-                        <div className='recommendations-map'>
-                            <img
-                                key={recommendations.id}
-                                onClick={() => redirect(recommendations)}
-                                src={`${base_url}${recommendations?.poster_path}`}
-                                alt={recommendations?.original_name}
-                                className='recommendations-poster'
-                            />
-                        </div>
-                    ))}
+                <div>
+                    {showRecommendations === [] ?
+                        null
+                        :
+                        <div>
+                            <div>Since you are looking at {show?.name}, you might like these titles:</div>
+                            <div className="recommendations-posters">
+                                {showRecommendations?.map((recommendations) => (
+                                    <div className='recommendations-map'>
+                                        <img
+                                            key={recommendations.id}
+                                            onClick={() => redirect(recommendations)}
+                                            src={`${base_url}${recommendations?.poster_path}`}
+                                            alt={recommendations?.original_name}
+                                            className='recommendations-poster'
+                                        />
+                                    </div>
+                                ))}
+                            </div>
+                        </div>}
                 </div>
             }
         </div>

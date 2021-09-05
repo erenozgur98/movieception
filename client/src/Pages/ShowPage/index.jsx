@@ -82,7 +82,6 @@ function ShowPage() {
                         <WatchProviders show={show} />
                         <div>The cast of {show.name}:</div>
                         <Credits show={show} />
-                        <div>Since you are looking at {show.name}, you might like these:</div>
                         <Recommendations show={show} />
                     </div>
                     :
