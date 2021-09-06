@@ -1,3 +1,10 @@
+.home-show {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .home-show-poster {
+    padding: 2rem 0rem;
     cursor: pointer;
 }

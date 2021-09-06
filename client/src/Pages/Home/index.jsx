@@ -22,9 +22,9 @@ function Home() {
     }, [])
 
     return (
-        <div className='homepage'>
+        <div>
             <Banner link={movie?.backdrop_path} title={movie?.title || movie?.name} movie={movie} />
-            <Container>
+            <Container className='homepage'>
                 <HomeMovie fetchUrl={requests.fetchTrendingMovies} />
                 <HomeShow fetchUrl={requests.fetchTrendingShows} />
             </Container>

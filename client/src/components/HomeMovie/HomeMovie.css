@@ -1,14 +1,15 @@
 .home-movie {
-    /* height: 900px;
-    width: 600px; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .home-movie-poster {
-    /* max-height: 450px;
-    max-width: 450px; */
+    padding: 2rem 0rem;
     cursor: pointer;
 }
 
-.home-movie-background {
-
+.arrow {
+    font-size: 48px;
+    margin: 0rem 1rem;
 }

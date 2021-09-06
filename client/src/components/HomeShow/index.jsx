@@ -24,6 +24,7 @@ function HomeShow({ fetchUrl }) {
 
     return (
         <div className='home-show'>
+            <div onClick={() => setCount(count - 1)}><i className="arrow fas fa-angle-left"></i></div>
             <img
                 onClick={handleClick}
                 className='home-show-poster'
@@ -34,8 +35,7 @@ function HomeShow({ fetchUrl }) {
                 }
                 alt={shows[count]?.name}
             />
-            <div onClick={() => setCount(count + 1)}>ARROW +</div>
-            <div onClick={() => setCount(count - 1)}>ARROW -</div>
+            <div onClick={() => setCount(count + 1)}><i className="arrow fas fa-angle-right"></i></div>
         </div>
     );
 };
