@@ -1,28 +1,28 @@
 .movie-credits {
-    display: flex;
-    overflow-y: hidden;
-    overflow-x: scroll;
-    padding: 3px;
+    /* display: flex; */
+    /* overflow-y: hidden; */
+    /* overflow-x: scroll; */
+    /* padding: 3px; */
     /* scrollbar-width: 2vw; */
     /* scrollbar-color: green; */
 }
 
 .actor-movie-poster {
-    object-fit: contain;
-    width: 150px;
+    /* object-fit: contain; */
+    /* width: 150px; */
     /* max-height: 150px; */
-    margin-right: 10px;
-    transition: transform 450ms;
+    /* margin-right: 10px; */
+    /* transition: transform 450ms; */
 }
 
 .movie-credits::-webkit-scrollbar {
     /* width: 2vw; */
     /* color: white; */
     /* background-color: gray; */
-    display: none;
+    /* display: none; */
 }
 
-.actor-movie-poster:hover {
+/* .actor-movie-poster:hover {
     cursor: pointer;
     transform: scale(1.05);
-}
+} */

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useEffect } from 'react';
 import { Container } from 'react-bootstrap';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import axios from '../../components/Axios';
 import Banner from '../../components/Banner';
 import ExternalId from '../../components/ExternalId';
@@ -12,29 +12,42 @@ function ActorPage() {
     const [actor, setActor] = useState({});
     const [actorPictures, setActorPictures] = useState([]);
     const [externalId, setExternalId] = useState();
+    const [movieCredits, setMovieCredits] = useState([]);
     const { ActorId } = useParams();
 
+    const history = useHistory()
     const base_url = 'https://image.tmdb.org/t/p/original';
     const apiKey = 'af737f76cdba5b7435e17cc94568c07d';
 
     useEffect(() => {
-        // API.getOneActor, will be set later
         const fetchData = async () => {
             const request = await axios.get(`/person/${ActorId}?api_key=${apiKey}`);
             const requestExternalId = await axios.get(`person/${ActorId}/external_ids?api_key=${apiKey}`);
             const requestActorImages = await axios.get(`person/${ActorId}/images?api_key=${apiKey}`)
+            const requestMovieCredits = await axios.get(`/person/${ActorId}/combined_credits?api_key=${apiKey}`);
             setActor(request.data);
             setExternalId(requestExternalId.data);
-            setActorPictures(requestActorImages.data.profiles)
+            setActorPictures(requestActorImages.data.profiles);
+            setMovieCredits(requestMovieCredits.data.cast);
         }
         fetchData()
     }, [ActorId])
 
+    const redirect = (credits) => {
+        if (credits.media_type === 'tv') {
+            history.push(`/shows/${credits.id}`)
+        } else {
+            history.push(`/movies/${credits.id}`)
+        }
+    };
+
+    console.log(movieCredits)
+
     return (
         <div>
             {/* for now placeholder image, todo: add algorithm to randomize backdrop_path for actor's movies */}
-            {actor?.profile_path ?
-                <Banner link={"/5BMwFwNzSidVYArn561acqtktxv.jpg"} />
+            {movieCredits[0]?.backdrop_path ?
+                <Banner link={movieCredits[0]?.backdrop_path} title={movieCredits[0]?.title} />
                 :
                 null}
             <Container>
@@ -84,7 +97,18 @@ function ActorPage() {
                         </div>
                         <div>
                             <h4>Known For</h4>
-                            <MovieCredits actor={actor} />
+                            <div className='movie-credits'>
+                                {movieCredits.map((credits) => (
+                                    <img
+                                        key={credits.id}
+                                        onClick={() => redirect(credits)}
+                                        src={`${base_url}${credits?.poster_path}`}
+                                        alt={credits?.original_name}
+                                        className='actor-movie-poster'
+                                    />
+                                ))}
+                            </div>
+                            {/* <MovieCredits actor={actor} /> */}
                         </div>
                         <h4>{actor?.name}'s Images</h4>
                         <div className='actor-pictures'>

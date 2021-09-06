@@ -1,9 +1,8 @@
 import React from 'react'
-// import image from '../../images/barney-stinson-1.jpg';
 import './Banner.css'
 
 
-function Banner({ link, title, image }) {
+function Banner({ link, title }) {
 
     return (
         <div>
@@ -11,13 +10,13 @@ function Banner({ link, title, image }) {
                 className='banner'
                 style={{
                     backgroundSize: 'cover',
-                    backgroundImage: `url(https://image.tmdb.org/t/p/original${link})` || `url(${image})`,
+                    backgroundImage: `url(https://image.tmdb.org/t/p/original${link})`,
                     // backgroundPosition: 'center center'
                 }}
             >
                 <div className="banner-contents">
                     <h2 className="banner-title">
-                        {/* {title} */}
+                        Image from: {title}
                     </h2>
                 </div>
                 <div className="banner--fadeBottom"></div>

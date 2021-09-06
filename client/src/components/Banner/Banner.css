@@ -6,10 +6,16 @@
 
 .banner-title {
   /* original 322px */
-  height: 422px;
+  /* height: 422px; */
+  position: relative;
+  text-align: end;
+  top: 492px;
+  padding-right: 12px;
+  font-size: 0.9rem;
 }
 
 .banner--fadeBottom {
+  margin-top: 414px;
   height: 7.4rem;
   background-image: linear-gradient(
     180deg,
