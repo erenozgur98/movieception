@@ -101,7 +101,7 @@ function Overview({ link }) {
                     null
                 }
             </div>
-            <div>
+            <div style={{ fontStyle:"italic" }}>
                 {link?.tagline ?
                     <div>
                         {link?.tagline}
