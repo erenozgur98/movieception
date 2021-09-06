@@ -62,7 +62,7 @@ function Row({ fetchUrl, title }) {
             >
                 <Dropdown.Item eventKey="1">1</Dropdown.Item>
                 <Dropdown.Item eventKey="5">5</Dropdown.Item>
-                <Dropdown.Item eventKey="20" active>20</Dropdown.Item>
+                <Dropdown.Item eventKey="20">20</Dropdown.Item>
             </DropdownButton>
             <div className="row-posters">
                 {currentMovies.map((movie) => (

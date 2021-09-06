@@ -36,13 +36,10 @@ function Banner({ link, title, movie }) {
                 </div>
                 {movie ?
                     <div className='banner-description'>
-                        <h1 className='banner-real-title truncate'>
+                        <h1 className='banner-real-title'>
                             {movie?.title || movie?.name}
                         </h1>
-                        <h1 className='banner-description truncate'>
-                            {movie?.overview}
-                        </h1>
-                        <button className='banner-btn btn btn-primary' onClick={redirect}>Go To Movie</button>
+                        <button className='banner-btn' onClick={redirect}>Go To {movie?.title || movie?.name}</button>
                     </div>
                     :
                     null
