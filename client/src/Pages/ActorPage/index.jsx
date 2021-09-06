@@ -5,7 +5,6 @@ import { useParams, useHistory } from 'react-router-dom';
 import axios from '../../components/Axios';
 import Banner from '../../components/Banner';
 import ExternalId from '../../components/ExternalId';
-import MovieCredits from '../../components/MovieCredits';
 import './ActorPage.css'
 
 function ActorPage() {
@@ -49,7 +48,8 @@ function ActorPage() {
             {movieCredits[0]?.backdrop_path ?
                 <Banner link={movieCredits[0]?.backdrop_path} title={movieCredits[0]?.title} />
                 :
-                null}
+                <Banner link={movieCredits[1]?.backdrop_path} title={movieCredits[1]?.title} />
+            }
             <Container>
                 {/* banner, has actor's movies? backdrop path */}
                 {/* make the actor picture sticky after scroll? will look into that later when styling */}

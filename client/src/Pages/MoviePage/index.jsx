@@ -57,9 +57,10 @@ function MoviePage() {
     return (
         <div>
             {movie?.poster_path ?
-                <Banner link={movie?.backdrop_path} title={movie?.original_title} />
+                <Banner link={movie?.backdrop_path} title={movie?.title} />
                 :
-                null}
+                <Banner link={movie?.poster_path} />
+            }
             <Container>
                 {/* banner, has movie's backdrop path */}
                 {/* videos, select type: 'trailer' , 'featurette', 'teaser' */}
@@ -69,7 +70,7 @@ function MoviePage() {
                         <div className='page-organization'>
                             <div>
                                 <div className="poster-picture">
-                                    <img src={`https://image.tmdb.org/t/p/original${movie.poster_path}`} alt={movie?.original_title} className='movie-poster' />
+                                    <img src={`https://image.tmdb.org/t/p/original${movie?.poster_path}`} alt={movie?.original_title} className='movie-poster' />
                                 </div>
                                 <div className='social-media-links'>
                                     <ExternalId externalId={externalId} />
