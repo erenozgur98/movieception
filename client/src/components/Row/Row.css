@@ -25,6 +25,20 @@
   /* padding: 2px; */
 }
 
+/* animation for images before they load - if they take time to load */
+.skeleton {
+  animation: poster-loading 1s linear infinite alternate;
+}
+
+@keyframes poster-loading {
+  0% {
+    background-color: hsl(200, 20%, 70%);
+  }
+  100% {
+    background-color: hsl(200, 20%, 95%);
+  }
+}
+
 .row-poster {
   object-fit: contain;
   width: 100%;

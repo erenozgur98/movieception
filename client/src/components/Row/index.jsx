@@ -69,7 +69,7 @@ function Row({ fetchUrl, title }) {
                     <div className="row-map" key={movie?.id}>
                         <img
                             onClick={() => handleClick(movie)}
-                            className='row-poster'
+                            className='row-poster skeleton'
                             src={
                                 movie?.poster_path || movie?.backdrop_path || movie?.profile_path ?
                                     `${base_url}${movie?.poster_path || movie?.backdrop_path || movie?.profile_path}`
