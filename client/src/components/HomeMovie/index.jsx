@@ -21,7 +21,7 @@ function HomeMovie({ fetchUrl }) {
     }, [fetchUrl]);
 
     const handleClick = () => {
-        history.push(`/movies/${movies[count].id}`);
+        history.push(`/movies/${currentMovies[count].id}`);
     };
 
     const indexOfLastMovie = currentPage * moviesPerPage;
