@@ -25,7 +25,7 @@ function Row({ fetchUrl, title }) {
         fetchData();
     }, [fetchUrl]);
 
-    console.log(movies)
+    console.log(movies);
 
     const handleClick = (movie) => {
         if (movie.media_type === 'tv') {
