@@ -2,6 +2,7 @@ import React from 'react'
 import Row from '../../components/Row';
 import requests from '../../components/Requests';
 import { useState } from 'react';
+import './Movies.css';
 
 function Movies() {
     const [currentPage, setCurrentPage] = useState(1);
@@ -13,9 +14,9 @@ function Movies() {
             <div>
                 <Row fetchUrl={`${requests.fetchTrendingMovies}&page=${currentPage}`} title='Trending Movies' />
             </div>
-            <div className='movie-buttons'>
-                <button onClick={() => currentPage <= 1 ? setCurrentPage(currentPage) : setCurrentPage(currentPage - 1)}>Previous Page</button>
-                <button onClick={() => currentPage >= 10 ? setCurrentPage(currentPage) : setCurrentPage(currentPage + 1)}>Next Page</button>
+            <div className='movie-btn'>
+                <button className='movie-buttons' onClick={() => currentPage <= 1 ? setCurrentPage(currentPage) : setCurrentPage(currentPage - 1)}>Previous Page</button>
+                <button className='movie-buttons' onClick={() => currentPage >= 10 ? setCurrentPage(currentPage) : setCurrentPage(currentPage + 1)}>Next Page</button>
             </div>
             {/* <Row fetchUrl={requests.fetchActionMovies} title='Action Movies' /> */}
             {/* <Row fetchUrl={requests.fetchComedyMovies} title='Comedy Movies' /> */}
