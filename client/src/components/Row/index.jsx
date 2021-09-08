@@ -18,12 +18,12 @@ function Row({ fetchUrl, title }) {
     useEffect(() => {
         const fetchData = async () => {
             setLoading(true);
-            const request = await axios.get(fetchUrl);
+            const request = await axios.get(`${fetchUrl}`);
             setMovies(request.data.results);
             setLoading(false);
         }
         fetchData();
-    }, [fetchUrl]);
+    }, [fetchUrl, currentPage]);
 
     console.log(movies);
 

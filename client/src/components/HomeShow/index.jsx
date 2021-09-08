@@ -30,7 +30,7 @@ function HomeShow({ fetchUrl }) {
 
     return (
         <div className='home'>
-            <div>#{count + 1} Top 10</div>
+            <div>#{count + 1} of Top 10 Shows</div>
             <div className='home-show'>
                 <div onClick={() => count >= 1 ? setCount(count - 1) : setCount(count)}><i className="arrow fas fa-angle-left"></i></div>
                 <img
