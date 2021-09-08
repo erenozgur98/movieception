@@ -18,7 +18,7 @@ function HomeMovie({ fetchUrl }) {
             setMovies(request.data.results);
         }
         fetchData();
-    }, [fetchUrl]);
+    }, [fetchUrl, currentPage]);
 
     const handleClick = () => {
         history.push(`/movies/${currentMovies[count].id}`);
