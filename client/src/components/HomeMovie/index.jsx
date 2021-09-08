@@ -29,19 +29,23 @@ function HomeMovie({ fetchUrl }) {
     const currentMovies = movies.slice(indexOfFirstMovie, indexOfLastMovie);
 
     return (
-        <div className='home-movie'>
-            <div onClick={() => setCount(count - 1)}><i className="arrow fas fa-angle-left"></i></div>
-            <img
-                onClick={handleClick}
-                className='home-movie-poster'
-                src={currentMovies[count]?.poster_path ?
-                    `${base_url}${currentMovies[count]?.poster_path}`
-                    :
-                    "https://via.placeholder.com/300"
-                }
-                alt={currentMovies[count]?.name}
-            />
-            <div onClick={() => setCount(count + 1)}><i className="arrow fas fa-angle-right"></i></div>
+        <div className='home'>
+            <div>#{count + 1} Top 10</div>
+            <div className='home-movie'>
+                <div onClick={() => count >= 1 ? setCount(count - 1) : setCount(count)}><i className="arrow fas fa-angle-left"></i></div>
+                <img
+                    onClick={handleClick}
+                    className='home-movie-poster'
+                    src={currentMovies[count]?.poster_path ?
+                        `${base_url}${currentMovies[count]?.poster_path}`
+                        :
+                        "https://via.placeholder.com/300"
+                    }
+                    alt={currentMovies[count]?.name}
+                />
+                {/* less than 9 because 0 is the starting index */}
+                <div onClick={() => count < 9 ? setCount(count + 1) : setCount(count)}><i className="arrow fas fa-angle-right"></i></div>
+            </div>
         </div>
     );
 };
