@@ -5,6 +5,11 @@
 }
 
 .home-show-poster {
-    /* padding: 2rem 0rem; */
+    padding: 1rem 0rem;
+    transition: transform 450ms;
+}
+
+.home-show-poster:hover{
     cursor: pointer;
+    transform: scale(1.06);
 }
