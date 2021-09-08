@@ -15,8 +15,16 @@ function Movies() {
                 <Row fetchUrl={`${requests.fetchTrendingMovies}&page=${currentPage}`} title='Trending Movies' />
             </div>
             <div className='movie-btn'>
-                <button className='movie-buttons' onClick={() => currentPage <= 1 ? setCurrentPage(currentPage) : setCurrentPage(currentPage - 1)}>Previous Page</button>
-                <button className='movie-buttons' onClick={() => currentPage >= 10 ? setCurrentPage(currentPage) : setCurrentPage(currentPage + 1)}>Next Page</button>
+                {currentPage !== 1 ?
+                    <button className='movie-buttons' onClick={() => currentPage <= 1 ? setCurrentPage(currentPage) : setCurrentPage(currentPage - 1)}>Previous Page</button>
+                    :
+                    null
+                }
+                {currentPage !== 10 ?
+                    <button className='movie-buttons' onClick={() => currentPage >= 10 ? setCurrentPage(currentPage) : setCurrentPage(currentPage + 1)}>Next Page</button>
+                    :
+                    null
+                }
             </div>
             {/* <Row fetchUrl={requests.fetchActionMovies} title='Action Movies' /> */}
             {/* <Row fetchUrl={requests.fetchComedyMovies} title='Comedy Movies' /> */}
