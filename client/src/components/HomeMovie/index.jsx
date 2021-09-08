@@ -14,7 +14,7 @@ function HomeMovie({ fetchUrl }) {
 
     useEffect(() => {
         const fetchData = async () => {
-            const request = await axios.get(fetchUrl)
+            const request = await axios.get(`${fetchUrl}&page=${currentPage}`)
             setMovies(request.data.results);
         }
         fetchData();
@@ -27,7 +27,6 @@ function HomeMovie({ fetchUrl }) {
     const indexOfLastMovie = currentPage * moviesPerPage;
     const indexOfFirstMovie = indexOfLastMovie - moviesPerPage;
     const currentMovies = movies.slice(indexOfFirstMovie, indexOfLastMovie);
-    console.log(currentMovies);
 
     return (
         <div className='home-movie'>
