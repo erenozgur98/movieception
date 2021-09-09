@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom';
 import axios from '../Axios';
 import { DropdownButton, Dropdown } from 'react-bootstrap';
+import requests from '../../components/Requests';
 import './Row.css'
 
 // change original to w200 or w300 if not styled
@@ -11,14 +12,13 @@ function Row({ fetchUrl, title }) {
     const [movies, setMovies] = useState([]);
     const [, setLoading] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
-    const [moviesPerPage, setMoviesPerPage] = useState(20);
 
     const history = useHistory()
 
     useEffect(() => {
         const fetchData = async () => {
             setLoading(true);
-            const request = await axios.get(`${fetchUrl}`);
+            const request = await axios.get(`${fetchUrl}&page=${currentPage}`);
             setMovies(request.data.results);
             setLoading(false);
         }
@@ -41,31 +41,11 @@ function Row({ fetchUrl, title }) {
         console.log(movie)
     };
 
-    const indexOfLastMovie = currentPage * moviesPerPage;
-    const indexOfFirstMovie = indexOfLastMovie - moviesPerPage;
-    const currentMovies = movies.slice(indexOfFirstMovie, indexOfLastMovie);
-    console.log(currentMovies);
-
-    const handleSelect = (e) => {
-        setMoviesPerPage(e);
-    };
-
     return (
         <div className='row'>
             <h2 className='row-title'>{title}</h2>
-            <DropdownButton
-                variant="secondary"
-                menuVariant="dark"
-                title="Results Per Page"
-                className="mt-2"
-                onSelect={handleSelect}
-            >
-                <Dropdown.Item eventKey="1">1</Dropdown.Item>
-                <Dropdown.Item eventKey="5">5</Dropdown.Item>
-                <Dropdown.Item eventKey="20">20</Dropdown.Item>
-            </DropdownButton>
             <div className="row-posters">
-                {currentMovies.map((movie) => (
+                {movies.map((movie) => (
                     <div className="row-map" key={movie?.id}>
                         <img
                             onClick={() => handleClick(movie)}
@@ -81,6 +61,19 @@ function Row({ fetchUrl, title }) {
                         <i onClick={() => addToFavorite(movie)} className="fas fa-heart"></i>
                     </div>
                 ))}
+            </div>
+            <div className='movie-btn'>
+                {/* find a way to add the &page=? to the link instead of here, because whenever you go back the page number is going to be resetted to 1 */}
+                {currentPage !== 1 ?
+                    <button className='movie-buttons' onClick={() => currentPage <= 1 ? setCurrentPage(currentPage) : setCurrentPage(currentPage - 1)}>Previous Page</button>
+                    :
+                    null
+                }
+                {currentPage !== 10 ?
+                    <button className='movie-buttons' onClick={() => currentPage >= 10 ? setCurrentPage(currentPage) : setCurrentPage(currentPage + 1)}>Next Page</button>
+                    :
+                    null
+                }
             </div>
         </div>
     );

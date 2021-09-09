@@ -32,7 +32,11 @@ function HomeMovie({ fetchUrl }) {
         <div className='home'>
             <div>#{count + 1} of Top 10 Movies</div>
             <div className='home-movie'>
-                <div onClick={() => count >= 1 ? setCount(count - 1) : setCount(count)}><i className="arrow fas fa-angle-left"></i></div>
+                {count >= 1 ?
+                    <div onClick={() => count >= 1 ? setCount(count - 1) : setCount(count)}><i className="arrow fas fa-angle-left"></i></div>
+                    :
+                    <div className='hide' onClick={() => count >= 1 ? setCount(count - 1) : setCount(count)}><i className="arrow fas fa-angle-left"></i></div>
+                }
                 <img
                     onClick={handleClick}
                     className='home-movie-poster'
@@ -44,7 +48,11 @@ function HomeMovie({ fetchUrl }) {
                     alt={currentMovies[count]?.name}
                 />
                 {/* less than 9 because 0 is the starting index */}
-                <div onClick={() => count < 9 ? setCount(count + 1) : setCount(count)}><i className="arrow fas fa-angle-right"></i></div>
+                {count < 9 ?
+                    <div onClick={() => count < 9 ? setCount(count + 1) : setCount(count)}><i className="arrow fas fa-angle-right"></i></div>
+                    :
+                    <div className='hide' onClick={() => count < 9 ? setCount(count + 1) : setCount(count)}><i className="arrow fas fa-angle-right"></i></div>
+                }
             </div>
         </div>
     );

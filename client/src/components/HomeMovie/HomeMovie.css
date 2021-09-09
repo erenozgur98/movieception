@@ -25,3 +25,7 @@
     font-size: 48px;
     margin: 0rem 1rem;
 }
+
+.hide {
+    visibility: hidden;
+}
