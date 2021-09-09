@@ -14,6 +14,7 @@
 .home-movie-poster {
     padding: 1rem 0rem;
     transition: transform 450ms;
+    border-radius: 5vw;
 }
 
 .home-movie-poster:hover {

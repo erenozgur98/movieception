@@ -7,6 +7,7 @@
 .home-show-poster {
     padding: 1rem 0rem;
     transition: transform 450ms;
+    border-radius: 5vw;
 }
 
 .home-show-poster:hover{

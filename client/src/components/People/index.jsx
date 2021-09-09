@@ -42,7 +42,7 @@ function People({ fetchUrl, title }) {
                             }
                             alt={actor?.name}
                         />
-                        <h5 className='people-name'>{actor.name}</h5>
+                        <div className='people-name'>{actor.name}</div>
                     </div>
                 ))}
             </div>

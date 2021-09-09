@@ -22,6 +22,7 @@
   flex-direction: column;
   border: solid white 2px;
   margin: 5px;
+  border-radius: 2vw;
   /* padding: 2px; */
 }
 
@@ -42,10 +43,11 @@
 .row-poster {
   object-fit: contain;
   width: 100%;
+  border-top-left-radius: 2vw;
+  border-top-right-radius: 2vw;
   /* max-height: 350px; */
   /* max-width: 250px; */
   /* margin: 0px 0px 10px 0px; */
-  transition: transform 450ms;
 }
 
 .row-poster:hover {
