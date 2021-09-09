@@ -36,9 +36,9 @@ function Banner({ link, title, movie }) {
                 </div>
                 {movie ?
                     <div className='banner-description'>
-                        <h1 className='banner-real-title'>
+                        {/* <h1 className='banner-real-title'>
                             {movie?.title || movie?.name}
-                        </h1>
+                        </h1> */}
                         <button className='banner-btn' onClick={redirect}>Go To {movie?.title || movie?.name}</button>
                     </div>
                     :
