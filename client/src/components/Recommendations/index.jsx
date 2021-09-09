@@ -36,10 +36,7 @@ function Recommendations({ movie, show }) {
         } else {
             history.push(`/shows/${recommendations.id}`);
         }
-    }
-
-    console.log('movie recom: ', movieRecommendations);
-    console.log('show recom: ', showRecommendations);
+    };
 
     return (
         <div className='recommendations'>
