@@ -32,7 +32,11 @@ function HomeShow({ fetchUrl }) {
         <div className='home'>
             <div>#{count + 1} of Top 10 Shows</div>
             <div className='home-show'>
-                <div onClick={() => count >= 1 ? setCount(count - 1) : setCount(count)}><i className="arrow fas fa-angle-left"></i></div>
+                {count >= 1 ?
+                    <div onClick={() => count >= 1 ? setCount(count - 1) : setCount(count)}><i className="arrow fas fa-angle-left"></i></div>
+                    :
+                    <div className='hide' onClick={() => count >= 1 ? setCount(count - 1) : setCount(count)}><i className="arrow fas fa-angle-left"></i></div>
+                }
                 <img
                     onClick={handleClick}
                     className='home-show-poster'
@@ -43,7 +47,11 @@ function HomeShow({ fetchUrl }) {
                     }
                     alt={currentShows[count]?.name}
                 />
-                <div onClick={() => count < 9 ? setCount(count + 1) : setCount(count)}><i className="arrow fas fa-angle-right"></i></div>
+                {count < 9 ?
+                    <div onClick={() => count < 9 ? setCount(count + 1) : setCount(count)}><i className="arrow fas fa-angle-right"></i></div>
+                    :
+                    <div className='hide' onClick={() => count < 9 ? setCount(count + 1) : setCount(count)}><i className="arrow fas fa-angle-right"></i></div>
+                }
             </div>
         </div>
     );
