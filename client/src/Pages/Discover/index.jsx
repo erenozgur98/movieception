@@ -8,7 +8,7 @@ function Discover() {
             {/* <Row fetchUrl={requests.fetchTopRated} title='Top Rated Movies' /> */}
             {/* <Row fetchUrl={requests.fetchTrendingMovies} title='Trending Movies' /> */}
             {/* <Row fetchUrl={requests.fetchTrendingShows} title='Trending Shows' /> */}
-            <Row fetchUrl={requests.fetchTrending} title='Trending' />
+            <Row fetchUrl={requests.fetchTrending} />
             {/* <Row fetchUrl={requests.fetchActionMovies} title='Action Movies' /> */}
             {/* <Row fetchUrl={requests.fetchComedyMovies} title='Comedy Movies' /> */}
             {/* <Row fetchUrl={requests.fetchHorrorMovies} title='Horror Movies' /> */}

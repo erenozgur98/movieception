@@ -50,9 +50,9 @@ function App() {
           <Route exact path='/home' component={HomePage} />
           <Route exact path='/search/query=:searchResults' component={SearchResults} />
           <Route exact path='/discover' component={Discover} />
-          <Route exact path='/movies' component={Movies} />
+          <Route exact path='/discover/movies' component={Movies} />
           <Route exact path='/movies/:MovieId' component={MoviePage} />
-          <Route exact path='/shows' component={Shows} />
+          <Route exact path='/discover/shows' component={Shows} />
           <Route exact path='/shows/:ShowId' component={ShowPage} />
           <Route exact path='/actors' component={Actors} />
           <Route exact path='/actors/:ActorId' component={ActorPage} />

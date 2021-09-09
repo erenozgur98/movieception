@@ -45,12 +45,6 @@ function Header({ user, handleLogout }) {
                             <Nav.Link href='/discover' className='nav-link' style={{ color: 'white' }}>
                                 Discover
                             </Nav.Link>
-                            <Nav.Link href='/movies' className='nav-link' style={{ color: 'white' }}>
-                                Movies
-                            </Nav.Link>
-                            <Nav.Link href='/shows' className='nav-link' style={{ color: 'white' }}>
-                                Shows
-                            </Nav.Link>
                             <Nav.Link href='/actors' className='nav-link' style={{ color: 'white' }}>
                                 Actors
                             </Nav.Link>
@@ -87,12 +81,6 @@ function Header({ user, handleLogout }) {
                             <Nav.Link href='/discover' className='nav-link' style={{ color: 'white' }}>
                                 Discover
                             </Nav.Link>
-                            <Nav.Link href='/movies' className='nav-link' style={{ color: 'white' }}>
-                                Movies
-                            </Nav.Link>
-                            <Nav.Link href='/shows' className='nav-link' style={{ color: 'white' }}>
-                                Shows
-                            </Nav.Link>
                             <Nav.Link href='/actors' className='nav-link' style={{ color: 'white' }}>
                                 Actors
                             </Nav.Link>
@@ -101,7 +89,7 @@ function Header({ user, handleLogout }) {
                             </Nav.Link>
                         </Nav>
                     </Navbar.Collapse>
-                    
+
                 </Navbar>
             )}
         </div>
