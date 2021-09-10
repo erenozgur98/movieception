@@ -40,8 +40,6 @@ function ActorPage() {
         }
     };
 
-    console.log(movieCredits)
-
     return (
         <div>
             {/* for now placeholder image, todo: add algorithm to randomize backdrop_path for actor's movies */}

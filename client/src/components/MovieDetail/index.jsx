@@ -21,9 +21,7 @@ function MovieDetail({ fetchUrl }) {
   const handleClick = (movie) => {
     console.log(movie);
     <Details movie={movie} />
-  }
-
-  console.log(movies);
+  };
 
   return (
     <div className='movie-detail'>

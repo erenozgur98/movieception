@@ -13,8 +13,6 @@ function Banner({ link, title, movie }) {
         }
     }
 
-    console.log(movie)
-
     return (
         <div>
             <header

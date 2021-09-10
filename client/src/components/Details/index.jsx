@@ -11,7 +11,6 @@ const Details = ({ movie, handleClose }) => {
     };
 
     const addToFavorites = (movie) => {
-        <Favorite movie={movie} />
         console.log(movie)
     };
 

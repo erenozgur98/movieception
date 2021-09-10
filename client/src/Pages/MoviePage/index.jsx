@@ -52,8 +52,6 @@ function MoviePage() {
         width: '100%',
     };
 
-    console.log(movie)
-
     return (
         <div>
             {movie?.poster_path ?
