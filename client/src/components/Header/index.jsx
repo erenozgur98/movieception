@@ -63,7 +63,7 @@ function Header({ user, handleLogout }) {
                     expand='lg'
                     variant='dark'
                     sticky='top'
-                    className={navColor ? 'navColor1' : 'navColor2'}
+                    className={navColor ? 'navColor2' : 'navColor1'}
                 >
                     <NavbarBrand href='/'>
                         <h3>True Story</h3>
