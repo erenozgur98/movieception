@@ -98,7 +98,7 @@ function ActorPage() {
                             <div className='movie-credits'>
                                 {movieCredits.map((credits) => (
                                     <img
-                                        key={credits.id}
+                                        // key={credits.id}
                                         onClick={() => redirect(credits)}
                                         src={`${base_url}${credits?.poster_path}`}
                                         alt={credits?.original_name}
@@ -112,6 +112,7 @@ function ActorPage() {
                         <div className='actor-pictures'>
                             {actorPictures.map((x) => (
                                 <img
+                                    key={x.id}
                                     src={`${base_url}${x.file_path}`}
                                     alt={x?.width}
                                     className='actor-images'
