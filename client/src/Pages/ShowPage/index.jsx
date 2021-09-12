@@ -11,6 +11,7 @@ import YouTube from 'react-youtube';
 import '../MoviePage/MoviePage.css';
 import Overview from '../../components/Overview';
 import Recommendations from '../../components/Recommendations';
+import Seasons from '../../components/Seasons';
 
 function ShowPage() {
     const [, setLoading] = useState(false);
@@ -83,6 +84,7 @@ function ShowPage() {
                         <WatchProviders show={show} />
                         <div>The cast of {show.name}:</div>
                         <Credits show={show} />
+                        <Seasons show={show} />
                         <Recommendations show={show} />
                     </div>
                     :
