@@ -17,7 +17,7 @@ import SearchResults from './components/SearchResults';
 // import Banner from './components/Banner';
 import './index.css'
 import Episodes from './components/Episodes';
-import Seasons from './components/Seasons';
+import SeasonPage from './Pages/SeasonPage';
 
 function App() {
   const [user, setUser] = useState({});
@@ -56,8 +56,8 @@ function App() {
           <Route exact path='/movies/:MovieId' component={MoviePage} />
           <Route exact path='/discover/shows' component={Shows} />
           <Route exact path='/shows/:ShowId' component={ShowPage} />
-          <Route exact path='/shows/seasons/:seasonNumber' component={Seasons} />
-          <Route exact path='/shows/seasons/:seasonNumber/episodes/:episodeNumber' component={Episodes} />
+          <Route exact path='/shows/:ShowId/seasons/:SeasonId' component={SeasonPage} />
+          <Route exact path='/shows/:ShowId/seasons/:SeasonId/episodes/:EpisodeId' component={Episodes} />
           <Route exact path='/actors' component={Actors} />
           <Route exact path='/actors/:ActorId' component={ActorPage} />
           <Route exact path='/profile' component={Profile} />

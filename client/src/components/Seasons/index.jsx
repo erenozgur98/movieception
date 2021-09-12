@@ -14,9 +14,7 @@ function Seasons({ show }) {
 
     const redirect = (x) => {
         history.push(`/shows/${show?.id}/seasons/${x?.season_number}`)
-    }
-
-
+    };
 
     return (
         <div className='seasons'>
@@ -48,4 +46,4 @@ function Seasons({ show }) {
     )
 }
 
-export default Seasons
+export default Seasons;
