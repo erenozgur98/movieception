@@ -9,13 +9,15 @@ import SignUp from './Pages/SignUp';
 import Login from './Pages/Login';
 import Discover from './Pages/Discover';
 import Header from './components/Header';
-import './index.css'
 import API from './utils/API';
 import MoviePage from './Pages/MoviePage';
 import ShowPage from './Pages/ShowPage';
 import ActorPage from './Pages/ActorPage';
 import SearchResults from './components/SearchResults';
 // import Banner from './components/Banner';
+import './index.css'
+import Episodes from './components/Episodes';
+import Seasons from './components/Seasons';
 
 function App() {
   const [user, setUser] = useState({});
@@ -54,6 +56,8 @@ function App() {
           <Route exact path='/movies/:MovieId' component={MoviePage} />
           <Route exact path='/discover/shows' component={Shows} />
           <Route exact path='/shows/:ShowId' component={ShowPage} />
+          <Route exact path='/shows/seasons/:seasonNumber' component={Seasons} />
+          <Route exact path='/shows/seasons/:seasonNumber/episodes/:episodeNumber' component={Episodes} />
           <Route exact path='/actors' component={Actors} />
           <Route exact path='/actors/:ActorId' component={ActorPage} />
           <Route exact path='/profile' component={Profile} />
