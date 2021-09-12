@@ -11,7 +11,7 @@ function Credits({ movie, show }) {
     const [movieCast, setMovieCast] = useState([]);
     const [showCast, setShowCast] = useState([]);
 
-    const history = useHistory()
+    const history = useHistory();
 
     useEffect(() => {
         if (movie?.id) {
@@ -28,9 +28,6 @@ function Credits({ movie, show }) {
             fetchData();
         }
     }, [movie?.id, show?.id]);
-
-    // useEffect(() => {
-    // }, [show?.id])
 
     const redirect = (theCast) => {
         history.push(`/actors/${theCast?.id}`)
