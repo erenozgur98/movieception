@@ -29,6 +29,7 @@ function ShowPage() {
             const request = await axios.get(`/tv/${ShowId}?api_key=${apiKey}`);
             const requestExternalId = await axios.get(`tv/${ShowId}/external_ids?api_key=${apiKey}`);
             const requestVideos = await axios.get(`tv/${ShowId}/videos?api_key=${apiKey}`);
+            // const seasons = await axios.get(`/tv/${ShowId}/season`)
             setShow(request.data);
             setExternalId(requestExternalId.data);
             setVideos(requestVideos.data.results);
@@ -49,6 +50,8 @@ function ShowPage() {
         heigth: '390',
         width: '100%',
     };
+
+    console.log(show)
 
     return (
         <div>
