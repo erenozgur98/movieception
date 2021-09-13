@@ -1,3 +1,11 @@
+.overview {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-self: center;
+    margin-left: 0.5rem;
+}
+
 .episode-picture {
     display: flex;
 }

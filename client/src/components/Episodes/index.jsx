@@ -36,10 +36,11 @@ function Episodes({ show, ShowId, SeasonId }) {
                         className='episode-poster'
                         onClick={() => redirect(x)}
                     />
-                    <div>{x?.season_number}X{x?.episode_number}</div>
-                    <div>{x?.name}</div>
-                    <div>{x?.air_date}</div>
-                    <div>{x?.overview}</div>
+                    <div className='overview'>
+                        <div>{x?.season_number}X{x?.episode_number} {x?.name}</div>
+                        <div>{x?.air_date}</div>
+                        <div>{x?.overview}</div>
+                    </div>
                 </div>
             ))}
         </div>
