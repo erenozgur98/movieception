@@ -2,11 +2,12 @@ import axios from '../../components/Axios';
 import React, { useState, useEffect } from 'react';
 import { Container } from 'react-bootstrap';
 import './Episodes.css';
+import { useHistory } from 'react-router';
 
 const base_url = 'https://image.tmdb.org/t/p/original/';
 const apiKey = 'af737f76cdba5b7435e17cc94568c07d';
 
-function Episodes({ show, ShowId }) {
+function Episodes({ show, ShowId, SeasonId }) {
     const [episodeRequest, setEpisodeRequest] = useState([]);
 
     useEffect(() => {
@@ -17,24 +18,28 @@ function Episodes({ show, ShowId }) {
         fetchData();
     }, [show, ShowId]);
 
+    const history = useHistory();
+
     const redirect = x => {
-        console.log(x)
+        history.push(`/shows/${ShowId}/seasons/${SeasonId}/episodes/${x?.episode_number}`);
     }
 
     console.log('episodes here', episodeRequest);
 
-    // request returns: air_date, name, episodes[], overview, poster_path, season_number, _id
-
     return (
-        <div>
+        <div className='episodes-map'>
             <div>{episodeRequest.length} Episodes</div>
             {episodeRequest.map((x) => (
                 <div className='episode-picture'>
                     <img
-                        src={`https://image.tmdb.org/t/p/original${x.still_path}`} alt={`${x.name}`}
+                        src={`https://image.tmdb.org/t/p/original${x?.still_path}`} alt={`${x?.name}`}
                         className='episode-poster'
                         onClick={() => redirect(x)}
                     />
+                    <div>{x?.season_number}X{x?.episode_number}</div>
+                    <div>{x?.name}</div>
+                    <div>{x?.air_date}</div>
+                    <div>{x?.overview}</div>
                 </div>
             ))}
         </div>

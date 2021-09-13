@@ -43,7 +43,7 @@ function SeasonPage() {
                             </div>
                             <div className="bottom-section">
                                 <Overview link={show} />
-                                <Episodes show={show} ShowId={ShowId} />
+                                <Episodes show={show} ShowId={ShowId} SeasonId={SeasonId} />
                             </div>
                         </div>
                     </div>
