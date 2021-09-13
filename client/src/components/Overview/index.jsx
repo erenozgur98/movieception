@@ -13,7 +13,11 @@ function Overview({ link }) {
                     null}
             </div>
             <div className="movie-overview">
-                <a href={link?.homepage} target="_blank" rel="noreferrer">Homepage</a>
+                {link?.homepage ?
+                    <a href={link?.homepage} target="_blank" rel="noreferrer">Homepage</a>
+                    :
+                    null
+                }
             </div>
             <div>
                 {link?.release_date || link?.first_air_date ?
@@ -101,7 +105,7 @@ function Overview({ link }) {
                     null
                 }
             </div>
-            <div style={{ fontStyle:"italic" }}>
+            <div style={{ fontStyle: "italic" }}>
                 {link?.tagline ?
                     <div>
                         {link?.tagline}

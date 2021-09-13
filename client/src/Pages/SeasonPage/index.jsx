@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Container } from 'react-bootstrap';
 import axios from '../../components/Axios';
-import './SeasonPage.css';
 import Banner from '../../components/Banner';
+import Overview from '../../components/Overview';
+import './SeasonPage.css';
 
 const base_url = 'https://image.tmdb.org/t/p/original/';
 const apiKey = 'af737f76cdba5b7435e17cc94568c07d';
@@ -24,11 +25,32 @@ function SeasonPage() {
         fetchData();
     }, [SeasonId, ShowId]);
 
-    console.log('sssssssssssssssss', show)
-
     return (
         <div>
             {/* show returns name, overview, air_date, episode_count, id, poster_path, season_number */}
+            <Container>
+                {show.poster_path ?
+                    <div>
+                        <div className="page-organization">
+                            <div>
+                                <div className="poster-picture">
+                                    <img src={`https://image.tmdb.org/t/p/original${show?.poster_path}`} alt="black-widow" className='movie-poster' />
+                                </div>
+                            </div>
+                            <div className="bottom-section">
+                                <Overview link={show} />
+                            </div>
+                        </div>
+                    </div>
+                    :
+                    <>
+                        <Container style={{ textAlign: 'center', paddingTop: '70px' }}>
+                            Oops, something went wrong, go back to <a href='/shows'>show</a> or <a href='/'>home</a> page
+                        </Container>
+                    </>
+                }
+            </Container>
+
         </div>
     )
 }
