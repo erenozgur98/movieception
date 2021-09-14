@@ -37,7 +37,7 @@ function Episodes({ show, ShowId, SeasonId }) {
                         onClick={() => redirect(x)}
                     />
                     <div className='overview'>
-                        <div>{x?.season_number}X{x?.episode_number} {x?.name}</div>
+                        <div>{x?.season_number}x{x?.episode_number} {x?.name}</div>
                         <div>{x?.air_date}</div>
                         <div>{x?.overview}</div>
                     </div>

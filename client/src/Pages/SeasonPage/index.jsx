@@ -7,7 +7,6 @@ import Overview from '../../components/Overview';
 import './SeasonPage.css';
 import Episodes from '../../components/Episodes';
 
-const base_url = 'https://image.tmdb.org/t/p/original/';
 const apiKey = 'af737f76cdba5b7435e17cc94568c07d';
 
 function SeasonPage() {
@@ -25,13 +24,15 @@ function SeasonPage() {
         }
         fetchData();
     }, [SeasonId, ShowId]);
-
-    // to get episodes: /tv/{tv_id}/season/{season_number}/episode/{episode_number}
     console.log('show hereeeeee', show)
 
     return (
         <div>
-            {/* show returns name, overview, air_date, episode_count, id, poster_path, season_number */}
+            {show?.poster_path ?
+                <Banner link={show?.poster_path} />
+                :
+                null
+            }
             <Container>
                 {show.poster_path ?
                     <div>
