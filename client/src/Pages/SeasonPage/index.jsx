@@ -26,8 +26,6 @@ function SeasonPage() {
         fetchData();
     }, [SeasonId, ShowId]);
 
-    console.log('credits here', credits);
-
     return (
         <div>
             {show?.poster_path ?
