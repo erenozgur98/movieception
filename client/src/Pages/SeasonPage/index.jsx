@@ -29,7 +29,7 @@ function SeasonPage() {
     return (
         <div>
             {show?.poster_path ?
-                <Banner link={show?.poster_path} />
+                <Banner link={show?.poster_path} title={show?.name} />
                 :
                 null
             }
