@@ -39,7 +39,7 @@ function Episodes({ show, ShowId, SeasonId }) {
                     <div className='overview'>
                         <div>{x?.season_number}x{x?.episode_number} {x?.name}</div>
                         <div>{x?.air_date}</div>
-                        <div>{x?.overview}</div>
+                        <div className='truncate'>{x?.overview}</div>
                     </div>
                 </div>
             ))}
