@@ -22,9 +22,7 @@ function Episodes({ show, ShowId, SeasonId }) {
 
     const redirect = x => {
         history.push(`/shows/${ShowId}/seasons/${SeasonId}/episodes/${x?.episode_number}`);
-    }
-
-    console.log('episodes here', episodeRequest);
+    };
 
     return (
         <div className='episodes-map'>

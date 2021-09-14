@@ -24,7 +24,6 @@ function SeasonPage() {
         }
         fetchData();
     }, [SeasonId, ShowId]);
-    console.log('show hereeeeee', show)
 
     return (
         <div>
