@@ -29,7 +29,7 @@ function Header({ user, handleLogout }) {
                     className={navColor ? 'navColor2' : 'navColor1'}
                 >
                     <NavbarBrand href='/'>
-                        <h3>True Story</h3>
+                        <h4>True Story</h4>
                     </NavbarBrand>
                     <SearchForm />
                     {/* <NavbarBrand className='navbar-brand' href='/'>
@@ -66,7 +66,7 @@ function Header({ user, handleLogout }) {
                     className={navColor ? 'navColor2' : 'navColor1'}
                 >
                     <NavbarBrand href='/'>
-                        <h3>True Story</h3>
+                        <h4>True Story</h4>
                     </NavbarBrand>
                     <SearchForm />
                     {/* <NavbarBrand className='navbar-brand' href='/'>

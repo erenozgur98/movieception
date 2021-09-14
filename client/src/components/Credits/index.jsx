@@ -26,7 +26,7 @@ function Credits({ movie, show, credits }) {
             }
             fetchData();
         } else {
-            setCast(credits.cast);
+            setCast(credits?.cast);
         }
     }, [movie?.id, show?.id, credits]);
 
