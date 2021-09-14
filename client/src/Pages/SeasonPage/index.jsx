@@ -6,6 +6,7 @@ import Banner from '../../components/Banner';
 import Overview from '../../components/Overview';
 import './SeasonPage.css';
 import Episodes from '../../components/Episodes';
+import Credits from '../../components/Credits';
 
 const apiKey = 'af737f76cdba5b7435e17cc94568c07d';
 
@@ -17,13 +18,15 @@ function SeasonPage() {
 
     useEffect(() => {
         const fetchData = async () => {
-            const requestCredits = await axios.get(`tv/${ShowId}/season/${SeasonId}/aggregate_credits?api_key=${apiKey}`);
+            const requestCredits = await axios.get(`tv/${ShowId}/season/${SeasonId}/credits?api_key=${apiKey}`);
             const request = await axios.get(`/tv/${ShowId}?api_key=${apiKey}`);
             setCredits(requestCredits.data);
             setShow(request.data.seasons[SeasonId]);
         }
         fetchData();
     }, [SeasonId, ShowId]);
+
+    console.log('credits here', credits);
 
     return (
         <div>
@@ -43,6 +46,7 @@ function SeasonPage() {
                             </div>
                             <div className="bottom-section">
                                 <Overview link={show} />
+                                <Credits credits={credits} />
                                 <Episodes show={show} ShowId={ShowId} SeasonId={SeasonId} />
                             </div>
                         </div>

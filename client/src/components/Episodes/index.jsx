@@ -1,10 +1,8 @@
 import axios from '../../components/Axios';
 import React, { useState, useEffect } from 'react';
-import { Container } from 'react-bootstrap';
 import './Episodes.css';
 import { useHistory } from 'react-router';
 
-const base_url = 'https://image.tmdb.org/t/p/original/';
 const apiKey = 'af737f76cdba5b7435e17cc94568c07d';
 
 function Episodes({ show, ShowId, SeasonId }) {

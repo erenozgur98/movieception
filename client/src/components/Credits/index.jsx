@@ -7,9 +7,8 @@ import './Credits.css'
 const base_url = 'https://image.tmdb.org/t/p/original/';
 const apiKey = 'af737f76cdba5b7435e17cc94568c07d';
 
-function Credits({ movie, show }) {
-    const [movieCast, setMovieCast] = useState([]);
-    const [showCast, setShowCast] = useState([]);
+function Credits({ movie, show, credits }) {
+    const [cast, setCast] = useState([]);
 
     const history = useHistory();
 
@@ -17,17 +16,19 @@ function Credits({ movie, show }) {
         if (movie?.id) {
             const fetchData = async () => {
                 const requestMovie = await axios.get(`/movie/${movie?.id}/credits?api_key=${apiKey}`);
-                setMovieCast(requestMovie.data.cast);
+                setCast(requestMovie.data.cast);
+            }
+            fetchData();
+        } else if (show?.id) {
+            const fetchData = async () => {
+                const requestShow = await axios.get(`/tv/${show?.id}/credits?api_key=${apiKey}`);
+                setCast(requestShow.data.cast);
             }
             fetchData();
         } else {
-            const fetchData = async () => {
-                const requestShow = await axios.get(`/tv/${show?.id}/credits?api_key=${apiKey}`);
-                setShowCast(requestShow.data.cast);
-            }
-            fetchData();
+            setCast(credits.cast);
         }
-    }, [movie?.id, show?.id]);
+    }, [movie?.id, show?.id, credits]);
 
     const redirect = (theCast) => {
         history.push(`/actors/${theCast?.id}`)
@@ -35,37 +36,20 @@ function Credits({ movie, show }) {
 
     return (
         <div className='casts'>
-            {movie?.id ?
-                <div className="casts-posters">
-                    {movieCast.map((theCast) => (
-                        <div className='casts-map'>
-                            <img
-                                key={theCast.id}
-                                onClick={() => redirect(theCast)}
-                                src={`${base_url}${theCast?.profile_path}`}
-                                alt={theCast?.original_name}
-                                className='cast-poster'
-                            />
-                            <div className='casts-name'>{theCast?.original_name}</div>
-                        </div>
-                    ))}
-                </div>
-                :
-                <div className="casts-posters">
-                    {showCast.map((theCast) => (
-                        <div className='casts-map'>
-                            <img
-                                key={theCast.id}
-                                onClick={() => redirect(theCast)}
-                                src={`${base_url}${theCast?.profile_path}`}
-                                alt={theCast?.original_name}
-                                className='cast-poster'
-                            />
-                            <div className='casts-name'>{theCast?.original_name}</div>
-                        </div>
-                    ))}
-                </div>
-            }
+            <div className="casts-posters">
+                {cast.map((theCast) => (
+                    <div className='casts-map'>
+                        <img
+                            key={theCast.id}
+                            onClick={() => redirect(theCast)}
+                            src={`${base_url}${theCast?.profile_path}`}
+                            alt={theCast?.original_name}
+                            className='cast-poster'
+                        />
+                        <div className='casts-name'>{theCast?.original_name}</div>
+                    </div>
+                ))}
+            </div>
         </div>
     );
 };
