@@ -30,10 +30,6 @@ function EpisodePage() {
 
     return (
         <div>
-            {/* banner */}
-            {/* picture of the season/episode? */}
-            {/* overview */}
-            {/* credits/cast */}
             {/* button to add to watched list */}
             {episode ?
                 <Banner link={episode?.still_path} title={episode?.name} />
