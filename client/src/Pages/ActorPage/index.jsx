@@ -30,7 +30,7 @@ function ActorPage() {
             setMovieCredits(requestMovieCredits.data.cast);
         }
         fetchData()
-    }, [ActorId])
+    }, [ActorId]);
 
     const redirect = (credits) => {
         if (credits.media_type === 'tv') {
@@ -49,10 +49,6 @@ function ActorPage() {
                 <Banner link={movieCredits[1]?.backdrop_path} title={movieCredits[1]?.title} />
             }
             <Container>
-                {/* banner, has actor's movies? backdrop path */}
-                {/* make the actor picture sticky after scroll? will look into that later when styling */}
-                {/* under actor picture external id's eg FB link, IG link, twitter link if available */}
-                {/* credits -> get movie/shows credits which movie/show the actor played in */}
                 {actor.profile_path ?
                     <div>
                         <div className='page-organization'>
