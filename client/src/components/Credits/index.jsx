@@ -37,7 +37,7 @@ function Credits({ movie, show, credits }) {
     return (
         <div className='casts'>
             <div className="casts-posters">
-                {cast.map((theCast) => (
+                {cast?.map((theCast) => (
                     <div className='casts-map'>
                         <img
                             key={theCast.id}
