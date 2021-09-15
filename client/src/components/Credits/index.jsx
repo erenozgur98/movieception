@@ -16,13 +16,13 @@ function Credits({ movie, show, credits }) {
         if (movie?.id) {
             const fetchData = async () => {
                 const requestMovie = await axios.get(`/movie/${movie?.id}/credits?api_key=${apiKey}`);
-                setCast(requestMovie.data.cast);
+                setCast(requestMovie?.data.cast);
             }
             fetchData();
         } else if (show?.id) {
             const fetchData = async () => {
                 const requestShow = await axios.get(`/tv/${show?.id}/credits?api_key=${apiKey}`);
-                setCast(requestShow.data.cast);
+                setCast(requestShow?.data.cast);
             }
             fetchData();
         } else {

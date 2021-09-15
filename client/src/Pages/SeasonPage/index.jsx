@@ -57,7 +57,6 @@ function SeasonPage() {
                     </>
                 }
             </Container>
-
         </div>
     )
 }

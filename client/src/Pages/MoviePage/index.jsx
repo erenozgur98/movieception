@@ -60,9 +60,7 @@ function MoviePage() {
                 <Banner link={movie?.poster_path} />
             }
             <Container>
-                {/* banner, has movie's backdrop path */}
                 {/* videos, select type: 'trailer' , 'featurette', 'teaser' */}
-                {/* video link type: youtube.com/watch?v=${key} <-- key being the video link key from the api */}
                 {movie.poster_path ?
                     <div>
                         <div className='page-organization'>
