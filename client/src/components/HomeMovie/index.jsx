@@ -6,8 +6,8 @@ import './HomeMovie.css'
 function HomeMovie({ fetchUrl }) {
     const [movies, setMovies] = useState([]);
     const [count, setCount] = useState(0);
-    const [currentPage, setCurrentPage] = useState(1);
-    const [moviesPerPage, setMoviesPerPage] = useState(20);
+    const [currentPage, ] = useState(1);
+    const [moviesPerPage, ] = useState(20);
 
     const history = useHistory();
     const base_url = 'https://image.tmdb.org/t/p/w300/';
