@@ -4,7 +4,6 @@ import { Container } from 'react-bootstrap';
 import axios from '../../components/Axios';
 import Banner from '../../components/Banner';
 import Credits from '../../components/Credits';
-import Overview from '../../components/Overview';
 
 const apiKey = 'af737f76cdba5b7435e17cc94568c07d';
 
