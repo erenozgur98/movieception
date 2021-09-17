@@ -6,8 +6,8 @@ import './HomeShow.css'
 function HomeShow({ fetchUrl }) {
     const [shows, setShow] = useState([]);
     const [count, setCount] = useState(0);
-    const [currentPage, setCurrentPage] = useState(1);
-    const [showsPerPage, setShowsPerPage] = useState(20);
+    const [currentPage, ] = useState(1);
+    const [showsPerPage, ] = useState(20);
 
     const history = useHistory();
     const base_url = 'https://image.tmdb.org/t/p/w300/';
