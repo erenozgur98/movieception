@@ -29,7 +29,7 @@ function EpisodePage() {
 
     return (
         <div>
-            {/* button to add to watched list */}
+            {/* add button to add to watched list */}
             {episode ?
                 <Banner link={episode?.still_path} title={episode?.name} />
                 :
