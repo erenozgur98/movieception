@@ -1,6 +1,7 @@
 .actor-background {
     max-height: 300px;
     max-width: 300px;
+    border-radius: 10px;
 }
 
 .actor-pictures {
