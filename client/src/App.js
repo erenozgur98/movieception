@@ -14,7 +14,6 @@ import MoviePage from './Pages/MoviePage';
 import ShowPage from './Pages/ShowPage';
 import ActorPage from './Pages/ActorPage';
 import SearchResults from './components/SearchResults';
-// import Banner from './components/Banner';
 import './index.css'
 import SeasonPage from './Pages/SeasonPage';
 import EpisodePage from './Pages/EpisodePage';
@@ -45,8 +44,6 @@ function App() {
     <div>
       <Router>
         <Header user={user} handleLogout={handleLogout} />
-        {/* Banner here? or no banner? */}
-        {/* <Banner /> */}
         <div className='main'>
           <Route exact path='/' component={HomePage} />
           <Route exact path='/home' component={HomePage} />
