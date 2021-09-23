@@ -10,7 +10,7 @@ function Episodes({ show, ShowId, SeasonId }) {
 
     useEffect(() => {
         const fetchData = async () => {
-            const request = await axios.get(`tv/${ShowId}/season/${show.season_number}?api_key=${apiKey}`);
+            const request = await axios.get(`tv/${ShowId}/season/${show?.season_number}?api_key=${apiKey}`);
             setEpisodeRequest(request.data.episodes);
         }
         fetchData();
@@ -24,8 +24,8 @@ function Episodes({ show, ShowId, SeasonId }) {
 
     return (
         <div className='episodes-map'>
-            <div>{episodeRequest.length} Episodes</div>
-            {episodeRequest.map((x) => (
+            <div>{episodeRequest?.length} Episodes</div>
+            {episodeRequest?.map((x) => (
                 <div className='episode-picture'>
                     <img
                         src={`https://image.tmdb.org/t/p/original${x?.still_path}`} alt={`${x?.name}`}

@@ -34,7 +34,7 @@ function SeasonPage() {
                 null
             }
             <Container>
-                {show.poster_path ?
+                {show?.poster_path ?
                     <div>
                         <div className="page-organization">
                             <div>
