@@ -14,9 +14,9 @@ import MoviePage from './Pages/MoviePage';
 import ShowPage from './Pages/ShowPage';
 import ActorPage from './Pages/ActorPage';
 import SearchResults from './components/SearchResults';
-import './index.css'
 import SeasonPage from './Pages/SeasonPage';
 import EpisodePage from './Pages/EpisodePage';
+import './index.css';
 
 function App() {
   const [user, setUser] = useState({});
