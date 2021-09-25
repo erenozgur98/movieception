@@ -53,8 +53,8 @@ function App() {
           <Route exact path='/movies/:MovieId' component={MoviePage} />
           <Route exact path='/discover/shows' component={Shows} />
           <Route exact path='/shows/:ShowId' component={ShowPage} />
-          <Route exact path='/shows/:ShowId/seasons/:SeasonId' component={SeasonPage} />
-          <Route exact path='/shows/:ShowId/seasons/:SeasonId/episodes/:EpisodeId' component={EpisodePage} />
+          <Route exact path='/shows/:ShowId/season/:SeasonId' component={SeasonPage} />
+          <Route exact path='/shows/:ShowId/season/:SeasonId/episode/:EpisodeId' component={EpisodePage} />
           <Route exact path='/actors' component={Actors} />
           <Route exact path='/actors/:ActorId' component={ActorPage} />
           <Route exact path='/profile' component={Profile} />

@@ -19,7 +19,7 @@ function Episodes({ show, ShowId, SeasonId }) {
     const history = useHistory();
 
     const redirect = x => {
-        history.push(`/shows/${ShowId}/seasons/${SeasonId}/episodes/${x?.episode_number}`);
+        history.push(`/shows/${ShowId}/season/${SeasonId}/episode/${x?.episode_number}`);
     };
 
     return (
