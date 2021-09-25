@@ -40,7 +40,6 @@ function Login({ setUser, user }) {
                     onSubmit={handleLogIn}
                 >
                     <div className='form-group'>
-                        {/* <label htmlFor='username'>Username</label> */}
                         <input
                             type='username'
                             className='form-control'
@@ -49,7 +48,6 @@ function Login({ setUser, user }) {
                         />
                     </div>
                     <div className='form-group'>
-                        {/* <label htmlFor='password'>Password</label> */}
                         <input
                             type='password'
                             className='form-control'
