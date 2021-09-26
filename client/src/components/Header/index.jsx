@@ -1,13 +1,19 @@
 import React, { useState } from 'react'
 import { Navbar, Nav, NavbarBrand } from 'react-bootstrap';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './style.css';
 import SearchForm from '../SearchForm';
 import CurrentUser from '../CurrentUser';
+import Dropdown from './Dropdown';
 
 function Header({ user, handleLogout }) {
+    const [click, setClick] = useState(false);
+    // const [active, setActive] = useState(false);
+    const [dropdown, setDropdown] = useState(false);
     const [navColor, updateColor] = useState(false);
-    const [active, setActive] = useState(false);
+
+    const handleClick = () => setClick(!click);
+    // const closeMobileMenu = () => setClick(false);
 
     const scrollHandler = () => {
         if (window.scrollY >= 20) {
@@ -17,11 +23,19 @@ function Header({ user, handleLogout }) {
         }
     };
 
-    const handleActive = () => {
-        if (active) {
-            setActive(false)
+    const onMouseEnter = () => {
+        if (window.innerWidth < 960) {
+            setDropdown(false);
         } else {
-            setActive(true)
+            setDropdown(true);
+        }
+    };
+
+    const onMouseLeave = () => {
+        if (window.innerWidth < 960) {
+            setDropdown(false);
+        } else {
+            setDropdown(false);
         }
     };
 
@@ -67,25 +81,20 @@ function Header({ user, handleLogout }) {
                     </Navbar.Collapse>
                 </Navbar>
             ) : (
-                <div className='header'>
-                    <a href='/' className='link'>Home</a>
-                    <div
-                        className={active ? "dropdownActive" : "dropdown"}
-                    >
-                        <button
-                            className='link'
-                            onClick={() => handleActive()}
-                        >
+                <div className="header">
+                    <SearchForm />
+                    <Link to='/' className='navbar-logo'>
+                        True Story
+                    </Link>
+                    <div className="menu-icon" onClick={handleClick}>
+                        <i className={click ? 'fas fa-times' : 'fas fa-bars'} />
+                    </div>
+                    <div className='nav-item' onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
+                        <Link to='/discover' className='nav-links'>
                             Discover
-                        </button>
-                        <div className="dropdownMenu">
-                            <div className="dropdownLinks">
-                                <a href='/discover' className='link'>All</a>
-                                <a href='/actors' className='link'>Actors</a>
-                                <a href='/discover/movies' className='link'>Movies</a>
-                                <a href='/discover/shows' className='link'>TV Shows</a>
-                            </div>
-                        </div>
+                            <i className='fas fa-caret-down' />
+                        </Link>
+                        {dropdown && <Dropdown />}
                     </div>
                 </div>
             )}
@@ -94,6 +103,7 @@ function Header({ user, handleLogout }) {
 };
 
 export default Header
+
 
 
 {/* <Navbar
@@ -124,5 +134,4 @@ className={navColor ? 'navColor2' : 'navColor1'}
         </Nav.Link>
     </Nav>
 </Navbar.Collapse>
-
 </Navbar> */}
