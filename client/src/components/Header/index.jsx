@@ -5,12 +5,14 @@ import './style.css';
 import SearchForm from '../SearchForm';
 import CurrentUser from '../CurrentUser';
 import Dropdown from './Dropdown';
+import Login from '../../Pages/Login';
 
 function Header({ user, handleLogout }) {
     const [click, setClick] = useState(false);
     // const [active, setActive] = useState(false);
     const [dropdown1, setDropdown1] = useState(false);
     const [search, setSearch] = useState(false);
+    const [login, setLogin] = useState(false);
     const [navColor, updateColor] = useState(false);
 
     const handleClick = () => setClick(!click);
@@ -41,6 +43,7 @@ function Header({ user, handleLogout }) {
     };
 
     const handleSearch = () => setSearch(!search);
+    const handleLogin = () => setLogin(!login);
 
     window.addEventListener('scroll', scrollHandler);
 
@@ -87,9 +90,8 @@ function Header({ user, handleLogout }) {
                 <div className="header">
                     <div
                         className="nav-item"
-                        onClick={handleSearch}
                     >
-                        <i className="fas fa-search"></i>
+                        <i className="fas fa-search" onClick={handleSearch}></i>
                         {search && <SearchForm />}
                     </div>
                     <Link to='/' className='navbar-logo'>
@@ -98,12 +100,19 @@ function Header({ user, handleLogout }) {
                     <div className="menu-icon" onClick={handleClick}>
                         <i className={click ? 'fas fa-times' : 'fas fa-bars'} />
                     </div>
+                    <Link to='/' className='navbar-logo'>
+                        Home
+                    </Link>
                     <div className='nav-item' onMouseEnter={onMouseEnter1} onMouseLeave={onMouseLeave1}>
                         <Link to='/discover' className='nav-links'>
                             Discover
                             <i className='fas fa-caret-down' />
                         </Link>
                         {dropdown1 && <Dropdown />}
+                    </div>
+                    <div className='nav-item'>
+                        <div onClick={handleLogin}>Login</div>
+                        {login && <Login />}
                     </div>
                 </div>
             )}

@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { Container } from 'react-bootstrap';
-import { Redirect } from 'react-router';
+// import { Container } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 import API from '../../utils/API';
 import './style.css'
@@ -8,20 +7,17 @@ import './style.css'
 function Login({ setUser, user }) {
     const username = useRef();
     const password = useRef();
-
     const history = useHistory();
+    // const [redirect, setRedirect] = useState(false);
 
-    const [redirect, setRedirect] = useState(false);
+    // useEffect(() => {
+    //     if (user.username) setRedirect(true);
+    // }, [user])
 
-    useEffect(() => {
-        if (user.username) setRedirect(true)
-    }, [user])
-
-    const handleLogIn = async (e) => {
+    const handleLogin = async (e) => {
         e.preventDefault();
         try {
             const newLogin = await API.logIn({ username: username.current.value, password: password.current.value });
-            // delete the password so it won't be set in the state
             delete newLogin.data.password;
             setUser(newLogin.data);
             console.log(newLogin.data)
@@ -33,8 +29,7 @@ function Login({ setUser, user }) {
 
     return (
         <div>
-            <Container className='login-section'>
-                {redirect && <Redirect to="/" />}
+            {/* <Container className='login-section'>
                 <h1>Login</h1>
                 <form
                     onSubmit={handleLogIn}
@@ -65,7 +60,14 @@ function Login({ setUser, user }) {
                     <p className="lable-text"></p>
                     <a className="d-flex justify-content-center" href="/signup"><p className="lable-text">Don't have an account? Sign up here!</p></a>
                 </form>
-            </Container>
+            </Container> */}
+            <form onSubmit={handleLogin}>
+                <label htmlFor="username">Username</label>
+                <input type="text" name='username' ref={username} />
+                <label htmlFor="password">Password</label>
+                <input type="password" name='password' ref={password} />
+                <button className='' type='submit'>Login</button>
+            </form>
         </div>
     )
 }
