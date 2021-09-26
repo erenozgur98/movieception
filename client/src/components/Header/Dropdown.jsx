@@ -19,7 +19,7 @@ function Dropdown() {
         },
         {
             title: 'Actors',
-            path: '/discover/actors',
+            path: '/actors',
             className: 'dropdown-link'
         },
     ]

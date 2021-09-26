@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import { useHistory } from 'react-router-dom';
 
-function SearchForm() {
+function SearchForm({ isOpen }) {
   const search = useRef();
   const history = useHistory();
 

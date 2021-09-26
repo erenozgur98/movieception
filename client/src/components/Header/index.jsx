@@ -9,7 +9,8 @@ import Dropdown from './Dropdown';
 function Header({ user, handleLogout }) {
     const [click, setClick] = useState(false);
     // const [active, setActive] = useState(false);
-    const [dropdown, setDropdown] = useState(false);
+    const [dropdown1, setDropdown1] = useState(false);
+    const [search, setSearch] = useState(false);
     const [navColor, updateColor] = useState(false);
 
     const handleClick = () => setClick(!click);
@@ -23,21 +24,23 @@ function Header({ user, handleLogout }) {
         }
     };
 
-    const onMouseEnter = () => {
+    const onMouseEnter1 = () => {
         if (window.innerWidth < 960) {
-            setDropdown(false);
+            setDropdown1(false);
         } else {
-            setDropdown(true);
+            setDropdown1(true);
         }
     };
 
-    const onMouseLeave = () => {
+    const onMouseLeave1 = () => {
         if (window.innerWidth < 960) {
-            setDropdown(false);
+            setDropdown1(false);
         } else {
-            setDropdown(false);
+            setDropdown1(false);
         }
     };
+
+    const handleSearch = () => setSearch(!search);
 
     window.addEventListener('scroll', scrollHandler);
 
@@ -82,19 +85,25 @@ function Header({ user, handleLogout }) {
                 </Navbar>
             ) : (
                 <div className="header">
-                    <SearchForm />
+                    <div
+                        className="nav-item"
+                        onClick={handleSearch}
+                    >
+                        <i className="fas fa-search"></i>
+                        {search && <SearchForm />}
+                    </div>
                     <Link to='/' className='navbar-logo'>
                         True Story
                     </Link>
                     <div className="menu-icon" onClick={handleClick}>
                         <i className={click ? 'fas fa-times' : 'fas fa-bars'} />
                     </div>
-                    <div className='nav-item' onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
+                    <div className='nav-item' onMouseEnter={onMouseEnter1} onMouseLeave={onMouseLeave1}>
                         <Link to='/discover' className='nav-links'>
                             Discover
                             <i className='fas fa-caret-down' />
                         </Link>
-                        {dropdown && <Dropdown />}
+                        {dropdown1 && <Dropdown />}
                     </div>
                 </div>
             )}
