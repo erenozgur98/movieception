@@ -17,6 +17,14 @@ function Header({ user, handleLogout }) {
         }
     };
 
+    const handleActive = () => {
+        if (active) {
+            setActive(false)
+        } else {
+            setActive(true)
+        }
+    };
+
     window.addEventListener('scroll', scrollHandler);
 
     return (
@@ -66,12 +74,17 @@ function Header({ user, handleLogout }) {
                     >
                         <button
                             className='link'
-                            onClick={active ? () => setActive(false) : () => setActive(true)}
+                            onClick={() => handleActive()}
                         >
                             Discover
                         </button>
                         <div className="dropdownMenu">
-                            Dropdown Content
+                            <div className="dropdownLinks">
+                                <a href='/discover' className='link'>All</a>
+                                <a href='/actors' className='link'>Actors</a>
+                                <a href='/discover/movies' className='link'>Movies</a>
+                                <a href='/discover/shows' className='link'>TV Shows</a>
+                            </div>
                         </div>
                     </div>
                 </div>
