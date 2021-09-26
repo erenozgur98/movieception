@@ -7,6 +7,7 @@ import CurrentUser from '../CurrentUser';
 
 function Header({ user, handleLogout }) {
     const [navColor, updateColor] = useState(false);
+    const [active, setActive] = useState(false);
 
     const scrollHandler = () => {
         if (window.scrollY >= 20) {
@@ -14,7 +15,7 @@ function Header({ user, handleLogout }) {
         } else {
             updateColor(false);
         }
-    }
+    };
 
     window.addEventListener('scroll', scrollHandler);
 
@@ -60,9 +61,16 @@ function Header({ user, handleLogout }) {
             ) : (
                 <div className='header'>
                     <a href='/' className='link'>Home</a>
-                    <div className="dropdown">
-                        <button className='link'>Discover</button>
-                        <div className="dropdown-menus">
+                    <div
+                        className={active ? "dropdownActive" : "dropdown"}
+                    >
+                        <button
+                            className='link'
+                            onClick={active ? () => setActive(false) : () => setActive(true)}
+                        >
+                            Discover
+                        </button>
+                        <div className="dropdownMenu">
                             Dropdown Content
                         </div>
                     </div>

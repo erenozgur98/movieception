@@ -41,7 +41,7 @@
     padding: 0;
 }
 
-.dropdown > .link:focus,
+.dropdownActive > .link,
 .link:hover {
     text-decoration: none;
     /* color: black; */
@@ -52,21 +52,23 @@
     position: relative;
 }
 
-.dropdown-menus {
+.dropdownMenu {
     position: absolute;
     right: 0;
     top: calc(100%, .25rem);
     background-color: #777;
-    padding: .75rem;
+    padding: .80rem;
     border-radius: .25rem;
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .1);
     opacity: 0;
     pointer-events: none;
     transform: translateY(-10px);
-    transition: opacity 150ms ease-in-out, transform 150ms ease-in-out;
+    transition: 
+    opacity 250ms ease-in-out, 
+    transform 250ms ease-in-out;
 }
 
-.dropdown > .link:focus + .dropdown.menus {
+.dropdownActive > .link + .dropdownMenu {
     opacity: 1;
     pointer-events: auto;
     transform: translateY(0);
