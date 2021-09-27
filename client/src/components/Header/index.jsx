@@ -117,7 +117,7 @@ function Header({ user, handleLogout }) {
                 </div>
             )}
         </div>
-    )
+    );
 };
 
 export default Header
