@@ -24,6 +24,7 @@ function SeasonPage() {
             setShow(request.data.seasons[SeasonId]);
         }
         fetchData();
+        document.title = `${show?.original_title || show?.title || show?.name}`;
     }, [SeasonId, ShowId]);
 
     return (

@@ -32,7 +32,7 @@ function MoviePage() {
             setVideos(requestVideos.data.results);
         }
         fetchData();
-        document.title = `${movie?.original_title || movie?.title}`;
+        document.title = `${movie?.original_title || movie?.title || movie?.name}`;
     }, [MovieId])
 
     const addToFavorite = (movie) => {

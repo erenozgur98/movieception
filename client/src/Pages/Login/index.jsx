@@ -28,6 +28,25 @@ function Login({ setUser, user }) {
         }
     }
 
+    // export function useTitle(title) {
+    //     useEffect(() => {
+    //       const prevTitle = document.title
+    //       document.title = title
+    //       return () => {
+    //         document.title = prevTitle
+    //       }
+    //     })
+    //   }
+
+    // const MyComponent = () => {
+    //     useTitle("New Title")
+    //     return (
+    //       <div>
+    //        ...
+    //       </div>
+    //     )
+    //   }
+
     return (
         <div>
             {/* <Container className='login-section'>

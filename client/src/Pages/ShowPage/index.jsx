@@ -37,6 +37,7 @@ function ShowPage() {
             setLoading(false);
         }
         fetchData();
+        document.title = `${show?.title || show?.name}`;
     }, [ShowId]);
 
     const playTrailer = () => {
