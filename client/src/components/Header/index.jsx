@@ -88,31 +88,33 @@ function Header({ user, handleLogout }) {
                 </Navbar>
             ) : (
                 <div className="header">
-                    <div
-                        className="nav-item"
-                    >
-                        <i className="fas fa-search" onClick={handleSearch}></i>
-                        {search && <SearchForm />}
-                    </div>
-                    <Link to='/' className='navbar-logo'>
-                        True Story
-                    </Link>
-                    <div className="menu-icon" onClick={handleClick}>
-                        <i className={click ? 'fas fa-times' : 'fas fa-bars'} />
-                    </div>
-                    <Link to='/' className='navbar-logo'>
-                        Home
-                    </Link>
-                    <div className='nav-item' onMouseEnter={onMouseEnter1} onMouseLeave={onMouseLeave1}>
-                        <Link to='/discover' className='nav-links'>
-                            Discover
-                            <i className='fas fa-caret-down' />
+                    <div className="dropdown">
+                        <div
+                            className="nav-item"
+                        >
+                            <i className="fas fa-search" onClick={handleSearch}></i>
+                            {search && <SearchForm />}
+                        </div>
+                        <Link to='/' className='navbar-logo'>
+                            True Story
                         </Link>
-                        {dropdown1 && <Dropdown />}
-                    </div>
-                    <div className='nav-item'>
-                        <div onClick={handleLogin}>Login</div>
-                        {login && <Login />}
+                        <div className="menu-icon" onClick={handleClick}>
+                            <i className={click ? 'fas fa-times' : 'fas fa-bars'} />
+                        </div>
+                        <Link to='/' className='navbar-logo'>
+                            Home
+                        </Link>
+                        <div className='nav-item' onMouseEnter={onMouseEnter1} onMouseLeave={onMouseLeave1}>
+                            <Link to='/discover' className='nav-links'>
+                                Discover
+                                <i className='fas fa-caret-down' />
+                            </Link>
+                            {dropdown1 && <Dropdown />}
+                        </div>
+                        <div className='nav-item'>
+                            <div onClick={handleLogin}>Login</div>
+                            {login && <Login />}
+                        </div>
                     </div>
                 </div>
             )}

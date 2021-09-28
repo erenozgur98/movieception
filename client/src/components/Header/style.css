@@ -22,22 +22,26 @@
 }
 
 .header {
-    display: flex;
-}
-
-/* .header {
-    background-color: #f3f3f3;
-    display: flex;
-    justify-content: flex-end;
-    align-items: baseline;
+    background: linear-gradient(90deg, rgb(28, 28,28) 0%, rgb(26, 23, 23) 100%);
     padding: .5rem;
     gap: 1rem;
-} */
+    height: 2.5rem;
+}
+
+.dropdown {
+    display: flex;
+    align-items: baseline;
+    position: relative;
+}
+
+.menu-icon {
+    display: none;
+}
 
 /* .link {
     background: none;
     border: none;
-    color: #777;
+    color: #f3f3f3;
     font-family: inherit;
     font-size: inherit;
     cursor: pointer;
