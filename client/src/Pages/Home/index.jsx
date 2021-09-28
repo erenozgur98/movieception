@@ -19,6 +19,7 @@ function Home() {
             ]);
         }
         fetchData();
+        document.title = 'Home';
     }, [])
 
     return (

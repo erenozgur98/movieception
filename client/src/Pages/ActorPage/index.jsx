@@ -30,6 +30,8 @@ function ActorPage() {
             setMovieCredits(requestMovieCredits.data.cast);
         }
         fetchData()
+        document.title = `${actor?.name}`;
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [ActorId]);
 
     const redirect = (credits) => {

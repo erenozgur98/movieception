@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 // import { Container } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
+import { Redirect } from 'react-router-dom'
 import API from '../../utils/API';
 import './style.css'
 
@@ -62,6 +63,7 @@ function Login({ setUser, user }) {
                 </form>
             </Container> */}
             <form onSubmit={handleLogin}>
+                {/* {redirect && <Redirect to='/' />} */}
                 <label htmlFor="username">Username</label>
                 <input type="text" name='username' ref={username} />
                 <label htmlFor="password">Password</label>
