@@ -58,7 +58,7 @@ function App() {
           <Route exact path='/actors' component={Actors} />
           <Route exact path='/actors/:ActorId' component={ActorPage} />
           <Route exact path='/profile' component={Profile} />
-          {/* create UserProfile page, replace profile */}
+          {/* create UserProfile page, replace it with profile */}
           <Route exact path='/profile/:username' component={Profile} />
           <Route exact path='/login' render={(props) => <Login {...props}
             loggedIn={loggedIn}
