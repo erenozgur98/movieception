@@ -37,7 +37,7 @@ function ShowPage() {
             setLoading(false);
         }
         fetchData();
-        document.title = `${show?.title || show?.name || show?.original_title || 'True Story'}`;
+        document.title = `${show?.title || show?.name || show?.original_title}`;
     }, [ShowId]);
 
     const playTrailer = () => {

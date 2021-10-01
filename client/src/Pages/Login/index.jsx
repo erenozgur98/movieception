@@ -91,6 +91,6 @@ function Login({ setUser, user }) {
             </form>
         </div>
     )
-}
+};
 
 export default Login
