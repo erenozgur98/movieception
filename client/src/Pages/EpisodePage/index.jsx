@@ -22,10 +22,13 @@ function EpisodePage() {
             const requestCredits = await axios.get(`tv/${ShowId}/season/${SeasonId}/credits?api_key=${apiKey}`);
             setEpisode(requestEpisode.data);
             setCredits(requestCredits.data);
-            setShow(request.data.seasons[SeasonId]);
+            setShow(request.data.seasons[SeasonId - 1]);
         }
         fetchData();
     }, [ShowId, SeasonId, EpisodeId]);
+
+    console.log('adsadsads', episode)
+    console.log('show', show)
 
     return (
         <div>

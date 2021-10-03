@@ -21,7 +21,8 @@ function SeasonPage() {
             const requestCredits = await axios.get(`tv/${ShowId}/season/${SeasonId}/credits?api_key=${apiKey}`);
             const request = await axios.get(`/tv/${ShowId}?api_key=${apiKey}`);
             setCredits(requestCredits.data);
-            setShow(request.data.seasons[SeasonId]);
+            // here we subtract 1 from season Id because seasons starts from 1 but the array starts from 0
+            setShow(request.data.seasons[SeasonId - 1]);
         }
         fetchData();
         document.title = `${show?.original_title || show?.title || show?.name}`;
