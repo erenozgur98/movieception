@@ -37,7 +37,6 @@ function MoviePage() {
 
     const addToFavorite = (movie) => {
         // just need the movie id to add to favorites, will work later.
-
     }
     
     const playTrailer = () => {
@@ -52,11 +51,12 @@ function MoviePage() {
     const opts = {
         heigth: '390',
         width: '100%',
-        playerVars: {
-            autoplay: 1,
-        }
+        // playerVars: {
+        //     autoplay: 1,
+        // }
     };
 
+    console.log(movie)
 
     return (
         <div>
