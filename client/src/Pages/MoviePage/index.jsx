@@ -37,21 +37,26 @@ function MoviePage() {
 
     const addToFavorite = (movie) => {
         // just need the movie id to add to favorites, will work later.
-        console.log(movie);
-    }
 
+    }
+    
     const playTrailer = () => {
+        const trailerVideos = videos.filter(e => e.type === 'Trailer')
         if (trailerUrl) {
             setTrailerUrl('');
         } else {
-            setTrailerUrl(videos[0]?.key);
+            setTrailerUrl(trailerVideos[0]?.key);
         }
     };
 
     const opts = {
         heigth: '390',
         width: '100%',
+        playerVars: {
+            autoplay: 1,
+        }
     };
+
 
     return (
         <div>
@@ -83,7 +88,7 @@ function MoviePage() {
                             </div>
                         </div>
                         <WatchProviders movie={movie} />
-                        <div>The cast of {movie.original_title}:</div>
+                        <div>The cast of {movie?.original_title}:</div>
                         <Credits movie={movie} />
                         <Recommendations movie={movie} />
                     </div>

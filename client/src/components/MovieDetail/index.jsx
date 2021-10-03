@@ -12,15 +12,13 @@ function MovieDetail({ fetchUrl }) {
   useEffect(() => {
     const fetchData = async () => {
       const request = await axios.get(fetchUrl);
-      console.log(request.data.results)
       setMovies(request.data.results);
     }
     fetchData();
   }, [fetchUrl])
 
   const handleClick = (movie) => {
-    console.log(movie);
-    <Details movie={movie} />
+    
   };
 
   return (

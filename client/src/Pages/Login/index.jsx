@@ -1,7 +1,6 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useRef } from 'react'
 // import { Container } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
-import { Redirect } from 'react-router-dom'
 import API from '../../utils/API';
 import './style.css'
 
@@ -9,19 +8,15 @@ function Login({ setUser, user }) {
     const username = useRef();
     const password = useRef();
     const history = useHistory();
-    // const [redirect, setRedirect] = useState(false);
-
-    // useEffect(() => {
-    //     if (user.username) setRedirect(true);
-    // }, [user])
 
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
             const newLogin = await API.logIn({ username: username.current.value, password: password.current.value });
             delete newLogin.data.password;
-            setUser(newLogin.data);
-            console.log(newLogin.data)
+            // commenting out for now, seems like app.js sets the user via useEffect
+            // gota find why it's not refreshing
+            // setUser(newLogin.data);
             history.push('/');
         } catch (err) {
             console.log(err)
@@ -82,7 +77,6 @@ function Login({ setUser, user }) {
                 </form>
             </Container> */}
             <form onSubmit={handleLogin}>
-                {/* {redirect && <Redirect to='/' />} */}
                 <label htmlFor="username">Username</label>
                 <input type="text" name='username' ref={username} />
                 <label htmlFor="password">Password</label>
