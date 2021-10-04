@@ -42,6 +42,9 @@ function ActorPage() {
         }
     };
 
+    // sorting the movie/shows by release year
+    movieCredits.sort((a, b) => (a.release_date > b.release_date) ? -1 : ((b.release_date > a.release_date) ? 1 : 0));
+
     return (
         <div>
             {/* for now placeholder image, todo: add algorithm to randomize backdrop_path for actor's movies */}
