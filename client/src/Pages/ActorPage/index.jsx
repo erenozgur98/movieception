@@ -45,13 +45,28 @@ function ActorPage() {
     // sorting the movie/shows by release year
     movieCredits.sort((a, b) => (a.release_date > b.release_date) ? -1 : ((b.release_date > a.release_date) ? 1 : 0));
 
+    // {movieCredits.filter((filterNull) => (
+    //     if (filterNull?.poster_path.split(' ').pop() === null) {
+    //         return false; //skip
+    //     }
+    //     return true;
+    // ))}
+
+    // random number between 0 - 5 for banner image
+    // const getRandomInt = Math.floor(Math.random() * 5);
+
     return (
         <div>
-            {/* for now placeholder image, todo: add algorithm to randomize backdrop_path for actor's movies */}
             {movieCredits[0]?.backdrop_path ?
-                <Banner link={movieCredits[0]?.backdrop_path} title={movieCredits[0]?.title} />
+                <Banner
+                    link={movieCredits[0]?.backdrop_path}
+                    title={movieCredits[0]?.title}
+                />
                 :
-                <Banner link={movieCredits[1]?.backdrop_path} title={movieCredits[1]?.title} />
+                <Banner
+                    link={movieCredits[1]?.backdrop_path}
+                    title={movieCredits[1]?.title}
+                />
             }
             <Container>
                 {actor.profile_path ?
