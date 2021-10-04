@@ -112,7 +112,7 @@ function ActorPage() {
                             <div className='movie-credits'>
                                 {movieCredits.map((credits) => (
                                     // checking to see if poster path has a value, if not it'll skip
-                                    credits?.poster_path ?
+                                    credits?.poster_path || credits?.backdrop_path ?
                                         <img
                                             // key={credits.id}
                                             onClick={() => redirect(credits)}
@@ -129,12 +129,15 @@ function ActorPage() {
                         <h4>{actor?.name}'s Images</h4>
                         <div className='actor-pictures'>
                             {actorPictures.map((x) => (
-                                <img
-                                    key={x.id}
-                                    src={`${base_url}${x.file_path}`}
-                                    alt={x?.width}
-                                    className='actor-images'
-                                />
+                                x?.file_path ?
+                                    <img
+                                        key={x.id}
+                                        src={`${base_url}${x.file_path}`}
+                                        alt={x?.width}
+                                        className='actor-images'
+                                    />
+                                    :
+                                    null
                             ))}
                         </div>
                     </div>
