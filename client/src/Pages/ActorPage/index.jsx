@@ -111,13 +111,17 @@ function ActorPage() {
                             <h4>Known For</h4>
                             <div className='movie-credits'>
                                 {movieCredits.map((credits) => (
-                                    <img
-                                        // key={credits.id}
-                                        onClick={() => redirect(credits)}
-                                        src={`${base_url}${credits?.poster_path}`}
-                                        alt={credits?.original_name}
-                                        className='actor-movie-poster'
-                                    />
+                                    // checking to see if poster path has a value, if not it'll skip
+                                    credits?.poster_path ?
+                                        <img
+                                            // key={credits.id}
+                                            onClick={() => redirect(credits)}
+                                            src={`${base_url}${credits?.poster_path}`}
+                                            alt={credits?.original_name}
+                                            className='actor-movie-poster'
+                                        />
+                                        :
+                                        null
                                 ))}
                             </div>
                             {/* <MovieCredits actor={actor} /> */}
