@@ -53,20 +53,23 @@ function Row({ fetchUrl, title }) {
             </div>
             <div className="row-posters">
                 {movies.map((movie) => (
-                    <div className="row-map" key={movie?.id}>
-                        <img
-                            onClick={() => handleClick(movie)}
-                            className='row-poster skeleton'
-                            src={
-                                movie?.poster_path || movie?.backdrop_path || movie?.profile_path ?
-                                    `${base_url}${movie?.poster_path || movie?.backdrop_path || movie?.profile_path}`
-                                    :
-                                    "https://via.placeholder.com/300"
-                            }
-                            alt={movie?.name}
-                        />
-                        <i onClick={() => addToFavorite(movie)} className="fas fa-heart"></i>
-                    </div>
+                    movie?.poster_path || movie?.backdrop_path ?
+                        <div className="row-map" key={movie?.id}>
+                            <img
+                                onClick={() => handleClick(movie)}
+                                className='row-poster skeleton'
+                                src={
+                                    movie?.poster_path || movie?.backdrop_path || movie?.profile_path ?
+                                        `${base_url}${movie?.poster_path || movie?.backdrop_path || movie?.profile_path}`
+                                        :
+                                        "https://via.placeholder.com/300"
+                                }
+                                alt={movie?.name}
+                            />
+                            <i onClick={() => addToFavorite(movie)} className="fas fa-heart"></i>
+                        </div>
+                        :
+                        null
                 ))}
             </div>
             <div className='movie-btn'>
