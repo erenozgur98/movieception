@@ -6,19 +6,20 @@ function Seasons({ show }) {
     const [season, setSeasons] = useState([]);
 
     useEffect(() => {
-        setSeasons(show.seasons);
+        setSeasons(show?.seasons);
     }, [show]);
 
     const history = useHistory();
     const base_url = 'https://image.tmdb.org/t/p/original/';
 
     const redirect = (x) => {
-        x?.season_number === 0 ?
-        history.push(`/shows/${show?.id}/season/${x?.season_number + 1}`)
-        :
+        // x?.season_number === 0 ?
+        // history.push(`/shows/${show?.id}/season/${x?.season_number - 1}`)
+        // :
         history.push(`/shows/${show?.id}/season/${x?.season_number}`);
     };
 
+    console.log(season)
     return (
         <div className='seasons'>
             {season ?
