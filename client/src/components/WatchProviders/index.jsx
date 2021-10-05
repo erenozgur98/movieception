@@ -36,7 +36,7 @@ function WatchProviders({ movie, show }) {
     return (
         <div>
             {movie?.id ?
-                <div className=''>
+                <div className='' key={movie?.id}>
                     {/* {movieProviders?.US?.buy ?
                         <div className='providers'>
                             <h4>Buy From</h4>
@@ -76,10 +76,10 @@ function WatchProviders({ movie, show }) {
                         null
                     } */}
                     {movieProviders?.US?.flatrate ?
-                        <div className='providers'>
+                        <div className='providers' key={movieProviders?.id}>
                             <div>Available on:</div>
                             {movieProviders?.US?.flatrate?.map((provider) => (
-                                <div>
+                                <div key={provider?.id}>
                                     <img
                                         key={provider?.id}
                                         onClick={() => redirect(provider)}
@@ -95,10 +95,10 @@ function WatchProviders({ movie, show }) {
                         null
                     }
                     {movieProviders?.US?.flatrate_and_buy ?
-                        <div className='providers'>
+                        <div className='providers' key={movieProviders?.id}>
                             <div>Watch and Buy From</div>
                             {movieProviders?.US?.flatrate_and_buy?.map((provider) => (
-                                <div>
+                                <div key={provider?.id}>
                                     <img
                                         key={provider?.id}
                                         onClick={() => redirect(provider)}
@@ -155,10 +155,10 @@ function WatchProviders({ movie, show }) {
                         null
                     } */}
                     {showProviders?.US?.flatrate ?
-                        <div className='providers'>
+                        <div className='providers' key={showProviders?.id}>
                             <div>Available on:</div>
                             {showProviders?.US.flatrate?.map((provider) => (
-                                <div>
+                                <div key={provider?.id}>
                                     <img
                                         key={provider?.id}
                                         onClick={() => redirect(provider)}
@@ -174,9 +174,9 @@ function WatchProviders({ movie, show }) {
                         null
                     }
                     {showProviders?.US?.flatrate_and_buy ?
-                        <div className='providers'>
+                        <div className='providers' key={showProviders?.id}>
                             {showProviders?.US.flatrate_and_buy?.map((provider) => (
-                                <div>
+                                <div key={provider?.id}>
                                     <img
                                         key={provider?.id}
                                         onClick={() => redirect(provider)}

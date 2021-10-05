@@ -56,8 +56,6 @@ function MoviePage() {
         // }
     };
 
-    console.log(movie)
-
     return (
         <div>
             {movie?.poster_path ?

@@ -38,7 +38,7 @@ function Credits({ movie, show, credits }) {
         <div className='casts'>
             <div className="casts-posters">
                 {cast?.map((theCast) => (
-                    <div className='casts-map'>
+                    <div className='casts-map' key={theCast.id}>
                         <img
                             key={theCast.id}
                             onClick={() => redirect(theCast)}
