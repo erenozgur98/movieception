@@ -13,6 +13,9 @@ function Seasons({ show }) {
     const base_url = 'https://image.tmdb.org/t/p/original/';
 
     const redirect = (x) => {
+        x?.season_number === 0 ?
+        history.push(`/shows/${show?.id}/season/${x?.season_number + 1}`)
+        :
         history.push(`/shows/${show?.id}/season/${x?.season_number}`);
     };
 
