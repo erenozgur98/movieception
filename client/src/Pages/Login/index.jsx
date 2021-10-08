@@ -1,5 +1,5 @@
 import React, { useRef } from 'react'
-// import { Container } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 import API from '../../utils/API';
 import './style.css'
@@ -16,7 +16,7 @@ function Login({ setUser, user }) {
             delete newLogin.data.password;
             // commenting out for now, seems like app.js sets the user via useEffect
             // gota find why it's not refreshing
-            // setUser(newLogin.data);
+            setUser(newLogin.data);
             history.push('/');
         } catch (err) {
             console.log(err)
@@ -44,10 +44,10 @@ function Login({ setUser, user }) {
 
     return (
         <div>
-            {/* <Container className='login-section'>
+            <Container className='login-section'>
                 <h1>Login</h1>
                 <form
-                    onSubmit={handleLogIn}
+                    onSubmit={handleLogin}
                 >
                     <div className='form-group'>
                         <input
@@ -68,21 +68,21 @@ function Login({ setUser, user }) {
                     <button
                         className='btn btn-primary btn-block'
                         type='submit'
-                        onSubmit={handleLogIn}
+                        onSubmit={handleLogin}
                     >
                         Login
                     </button>
                     <p className="lable-text"></p>
                     <a className="d-flex justify-content-center" href="/signup"><p className="lable-text">Don't have an account? Sign up here!</p></a>
                 </form>
-            </Container> */}
-            <form onSubmit={handleLogin}>
+            </Container>
+            {/* <form onSubmit={handleLogin}>
                 <label htmlFor="username">Username</label>
                 <input type="text" name='username' ref={username} />
                 <label htmlFor="password">Password</label>
                 <input type="password" name='password' ref={password} />
                 <button className='' type='submit'>Login</button>
-            </form>
+            </form> */}
         </div>
     )
 };
