@@ -46,18 +46,6 @@ function Row({ fetchUrl, title }) {
                     {genre.map(g => (
                         <Dropdown.Item href={g.route}>{g.title}</Dropdown.Item>
                     ))}
-                    {/* <Dropdown.Item href="/discover?genre=netflix">Netflix Originals</Dropdown.Item>
-                    <Dropdown.Item href="/discover?genre=">Action</Dropdown.Item>
-                    <Dropdown.Item href="/discover?genre=">Comedy</Dropdown.Item>
-                    <Dropdown.Item href="/discover?genre=">Horror</Dropdown.Item>
-                    <Dropdown.Item href="/discover?genre=">Romance</Dropdown.Item>
-                    <Dropdown.Item href="/discover?genre=">Documentary</Dropdown.Item>
-                    <Dropdown.Item href="/discover?genre=">Drama</Dropdown.Item>
-                    <Dropdown.Item href="/discover?genre=">Animation</Dropdown.Item>
-                    <Dropdown.Item href="/discover?genre=">Family</Dropdown.Item>
-                    <Dropdown.Item href="/discover?genre=">Fantasy</Dropdown.Item>
-                    <Dropdown.Item href="/discover?genre=">Mystery</Dropdown.Item>
-                    <Dropdown.Item href="/discover?genre=">Thriller</Dropdown.Item> */}
                 </DropdownButton>
             </div>
             <div className="row-posters">

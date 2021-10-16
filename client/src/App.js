@@ -47,7 +47,7 @@ function App() {
         <div className='main'>
           <Route exact path='/' component={HomePage} />
           <Route exact path='/home' component={HomePage} />
-          <Route exact path='/search/query=:searchResults' component={SearchResults} />
+          <Route exact path='/search' component={SearchResults} />
           <Route exact path='/discover' component={Discover} />
           <Route exact path='/discover/movies' component={Movies} />
           <Route exact path='/movies/:MovieId' component={MoviePage} />

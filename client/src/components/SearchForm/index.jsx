@@ -1,5 +1,6 @@
 import React, { useRef } from "react";
 import { useHistory } from 'react-router-dom';
+import SearchResults from "../SearchResults";
 
 function SearchForm({ isOpen }) {
   const search = useRef();
@@ -8,7 +9,7 @@ function SearchForm({ isOpen }) {
   const handleSearchEnter = (e) => {
     if (e.charCode === 13) {
       const searchedMovie = search.current.value
-      history.push(`/search/query=${searchedMovie}`);
+      history.push(`/search?query=${searchedMovie}`);
     }
   };
 

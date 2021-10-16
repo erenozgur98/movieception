@@ -1,14 +1,17 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import requests from '../../components/Requests';
 import Row from '../Row';
 
 function SearchResults() {
-    const { searchResults } = useParams();
+
+    const search = useLocation().search;
+    const searchedQuery = new URLSearchParams(search).get('query')
+
 
     return (
         <div>
-            <Row fetchUrl={`${requests.fetchSearchMulti}${searchResults}`} />
+            <Row fetchUrl={`${requests.fetchSearchMulti}${searchedQuery}`} />
         </div>
     )
 }
