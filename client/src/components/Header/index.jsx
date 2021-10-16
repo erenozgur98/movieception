@@ -56,6 +56,7 @@ function Header({ user, handleLogout }) {
                                 Discover
                             </Nav.Link> */}
                             <DropdownButton variant='secondary' title="Discover">
+                                <Dropdown.Item href="/discover">All</Dropdown.Item>
                                 <Dropdown.Item href="/discover/movies">Movies</Dropdown.Item>
                                 <Dropdown.Item href="/discover/shows">Shows</Dropdown.Item>
                                 <Dropdown.Item href="/actors">Actors</Dropdown.Item>

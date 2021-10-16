@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom';
+import { DropdownButton, Dropdown } from 'react-bootstrap';
 import axios from '../Axios';
+import genre from './genre';
 import './Row.css'
 
 const base_url = 'https://image.tmdb.org/t/p/original/';
@@ -32,14 +34,6 @@ function Row({ fetchUrl, title }) {
         }
     };
 
-    const changeToMovieOrShow = (name) => {
-        if (name === 'movie') {
-            history.push('/discover/movies');
-        } else {
-            history.push('/discover/shows');
-        }
-    }
-
     const addToFavorite = (movie) => {
         console.log(movie)
     };
@@ -48,8 +42,23 @@ function Row({ fetchUrl, title }) {
         <div className='row'>
             <h2 className='row-title'>{title}</h2>
             <div className='movie-btn'>
-                <button className='movie-buttons' onClick={() => changeToMovieOrShow('movie')}>Movies Only</button>
-                <button className='movie-buttons' onClick={() => changeToMovieOrShow('show')}>Shows Only</button>
+                <DropdownButton variant='secondary' title="Genres">
+                    {genre.map(g => (
+                        <Dropdown.Item href={g.route}>{g.title}</Dropdown.Item>
+                    ))}
+                    {/* <Dropdown.Item href="/discover?genre=netflix">Netflix Originals</Dropdown.Item>
+                    <Dropdown.Item href="/discover?genre=">Action</Dropdown.Item>
+                    <Dropdown.Item href="/discover?genre=">Comedy</Dropdown.Item>
+                    <Dropdown.Item href="/discover?genre=">Horror</Dropdown.Item>
+                    <Dropdown.Item href="/discover?genre=">Romance</Dropdown.Item>
+                    <Dropdown.Item href="/discover?genre=">Documentary</Dropdown.Item>
+                    <Dropdown.Item href="/discover?genre=">Drama</Dropdown.Item>
+                    <Dropdown.Item href="/discover?genre=">Animation</Dropdown.Item>
+                    <Dropdown.Item href="/discover?genre=">Family</Dropdown.Item>
+                    <Dropdown.Item href="/discover?genre=">Fantasy</Dropdown.Item>
+                    <Dropdown.Item href="/discover?genre=">Mystery</Dropdown.Item>
+                    <Dropdown.Item href="/discover?genre=">Thriller</Dropdown.Item> */}
+                </DropdownButton>
             </div>
             <div className="row-posters">
                 {movies.map((movie) => (
@@ -58,9 +67,14 @@ function Row({ fetchUrl, title }) {
                             <img
                                 onClick={() => handleClick(movie)}
                                 className='row-poster skeleton'
-                                src={
-                                    movie?.poster_path || movie?.backdrop_path || movie?.profile_path ?
-                                        `${base_url}${movie?.poster_path || movie?.backdrop_path || movie?.profile_path}`
+                                src=
+                                {
+                                    movie?.poster_path ||
+                                        movie?.backdrop_path ||
+                                        movie?.profile_path ?
+                                        `${base_url}${movie?.poster_path ||
+                                        movie?.backdrop_path ||
+                                        movie?.profile_path}`
                                         :
                                         "https://via.placeholder.com/300"
                                 }
@@ -76,12 +90,22 @@ function Row({ fetchUrl, title }) {
                 {/* find a way to add the &page=? to the link instead of here, because whenever you go back the page number is going to be resetted to 1 */}
                 Page: {currentPage}
                 {currentPage !== 1 ?
-                    <button className='movie-buttons' onClick={() => currentPage <= 1 ? setCurrentPage(currentPage) : setCurrentPage(currentPage - 1)}>Previous Page</button>
+                    <button
+                        className='movie-buttons'
+                        onClick={() => currentPage <= 1 ? setCurrentPage(currentPage) : setCurrentPage(currentPage - 1)}
+                    >
+                        Previous Page
+                    </button>
                     :
                     null
                 }
                 {currentPage !== 10 ?
-                    <button className='movie-buttons' onClick={() => currentPage >= 10 ? setCurrentPage(currentPage) : setCurrentPage(currentPage + 1)}>Next Page</button>
+                    <button
+                        className='movie-buttons'
+                        onClick={() => currentPage >= 10 ? setCurrentPage(currentPage) : setCurrentPage(currentPage + 1)}
+                    >
+                        Next Page
+                    </button>
                     :
                     null
                 }
