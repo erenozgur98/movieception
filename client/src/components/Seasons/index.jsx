@@ -19,7 +19,6 @@ function Seasons({ show }) {
         history.push(`/shows/${show?.id}/season/${x?.season_number}`);
     };
 
-    console.log(season)
     return (
         <div className='seasons'>
             {season ?

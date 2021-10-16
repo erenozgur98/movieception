@@ -53,8 +53,6 @@ function ShowPage() {
         width: '100%',
     };
 
-    console.log(show)
-
     return (
         <div>
             {show?.poster_path ?
