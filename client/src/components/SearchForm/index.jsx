@@ -1,6 +1,5 @@
 import React, { useRef } from "react";
 import { useHistory } from 'react-router-dom';
-import SearchResults from "../SearchResults";
 
 function SearchForm({ isOpen }) {
   const search = useRef();

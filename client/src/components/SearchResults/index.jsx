@@ -4,9 +4,8 @@ import requests from '../../components/Requests';
 import Row from '../Row';
 
 function SearchResults() {
-
     const search = useLocation().search;
-    const searchedQuery = new URLSearchParams(search).get('query')
+    const searchedQuery = new URLSearchParams(search).get('query');
 
 
     return (

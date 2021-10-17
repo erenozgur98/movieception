@@ -1,8 +1,18 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
 import Row from '../../components/Row';
 import requests from '../../components/Requests';
+import { useLocation } from 'react-router-dom';
 
 function Movies() {
+    const [genre, setGenre] = useState('all');
+    const [fetchUrl, setFetchUrl] = useState();
+
+    const urlGenre = useLocation().search
+    const selectedGenre = new URLSearchParams(urlGenre).get('genre');
+
+    useEffect(() => {
+        setGenre(selectedGenre);
+    }, [selectedGenre])
 
     return (
         <div className='movie'>
