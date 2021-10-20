@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom';
 import { DropdownButton, Dropdown } from 'react-bootstrap';
 import axios from '../Axios';
-import genre from './genre';
+import moviesGenre from './moviesGenre';
+import showsGenre from './showsGenre';
 import './Row.css'
 
 const base_url = 'https://image.tmdb.org/t/p/original/';
@@ -42,8 +43,13 @@ function Row({ fetchUrl, title }) {
         <div className='row'>
             <h2 className='row-title'>{title}</h2>
             <div className='movie-btn'>
-                <DropdownButton variant='secondary' title="Genres">
-                    {genre.map(g => (
+                <DropdownButton variant='secondary' title="Movies Genres">
+                    {moviesGenre.map(g => (
+                        <Dropdown.Item href={g.route}>{g.title}</Dropdown.Item>
+                    ))}
+                </DropdownButton>
+                <DropdownButton variant='secondary' title="Shows Genres">
+                    {showsGenre.map(g => (
                         <Dropdown.Item href={g.route}>{g.title}</Dropdown.Item>
                     ))}
                 </DropdownButton>
@@ -76,17 +82,17 @@ function Row({ fetchUrl, title }) {
             </div>
             <div className='movie-btn'>
                 {/* find a way to add the &page=? to the link instead of here, because whenever you go back the page number is going to be resetted to 1 */}
-                Page: {currentPage}
                 {currentPage !== 1 ?
                     <button
-                        className='movie-buttons'
-                        onClick={() => currentPage <= 1 ? setCurrentPage(currentPage) : setCurrentPage(currentPage - 1)}
+                    className='movie-buttons'
+                    onClick={() => currentPage <= 1 ? setCurrentPage(currentPage) : setCurrentPage(currentPage - 1)}
                     >
                         Previous Page
                     </button>
                     :
                     null
                 }
+                Page: {currentPage}
                 {currentPage !== 10 ?
                     <button
                         className='movie-buttons'
