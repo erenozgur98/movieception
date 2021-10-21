@@ -5,10 +5,6 @@ const moviesGenre =
         title:'All'
     },
     {
-        route:'/discover/movies?genre=netflix',
-        title:'Netflix'
-    },
-    {
         route:'/discover/movies?genre=action',
         title:'Action'
     },

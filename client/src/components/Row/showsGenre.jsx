@@ -17,10 +17,6 @@ const showsGenre =
         title:'Comedy'
     },
     {
-        route:'/discover/shows?genre=horror',
-        title:'Horror'
-    },
-    {
         route:'/discover/shows?genre=romance',
         title:'Romance'
     },
@@ -49,8 +45,12 @@ const showsGenre =
         title:'Mystery'
     },
     {
-        route:'/discover/shows?genre=thriller',
-        title:'Thriller'
+        route:'/discover/shows?genre=talk',
+        title:'Talk'
+    },
+    {
+        route:'/discover/shows?genre=reality',
+        title:'Reality'
     },
 ]
 

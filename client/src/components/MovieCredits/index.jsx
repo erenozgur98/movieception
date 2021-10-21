@@ -22,9 +22,9 @@ function MovieCredits({ actor }) {
 
     const redirect = (credits) => {
         if (credits.media_type === 'tv') {
-            history.push(`/shows/${credits.id}`)
+            history.replace(`/shows/${credits.id}`)
         } else {
-            history.push(`/movies/${credits.id}`)
+            history.replace(`/movies/${credits.id}`)
         }
     };
 
