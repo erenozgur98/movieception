@@ -54,7 +54,7 @@ function Login({ setUser, user }) {
 
     return (
         <div>
-            <Container className="main" maxWidth="xs">
+            <Container className="signup-main" maxWidth="xs">
                 <CssBaseline />
                 <Box
                     sx={{
@@ -62,9 +62,9 @@ function Login({ setUser, user }) {
                         flexDirection: 'column',
                         alignItems: 'center',
                     }}
-                    className='main2'
+                    className='signup-main2'
                 >
-                    <Typography component="h1" variant="h5" style={{color:'black'}}>
+                    <Typography component="h1" variant="h5" style={{ color: 'black' }}>
                         Sign in
                     </Typography>
                     <Box component="form" onSubmit={handleLogin} noValidate sx={{ mt: 1 }}>
@@ -98,12 +98,7 @@ function Login({ setUser, user }) {
                         >
                             Sign In
                         </Button>
-                        <Grid container>
-                            <Grid item xs>
-                                <Link href="#" variant="body2">
-                                    Forgot password?
-                                </Link>
-                            </Grid>
+                        <Grid container justifyContent="center">
                             <Grid item>
                                 <Link href="/signup" variant="body2">
                                     {"Don't have an account? Sign Up"}

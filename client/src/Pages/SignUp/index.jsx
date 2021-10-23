@@ -42,7 +42,7 @@ function SignUp({ setUser, user }) {
 
     return (
         <>
-            <Container className="main" maxWidth="xs">
+            <Container className="signup-main" maxWidth="xs">
                 <CssBaseline />
                 <Box
                     sx={{
@@ -50,7 +50,7 @@ function SignUp({ setUser, user }) {
                         flexDirection: 'column',
                         alignItems: 'center',
                     }}
-                    className='main2'
+                    className='signup-main2'
                 >
                     <Typography component="h1" variant="h5" style={{color:'black'}}>
                         Sign up
@@ -105,7 +105,7 @@ function SignUp({ setUser, user }) {
                         </Button>
                         <Grid container justifyContent="center">
                             <Grid item>
-                                <Link href="/signin" variant="body2">
+                                <Link href="/login" variant="body2">
                                     Already have an account? Sign in
                                 </Link>
                             </Grid>
