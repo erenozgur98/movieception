@@ -1,14 +1,10 @@
-import React, { useRef, useEffect, useState } from 'react'
-// import { Container } from 'react-bootstrap';
+import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom';
-import { Redirect } from 'react-router';
 import API from '../../utils/API';
 import './style.css';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
@@ -16,22 +12,31 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 
 function SignUp({ setUser, user }) {
-    const email = useRef();
-    const username = useRef();
-    const password = useRef();
-
     const history = useHistory();
-
-    const [redirect, setRedirect] = useState(false);
+    const [email, setEmail] = useState('');
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
 
     useEffect(() => {
-        if (user.username) setRedirect(true);
+        if (user.username) history.replace('/');
     }, [user])
+
+    const handleEmail = e => {
+        setEmail(e.target.value)
+    }
+
+    const handleUsername = e => {
+        setUsername(e.target.value)
+    }
+
+    const handlePassword = e => {
+        setPassword(e.target.value)
+    }
 
     const handleSignUp = async (e) => {
         e.preventDefault();
         try {
-            const newUser = await API.signUp({ email: email.current.value, username: username.current.value, password: password.current.value });
+            const newUser = await API.signUp({ email: email, username: username, password: password });
             delete newUser.data.password;
             history.push('/')
             setUser(newUser.data);
@@ -64,7 +69,8 @@ function SignUp({ setUser, user }) {
                                     id="email"
                                     label="Email Address"
                                     name="email"
-                                    ref={email}
+                                    value={email}
+                                    onChange={handleEmail}
                                     autoComplete="email"
                                     className='textField'
                                 />
@@ -76,7 +82,8 @@ function SignUp({ setUser, user }) {
                                     id="username"
                                     label="Username"
                                     name="username"
-                                    ref={username}
+                                    value={username}
+                                    onChange={handleUsername}
                                     autoComplete="user-name"
                                     className='textField'
                                 />
@@ -89,7 +96,8 @@ function SignUp({ setUser, user }) {
                                     label="Password"
                                     type="password"
                                     id="password"
-                                    ref={password}
+                                    value={password}
+                                    onChange={handlePassword}
                                     autoComplete="new-password"
                                     className='textField'
                                 />

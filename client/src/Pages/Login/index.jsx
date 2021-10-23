@@ -1,30 +1,33 @@
-import React, { useRef } from 'react'
-// import { Container } from 'react-bootstrap';
+import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom';
 import API from '../../utils/API';
 import './style.css'
-import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-// import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 
-function Login({ setUser, user }) {
-    const username = useRef();
-    const password = useRef();
+function Login({ setUser }) {
     const history = useHistory();
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+
+    const handleUsername = e => {
+        setUsername(e.target.value)
+    }
+
+    const handlePassword = e => {
+        setPassword(e.target.value)
+    }
 
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
-            const newLogin = await API.logIn({ username: username.current.value, password: password.current.value });
+            const newLogin = await API.logIn({ username: username, password: password });
             delete newLogin.data.password;
             setUser(newLogin.data);
             history.push('/');
@@ -76,9 +79,10 @@ function Login({ setUser, user }) {
                             label="Username"
                             name="username"
                             autoComplete="username"
-                            ref={username}
+                            value={username}
+                            onChange={handleUsername}
                             autoFocus
-                        />
+                            />
                         <TextField
                             margin="normal"
                             required
@@ -87,14 +91,16 @@ function Login({ setUser, user }) {
                             label="Password"
                             type="password"
                             id="password"
-                            autoComplete="current-password"
-                            ref={password}
+                            autoComplete="password"
+                            onChange={handlePassword}
+                            value={password}
                         />
                         <Button
                             type="submit"
                             fullWidth
                             variant="contained"
                             sx={{ mt: 3, mb: 2 }}
+                            onSubmit={handleLogin}
                         >
                             Sign In
                         </Button>
