@@ -114,38 +114,6 @@ function Login({ setUser }) {
                     </Box>
                 </Box>
             </Container>
-            {/* <Container className='login-section'>
-                <h1>Login</h1>
-                <form
-                    onSubmit={handleLogin}
-                >
-                    <div className='form-group'>
-                        <input
-                            type='username'
-                            className='form-control'
-                            ref={username}
-                            placeholder='Username'
-                        />
-                    </div>
-                    <div className='form-group'>
-                        <input
-                            type='password'
-                            className='form-control'
-                            ref={password}
-                            placeholder='Password'
-                        />
-                    </div>
-                    <button
-                        className='btn btn-primary btn-block'
-                        type='submit'
-                        onSubmit={handleLogin}
-                    >
-                        Login
-                    </button>
-                    <p className="lable-text"></p>
-                    <a className="d-flex justify-content-center" href="/signup"><p className="lable-text">Don't have an account? Sign up here!</p></a>
-                </form>
-            </Container> */}
             {/* <form onSubmit={handleLogin}>
                 <label htmlFor="username">Username</label>
                 <input type="text" name='username' ref={username} />

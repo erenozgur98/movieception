@@ -121,48 +121,6 @@ function SignUp({ setUser, user }) {
                     </Box>
                 </Box>
             </Container>
-            {/* <Container className='signup-section'>
-                {redirect && <Redirect to="/" />}
-                <h1>Sign Up</h1>
-                <form
-                    onSubmit={handleSignUp}
-                >
-                    <div className="form-group">
-                        <input
-                            type='email'
-                            className='form-control'
-                            ref={email}
-                            aria-describedby='emailHelp'
-                            placeholder='Email'
-                        />
-                    </div>
-                    <div className="form-group">
-                        <input
-                            type='text'
-                            className='form-control'
-                            ref={username}
-                            placeholder='Username'
-                        />
-                    </div>
-                    <div className="form-group">
-                        <input
-                            type='password'
-                            className='form-control'
-                            ref={password}
-                            placeholder='Password'
-                        />
-                    </div>
-                    <button
-                        className='btn btn-primary btn-block'
-                        type='submit'
-                        onSubmit={handleSignUp}
-                    >
-                        Sign Up
-                    </button>
-                    <p className="lable-text"></p>
-                    <a className="d-flex justify-content-center" href="/login"><p className="lable-text">Already have an account? Log in here!</p></a>
-                </form>
-            </Container> */}
         </>
     )
 }
