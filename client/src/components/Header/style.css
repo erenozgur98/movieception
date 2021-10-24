@@ -20,36 +20,3 @@
     opacity: 1;
     transition: all 0.5s;
 }
-
-/* .header {
-    background: linear-gradient(90deg, rgb(28, 28,28) 0%, rgb(26, 23, 23) 100%);
-    padding: .5rem;
-    gap: 1rem;
-    height: 2.5rem;
-    display: flex;
-    align-items: baseline;
-}
-
-.menu-icon {
-    display: none;
-}
-
-.dropdown-link {
-    color: #fff;
-}
-
-.dropdown-link:hover {
-    text-decoration: none;
-    color: #fff;
-
-}
-
-.nav-links {
-    color: #fff;
-    display: flex;
-}
-
-.nav-links:hover {
-    text-decoration: none;
-    color: #fff;
-} */

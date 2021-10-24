@@ -19,7 +19,7 @@ function SignUp({ setUser, user }) {
 
     useEffect(() => {
         if (user.username) history.replace('/');
-    }, [user])
+    }, [user, history])
 
     const handleEmail = e => {
         setEmail(e.target.value)
