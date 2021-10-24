@@ -8,7 +8,6 @@ function SearchForm() {
   const history = useHistory();
 
   const handleSearchEnter = (e) => {
-    console.log(e.target.value)
     if (e.charCode === 13) {
       const search = e.target.value
       history.replace(`/search?query=${search}`);
@@ -69,19 +68,6 @@ function SearchForm() {
         onChange={handleSearchEnter}
         onKeyPress={handleSearchEnter}
       />
-      {/* <div>
-      <div>
-        <div className="form-outline">
-          <input
-            type="search"
-            className="form-control rounded"
-            placeholder="Search"
-            onKeyPress={handleSearchEnter}
-            ref={search}
-          />
-        </div>
-      </div>
-    </div> */}
     </Search>
   );
 }
