@@ -1,21 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 import { useHistory } from 'react-router-dom';
 import { styled, alpha } from '@mui/material/styles';
 import SearchIcon from '@mui/icons-material/Search';
 import InputBase from '@mui/material/InputBase';
-import { TextField } from "@mui/material";
 
 function SearchForm() {
-  const [search, setSearch] = useState('');
   const history = useHistory();
 
-  const handleSearch = e => {
-    console.log(e.target.value)
-    setSearch(e.target.value)
-  }
-
   const handleSearchEnter = (e) => {
+    console.log(e.target.value)
     if (e.charCode === 13) {
+      const search = e.target.value
       history.replace(`/search?query=${search}`);
     }
   };
@@ -70,6 +65,9 @@ function SearchForm() {
       <StyledInputBase
         placeholder="Search…"
         inputProps={{ 'aria-label': 'search' }}
+        // onChange={handleSearch}
+        onChange={handleSearchEnter}
+        onKeyPress={handleSearchEnter}
       />
       {/* <div>
       <div>
