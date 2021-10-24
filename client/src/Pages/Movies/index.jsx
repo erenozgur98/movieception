@@ -6,29 +6,58 @@ import { useLocation } from 'react-router-dom';
 function Movies() {
     const [genre, setGenre] = useState('all');
     const [fetchUrl, setFetchUrl] = useState();
+    const [title, setTitle] = useState('');
 
     const urlGenre = useLocation().search
     const selectedGenre = new URLSearchParams(urlGenre).get('genre');
 
     useEffect(() => {
-        setGenre(selectedGenre);
-    }, [selectedGenre])
+        const fetchData = async () => {
+            setGenre(selectedGenre);
+            if (genre === 'action') {
+                setFetchUrl(requests.fetchActionMovies);
+                setTitle('Action Movies')
+            } else if (genre === 'comedy') {
+                setFetchUrl(requests.fetchComedyMovies);
+                setTitle('Comedy Movies')
+            } else if (genre === 'horror') {
+                setFetchUrl(requests.fetchHorrorMovies);
+                setTitle('Horror Movies')
+            } else if (genre === 'romance') {
+                setFetchUrl(requests.fetchRomanceMovies);
+                setTitle('Romance Movies')
+            } else if (genre === 'documentary') {
+                setFetchUrl(requests.fetchDocumentaryMovies);
+                setTitle('Documentary Movies')
+            } else if (genre === 'drama') {
+                setFetchUrl(requests.fetchDramaMovies);
+                setTitle('Drama Movies')
+            } else if (genre === 'animation') {
+                setFetchUrl(requests.fetchAnimationMovies);
+                setTitle('Animation Movies')
+            } else if (genre === 'family') {
+                setFetchUrl(requests.fetchFamilyMovies);
+                setTitle('Family Movies')
+            } else if (genre === 'fantasy') {
+                setFetchUrl(requests.fetchFantasyMovies);
+                setTitle('Fantasy Movies')
+            } else if (genre === 'mystery') {
+                setFetchUrl(requests.fetchMysteryMovies);
+                setTitle('Mystery Movies')
+            } else if (genre === 'thriller') {
+                setFetchUrl(requests.fetchThrillerMovies);
+                setTitle('Thriller Movies')
+            } else {
+                setFetchUrl(requests.fetchTrendingMovies);
+                setTitle('Trending Movies')
+            }
+        }
+        fetchData();
+    }, [selectedGenre, genre])
 
     return (
         <div className='movie'>
-            <Row fetchUrl={requests.fetchTrendingMovies} title={'Trending Movies'} />
-            {/* <Row fetchUrl={requests.fetchActionMovies} title='Action Movies' /> */}
-            {/* <Row fetchUrl={requests.fetchComedyMovies} title='Comedy Movies' /> */}
-            {/* <Row fetchUrl={requests.fetchRomanceMovies} title='Romance Movies' /> */}
-            {/* <Row fetchUrl={requests.fetchDocumentariesMovies} title='Documentary Movies' /> */}
-            {/* <Row fetchUrl={requests.fetchDramaMovies} title='Drama Movies' /> */}
-            {/* <Row fetchUrl={requests.fetchAnimationMovies} title='Animation Movies' /> */}
-            {/* <Row fetchUrl={requests.fetchCrimeMovies} title='Crime Movies' /> */}
-            {/* <Row fetchUrl={requests.fetchFamilyMovies} title='Family Movies' /> */}
-            {/* <Row fetchUrl={requests.fetchFantasyMovies} title='Fantasy Movies' /> */}
-            {/* <Row fetchUrl={requests.fetchMysteryMovies} title='Mystery Movies' /> */}
-            {/* <Row fetchUrl={requests.fetchHorrorMovies} title='Horror Movies' /> */}
-            {/* <Row fetchUrl={requests.fetchMusicMovies} title='Music Movies' /> */}
+            <Row fetchUrl={fetchUrl} title={title} />
         </div>
     )
 };

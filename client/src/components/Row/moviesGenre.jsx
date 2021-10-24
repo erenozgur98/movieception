@@ -1,7 +1,7 @@
 const moviesGenre = 
 [
     {
-        route:'/discover',
+        route:'/discover/movies',
         title:'All'
     },
     {

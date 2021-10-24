@@ -1,7 +1,7 @@
 const showsGenre = 
 [
     {
-        route:'/discover',
+        route:'/discover/shows',
         title:'All'
     },
     {
