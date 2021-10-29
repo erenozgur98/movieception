@@ -1,26 +1,17 @@
 import React, { useState } from 'react'
-import { Navbar, Nav, NavbarBrand, DropdownButton, Dropdown, Button } from 'react-bootstrap';
-// import { Link } from 'react-router-dom';
 import './style.css';
 import SearchForm from '../SearchForm';
-import CurrentUser from '../CurrentUser';
-import Login from '../../Pages/Login';
-
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
 import MenuIcon from '@mui/icons-material/Menu';
 import Link from '@mui/material/Link';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import AccountCircle from '@mui/icons-material/AccountCircle';
-import MoreIcon from '@mui/icons-material/MoreVert';
 
 function Header({ user, handleLogout }) {
-    // const [search, setSearch] = useState(false);
-    // const [login, setLogin] = useState(false);
     const [opacity, updateColor] = useState(false);
 
     const scrollHandler = () => {
@@ -32,27 +23,16 @@ function Header({ user, handleLogout }) {
     };
 
     window.addEventListener('scroll', scrollHandler);
-    const [anchorEl, setAnchorEl] = React.useState(null);
-    const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+    const [anchorEl, setAnchorEl] = useState(null);
 
     const isMenuOpen = Boolean(anchorEl);
-    const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
     const handleProfileMenuOpen = (event) => {
         setAnchorEl(event.currentTarget);
     };
 
-    const handleMobileMenuClose = () => {
-        setMobileMoreAnchorEl(null);
-    };
-
     const handleMenuClose = () => {
         setAnchorEl(null);
-        handleMobileMenuClose();
-    };
-
-    const handleMobileMenuOpen = (event) => {
-        setMobileMoreAnchorEl(event.currentTarget);
     };
 
     const menuId = 'primary-search-account-menu';
@@ -72,39 +52,9 @@ function Header({ user, handleLogout }) {
             open={isMenuOpen}
             onClose={handleMenuClose}
         >
-            <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-        </Menu>
-    );
-
-    const mobileMenuId = 'primary-search-account-menu-mobile';
-    const renderMobileMenu = (
-        <Menu
-            anchorEl={mobileMoreAnchorEl}
-            anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-            }}
-            id={mobileMenuId}
-            keepMounted
-            transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-            }}
-            open={isMobileMenuOpen}
-            onClose={handleMobileMenuClose}
-        >
-            <MenuItem onClick={handleProfileMenuOpen}>
-                <IconButton
-                    size="large"
-                    aria-label="account of current user"
-                    aria-controls="primary-search-account-menu"
-                    aria-haspopup="true"
-                    color="inherit"
-                >
-                    <AccountCircle />
-                </IconButton>
-                <p>Profile</p>
-            </MenuItem>
+            <MenuItem onClick={handleMenuClose}><Link href='/homr'>Home</Link></MenuItem>
+            <MenuItem onClick={handleMenuClose}><Link href='/discover'>Discover</Link></MenuItem>
+            <MenuItem onClick={handleMenuClose}><Link href='/actors'>Actors</Link></MenuItem>
         </Menu>
     );
 
@@ -112,22 +62,13 @@ function Header({ user, handleLogout }) {
         <Box sx={{ flexGrow: 1 }}>
             <AppBar position="fixed" style={{ backgroundColor: '#131313', opacity: '0.7' }}>
                 <Toolbar>
-                    <IconButton
-                        size="large"
-                        edge="start"
-                        color="inherit"
-                        aria-label="open drawer"
-                        sx={{ mr: 2 }}
-                    >
-                        <MenuIcon />
-                    </IconButton>
                     <Link href='/' style={{ color: 'white', textDecoration: 'none', fontSize: '1.3rem'}}>
-                        True Story
+                        TrueStory
                     </Link>
                     <SearchForm />
                     <Box sx={{ flexGrow: 1 }} />
                     <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-                        <IconButton
+                        {/* <IconButton
                             size="large"
                             edge="end"
                             aria-label="account of current user"
@@ -137,23 +78,34 @@ function Header({ user, handleLogout }) {
                             color="inherit"
                         >
                             <AccountCircle />
-                        </IconButton>
+                        </IconButton> */}
+                        <Link href='/home' style={{ color: 'white', textDecoration: 'none', fontSize: '1.1rem', paddingLeft:'5px'}}>
+                            Home
+                        </Link>
+                        <Link href='/discover' style={{ color: 'white', textDecoration: 'none', fontSize: '1.1rem', paddingLeft:'5px'}}>
+                            Discover
+                        </Link>
+                        <Link href='/profile' style={{ color: 'white', textDecoration: 'none', fontSize: '1.1rem', paddingLeft:'5px'}}>
+                            Profile
+                        </Link>
+                        <Link href='/' handleLogout={handleLogout} style={{ color: 'white', textDecoration: 'none', fontSize: '1.1rem', paddingLeft:'5px'}}>
+                            Logout
+                        </Link>
                     </Box>
                     <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
                         <IconButton
                             size="large"
                             aria-label="show more"
-                            aria-controls={mobileMenuId}
+                            aria-controls={menuId}
                             aria-haspopup="true"
-                            onClick={handleMobileMenuOpen}
+                            onClick={handleProfileMenuOpen}
                             color="inherit"
                         >
-                            <MoreIcon />
+                            <MenuIcon />
                         </IconButton>
                     </Box>
                 </Toolbar>
             </AppBar>
-            {renderMobileMenu}
             {renderMenu}
         </Box>
     );
