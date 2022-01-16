@@ -9,13 +9,17 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Link from '@mui/material/Link';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
-import AccountCircle from '@mui/icons-material/AccountCircle';
+import Button from '@mui/material/Button';
+// import AccountCircle from '@mui/icons-material/AccountCircle';
 import { Nav, NavDropdown } from 'react-bootstrap';
 import { styled } from '@mui/material/styles';
 import StyledComponents from 'styled-components';
+import LoginModal from '../Login'
+import API from '../../utils/API';
 
-function Header({ user, handleLogout }) {
+function Header({ user, setUser }) {
     const [anchorEl, setAnchorEl] = useState(null);
+    const [loginModal, setLoginModal] = useState(false);
     const isMenuOpen = Boolean(anchorEl);
 
     const StyledNavLink = StyledComponents(Nav.Link)`
@@ -24,7 +28,15 @@ function Header({ user, handleLogout }) {
     &:hover {
         color: white;
     }
-`
+    `
+
+    const StyledButton = StyledComponents(Button)`
+        color: white;
+        font-side: 1.1rem;
+        &:hover {
+            color: white;
+        }
+    `
 
     const StyledMenu = styled(Menu)(({ theme }) => ({
         '& .MuiList-root': {
@@ -38,6 +50,11 @@ function Header({ user, handleLogout }) {
             textDecoration: 'none'
         }
     }));
+
+    const handleLogout = () => {
+        setUser({});
+        API.logOut();
+    };
 
     const handleProfileMenuOpen = (event) => {
         setAnchorEl(event.currentTarget);
@@ -65,9 +82,34 @@ function Header({ user, handleLogout }) {
             open={isMenuOpen}
             onClose={handleMenuClose}
         >
-            <StyledMenuItem onClick={handleMenuClose}><Link href='/home'>Home</Link></StyledMenuItem>
-            <StyledMenuItem onClick={handleMenuClose}><Link href='/discover'>Discover</Link></StyledMenuItem>
-            <StyledMenuItem onClick={handleMenuClose}><Link href='/actors'>Actors</Link></StyledMenuItem>
+            <StyledMenuItem
+                onClick={handleMenuClose}
+            >
+                <Link href='/home'>Home</Link>
+            </StyledMenuItem>
+            <StyledMenuItem
+                onClick={handleMenuClose}
+            >
+                <Link href='/discover'>Discover</Link>
+            </StyledMenuItem>
+            <StyledMenuItem
+                onClick={handleMenuClose}
+            >
+                <Link href='/actors'>Actors</Link>
+            </StyledMenuItem>
+            {user?.username ? (
+                <StyledMenuItem
+                    onClick={handleMenuClose}
+                >
+                    <StyledButton onClick={handleLogout}>Logout</StyledButton>
+                </StyledMenuItem>
+            ) : (
+                <StyledMenuItem
+                    onClick={handleMenuClose}
+                >
+                    <StyledButton onClick={() => setLoginModal(true)}>Login</StyledButton>
+                </StyledMenuItem>
+            )}
         </StyledMenu>
     );
 
@@ -91,76 +133,81 @@ function Header({ user, handleLogout }) {
     ]
 
     return (
-        <Box sx={{ flexGrow: 1 }}>
-            <AppBar position="fixed" style={{ backgroundColor: '#131313' }}>
-                <Toolbar>
-                    <Link href='/' style={{ color: 'white', textDecoration: 'none', fontSize: '1.3rem', marginRight: '0.8rem' }}>
-                        True<span style={{ paddingLeft: '5px' }}>Story</span>
-                    </Link>
-                    <SearchForm />
-                    <Box sx={{ flexGrow: 1 }} />
-                    <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-                        <Nav>
-                            <StyledNavLink
-                                href='/home'
-                            >
-                                Home
-                            </StyledNavLink>
-                            <NavDropdown
-                                style={{ fontSize: '1.1rem' }}
-                                title={<span style={{ color: 'white' }}>Discover</span>}
-                                id="basic-nav-dropdown"
-                            >
-                                {discover.map(g => (
-                                    <NavDropdown.Item
-                                        href={g.route}
+        <>
+            <Box sx={{ flexGrow: 1 }}>
+                <AppBar position="fixed" style={{ backgroundColor: '#131313' }}>
+                    <Toolbar>
+                        <Link href='/' style={{ color: 'white', textDecoration: 'none', fontSize: '1.3rem', marginRight: '0.8rem' }}>
+                            True<span style={{ paddingLeft: '5px' }}>Story</span>
+                        </Link>
+                        <SearchForm />
+                        <Box sx={{ flexGrow: 1 }} />
+                        <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+                            <Nav>
+                                <StyledNavLink
+                                    href='/home'
+                                >
+                                    Home
+                                </StyledNavLink>
+                                <NavDropdown
+                                    style={{ fontSize: '1.1rem' }}
+                                    title={<span style={{ color: 'white' }}>Discover</span>}
+                                    id="basic-nav-dropdown"
+                                >
+                                    {discover.map(g => (
+                                        <NavDropdown.Item
+                                            href={g.route}
+                                        >
+                                            {g.title}
+                                        </NavDropdown.Item>
+                                    ))}
+                                </NavDropdown>
+                                {user?.username ? (
+                                    <StyledNavLink
+                                        href='/profile'
                                     >
-                                        {g.title}
-                                    </NavDropdown.Item>
-                                ))}
-                            </NavDropdown>
-                            {user?.username ? (
-                                <StyledNavLink
-                                    href='/profile'
-                                >
-                                    Profile
-                                </StyledNavLink>
-                            ) : (
-                                null
-                            )}
-                            {user?.username ? (
-                                <StyledNavLink
-                                    href='/'
-                                    handleLogout={handleLogout}
-                                >
-                                    Logout
-                                </StyledNavLink>
-                            ) : (
-                                <StyledNavLink
-                                    href='/login'
-                                    handleLogout={handleLogout}
-                                >
-                                    Login
-                                </StyledNavLink>
-                            )}
-                        </Nav>
-                    </Box>
-                    <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
-                        <IconButton
-                            size="large"
-                            aria-label="show more"
-                            aria-controls={menuId}
-                            aria-haspopup="true"
-                            onClick={handleProfileMenuOpen}
-                            color="inherit"
-                        >
-                            <MenuIcon />
-                        </IconButton>
-                    </Box>
-                </Toolbar>
-            </AppBar>
-            {renderMenu}
-        </Box>
+                                        Profile
+                                    </StyledNavLink>
+                                ) : (
+                                    null
+                                )}
+                                {user?.username ? (
+                                    <StyledButton
+                                        onClick={handleLogout}
+                                    >
+                                        Logout
+                                    </StyledButton>
+                                ) : (
+                                    <StyledButton
+                                        onClick={() => setLoginModal(true)}
+                                    >
+                                        Login
+                                    </StyledButton>
+                                )}
+                            </Nav>
+                        </Box>
+                        <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
+                            <IconButton
+                                size="large"
+                                aria-label="show more"
+                                aria-controls={menuId}
+                                aria-haspopup="true"
+                                onClick={handleProfileMenuOpen}
+                                color="inherit"
+                            >
+                                <MenuIcon />
+                            </IconButton>
+                        </Box>
+                    </Toolbar>
+                </AppBar>
+                {renderMenu}
+            </Box>
+            <LoginModal
+                setUser={setUser}
+                show={loginModal}
+                handleClose={() => setLoginModal(false)}
+            />
+        </>
     );
 };
 

@@ -35,15 +35,15 @@ function App() {
       })
   }, []);
 
-  const handleLogout = () => {
-    setUser({});
-    API.logOut();
-  };
+  // const handleLogout = () => {
+  //   setUser({});
+  //   API.logOut();
+  // };
 
   return (
     <div>
       <Router>
-        <Header user={user} handleLogout={handleLogout} />
+        <Header user={user} setUser={setUser} />
         <div className='main'>
           <Route exact path='/' component={HomePage} />
           <Route exact path='/home' component={HomePage} />
@@ -58,7 +58,7 @@ function App() {
           <Route exact path='/actors' component={Actors} />
           <Route exact path='/actors/:ActorId' component={ActorPage} />
           <Route exact path='/profile' component={Profile} />
-          {/* create UserProfile page, replace it with profile */}
+          {/* TODO: create UserProfile page, replace it with profile */}
           <Route exact path='/profile/:username' component={Profile} />
           <Route exact path='/login' render={(props) => <Login {...props}
             loggedIn={loggedIn}
