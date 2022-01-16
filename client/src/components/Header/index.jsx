@@ -10,22 +10,34 @@ import Link from '@mui/material/Link';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import AccountCircle from '@mui/icons-material/AccountCircle';
+import { Nav, NavDropdown } from 'react-bootstrap';
+import { styled } from '@mui/material/styles';
+import StyledComponents from 'styled-components';
 
 function Header({ user, handleLogout }) {
-    const [opacity, updateColor] = useState(false);
-
-    const scrollHandler = () => {
-        if (window.scrollY >= 20) {
-            updateColor(true);
-        } else {
-            updateColor(false);
-        }
-    };
-
-    window.addEventListener('scroll', scrollHandler);
     const [anchorEl, setAnchorEl] = useState(null);
-
     const isMenuOpen = Boolean(anchorEl);
+
+    const StyledNavLink = StyledComponents(Nav.Link)`
+    color: white;
+    font-size: 1.1rem;
+    &:hover {
+        color: white;
+    }
+`
+
+    const StyledMenu = styled(Menu)(({ theme }) => ({
+        '& .MuiList-root': {
+            backgroundColor: '#131313'
+        }
+    }));
+
+    const StyledMenuItem = styled(MenuItem)(({ theme }) => ({
+        '& .MuiTypography-root': {
+            color: 'white',
+            textDecoration: 'none'
+        }
+    }));
 
     const handleProfileMenuOpen = (event) => {
         setAnchorEl(event.currentTarget);
@@ -37,7 +49,8 @@ function Header({ user, handleLogout }) {
 
     const menuId = 'primary-search-account-menu';
     const renderMenu = (
-        <Menu
+        <StyledMenu
+            style={{ marginTop: '2rem' }}
             anchorEl={anchorEl}
             anchorOrigin={{
                 vertical: 'top',
@@ -52,45 +65,85 @@ function Header({ user, handleLogout }) {
             open={isMenuOpen}
             onClose={handleMenuClose}
         >
-            <MenuItem onClick={handleMenuClose}><Link href='/homr'>Home</Link></MenuItem>
-            <MenuItem onClick={handleMenuClose}><Link href='/discover'>Discover</Link></MenuItem>
-            <MenuItem onClick={handleMenuClose}><Link href='/actors'>Actors</Link></MenuItem>
-        </Menu>
+            <StyledMenuItem onClick={handleMenuClose}><Link href='/home'>Home</Link></StyledMenuItem>
+            <StyledMenuItem onClick={handleMenuClose}><Link href='/discover'>Discover</Link></StyledMenuItem>
+            <StyledMenuItem onClick={handleMenuClose}><Link href='/actors'>Actors</Link></StyledMenuItem>
+        </StyledMenu>
     );
+
+    const discover = [
+        {
+            title: 'All',
+            route: '/discover'
+        },
+        {
+            title: 'Movies',
+            route: '/discover/movies'
+        },
+        {
+            title: 'Shows',
+            route: '/discover/shows'
+        },
+        {
+            title: 'Actors',
+            route: '/actors'
+        },
+    ]
 
     return (
         <Box sx={{ flexGrow: 1 }}>
-            <AppBar position="fixed" style={{ backgroundColor: '#131313', opacity: '0.7' }}>
+            <AppBar position="fixed" style={{ backgroundColor: '#131313' }}>
                 <Toolbar>
-                    <Link href='/' style={{ color: 'white', textDecoration: 'none', fontSize: '1.3rem'}}>
-                        TrueStory
+                    <Link href='/' style={{ color: 'white', textDecoration: 'none', fontSize: '1.3rem', marginRight: '0.8rem' }}>
+                        True<span style={{ paddingLeft: '5px' }}>Story</span>
                     </Link>
                     <SearchForm />
                     <Box sx={{ flexGrow: 1 }} />
                     <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-                        {/* <IconButton
-                            size="large"
-                            edge="end"
-                            aria-label="account of current user"
-                            aria-controls={menuId}
-                            aria-haspopup="true"
-                            onClick={handleProfileMenuOpen}
-                            color="inherit"
-                        >
-                            <AccountCircle />
-                        </IconButton> */}
-                        <Link href='/home' style={{ color: 'white', textDecoration: 'none', fontSize: '1.1rem', paddingLeft:'5px'}}>
-                            Home
-                        </Link>
-                        <Link href='/discover' style={{ color: 'white', textDecoration: 'none', fontSize: '1.1rem', paddingLeft:'5px'}}>
-                            Discover
-                        </Link>
-                        <Link href='/profile' style={{ color: 'white', textDecoration: 'none', fontSize: '1.1rem', paddingLeft:'5px'}}>
-                            Profile
-                        </Link>
-                        <Link href='/' handleLogout={handleLogout} style={{ color: 'white', textDecoration: 'none', fontSize: '1.1rem', paddingLeft:'5px'}}>
-                            Logout
-                        </Link>
+                        <Nav>
+                            <StyledNavLink
+                                href='/home'
+                            >
+                                Home
+                            </StyledNavLink>
+                            <NavDropdown
+                                style={{ fontSize: '1.1rem' }}
+                                title={<span style={{ color: 'white' }}>Discover</span>}
+                                id="basic-nav-dropdown"
+                            >
+                                {discover.map(g => (
+                                    <NavDropdown.Item
+                                        href={g.route}
+                                    >
+                                        {g.title}
+                                    </NavDropdown.Item>
+                                ))}
+                            </NavDropdown>
+                            {user?.username ? (
+                                <StyledNavLink
+                                    href='/profile'
+                                >
+                                    Profile
+                                </StyledNavLink>
+                            ) : (
+                                null
+                            )}
+                            {user?.username ? (
+                                <StyledNavLink
+                                    href='/'
+                                    handleLogout={handleLogout}
+                                >
+                                    Logout
+                                </StyledNavLink>
+                            ) : (
+                                <StyledNavLink
+                                    href='/login'
+                                    handleLogout={handleLogout}
+                                >
+                                    Login
+                                </StyledNavLink>
+                            )}
+                        </Nav>
                     </Box>
                     <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
                         <IconButton
