@@ -24,7 +24,7 @@ const LoginModal = ({ setUser, show, handleClose }) => {
 
     return (
         <Modal show={show} onHide={handleClose}>
-            <Container className="signup-main" maxWidth="xs">
+            <Container className="login-main" maxWidth="xs">
                 <Box
                     sx={{
                         display: 'flex',

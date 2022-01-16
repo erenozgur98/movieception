@@ -9,8 +9,17 @@
     margin-bottom: 32px;
 } */
 
+.login-main {
+    position: fixed;
+    margin-top: 3rem;
+}
+
+.signup-main {
+    margin-top: 5rem;
+}
+
 .signup-main2 {
     background-color: white;
-    padding: 20px;
+    padding: 1.8rem;
     border-radius: 12%;
 }

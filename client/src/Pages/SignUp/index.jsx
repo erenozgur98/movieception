@@ -48,7 +48,7 @@ function SignUp({ setUser, user }) {
     return (
         <>
             <Container className="signup-main" maxWidth="xs">
-                <CssBaseline />
+                {/* <CssBaseline /> */}
                 <Box
                     sx={{
                         display: 'flex',
