@@ -1,6 +1,7 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
 import './Banner.css'
+import styled from 'styled-components'
 
 
 function Banner({ link, title, movie }) {
@@ -12,6 +13,17 @@ function Banner({ link, title, movie }) {
             history.push(`/movies/${movie.id}`)
         }
     }
+
+    const StyledDiv = styled.div`
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        background-position: 50% 10%;
+        transition: all 1s;
+    `
 
     return (
         <div>
