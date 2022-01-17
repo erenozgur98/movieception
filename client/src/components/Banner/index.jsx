@@ -1,8 +1,6 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
 import './Banner.css'
-import styled from 'styled-components'
-
 
 function Banner({ link, title, movie }) {
     const history = useHistory();
@@ -14,17 +12,6 @@ function Banner({ link, title, movie }) {
         }
     }
 
-    const StyledDiv = styled.div`
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-size: cover;
-        background-position: 50% 10%;
-        transition: all 1s;
-    `
-
     return (
         <div>
             <header
@@ -32,6 +19,7 @@ function Banner({ link, title, movie }) {
                 style={{
                     backgroundSize: 'cover',
                     backgroundImage: `url(https://image.tmdb.org/t/p/original${link})`,
+                    backgroundPosition: '50% 10%'
                     // backgroundPosition: 'center center'
                 }}
             >

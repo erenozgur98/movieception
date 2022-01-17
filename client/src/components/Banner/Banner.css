@@ -1,7 +1,8 @@
 .banner {
   /* object-fit: contain; */
   /* original 448px */
-  height: 548px;
+  height: 688px;
+  /* height: 548px; */
 }
 
 .banner-title {
@@ -9,7 +10,8 @@
   /* height: 422px; */
   position: relative;
   text-align: end;
-  top: 462px;
+  top: 36.8rem;
+  /* top: 462px; */
   /* top: 492px; */
   padding-right: 12px;
   font-size: 0.9rem;
@@ -20,12 +22,14 @@
 .banner-real-title {
   position: absolute;
   top: 24.5rem;
+  /* top: 24.5rem; */
   margin-left: 2rem;
 }
 
 .banner-btn {
   position: absolute;
-  top: 28rem;
+  top: 36rem;
+  /* top: 28rem; */
   margin-left: 2rem;
   border-radius: 0.5vw;
   background-color: rgba(51, 51, 51, 0.5);

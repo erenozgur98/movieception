@@ -135,7 +135,7 @@ function Header({ user, setUser }) {
     return (
         <>
             <Box sx={{ flexGrow: 1 }}>
-                <AppBar position="fixed" style={{ backgroundColor: '#131313' }}>
+                <AppBar position="fixed" style={{ backgroundColor: '#131313', opacity: '0.8' }}>
                     <Toolbar>
                         <Link href='/' style={{ color: 'white', textDecoration: 'none', fontSize: '1.3rem', marginRight: '0.8rem' }}>
                             True<span style={{ paddingLeft: '5px' }}>Story</span>

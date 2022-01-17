@@ -5,8 +5,9 @@ import requests from '../../components/Requests';
 import Banner from '../../components/Banner';
 import axios from '../../components/Axios';
 import { Container } from 'react-bootstrap';
-import './Home.css';
 import { useEffect } from 'react';
+import styled from 'styled-components';
+import './Home.css';
 
 function Home() {
     const [movie, setMovie] = useState([]);
@@ -22,9 +23,23 @@ function Home() {
         document.title = 'Home';
     }, [])
 
+    // const StyledDiv = styled.div`
+    //     position: absolute;
+    //     top: 0;
+    //     left: 0;
+    //     width: 100%;
+    //     height: 100%;
+    //     background-image: url(https://image.tmdb.org/t/p/original${movie?.backdrop_path});
+    //     background-size: cover;
+    //     background-position: 50% 10%;
+    //     transition: all 1s;
+    // `
+
     return (
-        <div>
-            <Banner link={movie?.backdrop_path} title={movie?.title || movie?.name} movie={movie} />
+        <div className='mainDiv'>
+            {/* <StyledDiv> */}
+                <Banner link={movie?.backdrop_path} title={movie?.title || movie?.name} movie={movie} />
+            {/* </StyledDiv> */}
             <Container className='homepage'>
                 <HomeMovie fetchUrl={requests.fetchTrendingMovies} />
                 <HomeShow fetchUrl={requests.fetchTrendingShows} />
