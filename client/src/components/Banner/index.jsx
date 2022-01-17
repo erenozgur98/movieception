@@ -23,7 +23,7 @@ function Banner({ link, title, movie }) {
                     // backgroundPosition: 'center center'
                 }}
             >
-                <div>
+                <div className='banner-button-container'>
                     {title ?
                         <h2 className="banner-title">
                             Image from: {title}
@@ -33,7 +33,7 @@ function Banner({ link, title, movie }) {
                     }
                 </div>
                 {movie ?
-                    <div className='banner-description'>
+                    <div className='banner-button-container'>
                         <button className='banner-btn' onClick={redirect}>Go To {movie?.title || movie?.name}</button>
                     </div>
                     :

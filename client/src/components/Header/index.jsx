@@ -85,17 +85,17 @@ function Header({ user, setUser }) {
             <StyledMenuItem
                 onClick={handleMenuClose}
             >
-                <Link href='/home'>Home</Link>
+                <StyledButton href='/home'>Home</StyledButton>
             </StyledMenuItem>
             <StyledMenuItem
                 onClick={handleMenuClose}
             >
-                <Link href='/discover'>Discover</Link>
+                <StyledButton href='/discover'>Discover</StyledButton>
             </StyledMenuItem>
             <StyledMenuItem
                 onClick={handleMenuClose}
             >
-                <Link href='/actors'>Actors</Link>
+                <StyledButton href='/actors'>Actors</StyledButton>
             </StyledMenuItem>
             {user?.username ? (
                 <StyledMenuItem
@@ -132,10 +132,15 @@ function Header({ user, setUser }) {
         },
     ]
 
+    const AppBarStyle = {
+        backgroundColor: '#131313', 
+        opacity: '0.8'
+    }
+
     return (
         <>
             <Box sx={{ flexGrow: 1 }}>
-                <AppBar position="fixed" style={{ backgroundColor: '#131313', opacity: '0.8' }}>
+                <AppBar position="fixed" style={AppBarStyle}>
                     <Toolbar>
                         <Link href='/' style={{ color: 'white', textDecoration: 'none', fontSize: '1.3rem', marginRight: '0.8rem' }}>
                             True<span style={{ paddingLeft: '5px' }}>Story</span>
@@ -186,6 +191,7 @@ function Header({ user, setUser }) {
                                 )}
                             </Nav>
                         </Box>
+                        {/* Mobile Menu */}
                         <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
                             <IconButton
                                 size="large"
