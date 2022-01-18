@@ -22,7 +22,7 @@
 .row-map {
   display: flex;
   flex-direction: column;
-  border: solid white 2px;
+  border: solid rgb(133, 132, 132) 2px;
   margin: 5px;
   border-radius: 2vw;
   /* padding: 2px; */

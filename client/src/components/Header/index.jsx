@@ -10,7 +10,7 @@ import Link from '@mui/material/Link';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import Button from '@mui/material/Button';
-// import AccountCircle from '@mui/icons-material/AccountCircle';
+import AccountCircle from '@mui/icons-material/AccountCircle';
 import { Nav, NavDropdown } from 'react-bootstrap';
 import { styled } from '@mui/material/styles';
 import StyledComponents from 'styled-components';
@@ -19,6 +19,7 @@ import API from '../../utils/API';
 
 function Header({ user, setUser }) {
     const [anchorEl, setAnchorEl] = useState(null);
+    const [accountAnchorEl, setAccountAnchorEl] = useState(null);
     const [loginModal, setLoginModal] = useState(false);
     const isMenuOpen = Boolean(anchorEl);
 
@@ -60,8 +61,16 @@ function Header({ user, setUser }) {
         setAnchorEl(event.currentTarget);
     };
 
+    const handleAccountMenu = (event) => {
+        setAccountAnchorEl(event.currentTarget);
+    };
+
     const handleMenuClose = () => {
         setAnchorEl(null);
+    };
+
+    const handleClose = () => {
+        setAccountAnchorEl(null);
     };
 
     const menuId = 'primary-search-account-menu';
@@ -113,6 +122,20 @@ function Header({ user, setUser }) {
         </StyledMenu>
     );
 
+    const accountMenu = (
+        <StyledMenu
+            id='menu-appbar'
+            anchorEl={accountAnchorEl}
+            keepMounted
+            open={Boolean(accountAnchorEl)}
+            onClose={handleClose}
+        >
+            <StyledNavLink href='/profile'>Profile</StyledNavLink>
+            <StyledNavLink href='/settings'>Settings</StyledNavLink>
+            <StyledNavLink onClick={handleLogout}>Logout</StyledNavLink>
+        </StyledMenu>
+    )
+
     const discover = [
         {
             title: 'All',
@@ -133,7 +156,7 @@ function Header({ user, setUser }) {
     ]
 
     const AppBarStyle = {
-        backgroundColor: '#131313', 
+        backgroundColor: '#131313',
         opacity: '0.8'
     }
 
@@ -168,20 +191,16 @@ function Header({ user, setUser }) {
                                     ))}
                                 </NavDropdown>
                                 {user?.username ? (
-                                    <StyledNavLink
-                                        href='/profile'
+                                    <IconButton
+                                        size="small"
+                                        aria-label="account of current user"
+                                        aria-controls="menu-appbar"
+                                        aria-haspopup="true"
+                                        onClick={handleAccountMenu}
+                                        color="inherit"
                                     >
-                                        Profile
-                                    </StyledNavLink>
-                                ) : (
-                                    null
-                                )}
-                                {user?.username ? (
-                                    <StyledButton
-                                        onClick={handleLogout}
-                                    >
-                                        Logout
-                                    </StyledButton>
+                                        <AccountCircle />
+                                    </IconButton>
                                 ) : (
                                     <StyledButton
                                         onClick={() => setLoginModal(true)}
@@ -207,6 +226,7 @@ function Header({ user, setUser }) {
                     </Toolbar>
                 </AppBar>
                 {renderMenu}
+                {accountMenu}
             </Box>
             <LoginModal
                 setUser={setUser}
