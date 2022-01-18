@@ -70,10 +70,6 @@ function Header({ user, setUser }) {
         setAnchorEl(null);
     };
 
-    const handleClose = () => {
-        setAccountAnchorEl(null);
-    };
-
     const menuId = 'primary-search-account-menu';
     const renderMenu = (
         <StyledMenu
@@ -123,11 +119,14 @@ function Header({ user, setUser }) {
             anchorEl={accountAnchorEl}
             keepMounted
             open={Boolean(accountAnchorEl)}
-            onClose={handleClose}
+            onClose={() => setAccountAnchorEl(null)}
         >
             <StyledNavLink href='/profile'>Profile</StyledNavLink>
             <StyledNavLink href='/settings'>Settings</StyledNavLink>
-            <StyledNavLink onClick={handleLogout}>Logout</StyledNavLink>
+            <StyledNavLink onClick={() => {
+                setAccountAnchorEl(null)
+                handleLogout()
+            }}>Logout</StyledNavLink>
         </StyledMenu>
     )
 
