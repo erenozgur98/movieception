@@ -21,6 +21,7 @@ function Header({ user, setUser }) {
     const [anchorEl, setAnchorEl] = useState(null);
     const [accountAnchorEl, setAccountAnchorEl] = useState(null);
     const [loginModal, setLoginModal] = useState(false);
+    const [opacity, setOpacity] = useState('0.8');
     const isMenuOpen = Boolean(anchorEl);
 
     const StyledNavLink = StyledComponents(Nav.Link)`
@@ -52,6 +53,16 @@ function Header({ user, setUser }) {
         }
     }));
 
+    const scrollHandler = () => {
+        if (window.scrollY >= 20) {
+            setOpacity('1');
+        } else {
+            setOpacity('0.8');
+        }
+    };
+
+    window.addEventListener('scroll', scrollHandler);
+
     const handleLogout = () => {
         setUser({});
         API.logOut();
@@ -59,14 +70,17 @@ function Header({ user, setUser }) {
     };
 
     const handleProfileMenuOpen = (event) => {
+        setOpacity('1')
         setAnchorEl(event.currentTarget);
     };
 
     const handleAccountMenu = (event) => {
+        setOpacity('1')
         setAccountAnchorEl(event.currentTarget);
     };
 
     const handleMenuClose = () => {
+        setOpacity('0.8')
         setAnchorEl(null);
     };
 
@@ -119,14 +133,19 @@ function Header({ user, setUser }) {
             anchorEl={accountAnchorEl}
             keepMounted
             open={Boolean(accountAnchorEl)}
-            onClose={() => setAccountAnchorEl(null)}
+            onClose={() => {
+                setOpacity('0.8')
+                setAccountAnchorEl(null)
+            }}
         >
             <StyledNavLink href='/profile'>Profile</StyledNavLink>
             <StyledNavLink href='/settings'>Settings</StyledNavLink>
             <StyledNavLink onClick={() => {
                 setAccountAnchorEl(null)
                 handleLogout()
-            }}>Logout</StyledNavLink>
+            }}>
+                Logout
+            </StyledNavLink>
         </StyledMenu>
     )
 
@@ -151,7 +170,8 @@ function Header({ user, setUser }) {
 
     const AppBarStyle = {
         backgroundColor: '#131313',
-        // opacity: '0.8'
+        transition: '0.6s all',
+        opacity: opacity
     }
 
     return (
@@ -191,6 +211,7 @@ function Header({ user, setUser }) {
                                         aria-controls="menu-appbar"
                                         aria-haspopup="true"
                                         onClick={handleAccountMenu}
+                                        onClose={() => setOpacity('0.8')}
                                         color="inherit"
                                     >
                                         <AccountCircle />
