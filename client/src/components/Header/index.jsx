@@ -55,6 +55,7 @@ function Header({ user, setUser }) {
     const handleLogout = () => {
         setUser({});
         API.logOut();
+        window.location.replace('/')
     };
 
     const handleProfileMenuOpen = (event) => {
@@ -106,13 +107,7 @@ function Header({ user, setUser }) {
             >
                 <StyledButton href='/actors'>Actors</StyledButton>
             </StyledMenuItem>
-            {user?.username ? (
-                <StyledMenuItem
-                    onClick={handleMenuClose}
-                >
-                    <StyledButton onClick={handleLogout}>Logout</StyledButton>
-                </StyledMenuItem>
-            ) : (
+            {!user?.username && (
                 <StyledMenuItem
                     onClick={handleMenuClose}
                 >
@@ -157,7 +152,7 @@ function Header({ user, setUser }) {
 
     const AppBarStyle = {
         backgroundColor: '#131313',
-        opacity: '0.8'
+        // opacity: '0.8'
     }
 
     return (
@@ -222,6 +217,16 @@ function Header({ user, setUser }) {
                             >
                                 <MenuIcon />
                             </IconButton>
+                            {user?.username && <IconButton
+                                size="small"
+                                aria-label="account of current user"
+                                aria-controls="menu-appbar"
+                                aria-haspopup="true"
+                                onClick={handleAccountMenu}
+                                color="inherit"
+                            >
+                                <AccountCircle />
+                            </IconButton>}
                         </Box>
                     </Toolbar>
                 </AppBar>
