@@ -30,12 +30,24 @@ export default {
         return axios.get('/api/users/user');
     },
 
-    getOneMovie: () => {
-        
+    addMovieToFavorite: (username, MovieId) => {
+        return axios.post(`/api/users/${username}/favorite/movies/${MovieId}`)
     },
 
-    getOneShow: () => {
+    addShowToFavorite: (username, ShowId) => {
+        return axios.post(`/api/users/${username}/favorite/shows/${ShowId}`)
+    },
 
+    getAllFavorites: (username) => {
+        return axios.get(`/api/users/${username}/favorites`)
+    },
+
+    removeMovieFromFavorites: (username, MovieId) => {
+        return axios.put(`/api/users/${username}/favorite/movies/${MovieId}`)
+    },
+    
+    removeShowFromFavorites: (username, ShowId) => {
+        return axios.delete(`/api/users/${username}/shows/${ShowId}`)
     },
 
     getOneActor: () => {

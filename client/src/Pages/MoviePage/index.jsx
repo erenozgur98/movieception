@@ -11,18 +11,19 @@ import YouTube from 'react-youtube';
 import "./MoviePage.css"
 import Overview from '../../components/Overview';
 import Recommendations from '../../components/Recommendations';
+import API from '../../utils/API';
 
-function MoviePage() {
+function MoviePage({ user }) {
     const [movie, setMovie] = useState({});
     const [externalId, setExternalId] = useState();
     const [videos, setVideos] = useState();
     const [trailerUrl, setTrailerUrl] = useState('');
+    const [favorites, setFavorites] = useState([]);
     const { MovieId } = useParams();
 
     const apiKey = 'af737f76cdba5b7435e17cc94568c07d';
 
     useEffect(() => {
-        // API.getOneMovie, will be set later
         const fetchData = async () => {
             const request = await axios.get(`/movie/${MovieId}?api_key=${apiKey}`);
             const requestExternalId = await axios.get(`movie/${MovieId}/external_ids?api_key=${apiKey}`);
@@ -35,10 +36,28 @@ function MoviePage() {
         document.title = `${movie?.original_title || movie?.title || movie?.name}`;
     }, [MovieId])
 
+    useEffect(() => {
+        API.getAllFavorites(user?.username)
+            .then(res => setFavorites(res.data))
+            .catch(err => console.log(err))
+    }, [favorites])
+
     const addToFavorite = (movie) => {
-        // just need the movie id to add to favorites, will work later.
+        API.addMovieToFavorite(user?.username, movie?.id).then(res => {
+            // add snackbar
+            if (res.status === 200) return console.log('Successfull')
+            return console.log('Soemthing went wrong')
+        })
     }
-    
+
+    const removeFromFavorites = (movie) => {
+        API.removeMovieFromFavorites(user?.username, movie?.id).then(res => {
+            // add snackbar
+            if (res.status === 200) return console.log('Successfull')
+            return console.log('Something went wrong')
+        })
+    }
+
     const playTrailer = () => {
         const trailerVideos = videos.filter(e => e.type === 'Trailer')
         if (trailerUrl) {
@@ -75,9 +94,17 @@ function MoviePage() {
                                 <div className='social-media-links'>
                                     <ExternalId externalId={externalId} />
                                 </div>
-                                <div className='favorite-btn'>
-                                    <button onClick={() => addToFavorite(movie)} className='btn btn-warning'>Add To Favorite</button>
-                                </div>
+                                {user?.username && <div className='favorite-btn'>
+                                    {favorites?.movieFavorites?.includes(movie.id) ?
+                                        (
+                                            <button onClick={() => removeFromFavorites(movie)} className='btn btn-warning'>Remove From Favorites</button>
+                                        )
+                                        :
+                                        (
+                                            <button onClick={() => addToFavorite(movie)} className='btn btn-warning'>Add To Favorites</button>
+                                        )
+                                    }
+                                </div>}
                             </div>
                             <div className="bottom-section">
                                 <Overview link={movie} />

@@ -35,11 +35,6 @@ function App() {
       })
   }, []);
 
-  // const handleLogout = () => {
-  //   setUser({});
-  //   API.logOut();
-  // };
-
   return (
     <div>
       <Router>
@@ -50,9 +45,9 @@ function App() {
           <Route exact path='/search' component={SearchResults} />
           <Route exact path='/discover' component={Discover} />
           <Route exact path='/discover/movies' component={Movies} />
-          <Route exact path='/movies/:MovieId' component={MoviePage} />
+          <Route exact path='/movies/:MovieId' render={() => <MoviePage user={user} />} />
           <Route exact path='/discover/shows' component={Shows} />
-          <Route exact path='/shows/:ShowId' component={ShowPage} />
+          <Route exact path='/shows/:ShowId' render={() => <ShowPage user={user} />} />
           <Route exact path='/shows/:ShowId/season/:SeasonId' component={SeasonPage} />
           <Route exact path='/shows/:ShowId/season/:SeasonId/episode/:EpisodeId' component={EpisodePage} />
           <Route exact path='/actors' component={Actors} />

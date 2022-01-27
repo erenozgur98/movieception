@@ -12,13 +12,15 @@ import '../MoviePage/MoviePage.css';
 import Overview from '../../components/Overview';
 import Recommendations from '../../components/Recommendations';
 import Seasons from '../../components/Seasons';
+import API from '../../utils/API';
 
-function ShowPage() {
+function ShowPage({ user }) {
     const [, setLoading] = useState(false);
     const [show, setShow] = useState({});
     const [externalId, setExternalId] = useState();
     const [videos, setVideos] = useState();
     const [trailerUrl, setTrailerUrl] = useState('');
+    const [favorites, setFavorites] = useState([]);
     const { ShowId } = useParams();
 
     const apiKey = 'af737f76cdba5b7435e17cc94568c07d';
@@ -39,6 +41,28 @@ function ShowPage() {
         fetchData();
         document.title = `${show?.title || show?.name || show?.original_title}`;
     }, [ShowId]);
+
+    useEffect(() => {
+        API.getAllFavorites(user?.username)
+            .then(res => setFavorites(res.data))
+            .catch(err => console.log(err))
+    }, [favorites])
+
+    const addToFavorite = (show) => {
+        API.addShowToFavorite(user?.username, show?.id).then(res => {
+            // add snackbar
+            if (res.status === 200) return console.log('Successfull')
+            return console.log('Soemthing went wrong')
+        })
+    }
+
+    const removeFromFavorites = (show) => {
+        API.removeShowFromFavorites(user?.username, show?.id).then(res => {
+            // add snackbar
+            if (res.status === 200) return console.log('Successfull')
+            return console.log('Something went wrong')
+        })
+    }
 
     const playTrailer = () => {
         if (trailerUrl) {
@@ -73,6 +97,17 @@ function ShowPage() {
                                 <div className="social-media-links">
                                     <ExternalId externalId={externalId} />
                                 </div>
+                                {user?.username && <div className='favorite-btn'>
+                                    {favorites?.showFavorites?.includes(show.id) ?
+                                        (
+                                            <button onClick={() => removeFromFavorites(show)} className='btn btn-warning'>Remove From Favorites</button>
+                                        )
+                                        :
+                                        (
+                                            <button onClick={() => addToFavorite(show)} className='btn btn-warning'>Add To Favorites</button>
+                                        )
+                                    }
+                                </div>}
                             </div>
                             <div className="bottom-section">
                                 <Overview link={show} />

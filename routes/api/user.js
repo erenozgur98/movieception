@@ -49,13 +49,22 @@ router.get('/user', async (req, res) => {
 
 ////////// FAVORITES //////////
 
-// get one specific user by username
-router.get('/:username', (req, res) => {
-    console.log(req.params)
-    console.log(req.params.username)
+// Get all favorites
+router.get('/:username/favorites' , (req, res) => {
     User.findOne({ username: req.params.username })
         .then(user => {
-            console.log(user)
+            res.json(user)
+        })
+        .catch(err => {
+            console.log(err)
+            res.status(500).sendStatus(`Error ${err}`)
+        })
+})
+
+// get one specific user by username
+router.get('/:username', (req, res) => {
+    User.findOne({ username: req.params.username })
+        .then(user => {
             res.json(user)
         })
         .catch((err) => {
@@ -86,7 +95,7 @@ router.post('/:username/favorite/movies/:MovieId', (req, res) => {
     )
 });
 
-// add a movie to user's list of favorites
+// add a show to user's list of favorites
 router.post('/:username/favorite/shows/:ShowId', (req, res) => {
     User.findOneAndUpdate({
         username: req.params.username
@@ -109,15 +118,13 @@ router.post('/:username/favorite/shows/:ShowId', (req, res) => {
 });
 
 // remove a movie from user's list of favorites
-router.delete('/:username/favorite/movies/:MovieId', (req, res) => {
+router.put('/:username/favorite/movies/:MovieId', (req, res) => {
     User.findOneAndUpdate({
         username: req.params.username
     }, {
-        $push: {
-            movieFavorites: req.params.MovieId
+        $pull: {
+            movieFavorites: { $in: [ req.params.MovieId ] }
         }
-    }, {
-        new: true
     },
     function (err, updatedUser) {
         if (err) {
@@ -131,14 +138,12 @@ router.delete('/:username/favorite/movies/:MovieId', (req, res) => {
 
 // remove a show from user's list of favorites
 router.delete('/:username/favorite/shows/:ShowId', (req, res) => {
-    User.findOneAndUpdate({
+    User.findOneAndDelete({
         username: req.params.username
     }, {
-        $push: {
-            showFavorites: req.params.ShowId
+        $pull: {
+            movieFavorites: { $in: [ req.params.MovieId ] }
         }
-    }, {
-        new: true
     },
     function (err, updatedUser) {
         if (err) {
