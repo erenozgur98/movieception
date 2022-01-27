@@ -38,23 +38,32 @@ function MoviePage({ user }) {
 
     useEffect(() => {
         API.getAllFavorites(user?.username)
-            .then(res => setFavorites(res.data))
+            .then(res => setFavorites(res.data?.movieFavorites))
             .catch(err => console.log(err))
     }, [favorites])
 
     const addToFavorite = (movie) => {
         API.addMovieToFavorite(user?.username, movie?.id).then(res => {
             // add snackbar
-            if (res.status === 200) return console.log('Successfull')
-            return console.log('Soemthing went wrong')
+            console.log(res)
+            if (res.status === 200) {
+                console.log('Successfull');
+            } else {
+                console.log('Soemthing went wrong')
+            }
         })
     }
 
     const removeFromFavorites = (movie) => {
         API.removeMovieFromFavorites(user?.username, movie?.id).then(res => {
             // add snackbar
-            if (res.status === 200) return console.log('Successfull')
-            return console.log('Something went wrong')
+            console.log(res)
+            if (res.status === 200) {
+                console.log('Successfull')
+                setFavorites(res?.movieFavorites);
+            } else {
+                console.log('Something went wrong')
+            }
         })
     }
 
@@ -95,7 +104,7 @@ function MoviePage({ user }) {
                                     <ExternalId externalId={externalId} />
                                 </div>
                                 {user?.username && <div className='favorite-btn'>
-                                    {favorites?.movieFavorites?.includes(movie.id) ?
+                                    {favorites?.includes(movie.id) ?
                                         (
                                             <button onClick={() => removeFromFavorites(movie)} className='btn btn-warning'>Remove From Favorites</button>
                                         )

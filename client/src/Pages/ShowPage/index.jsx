@@ -44,23 +44,30 @@ function ShowPage({ user }) {
 
     useEffect(() => {
         API.getAllFavorites(user?.username)
-            .then(res => setFavorites(res.data))
+            .then(res => setFavorites(res.data?.showFavorites))
             .catch(err => console.log(err))
     }, [favorites])
 
     const addToFavorite = (show) => {
         API.addShowToFavorite(user?.username, show?.id).then(res => {
             // add snackbar
-            if (res.status === 200) return console.log('Successfull')
-            return console.log('Soemthing went wrong')
+            if (res.status === 200) {
+                console.log('Successfull');
+                setFavorites(res?.showFavorites);
+            } else {
+                console.log('Soemthing went wrong');
+            }
         })
     }
 
     const removeFromFavorites = (show) => {
         API.removeShowFromFavorites(user?.username, show?.id).then(res => {
             // add snackbar
-            if (res.status === 200) return console.log('Successfull')
-            return console.log('Something went wrong')
+            if (res.status === 200) {
+                console.log('Successfull');
+            } else {
+                console.log('Something went wrong');
+            }
         })
     }
 
@@ -98,7 +105,7 @@ function ShowPage({ user }) {
                                     <ExternalId externalId={externalId} />
                                 </div>
                                 {user?.username && <div className='favorite-btn'>
-                                    {favorites?.showFavorites?.includes(show.id) ?
+                                    {favorites?.includes(show.id) ?
                                         (
                                             <button onClick={() => removeFromFavorites(show)} className='btn btn-warning'>Remove From Favorites</button>
                                         )

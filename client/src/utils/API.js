@@ -43,11 +43,11 @@ export default {
     },
 
     removeMovieFromFavorites: (username, MovieId) => {
-        return axios.put(`/api/users/${username}/favorite/movies/${MovieId}`)
+        return axios.delete(`/api/users/${username}/favorite/movies/${MovieId}`)
     },
     
     removeShowFromFavorites: (username, ShowId) => {
-        return axios.delete(`/api/users/${username}/shows/${ShowId}`)
+        return axios.delete(`/api/users/${username}/favorite/shows/${ShowId}`)
     },
 
     getOneActor: () => {
