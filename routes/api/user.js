@@ -12,21 +12,6 @@ router.get('/', async (req, res) => {
     }
 });
 
-// commented out for now, for some reason it replaces api/users/user <-- to be checked later
-
-// router.get('/:id', async (req, res) => {
-//     try {
-//         const userData = await User.findByPk(req.params.id);
-//         if (!userData) {
-//             res.status(404).json({ message: 'No user with this id!' });
-//             return;
-//         }
-//         res.status(200).json(userData);
-//     } catch (err) {
-//         res.status(500).json(err);
-//     }
-// });
-
 // get user
 router.get('/user', async (req, res) => {
     try {
@@ -42,10 +27,9 @@ router.get('/user', async (req, res) => {
             res.status(403).json({ message: 'Something went wrong getting the user, could mean that you are not logged in/signedup yet' });
         }
     } catch (err) {
-        console.log('1278361246129371294571237129371297', err)
+        console.log(err)
     };
 });
-
 
 ////////// FAVORITES //////////
 

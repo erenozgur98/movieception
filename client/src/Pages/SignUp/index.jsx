@@ -38,7 +38,7 @@ function SignUp({ setUser, user }) {
         try {
             const newUser = await API.signUp({ email: email, username: username, password: password });
             delete newUser.data.password;
-            history.push('/')
+            window.location.reload();
             setUser(newUser.data);
         } catch (err) {
             console.log(err);

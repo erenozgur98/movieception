@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+// import { useHistory } from 'react-router-dom';
 import { Modal } from 'react-bootstrap';
 import { Button, Container, Box, Typography, TextField, Grid, Link } from '@mui/material';
 import API from '../../utils/API';
 
 const LoginModal = ({ setUser, show, handleClose }) => {
-    const history = useHistory();
+    // const history = useHistory();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
@@ -16,7 +16,7 @@ const LoginModal = ({ setUser, show, handleClose }) => {
             delete newLogin.data.password;
             setUser(newLogin.data);
             handleClose();
-            history.push('/');
+            window.location.reload();
         } catch (err) {
             console.log(err)
         }

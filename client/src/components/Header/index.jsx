@@ -66,7 +66,7 @@ function Header({ user, setUser }) {
     const handleLogout = () => {
         setUser({});
         API.logOut();
-        window.location.replace('/')
+        window.location.reload();
     };
 
     const handleProfileMenuOpen = (event) => {
