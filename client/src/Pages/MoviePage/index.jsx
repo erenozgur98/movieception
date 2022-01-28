@@ -12,6 +12,7 @@ import "./MoviePage.css"
 import Overview from '../../components/Overview';
 import Recommendations from '../../components/Recommendations';
 import API from '../../utils/API';
+import styled from 'styled-components';
 
 function MoviePage({ user }) {
     const [movie, setMovie] = useState({});
@@ -84,6 +85,22 @@ function MoviePage({ user }) {
         // }
     };
 
+    const StyledMainContainer = styled(Container)`
+        position: absolute;
+        top: 14rem;
+        left: 22rem;
+    `
+
+    const StyledContainer = styled(Container)`
+        display: flex;
+        // flex-direction: column;
+    `
+
+    const StyledImg = styled.img`
+        max-width: 324px;
+        margin-right: 5rem;
+    `
+
     return (
         <div>
             {movie?.poster_path ?
@@ -91,7 +108,14 @@ function MoviePage({ user }) {
                 :
                 <Banner link={movie?.poster_path} />
             }
-                {/* videos, select type: 'trailer' , 'featurette', 'teaser' */}
+            <StyledMainContainer>
+                <StyledContainer>
+                    <StyledImg src={`https://image.tmdb.org/t/p/original${movie?.poster_path}`} alt={movie?.original_title} />
+                    {/* <ExternalId externalId={externalId} /> */}
+                    <Overview link={movie} />
+                </StyledContainer>
+            </StyledMainContainer>
+            {/* videos, select type: 'trailer' , 'featurette', 'teaser' */}
             {/* <Container>
                 {movie.poster_path ?
                     <div>

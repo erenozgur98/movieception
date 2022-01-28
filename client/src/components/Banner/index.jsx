@@ -12,7 +12,7 @@ function Banner({ link, movie }) {
                     backgroundImage: `url(https://image.tmdb.org/t/p/original${link})`,
                     backgroundPosition: '50% 10%',
                     opacity: '0.518',
-                    height: '888px',
+                    height: '762px',
                     // height: '688px',
                     position: 'relative'
                 }}
