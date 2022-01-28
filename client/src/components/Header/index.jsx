@@ -10,6 +10,7 @@ import Link from '@mui/material/Link';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import Button from '@mui/material/Button';
+import Chip from '@mui/material/Chip';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import { Nav, NavDropdown } from 'react-bootstrap';
 import { styled } from '@mui/material/styles';
@@ -21,12 +22,20 @@ function Header({ user, setUser }) {
     const [anchorEl, setAnchorEl] = useState(null);
     const [accountAnchorEl, setAccountAnchorEl] = useState(null);
     const [loginModal, setLoginModal] = useState(false);
-    const [opacity, setOpacity] = useState('0.8');
+    const [backgroundColor, setBackgroundColor] = useState('rgba(0, 0, 0, 0.8)');
+    // const [opacity, setOpacity] = useState('0.8');
     const isMenuOpen = Boolean(anchorEl);
 
     const StyledNavLink = StyledComponents(Nav.Link)`
     color: white;
     font-size: 1.1rem;
+    &:hover {
+        color: white;
+    }
+    `
+    const StyledMenuLink = StyledComponents(Nav.Link)`
+    color: white;
+    font-size: 1rem;
     &:hover {
         color: white;
     }
@@ -38,6 +47,10 @@ function Header({ user, setUser }) {
         &:hover {
             color: white;
         }
+    `
+
+    const StyledDiv = StyledComponents.div`
+        margin: 5px;
     `
 
     const StyledMenu = styled(Menu)(({ theme }) => ({
@@ -55,9 +68,9 @@ function Header({ user, setUser }) {
 
     const scrollHandler = () => {
         if (window.scrollY >= 20) {
-            setOpacity('1');
+            setBackgroundColor('rgba(0, 0, 0, 0)');
         } else {
-            setOpacity('0.8');
+            setBackgroundColor('rgba(0, 0, 0, 0.8)');
         }
     };
 
@@ -70,17 +83,17 @@ function Header({ user, setUser }) {
     };
 
     const handleProfileMenuOpen = (event) => {
-        setOpacity('1')
+        setBackgroundColor('rgba(0, 0, 0, 0.8)');
         setAnchorEl(event.currentTarget);
     };
 
     const handleAccountMenu = (event) => {
-        setOpacity('1')
+        setBackgroundColor('rgba(0, 0, 0, 0.8)');
         setAccountAnchorEl(event.currentTarget);
     };
 
     const handleMenuClose = () => {
-        setOpacity('0.8')
+        setBackgroundColor('rgba(0, 0, 0, 0)');
         setAnchorEl(null);
     };
 
@@ -134,18 +147,18 @@ function Header({ user, setUser }) {
             keepMounted
             open={Boolean(accountAnchorEl)}
             onClose={() => {
-                setOpacity('0.8')
+                setBackgroundColor('rgba(0, 0, 0, 0)');
                 setAccountAnchorEl(null)
             }}
         >
-            <StyledNavLink href='/profile'>Profile</StyledNavLink>
-            <StyledNavLink href='/settings'>Settings</StyledNavLink>
-            <StyledNavLink onClick={() => {
+            <StyledMenuLink href='/profile'>Profile</StyledMenuLink>
+            <StyledMenuLink href='/settings'>Settings</StyledMenuLink>
+            <StyledMenuLink onClick={() => {
                 setAccountAnchorEl(null)
                 handleLogout()
             }}>
                 Logout
-            </StyledNavLink>
+            </StyledMenuLink>
         </StyledMenu>
     )
 
@@ -169,9 +182,11 @@ function Header({ user, setUser }) {
     ]
 
     const AppBarStyle = {
-        backgroundColor: '#131313',
-        transition: '0.6s all',
-        opacity: opacity
+        backgroundColor: backgroundColor,
+        // padding: '32px',
+        // backgroundColor: '#131313',
+        transition: '0.5s all',
+        // opacity: opacity
     }
 
     return (
@@ -211,17 +226,20 @@ function Header({ user, setUser }) {
                                         aria-controls="menu-appbar"
                                         aria-haspopup="true"
                                         onClick={handleAccountMenu}
-                                        onClose={() => setOpacity('0.8')}
+                                        onClose={() => setBackgroundColor('rgba(0, 0, 0, 0)')}
                                         color="inherit"
                                     >
                                         <AccountCircle />
                                     </IconButton>
                                 ) : (
-                                    <StyledButton
-                                        onClick={() => setLoginModal(true)}
-                                    >
-                                        Login
-                                    </StyledButton>
+                                    // <StyledLoginButton
+                                    //     onClick={() => setLoginModal(true)}
+                                    // >
+                                    //     Login
+                                    // </StyledLoginButton>
+                                    <StyledDiv>
+                                        <Chip label='Login' color="success" onClick={() => setLoginModal(true)} />
+                                    </StyledDiv>
                                 )}
                             </Nav>
                         </Box>

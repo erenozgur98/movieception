@@ -91,8 +91,8 @@ function MoviePage({ user }) {
                 :
                 <Banner link={movie?.poster_path} />
             }
-            <Container>
                 {/* videos, select type: 'trailer' , 'featurette', 'teaser' */}
+            {/* <Container>
                 {movie.poster_path ?
                     <div>
                         <div className='page-organization'>
@@ -133,7 +133,7 @@ function MoviePage({ user }) {
                         </Container>
                     </>
                 }
-            </Container>
+            </Container> */}
         </div>
     )
 }

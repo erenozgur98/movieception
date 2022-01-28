@@ -9,18 +9,7 @@
     max-height: 175px;
 }
 
-.navColor1 {
-    background-color: #131313;
-    opacity: 0.7;
-    transition: all 0.5s;
-}
-
-.navColor2 {
-    background-color: #131313;
-    opacity: 1;
-    transition: all 0.5s;
-}
-
 .dropdown-toggle::after {
     color: white;
 }
+  
