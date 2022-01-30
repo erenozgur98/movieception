@@ -17,7 +17,8 @@ body {
 }
 
 #root {
-  background-color: #131313;
+  background-color: rgba(0, 0, 0, 1);
+  /* background-color: #131313; */
   min-width: 100vw;
   width: 100%;
   min-height: 100vh;

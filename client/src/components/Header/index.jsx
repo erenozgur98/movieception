@@ -22,7 +22,7 @@ function Header({ user, setUser }) {
     const [anchorEl, setAnchorEl] = useState(null);
     const [accountAnchorEl, setAccountAnchorEl] = useState(null);
     const [loginModal, setLoginModal] = useState(false);
-    const [backgroundColor, setBackgroundColor] = useState('rgba(0, 0, 0, 0.8)');
+    const [backgroundColor, setBackgroundColor] = useState('rgba(0, 0, 0, 0)');
     // const [opacity, setOpacity] = useState('0.8');
     const isMenuOpen = Boolean(anchorEl);
 
@@ -68,9 +68,9 @@ function Header({ user, setUser }) {
 
     const scrollHandler = () => {
         if (window.scrollY >= 20) {
-            setBackgroundColor('rgba(0, 0, 0, 0)');
-        } else {
             setBackgroundColor('rgba(0, 0, 0, 0.8)');
+        } else {
+            setBackgroundColor('rgba(0, 0, 0, 0)');
         }
     };
 
@@ -147,7 +147,7 @@ function Header({ user, setUser }) {
             keepMounted
             open={Boolean(accountAnchorEl)}
             onClose={() => {
-                setBackgroundColor('rgba(0, 0, 0, 0)');
+                setBackgroundColor(window.scrollY >= 20 ? 'rgba(0, 0, 0, 0.8)' : 'rgba(0, 0, 0, 0)');
                 setAccountAnchorEl(null)
             }}
         >

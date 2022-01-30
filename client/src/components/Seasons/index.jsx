@@ -21,7 +21,7 @@ function Seasons({ show }) {
 
     return (
         <div className='seasons'>
-            {season ?
+            {season &&
                 <div>
                     <div>
                         {season?.length} Seasons
@@ -42,8 +42,6 @@ function Seasons({ show }) {
                         ))}
                     </div>
                 </div>
-                :
-                null
             }
         </div>
     )

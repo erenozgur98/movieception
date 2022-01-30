@@ -1,6 +1,5 @@
 import React from 'react'
 import './Banner.css'
-import styled from 'styled-components';
 
 function Banner({ link, movie }) {
 
@@ -13,8 +12,9 @@ function Banner({ link, movie }) {
                     backgroundPosition: '50% 10%',
                     opacity: '0.518',
                     height: '762px',
+                    // backgroundImage: 'linear-radient(180deg, transparent, rgba(37, 37, 37, 0.61), #111)'
                     // height: '688px',
-                    position: 'relative'
+                    // position: 'relative'
                 }}
             >
                 {/* <div className={movie ? "banner--fadeBottom-2" : "banner--fadeBottom"}></div> */}

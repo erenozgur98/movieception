@@ -1,14 +1,23 @@
+import Chip from '@mui/material/Chip';
+import styled from 'styled-components';
+
 const Overview = ({ link }) => {
+    const StyledChip = styled(Chip)`
+        padding: 8px;
+        margin: 8px;
+    `
+
     return (
         <div>
             <h1>{link?.original_title || link?.name}</h1>
-            <div style={{ fontStyle: "italic" }}>
+            <div style={{ fontStyle: "italic", padding: '12px 0px' }}>
                 {link?.tagline &&
                     <div>
                         {link?.tagline}
                     </div>
                 }
             </div>
+            <div>{link?.genres?.map(x => <StyledChip label={x?.name} color='warning' />)}</div>
             <div>
                 {link?.imdb_id &&
                     <a href={`https://www.imdb.com/title/${link?.imdb_id}/`} target="_blank" rel="noreferrer">
@@ -18,7 +27,7 @@ const Overview = ({ link }) => {
             </div>
             <div className="movie-overview">
                 {link?.homepage &&
-                    <a href={link?.homepage} target="_blank" rel="noreferrer">Homepage</a>
+                    <Chip label='Homepage' color='primary' onClick={() => window.open(link?.homepage, '_blank')} />
                 }
             </div>
             <div>
@@ -27,9 +36,6 @@ const Overview = ({ link }) => {
                         Release Date: {link?.release_date || link?.first_air_date}
                     </div>
                 )}
-            </div>
-            <div>
-                {/* Genres: {link?.genres.map(x => x.name)} */}
             </div>
             <div>
                 {link?.original_language === 'en' &&

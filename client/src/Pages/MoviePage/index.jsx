@@ -41,7 +41,7 @@ function MoviePage({ user }) {
         API.getAllFavorites(user?.username)
             .then(res => setFavorites(res.data?.movieFavorites))
             .catch(err => console.log(err))
-    }, [favorites])
+    }, [])
 
     const addToFavorite = (movie) => {
         API.addMovieToFavorite(user?.username, movie?.id).then(res => {
@@ -85,15 +85,19 @@ function MoviePage({ user }) {
         // }
     };
 
+    const StyledDiv = styled.div`
+        // background: linear-gradient(180deg, rgba(37, 37, 37, 0.61)), url(https://image.tmdb.org/t/p/original${movie?.backdrop_path || movie?.poster_path}) 50% 10% / cover;
+    `
+
     const StyledMainContainer = styled(Container)`
         position: absolute;
         top: 14rem;
         left: 22rem;
+        // background: linear-gradient(#ff6f69, #ffcc5c);
     `
 
     const StyledContainer = styled(Container)`
         display: flex;
-        // flex-direction: column;
     `
 
     const StyledImg = styled.img`
@@ -102,12 +106,8 @@ function MoviePage({ user }) {
     `
 
     return (
-        <div>
-            {movie?.poster_path ?
-                <Banner link={movie?.backdrop_path} title={movie?.title} />
-                :
-                <Banner link={movie?.poster_path} />
-            }
+        <StyledDiv>
+            <Banner link={movie?.backdrop_path || movie?.poster_path} />
             <StyledMainContainer>
                 <StyledContainer>
                     <StyledImg src={`https://image.tmdb.org/t/p/original${movie?.poster_path}`} alt={movie?.original_title} />
@@ -158,7 +158,7 @@ function MoviePage({ user }) {
                     </>
                 }
             </Container> */}
-        </div>
+        </StyledDiv>
     )
 }
 
