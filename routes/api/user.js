@@ -34,7 +34,7 @@ router.get('/user', async (req, res) => {
 ////////// FAVORITES //////////
 
 // Get all favorites
-router.get('/:username/favorites' , (req, res) => {
+router.get('/:username/favorites', (req, res) => {
     User.findOne({ username: req.params.username })
         .then(user => {
             res.json(user)
@@ -107,17 +107,17 @@ router.delete('/:username/favorite/movies/:MovieId', (req, res) => {
         username: req.params.username
     }, {
         $pull: {
-            movieFavorites: { $in: [ req.params.MovieId ] }
+            movieFavorites: { $in: [req.params.MovieId] }
         }
     },
-    function (err, updatedUser) {
-        if (err) {
-            console.log(err)
-            res.status(500).send('Error: ' + err)
-        } else {
-            res.json(updatedUser)
-        }
-    })
+        function (err, updatedUser) {
+            if (err) {
+                console.log(err)
+                res.status(500).send('Error: ' + err)
+            } else {
+                res.json(updatedUser)
+            }
+        })
 });
 
 // remove a show from user's list of favorites
@@ -126,18 +126,110 @@ router.delete('/:username/favorite/shows/:ShowId', (req, res) => {
         username: req.params.username
     }, {
         $pull: {
-            showFavorites: { $in: [ req.params.ShowId ] }
+            showFavorites: { $in: [req.params.ShowId] }
         }
     },
-    function (err, updatedUser) {
-        if (err) {
-            console.log(err)
-            res.status(500).send('Error: ' + err)
-        } else {
-            res.json(updatedUser)
-        }
-    })
+        function (err, updatedUser) {
+            if (err) {
+                console.log(err)
+                res.status(500).send('Error: ' + err)
+            } else {
+                res.json(updatedUser)
+            }
+        })
 });
+
+
+////////// WATCHED LIST //////////
+
+// Get all watched
+router.get('/:username/watched', (req, res) => {
+    User.find({ username: req.params.username })
+        .then(user => {
+            res.json(user)
+        })
+        .catch(err => {
+            console.log(err)
+            res.status(500).sendStatus(`Error ${err}`)
+        })
+})
+
+router.post('/:username/watched/movies/:MovieId', (req, res) => {
+    User.findOneAndUpdate({
+        username: req.params.username
+    }, {
+        $push: {
+            watchedMovies: req.params.MovieId
+        }
+    }, {
+        new: true
+    },
+        function (err, updatedUser) {
+            if (err) {
+                console.log(err)
+                res.status(500).send(`Error: ${err}`)
+            } else {
+                console.log('updatedUser: ', updatedUser)
+                res.json(updatedUser)
+            }
+        })
+})
+
+router.delete('/:username/watched/movies/:MovieId', (req, res) => {
+    User.findOneAndUpdate({
+        username: req.params.username
+    }, {
+        $pull: {
+            watchedMovies: { $in: [req.params.ShowId] }
+        }
+    },
+        function (err, updatedUser) {
+            if (err) {
+                console.log(err)
+                res.status(500).send('Error: ' + err)
+            } else {
+                res.json(updatedUser)
+            }
+        })
+});
+
+
+////////// WILL WATCH LIST //////////
+
+router.get('/:username/willwatch', (req, res) => {
+    User.findOne({ username: req.params.username })
+        .then(user => {
+            console.log('user: ', user)
+            res.json(user.moviesToWatch)
+        })
+        .catch(err => {
+            console.log(err)
+            res.status(500).sendStatus(`Error ${err}`)
+        })
+})
+
+router.post('/:username/willwatch/movies/:MovieId', (req, res) => {
+    User.findOneAndUpdate({
+        username: req.params.username
+    }, {
+        $push: {
+            moviesToWatch: req.params.MovieId
+        }
+    }, {
+        new: true
+    },
+        function (err, updatedUser) {
+            if (err) {
+                console.log(err)
+                res.status(500).send(`Error: ${err}`)
+            } else {
+                console.log('updatedUser: ', updatedUser)
+                res.json(updatedUser)
+            }
+        })
+})
+
+
 
 
 ////////// LOGIN - SIGNUP - LOGOUT //////////

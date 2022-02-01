@@ -14,10 +14,10 @@ function Banner({ link, movie }) {
                     height: '762px',
                     // backgroundImage: 'linear-radient(180deg, transparent, rgba(37, 37, 37, 0.61), #111)'
                     // height: '688px',
-                    // position: 'relative'
+                    // position: 'fixed'
                 }}
             >
-                {/* <div className={movie ? "banner--fadeBottom-2" : "banner--fadeBottom"}></div> */}
+                <div className="banner--fadeBottom"></div>
             </div>
         </div>
     )

@@ -20,6 +20,7 @@ function MoviePage({ user }) {
     const [videos, setVideos] = useState();
     const [trailerUrl, setTrailerUrl] = useState('');
     const [favorites, setFavorites] = useState([]);
+    const [watched, setWatched] = useState([]);
     const { MovieId } = useParams();
 
     const apiKey = 'af737f76cdba5b7435e17cc94568c07d';
@@ -43,12 +44,20 @@ function MoviePage({ user }) {
             .catch(err => console.log(err))
     }, [])
 
+    useEffect(() => {
+        API.getAllWatched(user?.username)
+            .then(res => {
+                setWatched(res?.data[0]?.watchedMovies)
+            })
+    }, [])
+
     const addToFavorite = (movie) => {
         API.addMovieToFavorite(user?.username, movie?.id).then(res => {
             // add snackbar
             console.log(res)
             if (res.status === 200) {
                 console.log('Successfull');
+                setFavorites(res?.data?.movieFavorites)
             } else {
                 console.log('Soemthing went wrong')
             }
@@ -61,7 +70,27 @@ function MoviePage({ user }) {
             console.log(res)
             if (res.status === 200) {
                 console.log('Successfull')
-                setFavorites(res?.movieFavorites);
+                setFavorites(res?.data?.movieFavorites);
+            } else {
+                console.log('Something went wrong')
+            }
+        })
+    }
+
+    const addToWatchedList = (movie) => {
+        API.addMovieToWatched(user?.username, movie?.id)
+            .then(res => {
+                console.log(res)
+            })
+    }
+
+    const removeFromWatchedList = (movie) => {
+        API.removeMovieFromWatched(user?.username, movie?.id).then(res => {
+            // add snackbar
+            console.log(res)
+            if (res.status === 200) {
+                console.log('Successfull')
+                setWatched(res?.data?.watchedMovies)
             } else {
                 console.log('Something went wrong')
             }
@@ -85,15 +114,9 @@ function MoviePage({ user }) {
         // }
     };
 
-    const StyledDiv = styled.div`
-        // background: linear-gradient(180deg, rgba(37, 37, 37, 0.61)), url(https://image.tmdb.org/t/p/original${movie?.backdrop_path || movie?.poster_path}) 50% 10% / cover;
-    `
-
     const StyledMainContainer = styled(Container)`
-        position: absolute;
-        top: 14rem;
-        left: 22rem;
-        // background: linear-gradient(#ff6f69, #ffcc5c);
+        position: relative;
+        bottom: 22rem;
     `
 
     const StyledContainer = styled(Container)`
@@ -102,17 +125,76 @@ function MoviePage({ user }) {
 
     const StyledImg = styled.img`
         max-width: 324px;
-        margin-right: 5rem;
+        padding-bottom: 1rem;
+        border-radius: 1rem;
+    `
+
+    const StyledOverviewDiv = styled.div`
+        padding-left: 2rem;
+        margin-top: 10rem;
     `
 
     return (
-        <StyledDiv>
+        <div>
             <Banner link={movie?.backdrop_path || movie?.poster_path} />
             <StyledMainContainer>
                 <StyledContainer>
-                    <StyledImg src={`https://image.tmdb.org/t/p/original${movie?.poster_path}`} alt={movie?.original_title} />
-                    {/* <ExternalId externalId={externalId} /> */}
-                    <Overview link={movie} />
+                    <div>
+                        <div>
+                            <StyledImg
+                                src={`https://image.tmdb.org/t/p/original${movie?.poster_path}`}
+                                alt={movie?.original_title}
+                            />
+                        </div>
+                        <div className='social-media-links'>
+                            <ExternalId externalId={externalId} link={movie} />
+                        </div>
+                        {user?.username && <div className='favorite-btn'>
+                            {favorites?.includes(movie.id) ?
+                                (
+                                    <button
+                                        onClick={() => removeFromFavorites(movie)}
+                                        className='btn btn-warning'
+                                    >
+                                        Remove From Favorites
+                                    </button>
+                                )
+                                :
+                                (
+                                    <button
+                                        onClick={() => addToFavorite(movie)}
+                                        className='btn btn-warning'
+                                    >
+                                        Add To Favorites
+                                    </button>
+                                )
+                            }
+                        </div>}
+                        {user?.username && <div className='favorite-btn'>
+                            {watched?.includes(movie.id) ?
+                                (
+                                    <button
+                                        onClick={() => removeFromWatchedList(movie)} className='btn btn-danger'
+                                    >
+                                        Remove From Watched List
+                                    </button>
+                                )
+                                :
+                                (
+                                    <button
+                                        onClick={() => addToWatchedList(movie)}
+                                        className='btn btn-danger'
+                                    >
+                                        Add To Watched List
+                                    </button>
+                                )
+                            }
+                        </div>}
+                    </div>
+                    <StyledOverviewDiv>
+                        <Overview link={movie} />
+                    </StyledOverviewDiv>
+                    {/* <button style={{ color: 'green' }} onClick={addToWatchedList}>Add To Watched List</button> */}
                 </StyledContainer>
             </StyledMainContainer>
             {/* videos, select type: 'trailer' , 'featurette', 'teaser' */}
@@ -158,7 +240,7 @@ function MoviePage({ user }) {
                     </>
                 }
             </Container> */}
-        </StyledDiv>
+        </div>
     )
 }
 
