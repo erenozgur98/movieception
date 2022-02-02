@@ -126,7 +126,7 @@ function MoviePage({ user }) {
     const StyledImg = styled.img`
         max-width: 324px;
         padding-bottom: 1rem;
-        border-radius: 1rem;
+        border-radius: 32px;
     `
 
     const StyledOverviewDiv = styled.div`
