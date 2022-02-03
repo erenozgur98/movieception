@@ -93,7 +93,7 @@ function Header({ user, setUser }) {
     };
 
     const handleMenuClose = () => {
-        setBackgroundColor('rgba(0, 0, 0, 0)');
+        setBackgroundColor(window.scrollY >= 20 ? 'rgba(0, 0, 0, 1)' : 'rgba(0, 0, 0, 0)');
         setAnchorEl(null);
     };
 
