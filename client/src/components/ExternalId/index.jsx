@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import './ExternalId.css';
 
 function ExternalId({ externalId, link }) {
+    console.log(link)
     const StyledDiv = styled.div`
         display: flex;
         justify-content: center;

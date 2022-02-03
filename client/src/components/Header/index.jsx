@@ -68,7 +68,7 @@ function Header({ user, setUser }) {
 
     const scrollHandler = () => {
         if (window.scrollY >= 20) {
-            setBackgroundColor('rgba(0, 0, 0, 0.8)');
+            setBackgroundColor('rgba(0, 0, 0, 1)');
         } else {
             setBackgroundColor('rgba(0, 0, 0, 0)');
         }
@@ -83,12 +83,12 @@ function Header({ user, setUser }) {
     };
 
     const handleProfileMenuOpen = (event) => {
-        setBackgroundColor('rgba(0, 0, 0, 0.8)');
+        setBackgroundColor('rgba(0, 0, 0, 1)');
         setAnchorEl(event.currentTarget);
     };
 
     const handleAccountMenu = (event) => {
-        setBackgroundColor('rgba(0, 0, 0, 0.8)');
+        setBackgroundColor('rgba(0, 0, 0, 1)');
         setAccountAnchorEl(event.currentTarget);
     };
 
@@ -147,7 +147,7 @@ function Header({ user, setUser }) {
             keepMounted
             open={Boolean(accountAnchorEl)}
             onClose={() => {
-                setBackgroundColor(window.scrollY >= 20 ? 'rgba(0, 0, 0, 0.8)' : 'rgba(0, 0, 0, 0)');
+                setBackgroundColor(window.scrollY >= 20 ? 'rgba(0, 0, 0, 1)' : 'rgba(0, 0, 0, 0)');
                 setAccountAnchorEl(null)
             }}
         >
@@ -183,10 +183,7 @@ function Header({ user, setUser }) {
 
     const AppBarStyle = {
         backgroundColor: backgroundColor,
-        // padding: '32px',
-        // backgroundColor: '#131313',
-        transition: '0.5s all',
-        // opacity: opacity
+        transition: '0.6s all ease-in-out'
     }
 
     return (
