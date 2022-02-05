@@ -136,7 +136,7 @@ function MoviePage({ user }) {
 
     return (
         <div>
-            <Banner link={movie?.backdrop_path || movie?.poster_path} />
+            <Banner link={movie?.backdrop_path} />
             <StyledMainContainer>
                 <StyledContainer>
                     <div>

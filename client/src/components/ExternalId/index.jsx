@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import './ExternalId.css';
 
 function ExternalId({ externalId, link }) {
-    console.log(link)
     const StyledDiv = styled.div`
         display: flex;
         justify-content: center;
@@ -14,6 +13,15 @@ function ExternalId({ externalId, link }) {
 
     return (
         <StyledDiv>
+            <div>
+                {link?.vote_average &&
+                    <div style={{ display: 'flex', alignItems: 'center' }}>
+                        <i class="fas fa-star fa-2x" />
+                        <span style={{ fontSize: '1.8rem', paddingLeft: '0.4rem' }}>{link?.vote_average}</span>
+                        <span style={{ paddingLeft: '0.4rem', fontSize: '1.2rem' }}>Rating</span>
+                    </div>
+                }
+            </div>
             <div className="homepage">
                 {link?.homepage &&
                     <Chip

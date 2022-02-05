@@ -26,15 +26,6 @@ const Overview = ({ link }) => {
                 {link?.overview && <div>{link?.overview}</div>}
             </StyledDivPadding>
             <StyledDivPadding>
-                {link?.vote_average &&
-                    <div style={{ display: 'flex', alignItems: 'center' }}>
-                        <i class="fas fa-star fa-2x" />
-                        <span style={{ fontSize: '1.8rem', paddingLeft: '0.4rem' }}>{link?.vote_average}</span>
-                        <span style={{ paddingLeft: '0.4rem', fontSize: '1.2rem' }}>Rating</span>
-                    </div>
-                }
-            </StyledDivPadding>
-            <StyledDivPadding>
                 {(link?.release_date || link?.first_air_date) && (
                     <div>
                         Release Date: {link?.release_date || link?.first_air_date}

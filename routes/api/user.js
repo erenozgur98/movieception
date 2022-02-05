@@ -43,18 +43,6 @@ router.get('/:username/favorites', (req, res) => {
             console.log(err)
             res.status(500).sendStatus(`Error ${err}`)
         })
-})
-
-// get one specific user by username
-router.get('/:username', (req, res) => {
-    User.findOne({ username: req.params.username })
-        .then(user => {
-            res.json(user)
-        })
-        .catch((err) => {
-            console.log(err)
-            res.status(500).send('Error: ' + err)
-        })
 });
 
 // add a movie to user's list of favorites
@@ -173,14 +161,53 @@ router.post('/:username/watched/movies/:MovieId', (req, res) => {
                 res.json(updatedUser)
             }
         })
-})
+});
+
+router.post('/:username/watched/shows/:ShowId', (req, res) => {
+    User.findOneAndUpdate({
+        username: req.params.username
+    }, {
+        $push: {
+            watchedShows: req.params.ShowId
+        }
+    }, {
+        new: true
+    },
+        function (err, updatedUser) {
+            if (err) {
+                console.log(err)
+                res.status(500).send(`Error: ${err}`)
+            } else {
+                console.log('updatedUser: ', updatedUser)
+                res.json(updatedUser)
+            }
+        })
+});
 
 router.delete('/:username/watched/movies/:MovieId', (req, res) => {
     User.findOneAndUpdate({
         username: req.params.username
     }, {
         $pull: {
-            watchedMovies: { $in: [req.params.ShowId] }
+            watchedMovies: { $in: [req.params.MovieId] }
+        }
+    },
+        function (err, updatedUser) {
+            if (err) {
+                console.log(err)
+                res.status(500).send('Error: ' + err)
+            } else {
+                res.json(updatedUser)
+            }
+        })
+});
+
+router.delete('/:username/watched/shows/:ShowId', (req, res) => {
+    User.findOneAndUpdate({
+        username: req.params.username
+    }, {
+        $pull: {
+            watchedShows: { $in: [req.params.ShowId] }
         }
     },
         function (err, updatedUser) {
@@ -194,13 +221,12 @@ router.delete('/:username/watched/movies/:MovieId', (req, res) => {
 });
 
 
-////////// WILL WATCH LIST //////////
+////////// WATCHLIST //////////
 
-router.get('/:username/willwatch', (req, res) => {
+router.get('/:username/watchlist', (req, res) => {
     User.findOne({ username: req.params.username })
         .then(user => {
-            console.log('user: ', user)
-            res.json(user.moviesToWatch)
+            res.json(user)
         })
         .catch(err => {
             console.log(err)
@@ -208,12 +234,12 @@ router.get('/:username/willwatch', (req, res) => {
         })
 })
 
-router.post('/:username/willwatch/movies/:MovieId', (req, res) => {
+router.post('/:username/watchlist/movies/:MovieId', (req, res) => {
     User.findOneAndUpdate({
         username: req.params.username
     }, {
         $push: {
-            moviesToWatch: req.params.MovieId
+            movieWatchList: req.params.MovieId
         }
     }, {
         new: true
@@ -229,7 +255,63 @@ router.post('/:username/willwatch/movies/:MovieId', (req, res) => {
         })
 })
 
+router.post('/:username/watchlist/shows/:ShowId', (req, res) => {
+    User.findOneAndUpdate({
+        username: req.params.username
+    }, {
+        $push: {
+            showWatchList: req.params.ShowId
+        }
+    }, {
+        new: true
+    },
+        function (err, updatedUser) {
+            if (err) {
+                console.log(err)
+                res.status(500).send(`Error: ${err}`)
+            } else {
+                console.log('updatedUser: ', updatedUser)
+                res.json(updatedUser)
+            }
+        })
+})
 
+router.delete('/:username/watchlist/movies/:MovieId', (req, res) => {
+    User.findOneAndUpdate({
+        username: req.params.username
+    }, {
+        $pull: {
+            movieWatchList: { $in: [req.params.MovieId] }
+        }
+    },
+        function (err, updatedUser) {
+            if (err) {
+                console.log(err)
+                res.status(500).send('Error: ' + err)
+            } else {
+                res.json(updatedUser)
+            }
+        })
+});
+
+
+router.delete('/:username/watchlist/shows/:ShowId', (req, res) => {
+    User.findOneAndUpdate({
+        username: req.params.username
+    }, {
+        $pull: {
+            showWatchList: { $in: [req.params.ShowId] }
+        }
+    },
+        function (err, updatedUser) {
+            if (err) {
+                console.log(err)
+                res.status(500).send('Error: ' + err)
+            } else {
+                res.json(updatedUser)
+            }
+        })
+});
 
 
 ////////// LOGIN - SIGNUP - LOGOUT //////////
