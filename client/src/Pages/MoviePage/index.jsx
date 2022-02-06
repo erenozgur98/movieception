@@ -193,6 +193,10 @@ function MoviePage({ user }) {
                     </div>
                     <StyledOverviewDiv>
                         <Overview link={movie} />
+                        <WatchProviders movie={movie} />
+                        <div>The cast of {movie?.original_title}:</div>
+                        <Credits movie={movie} />
+                        <Recommendations movie={movie} />
                     </StyledOverviewDiv>
                     {/* <button style={{ color: 'green' }} onClick={addToWatchedList}>Add To Watched List</button> */}
                 </StyledContainer>

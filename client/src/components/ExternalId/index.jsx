@@ -18,7 +18,7 @@ function ExternalId({ externalId, link }) {
                     <div style={{ display: 'flex', alignItems: 'center' }}>
                         <i class="fas fa-star fa-2x" />
                         <span style={{ fontSize: '1.8rem', paddingLeft: '0.4rem' }}>{link?.vote_average}</span>
-                        <span style={{ paddingLeft: '0.4rem', fontSize: '1.2rem' }}>Rating</span>
+                        <span style={{ paddingLeft: '0.4rem', fontSize: '1.2rem' }}>/ 10</span>
                     </div>
                 }
             </div>

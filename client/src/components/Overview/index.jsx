@@ -15,8 +15,21 @@ const Overview = ({ link }) => {
         padding-left: 4rem;
     `
 
+    const StyledBottomSection = styled.div`
+        display: flex;
+        flex-wrap: wrap;
+        padding-left: 4rem;
+        align-items: center;
+        justify-content: flex-start;
+    `
+
+    const StyledDivInBottomSection = styled.div`
+        padding: .2rem .5rem;
+    `
+
     return (
         <div>
+            {/* Top Section */}
             <h1 style={{ textAlign: 'center' }}>{link?.original_title || link?.name}</h1>
             <StyledDivCenter style={{ fontStyle: "italic", padding: '12px 0px' }}>
                 {link?.tagline && <div>{link?.tagline}</div>}
@@ -25,64 +38,20 @@ const Overview = ({ link }) => {
             <StyledDivPadding style={{ textAlign: 'center', marginBottom: '2rem', marginTop: '1rem' }}>
                 {link?.overview && <div>{link?.overview}</div>}
             </StyledDivPadding>
-            <StyledDivPadding>
-                {(link?.release_date || link?.first_air_date) && (
-                    <div>
-                        Release Date: {link?.release_date || link?.first_air_date}
-                    </div>
-                )}
-            </StyledDivPadding>
-            <StyledDivPadding>
-                {link?.original_language === 'en' &&
-                    <div>
-                        Language: English
-                    </div>
-                }
-            </StyledDivPadding>
-            <StyledDivPadding>
-                {link?.runtime &&
-                    <div>
-                        Runtime: {link?.runtime} minutes
-                    </div>
-                }
-            </StyledDivPadding>
-            <StyledDivPadding>
-                {link?.budget &&
-                    <div>
-                        Budget: ${link?.budget}
-                    </div>
-                }
-            </StyledDivPadding>
-            <StyledDivPadding>
-                {link?.revenue &&
-                    <div>
-                        Revenue: ${link?.revenue}
-                    </div>
-                }
-            </StyledDivPadding>
-            <StyledDivPadding>
-                {link?.production_countries &&
-                    <div>
-                        Country: {link?.production_countries[0]?.name}
-                    </div>
-                }
-            </StyledDivPadding>
-            <StyledDivPadding>
+
+            {/* Bottom section */}
+            <StyledBottomSection>
+                {(link?.release_date || link?.first_air_date) && (<StyledDivInBottomSection>Release Date: {link?.release_date || link?.first_air_date}</StyledDivInBottomSection>)}
+                {link?.original_language === 'en' && <StyledDivInBottomSection>Language: English</StyledDivInBottomSection>}
+                {link?.runtime && <StyledDivInBottomSection>Runtime: {link?.runtime} minutes</StyledDivInBottomSection>}
+                {link?.budget && <StyledDivInBottomSection>Budget: ${link?.budget}</StyledDivInBottomSection>}
+                {link?.revenue && <StyledDivInBottomSection>Revenue: ${link?.revenue}</StyledDivInBottomSection>}
+                {link?.production_countries && <StyledDivInBottomSection>Country: {link?.production_countries[0]?.name}</StyledDivInBottomSection>}
                 {/* add logos to companies later */}
-                {link?.production_companies &&
-                    <div>
-                        Production Company: {link?.production_companies[0]?.name}
-                    </div>
-                }
-            </StyledDivPadding>
-            <StyledDivPadding>
+                {link?.production_companies && <StyledDivInBottomSection>Production Company: {link?.production_companies[0]?.name}</StyledDivInBottomSection>}
                 {/* maybe add this too? will consider */}
-                {link?.belongs_to_collection &&
-                    <div>
-                        Collection: {link?.belongs_to_collection?.name}
-                    </div>
-                }
-            </StyledDivPadding>
+                {link?.belongs_to_collection && <StyledDivInBottomSection>Collection: {link?.belongs_to_collection?.name}</StyledDivInBottomSection>}
+            </StyledBottomSection>
         </div>
     )
 }
