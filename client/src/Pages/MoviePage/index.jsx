@@ -123,6 +123,10 @@ function MoviePage({ user }) {
 
     const StyledContainer = styled(Container)`
         display: flex;
+        @media (max-width: 768px) {
+            flex-direction: column;
+        }
+        // flex-wrap: wrap;
     `
 
     const StyledImg = styled.img`
@@ -136,17 +140,17 @@ function MoviePage({ user }) {
         margin-top: 10rem;
     `
 
-    const LeftSideStyle = {
-        // position: 'sticky'
-    }
+    const StyledLeftSide = styled.div`
+
+    `
 
     return (
         <div>
             <Banner link={movie?.backdrop_path} />
             <StyledMainContainer>
                 <StyledContainer>
-                    <div>
-                        <div style={LeftSideStyle}>
+                    <StyledLeftSide>
+                        <div>
                             <div>
                                 <StyledImg
                                     src={
@@ -200,7 +204,7 @@ function MoviePage({ user }) {
                                 )
                             }
                         </div>}
-                    </div>
+                    </StyledLeftSide>
                     <StyledOverviewDiv>
                         <Overview link={movie} />
                         <WatchProviders movie={movie} />

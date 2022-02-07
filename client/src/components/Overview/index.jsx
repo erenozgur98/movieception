@@ -12,13 +12,13 @@ const Overview = ({ link }) => {
     `
 
     const StyledDivPadding = styled.div`
-        padding-left: 4rem;
+        // padding-left: 4rem;
     `
 
     const StyledBottomSection = styled.div`
         display: flex;
         flex-wrap: wrap;
-        padding-left: 4rem;
+        // padding-left: 4rem;
         align-items: center;
         justify-content: flex-start;
     `
