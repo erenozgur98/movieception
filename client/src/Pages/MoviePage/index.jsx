@@ -7,18 +7,20 @@ import Banner from '../../components/Banner';
 import Credits from '../../components/Credits';
 import ExternalId from '../../components/ExternalId';
 import WatchProviders from '../../components/WatchProviders';
-import YouTube from 'react-youtube';
+// import YouTube from 'react-youtube';
 import "./MoviePage.css"
 import Overview from '../../components/Overview';
 import Recommendations from '../../components/Recommendations';
 import API from '../../utils/API';
 import styled from 'styled-components';
+import Trailer from '../../components/Trailer';
 
 function MoviePage({ user }) {
     const [movie, setMovie] = useState({});
     const [externalId, setExternalId] = useState();
     const [videos, setVideos] = useState();
-    const [trailerUrl, setTrailerUrl] = useState('');
+    const [trailerModal, setTrailerModal] = useState(false);
+    // const [trailerUrl, setTrailerUrl] = useState('');
     const [favorites, setFavorites] = useState([]);
     const [watched, setWatched] = useState([]);
     const { MovieId } = useParams();
@@ -97,22 +99,22 @@ function MoviePage({ user }) {
         })
     }
 
-    const playTrailer = () => {
-        const trailerVideos = videos.filter(e => e.type === 'Trailer')
-        if (trailerUrl) {
-            setTrailerUrl('');
-        } else {
-            setTrailerUrl(trailerVideos[0]?.key);
-        }
-    };
+    // const playTrailer = () => {
+    //     const trailerVideos = videos.filter(e => e.type === 'Trailer')
+    //     if (trailerUrl) {
+    //         setTrailerUrl('');
+    //     } else {
+    //         setTrailerUrl(trailerVideos[0]?.key);
+    //     }
+    // };
 
-    const opts = {
-        heigth: '390',
-        width: '100%',
-        // playerVars: {
-        //     autoplay: 1,
-        // }
-    };
+    // const opts = {
+    //     heigth: '390',
+    //     width: '100%',
+    //     // playerVars: {
+    //     //     autoplay: 1,
+    //     // }
+    // };
 
     const StyledMainContainer = styled(Container)`
         position: relative;
@@ -135,7 +137,7 @@ function MoviePage({ user }) {
     `
 
     const LeftSideStyle = {
-        position: 'sticky'
+        // position: 'sticky'
     }
 
     return (
@@ -202,6 +204,16 @@ function MoviePage({ user }) {
                     <StyledOverviewDiv>
                         <Overview link={movie} />
                         <WatchProviders movie={movie} />
+                        <div 
+                            style={{ textAlign: 'center', marginTop:'2rem' }}
+                        >
+                            <button
+                                onClick={() => setTrailerModal(true)}
+                                className='btn btn-success'
+                            >
+                                Watch Trailer
+                            </button>
+                        </div>
                         <div
                             style={{
                                 textAlign: 'center',
@@ -217,6 +229,11 @@ function MoviePage({ user }) {
                     </StyledOverviewDiv>
                     {/* <button style={{ color: 'green' }} onClick={addToWatchedList}>Add To Watched List</button> */}
                 </StyledContainer>
+                <Trailer
+                    videos={videos}
+                    show={trailerModal}
+                    handleClose={() => setTrailerModal(false)}
+                />
             </StyledMainContainer>
             {/* videos, select type: 'trailer' , 'featurette', 'teaser' */}
             {/* <Container>
