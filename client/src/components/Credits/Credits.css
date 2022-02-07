@@ -1,33 +1,48 @@
 .casts-posters {
     display: flex;
-    overflow-y: hidden;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-self: center;
+    /* overflow-y: hidden;
     overflow-x: scroll;
-    padding: 10px;
+    padding: 10px; */
 }
 
 .casts-map {
     display: flex;
     flex-direction: column;
     text-align: center;
-    /* border: solid white 2px; */
-    /* margin: 5px; */
-    transition: transform 450ms;
+    border: solid white 2px;
+    margin: 0.3rem;
+    transition: transform 0.3s ease-in-out;
 }
 
 .casts-name {
-    width: 8em;
+    width: 9rem;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    padding-left: 8px;
+    /* padding-left: 8px; */
+}
+
+.casts-character {
+    width: 9rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-style: italic;
+    font-weight: 300;
+    padding: 0.3rem;
 }
 
 .cast-poster {
     object-fit: contain;
-    width: 130px;
-    /* height: 230px; */
-    margin-right: 10px;
-    transition: transform 450ms;
+    width: 8rem;
+    margin: 0.5rem;
+    /* height: 5rem; */
+    /* border-radius: 50%; */
+    /* margin-right: 10px; */
+    transition: transform 0.6s ease-in-out;
 }
 
 .casts-posters::-webkit-scrollbar {

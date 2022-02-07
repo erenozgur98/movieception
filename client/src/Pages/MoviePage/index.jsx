@@ -126,7 +126,7 @@ function MoviePage({ user }) {
     const StyledImg = styled.img`
         max-width: 324px;
         padding-bottom: 1rem;
-        border-radius: 32px;
+        border-radius: 3rem;
     `
 
     const StyledOverviewDiv = styled.div`
@@ -134,20 +134,28 @@ function MoviePage({ user }) {
         margin-top: 10rem;
     `
 
+    const LeftSideStyle = {
+        position: 'sticky'
+    }
+
     return (
         <div>
             <Banner link={movie?.backdrop_path} />
             <StyledMainContainer>
                 <StyledContainer>
                     <div>
-                        <div>
-                            <StyledImg
-                                src={`https://image.tmdb.org/t/p/original${movie?.poster_path}`}
-                                alt={movie?.original_title}
-                            />
-                        </div>
-                        <div className='social-media-links'>
-                            <ExternalId externalId={externalId} link={movie} />
+                        <div style={LeftSideStyle}>
+                            <div>
+                                <StyledImg
+                                    src={
+                                        `https://image.tmdb.org/t/p/original${movie?.poster_path}`
+                                    }
+                                    alt={movie?.original_title}
+                                />
+                            </div>
+                            <div className='social-media-links'>
+                                <ExternalId externalId={externalId} link={movie} />
+                            </div>
                         </div>
                         {user?.username && <div className='favorite-btn'>
                             {favorites?.includes(movie.id) ?
@@ -194,9 +202,18 @@ function MoviePage({ user }) {
                     <StyledOverviewDiv>
                         <Overview link={movie} />
                         <WatchProviders movie={movie} />
-                        <div>The cast of {movie?.original_title}:</div>
+                        <div
+                            style={{
+                                textAlign: 'center',
+                                marginTop: '2rem',
+                                textDecoration: 'underline',
+                                fontSize: '1.3rem'
+                            }}
+                        >
+                            The cast of {movie?.original_title}
+                        </div>
                         <Credits movie={movie} />
-                        <Recommendations movie={movie} />
+                        {/* <Recommendations movie={movie} /> */}
                     </StyledOverviewDiv>
                     {/* <button style={{ color: 'green' }} onClick={addToWatchedList}>Add To Watched List</button> */}
                 </StyledContainer>
