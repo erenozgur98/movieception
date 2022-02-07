@@ -27,6 +27,13 @@ const Overview = ({ link }) => {
         padding: .2rem .5rem;
     `
 
+    const options = { 
+        year: 'numeric',
+        month: 'long', 
+        day: 'numeric' 
+    };
+
+    const date = new Date(link?.release_date || link?.first_air_date);
     return (
         <div>
             {/* Top Section */}
@@ -41,7 +48,7 @@ const Overview = ({ link }) => {
 
             {/* Bottom section */}
             <StyledBottomSection>
-                {(link?.release_date || link?.first_air_date) && (<StyledDivInBottomSection>Release Date: {link?.release_date || link?.first_air_date}</StyledDivInBottomSection>)}
+                {date && <StyledDivInBottomSection>Release Date: {date.toLocaleString('en-US', options)}</StyledDivInBottomSection>}
                 {link?.original_language === 'en' && <StyledDivInBottomSection>Language: English</StyledDivInBottomSection>}
                 {link?.runtime && <StyledDivInBottomSection>Runtime: {link?.runtime} minutes</StyledDivInBottomSection>}
                 {link?.budget && <StyledDivInBottomSection>Budget: ${link?.budget}</StyledDivInBottomSection>}
