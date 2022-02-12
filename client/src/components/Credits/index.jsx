@@ -34,22 +34,26 @@ function Credits({ movie, show, credits }) {
         history.push(`/actors/${theCast?.id}`)
     };
 
+    const slicedCast = cast?.slice(0, 10);
+
     return (
         <div className='casts'>
             <div className="casts-posters">
-                {cast?.map((theCast) => (
+                {slicedCast?.map((theCast) => (
                     <>
-                        {theCast?.profile_path && <div className='casts-map' key={theCast.id}>
-                            <img
-                                key={theCast.id}
-                                onClick={() => redirect(theCast)}
-                                src={`${base_url}${theCast?.profile_path}`}
-                                alt={theCast?.original_name}
-                                className='cast-poster'
-                            />
-                            <div className='casts-name'>{theCast?.original_name}</div>
-                            <div className='casts-character'>{theCast?.character}</div>
-                        </div>}
+                        {theCast?.profile_path && (
+                            <div className='casts-map' key={theCast.id}>
+                                <img
+                                    key={theCast.id}
+                                    onClick={() => redirect(theCast)}
+                                    src={`${base_url}${theCast?.profile_path}`}
+                                    alt={theCast?.original_name}
+                                    className='cast-poster'
+                                />
+                                <div className='casts-name'>{theCast?.original_name}</div>
+                                <div className='casts-character' style={{ fontSize: '0.8rem' }}>{theCast?.character}</div>
+                            </div>
+                        )}
                     </>
                 ))}
             </div>

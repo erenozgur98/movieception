@@ -22,15 +22,6 @@ function ExternalId({ externalId, link }) {
                     </div>
                 }
             </div>
-            <div className="homepage">
-                {link?.homepage &&
-                    <Chip
-                        label='Homepage'
-                        color='primary'
-                        onClick={() => window.open(link?.homepage, '_blank')}
-                    />
-                }
-            </div>
             <div>
                 {link?.imdb_id &&
                     <a
@@ -71,6 +62,16 @@ function ExternalId({ externalId, link }) {
                     >
                         <i className="fab fa-twitter-square" style={{ fontSize: "42px" }}></i>
                     </a>
+                }
+            </div>
+            <div className="homepage">
+                {link?.homepage &&
+                    <button
+                        onClick={() => window.open(link?.homepage, '_blank')}
+                        className='btn btn-primary'
+                    >
+                        Homepage
+                    </button>
                 }
             </div>
         </StyledDiv>

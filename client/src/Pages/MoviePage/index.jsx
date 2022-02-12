@@ -20,7 +20,6 @@ function MoviePage({ user }) {
     const [externalId, setExternalId] = useState();
     const [videos, setVideos] = useState();
     const [trailerModal, setTrailerModal] = useState(false);
-    // const [trailerUrl, setTrailerUrl] = useState('');
     const [favorites, setFavorites] = useState([]);
     const [watched, setWatched] = useState([]);
     const { MovieId } = useParams();
@@ -99,23 +98,6 @@ function MoviePage({ user }) {
         })
     }
 
-    // const playTrailer = () => {
-    //     const trailerVideos = videos.filter(e => e.type === 'Trailer')
-    //     if (trailerUrl) {
-    //         setTrailerUrl('');
-    //     } else {
-    //         setTrailerUrl(trailerVideos[0]?.key);
-    //     }
-    // };
-
-    // const opts = {
-    //     heigth: '390',
-    //     width: '100%',
-    //     // playerVars: {
-    //     //     autoplay: 1,
-    //     // }
-    // };
-
     const StyledMainContainer = styled(Container)`
         position: relative;
         bottom: 22rem;
@@ -126,7 +108,6 @@ function MoviePage({ user }) {
         @media (max-width: 768px) {
             flex-direction: column;
         }
-        // flex-wrap: wrap;
     `
 
     const StyledImg = styled.img`
@@ -229,7 +210,7 @@ function MoviePage({ user }) {
                             The cast of {movie?.original_title}
                         </div>
                         <Credits movie={movie} />
-                        {/* <Recommendations movie={movie} /> */}
+                        <Recommendations movie={movie} />
                     </StyledOverviewDiv>
                     {/* <button style={{ color: 'green' }} onClick={addToWatchedList}>Add To Watched List</button> */}
                 </StyledContainer>

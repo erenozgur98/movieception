@@ -38,17 +38,27 @@ function Recommendations({ movie, show }) {
         }
     };
 
+    const slicedMovie = movieRecommendations.slice(0, 10)
+    const slicedShow = showRecommendations.slice(0, 10)
+
     return (
         <div className='recommendations'>
             {movie?.id ?
                 <div>
-                    {movieRecommendations.length === 0 ?
-                        null
-                        :
+                    {movieRecommendations.length &&
                         <div>
-                            <div>Since you are looking at {movie?.original_title}, you might like these movies:</div>
+                            <div
+                                style={{
+                                    textAlign: 'center',
+                                    marginTop: '2rem',
+                                    textDecoration: 'underline',
+                                    fontSize: '1.2rem'
+                                }}
+                            >
+                                Since you are looking at {movie?.original_title}, you might like these movies
+                            </div>
                             <div className="recommendations-posters">
-                                {movieRecommendations?.map((recommendations) => (
+                                {slicedMovie?.map((recommendations) => (
                                     <div className='recommendations-map' key={recommendations.id}>
                                         <img
                                             key={recommendations.id}
@@ -60,17 +70,25 @@ function Recommendations({ movie, show }) {
                                     </div>
                                 ))}
                             </div>
-                        </div>}
+                        </div>
+                    }
                 </div>
                 :
                 <div>
-                    {showRecommendations.length === 0 ?
-                        null
-                        :
+                    {showRecommendations.length &&
                         <div>
-                            <div>Since you are looking at {show?.name}, you might like these shows:</div>
+                            <div
+                                style={{
+                                    textAlign: 'center',
+                                    marginTop: '2rem',
+                                    textDecoration: 'underline',
+                                    fontSize: '1.2rem'
+                                }}
+                            >
+                                Since you are looking at {show?.name}, you might like these shows
+                            </div>
                             <div className="recommendations-posters">
-                                {showRecommendations?.map((recommendations) => (
+                                {slicedShow?.map((recommendations) => (
                                     <div className='recommendations-map' key={recommendations.id}>
                                         <img
                                             key={recommendations.id}
@@ -82,7 +100,8 @@ function Recommendations({ movie, show }) {
                                     </div>
                                 ))}
                             </div>
-                        </div>}
+                        </div>
+                    }
                 </div>
             }
         </div>
