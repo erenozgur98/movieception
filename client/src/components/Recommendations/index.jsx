@@ -40,7 +40,6 @@ function Recommendations({ movie, show }) {
 
     const slicedMovie = movieRecommendations.slice(0, 10);
     const slicedShow = showRecommendations.slice(0, 10);
-    console.log(slicedShow)
 
     return (
         <div className='recommendations'>
@@ -60,6 +59,7 @@ function Recommendations({ movie, show }) {
                             </div>
                             <div className="recommendations-posters">
                                 {slicedMovie?.map((recommendations) => (
+                                    recommendations?.poster_path &&
                                     <div className='recommendations-map' key={recommendations.id}>
                                         <img
                                             key={recommendations.id}
@@ -91,6 +91,7 @@ function Recommendations({ movie, show }) {
                             </div>
                             <div className="recommendations-posters">
                                 {slicedShow?.map((recommendations) => (
+                                    recommendations?.poster_path &&
                                     <div className='recommendations-map' key={recommendations.id}>
                                         <img
                                             key={recommendations.id}

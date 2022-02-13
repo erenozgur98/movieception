@@ -37,6 +37,7 @@ function MovieCredits({ actor }) {
     return (
         <div className='movie-credits'>
             {slicedCredits.map((credits) => (
+                credits?.poster_path &&
                 <div className='movie-credits-map'>
                     <img
                         key={credits.id}
