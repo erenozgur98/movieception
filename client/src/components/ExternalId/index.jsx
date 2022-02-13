@@ -10,6 +10,7 @@ function ExternalId({ externalId, link }) {
         align-items: center;
         flex-direction: column;
     `
+    console.log(link)
 
     return (
         <StyledDiv>

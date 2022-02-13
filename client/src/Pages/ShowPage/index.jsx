@@ -7,20 +7,22 @@ import Banner from '../../components/Banner';
 import Credits from '../../components/Credits';
 import ExternalId from '../../components/ExternalId';
 import WatchProviders from '../../components/WatchProviders';
-import YouTube from 'react-youtube';
 import '../MoviePage/MoviePage.css';
 import Overview from '../../components/Overview';
 import Recommendations from '../../components/Recommendations';
 import Seasons from '../../components/Seasons';
 import API from '../../utils/API';
+import styled from 'styled-components';
+import Trailer from '../../components/Trailer';
 
 function ShowPage({ user }) {
     const [, setLoading] = useState(false);
     const [show, setShow] = useState({});
     const [externalId, setExternalId] = useState();
     const [videos, setVideos] = useState();
-    const [trailerUrl, setTrailerUrl] = useState('');
+    const [trailerModal, setTrailerModal] = useState(false);
     const [favorites, setFavorites] = useState([]);
+    const [watched, setWatched] = useState([]);
     const { ShowId } = useParams();
 
     const apiKey = 'af737f76cdba5b7435e17cc94568c07d';
@@ -46,7 +48,14 @@ function ShowPage({ user }) {
         API.getAllFavorites(user?.username)
             .then(res => setFavorites(res.data?.showFavorites))
             .catch(err => console.log(err))
-    }, [favorites])
+    }, [])
+
+    useEffect(() => {
+        API.getAllWatched(user?.username)
+            .then(res => {
+                setWatched(res?.data[0]?.watchedShows)
+            })
+    }, [])
 
     const addToFavorite = (show) => {
         API.addShowToFavorite(user?.username, show?.id).then(res => {
@@ -71,71 +80,152 @@ function ShowPage({ user }) {
         })
     }
 
-    const playTrailer = () => {
-        if (trailerUrl) {
-            setTrailerUrl('');
-        } else {
-            setTrailerUrl(videos[0]?.key);
-        }
-    };
+    const addToWatchedList = (movie) => {
+        API.addShowToWatched(user?.username, movie?.id)
+            .then(res => {
+                console.log(res)
+            })
+    }
 
-    const opts = {
-        heigth: '390',
-        width: '100%',
-    };
+    const removeFromWatchedList = (movie) => {
+        API.removeMovieFromWatched(user?.username, movie?.id).then(res => {
+            // add snackbar
+            console.log(res)
+            if (res.status === 200) {
+                console.log('Successfull')
+                setWatched(res?.data?.watchedMovies)
+            } else {
+                console.log('Something went wrong')
+            }
+        })
+    }
+
+    const StyledMainContainer = styled(Container)`
+        position: relative;
+        bottom: 22rem;
+    `
+
+    const StyledContainer = styled(Container)`
+        display: flex;
+        @media (max-width: 768px) {
+            flex-direction: column;
+        }
+    `
+
+    const StyledImg = styled.img`
+        max-width: 324px;
+        padding-bottom: 1rem;
+        border-radius: 3rem;
+    `
+
+    const StyledOverviewDiv = styled.div`
+        padding-left: 2rem;
+        margin-top: 10rem;
+    `
+    const StyledLeftSide = styled.div`
+
+    `
 
     return (
         <div>
-            {show?.poster_path ?
-                <Banner link={show?.backdrop_path} title={show?.original_name} />
-                :
-                null}
-            <Container>
+            <Banner link={show?.backdrop_path} />
+            <StyledMainContainer>
                 {/* make the show picture sticky after scroll? will look into that later when styling */}
                 {/* videos, select type: 'trailer' , 'featurette', 'teaser' */}
                 {/* video link type: youtube.com/watch?v=${key} <-- key being the video link key from the api */}
-                {show.poster_path ?
-                    <div>
-                        <div className="page-organization">
+                <StyledContainer>
+                    <StyledLeftSide>
+                        <div>
                             <div>
-                                <div className="poster-picture">
-                                    <img src={`https://image.tmdb.org/t/p/original${show?.poster_path}`} alt="black-widow" className='movie-poster' />
-                                </div>
-                                <div className="social-media-links">
-                                    <ExternalId externalId={externalId} />
-                                </div>
-                                {user?.username && <div className='favorite-btn'>
-                                    {favorites?.includes(show.id) ?
-                                        (
-                                            <button onClick={() => removeFromFavorites(show)} className='btn btn-warning'>Remove From Favorites</button>
-                                        )
-                                        :
-                                        (
-                                            <button onClick={() => addToFavorite(show)} className='btn btn-warning'>Add To Favorites</button>
-                                        )
+                                <StyledImg
+                                    src={
+                                        `https://image.tmdb.org/t/p/original${show?.poster_path}`
                                     }
-                                </div>}
+                                    alt={show?.original_title}
+                                />
                             </div>
-                            <div className="bottom-section">
-                                <Overview link={show} />
-                                <button className='btn btn-danger' onClick={playTrailer}>Play Trailer</button>
-                                {trailerUrl && <YouTube videoId={trailerUrl} opts={opts} />}
+                            <WatchProviders show={show} />
+                            <div className="social-media-links">
+                                <ExternalId externalId={externalId} link={show} />
                             </div>
                         </div>
-                        <WatchProviders show={show} />
-                        <div>The cast of {show.name}:</div>
+                        <div className="buttons">
+                            {user?.username && <div className='favorite-btn'>
+                                {favorites?.includes(show.id) ?
+                                    (
+                                        <button
+                                            onClick={() => removeFromFavorites(show)}
+                                            className='btn btn-warning'
+                                        >
+                                            Remove From Favorites
+                                        </button>
+                                    )
+                                    :
+                                    (
+                                        <button
+                                            onClick={() => addToFavorite(show)}
+                                            className='btn btn-warning'
+                                        >
+                                            Add To Favorites
+                                        </button>
+                                    )
+                                }
+                            </div>}
+                            {user?.username && <div className='favorite-btn'>
+                                {watched?.includes(show.id) ?
+                                    (
+                                        <button
+                                            onClick={() => removeFromWatchedList(show)}
+                                            className='btn btn-danger'
+                                        >
+                                            Remove From Watched List
+                                        </button>
+                                    )
+                                    :
+                                    (
+                                        <button
+                                            onClick={() => addToWatchedList(show)}
+                                            className='btn btn-danger'
+                                        >
+                                            Add to Watched List
+                                        </button>
+                                    )
+                                }
+                            </div>}
+                        </div>
+                    </StyledLeftSide>
+                    <StyledOverviewDiv>
+                        <Overview link={show} />
+                        <div
+                            style={{ textAlign: 'center', marginTop: '2rem' }}
+                        >
+                            <button
+                                onClick={() => setTrailerModal(true)}
+                                className='btn btn-success'
+                            >
+                                Watch Trailer
+                            </button>
+                        </div>
+                        <div
+                            style={{
+                                textAlign: 'center',
+                                marginTop: '2rem',
+                                textDecoration: 'underline',
+                                fontSize: '1.3rem'
+                            }}
+                        >
+                            The cast of {show?.original_title}
+                        </div>
                         <Credits show={show} />
-                        <Seasons show={show} />
                         <Recommendations show={show} />
-                    </div>
-                    :
-                    <>
-                        <Container style={{ textAlign: 'center', paddingTop: '70px' }}>
-                            Oops, something went wrong, go back to <a href='/shows'>show</a> or <a href='/'>home</a> page
-                        </Container>
-                    </>
-                }
-            </Container>
+                    </StyledOverviewDiv>
+                </StyledContainer>
+                <Trailer 
+                    videos={videos}
+                    show={trailerModal}
+                    handleClose={() => setTrailerModal(false)}
+                />
+            </StyledMainContainer>
         </div>
     )
 }

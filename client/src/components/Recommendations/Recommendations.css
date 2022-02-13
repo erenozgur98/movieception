@@ -14,10 +14,12 @@
 }
 
 .recommendations-name {
-    width: 8em;
+    width: 9em;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    font-size: 0.9rem;
+    transition: white-space 0.6s ease-in-out;
 }
 
 .recommendations-poster {
@@ -43,4 +45,5 @@
 
 .recommendations-map:hover > .recommendations-name {
     overflow: visible;
+    /* white-space: normal; */
 }

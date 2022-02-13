@@ -50,7 +50,7 @@ function Credits({ movie, show, credits }) {
                                     alt={theCast?.original_name}
                                     className='cast-poster'
                                 />
-                                <div className='casts-name'>{theCast?.original_name}</div>
+                                <div className='casts-name' style={{ textAlign: 'center' }}>{theCast?.original_name}</div>
                                 <div className='casts-character'>{theCast?.character}</div>
                             </div>
                         )}

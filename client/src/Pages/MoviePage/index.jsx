@@ -140,6 +140,7 @@ function MoviePage({ user }) {
                                     alt={movie?.original_title}
                                 />
                             </div>
+                            <WatchProviders movie={movie} />
                             <div className='social-media-links'>
                                 <ExternalId externalId={externalId} link={movie} />
                             </div>
@@ -191,7 +192,6 @@ function MoviePage({ user }) {
                     </StyledLeftSide>
                     <StyledOverviewDiv>
                         <Overview link={movie} />
-                        <WatchProviders movie={movie} />
                         <div
                             style={{ textAlign: 'center', marginTop: '2rem' }}
                         >
@@ -215,7 +215,6 @@ function MoviePage({ user }) {
                         <Credits movie={movie} />
                         <Recommendations movie={movie} />
                     </StyledOverviewDiv>
-                    {/* <button style={{ color: 'green' }} onClick={addToWatchedList}>Add To Watched List</button> */}
                 </StyledContainer>
                 <Trailer
                     videos={videos}
@@ -223,49 +222,6 @@ function MoviePage({ user }) {
                     handleClose={() => setTrailerModal(false)}
                 />
             </StyledMainContainer>
-            {/* videos, select type: 'trailer' , 'featurette', 'teaser' */}
-            {/* <Container>
-                {movie.poster_path ?
-                    <div>
-                        <div className='page-organization'>
-                            <div>
-                                <div className="poster-picture">
-                                    <img src={`https://image.tmdb.org/t/p/original${movie?.poster_path}`} alt={movie?.original_title} className='movie-poster' />
-                                </div>
-                                <div className='social-media-links'>
-                                    <ExternalId externalId={externalId} />
-                                </div>
-                                {user?.username && <div className='favorite-btn'>
-                                    {favorites?.includes(movie.id) ?
-                                        (
-                                            <button onClick={() => removeFromFavorites(movie)} className='btn btn-warning'>Remove From Favorites</button>
-                                        )
-                                        :
-                                        (
-                                            <button onClick={() => addToFavorite(movie)} className='btn btn-warning'>Add To Favorites</button>
-                                        )
-                                    }
-                                </div>}
-                            </div>
-                            <div className="bottom-section">
-                                <Overview link={movie} />
-                                <button className='btn btn-danger' onClick={playTrailer}>Play Trailer</button>
-                                {trailerUrl && <YouTube videoId={trailerUrl} opts={opts} />}
-                            </div>
-                        </div>
-                        <WatchProviders movie={movie} />
-                        <div>The cast of {movie?.original_title}:</div>
-                        <Credits movie={movie} />
-                        <Recommendations movie={movie} />
-                    </div>
-                    :
-                    <>
-                        <Container style={{ textAlign: 'center', paddingTop: '70px' }}>
-                            Oops, something went wrong, go back to <a href='/movies'>movie</a> or <a href='/'>home</a> page
-                        </Container>
-                    </>
-                }
-            </Container> */}
         </div>
     )
 }

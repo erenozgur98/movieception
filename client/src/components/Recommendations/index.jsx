@@ -98,6 +98,7 @@ function Recommendations({ movie, show }) {
                                             alt={recommendations?.original_name}
                                             className='recommendations-poster'
                                         />
+                                        <div className='recommendations-name'>{recommendations?.original_title}</div>
                                     </div>
                                 ))}
                             </div>
