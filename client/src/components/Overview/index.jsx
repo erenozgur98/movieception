@@ -61,10 +61,10 @@ const Overview = ({ link }) => {
                 {link?.runtime && <StyledDivInBottomSection>
                     Runtime: <StyledSpan>{link?.runtime} minutes</StyledSpan>
                 </StyledDivInBottomSection>}
-                {link?.budget && <StyledDivInBottomSection>
+                {link?.budget > 0 && <StyledDivInBottomSection>
                     Budget: <StyledSpan>{link?.budget.toLocaleString('en-US', {style: 'currency', currency: 'USD'})}</StyledSpan>
                 </StyledDivInBottomSection>}
-                {link?.revenue && <StyledDivInBottomSection>
+                {link?.revenue > 0 && <StyledDivInBottomSection>
                     Revenue: <StyledSpan>{link?.revenue.toLocaleString('en-US', {style: 'currency', currency: 'USD'})}</StyledSpan>
                 </StyledDivInBottomSection>}
                 {link?.production_countries && <StyledDivInBottomSection>
