@@ -40,12 +40,13 @@ function Recommendations({ movie, show }) {
 
     const slicedMovie = movieRecommendations.slice(0, 10);
     const slicedShow = showRecommendations.slice(0, 10);
+    console.log(slicedShow)
 
     return (
         <div className='recommendations'>
             {movie?.id ?
                 <div>
-                    {movieRecommendations &&
+                    {movieRecommendations.length > 0 &&
                         <div>
                             <div
                                 style={{
@@ -76,7 +77,7 @@ function Recommendations({ movie, show }) {
                 </div>
                 :
                 <div>
-                    {showRecommendations &&
+                    {showRecommendations.length > 0 &&
                         <div>
                             <div
                                 style={{
