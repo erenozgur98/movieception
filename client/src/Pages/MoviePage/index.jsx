@@ -144,53 +144,56 @@ function MoviePage({ user }) {
                                 <ExternalId externalId={externalId} link={movie} />
                             </div>
                         </div>
-                        {user?.username && <div className='favorite-btn'>
-                            {favorites?.includes(movie.id) ?
-                                (
-                                    <button
-                                        onClick={() => removeFromFavorites(movie)}
-                                        className='btn btn-warning'
-                                    >
-                                        Remove From Favorites
-                                    </button>
-                                )
-                                :
-                                (
-                                    <button
-                                        onClick={() => addToFavorite(movie)}
-                                        className='btn btn-warning'
-                                    >
-                                        Add To Favorites
-                                    </button>
-                                )
-                            }
-                        </div>}
-                        {user?.username && <div className='favorite-btn'>
-                            {watched?.includes(movie.id) ?
-                                (
-                                    <button
-                                        onClick={() => removeFromWatchedList(movie)} className='btn btn-danger'
-                                    >
-                                        Remove From Watched List
-                                    </button>
-                                )
-                                :
-                                (
-                                    <button
-                                        onClick={() => addToWatchedList(movie)}
-                                        className='btn btn-danger'
-                                    >
-                                        Add To Watched List
-                                    </button>
-                                )
-                            }
-                        </div>}
+                        <div className="buttons">
+                            {user?.username && <div className='favorite-btn'>
+                                {favorites?.includes(movie.id) ?
+                                    (
+                                        <button
+                                            onClick={() => removeFromFavorites(movie)}
+                                            className='btn btn-warning'
+                                        >
+                                            Remove From Favorites
+                                        </button>
+                                    )
+                                    :
+                                    (
+                                        <button
+                                            onClick={() => addToFavorite(movie)}
+                                            className='btn btn-warning'
+                                        >
+                                            Add To Favorites
+                                        </button>
+                                    )
+                                }
+                            </div>}
+                            {user?.username && <div className='favorite-btn'>
+                                {watched?.includes(movie.id) ?
+                                    (
+                                        <button
+                                            onClick={() => removeFromWatchedList(movie)} 
+                                            className='btn btn-danger'
+                                        >
+                                            Remove From Watched List
+                                        </button>
+                                    )
+                                    :
+                                    (
+                                        <button
+                                            onClick={() => addToWatchedList(movie)}
+                                            className='btn btn-danger'
+                                        >
+                                            Add to Watched List
+                                        </button>
+                                    )
+                                }
+                            </div>}
+                        </div>
                     </StyledLeftSide>
                     <StyledOverviewDiv>
                         <Overview link={movie} />
                         <WatchProviders movie={movie} />
-                        <div 
-                            style={{ textAlign: 'center', marginTop:'2rem' }}
+                        <div
+                            style={{ textAlign: 'center', marginTop: '2rem' }}
                         >
                             <button
                                 onClick={() => setTrailerModal(true)}

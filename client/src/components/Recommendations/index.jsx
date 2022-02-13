@@ -38,14 +38,14 @@ function Recommendations({ movie, show }) {
         }
     };
 
-    const slicedMovie = movieRecommendations.slice(0, 10)
-    const slicedShow = showRecommendations.slice(0, 10)
+    const slicedMovie = movieRecommendations.slice(0, 10);
+    const slicedShow = showRecommendations.slice(0, 10);
 
     return (
         <div className='recommendations'>
             {movie?.id ?
                 <div>
-                    {movieRecommendations.length &&
+                    {movieRecommendations &&
                         <div>
                             <div
                                 style={{
@@ -67,6 +67,7 @@ function Recommendations({ movie, show }) {
                                             alt={recommendations?.original_name}
                                             className='recommendations-poster'
                                         />
+                                        <div className='recommendations-name'>{recommendations?.original_title}</div>
                                     </div>
                                 ))}
                             </div>
@@ -75,7 +76,7 @@ function Recommendations({ movie, show }) {
                 </div>
                 :
                 <div>
-                    {showRecommendations.length &&
+                    {showRecommendations &&
                         <div>
                             <div
                                 style={{

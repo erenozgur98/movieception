@@ -18,7 +18,6 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     font-size: 0.9rem;
-    /* padding-left: 8px; */
 }
 
 .casts-character {
@@ -29,6 +28,7 @@
     font-style: italic;
     font-weight: 300;
     padding: 0.3rem;
+    font-size: 0.8rem;
     color: #dbd6d6;
 }
 
@@ -45,8 +45,13 @@
 
 .casts-map:hover {
     cursor: pointer;
-    transform: scale(1.05);
+    transform: scale(1.10);
     white-space: normal;
+}
+
+.casts-map:hover > .casts-character {
+    overflow: visible;
+    color: #e94343;
 }
 
 .see-btn {

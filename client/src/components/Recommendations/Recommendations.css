@@ -6,8 +6,6 @@
 }
 
 .recommendations-map {
-    display: flex;
-    flex-direction: column;
     text-align: center;
     margin-top: 1rem;
     /* border: solid white 2px; */
@@ -20,7 +18,6 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    padding-left: 8px;
 }
 
 .recommendations-poster {
@@ -40,6 +37,10 @@
 
 .recommendations-map:hover {
     cursor: pointer;
-    transform: scale(1.09);
+    transform: scale(1.10);
     white-space: normal;
+}
+
+.recommendations-map:hover > .recommendations-name {
+    overflow: visible;
 }

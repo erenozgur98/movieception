@@ -51,7 +51,7 @@ function Credits({ movie, show, credits }) {
                                     className='cast-poster'
                                 />
                                 <div className='casts-name'>{theCast?.original_name}</div>
-                                <div className='casts-character' style={{ fontSize: '0.8rem' }}>{theCast?.character}</div>
+                                <div className='casts-character'>{theCast?.character}</div>
                             </div>
                         )}
                     </>
