@@ -32,7 +32,6 @@ function MovieCredits({ actor }) {
     movieCredits.sort((a, b) => (a.release_date > b.release_date) ? -1 : ((b.release_date > a.release_date) ? 1 : 0));
 
     const slicedCredits = movieCredits.slice(0, 10);
-    console.log(slicedCredits)
 
     return (
         <div className='movie-credits'>

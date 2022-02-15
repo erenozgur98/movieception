@@ -214,7 +214,7 @@ function ShowPage({ user }) {
                                 fontSize: '1.3rem'
                             }}
                         >
-                            The cast of {show?.original_title}
+                            The cast of {show?.original_title || show?.name}
                         </div>
                         <Credits show={show} />
                         <Recommendations show={show} />
