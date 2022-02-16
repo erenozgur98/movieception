@@ -196,6 +196,7 @@ function ShowPage({ user }) {
                     </StyledLeftSide>
                     <StyledOverviewDiv>
                         <Overview link={show} />
+                        <Seasons show={show} />
                         <div
                             style={{ textAlign: 'center', marginTop: '2rem' }}
                         >

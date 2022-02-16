@@ -1,16 +1,16 @@
 .seasons-posters {
     display: flex;
-    overflow-y: hidden;
-    overflow-x: scroll;
+    justify-content: center;
+    align-items: center;
     padding: 10px;
 }
 
 .seasons-map {
     display: flex;
+    justify-content: center;
+    align-items: center;
     flex-direction: column;
     text-align: center;
-    /* border: solid white 2px; */
-    /* margin: 5px; */
     transition: transform 450ms;
 }
 
@@ -19,26 +19,18 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    padding-left: 8px;
 }
 
 .seasons-poster {
     object-fit: contain;
-    width: 130px;
-    /* height: 230px; */
-    margin-right: 10px;
+    width: 10rem;
+    margin: 0px 5px;
     transition: transform 450ms;
-}
-
-.seasons-posters::-webkit-scrollbar {
-    /* width: 2vw; */
-    /* color: white; */
-    /* background-color: gray; */
-    display: none;
 }
 
 .seasons-map:hover {
     cursor: pointer;
-    transform: scale(1.09);
+    transform: scale(1.10);
     white-space: normal;
 }
+

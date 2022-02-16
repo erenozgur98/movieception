@@ -13,17 +13,16 @@ function Seasons({ show }) {
     const base_url = 'https://image.tmdb.org/t/p/original/';
 
     const redirect = (x) => {
-        // x?.season_number === 0 ?
-        // history.push(`/shows/${show?.id}/season/${x?.season_number - 1}`)
-        // :
-        history.push(`/shows/${show?.id}/season/${x?.season_number}`);
+        const result = season[0].name === 'Specials'
+        history.push(`/shows/${show?.id}/season/${result ? x?.season_number + 1 : x?.season_number}`)
     };
+
 
     return (
         <div className='seasons'>
             {season &&
                 <div>
-                    <div>
+                    <div style={{ textAlign: 'center', marginTop: '2rem' }}>
                         {season?.length} Seasons
                     </div>
                     <div className='seasons-posters'>
