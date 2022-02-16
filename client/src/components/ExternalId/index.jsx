@@ -1,5 +1,4 @@
 import React from 'react';
-import Chip from '@mui/material/Chip';
 import styled from 'styled-components';
 import './ExternalId.css';
 
@@ -14,7 +13,7 @@ function ExternalId({ externalId, link }) {
     return (
         <StyledDiv>
             <div>
-                {link?.vote_average &&
+                {link?.vote_average > 0 &&
                     <div style={{ display: 'flex', alignItems: 'center' }}>
                         <i class="fas fa-star fa-2x" />
                         <span style={{ fontSize: '1.8rem', paddingLeft: '0.4rem' }}>{link?.vote_average}</span>
