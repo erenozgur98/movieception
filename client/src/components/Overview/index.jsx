@@ -85,7 +85,7 @@ const Overview = ({ link }) => {
                         Language: <StyledSpan>English</StyledSpan>
                     </StyledDivInBottomSection>
                 }
-                {link?.runtime &&
+                {link?.runtime > 0 &&
                     <StyledDivInBottomSection>
                         Runtime: <StyledSpan>{link?.runtime} minutes</StyledSpan>
                     </StyledDivInBottomSection>
