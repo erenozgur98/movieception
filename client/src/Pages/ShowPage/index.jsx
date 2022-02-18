@@ -103,27 +103,39 @@ function ShowPage({ user }) {
     const StyledMainContainer = styled(Container)`
         position: relative;
         bottom: 22rem;
+        @media (max-width: 1048px) {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
     `
 
     const StyledContainer = styled(Container)`
         display: flex;
-        @media (max-width: 768px) {
+        @media (max-width: 1048px) {
             flex-direction: column;
         }
     `
 
     const StyledImg = styled.img`
         max-width: 324px;
-        padding-bottom: 1rem;
+        margin-bottom: 1rem;
         border-radius: 3rem;
     `
 
     const StyledOverviewDiv = styled.div`
         padding-left: 2rem;
         margin-top: 10rem;
+        @media (max-width: 1048px) {
+            margin-top: 0;
+            padding-left: 0;
+        }
     `
     const StyledLeftSide = styled.div`
-
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 2rem;
     `
 
     return (
