@@ -38,19 +38,29 @@ function ActorPage() {
     const StyledMainContainer = styled(Container)`
         position: relative;
         bottom: 22rem;
+        @media (max-width: 1048px) {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
     `
     const StyledContainer = styled(Container)`
         display: flex;
         flex-direction: column;
+        
     `
     const StyledImg = styled.img`
         max-width: 324px;
-        padding-bottom: 1rem;
+        margin-bottom: 1rem;
         border-radius: 3rem;
     `
     const StyledOverviewDiv = styled.div`
         padding-left: 2rem;
         margin-top: 10rem;
+        @media (max-width: 1048px) {
+            margin-top: 0;
+            padding-left: 0;
+        }
     `
     const StyledSpan = styled.span`
         color: #b6894e;
@@ -59,8 +69,6 @@ function ActorPage() {
     const slicedPictures = actorPictures.slice(0, 10);
     const date = new Date(actor?.birthday);
     const options = {
-
-
         year: 'numeric',
         month: 'long',
         day: 'numeric'
@@ -82,7 +90,6 @@ function ActorPage() {
                             <StyledImg
                                 src={`https://image.tmdb.org/t/p/original/${actor?.profile_path}`}
                                 alt={actor?.name}
-                                className='actor-background'
                             />
                             <div className='social-media-links'>
                                 <ExternalId externalId={externalId} link={actor} />
@@ -99,7 +106,7 @@ function ActorPage() {
                                     }
                                 </div>
                             </div>
-                            <div className='biography' style={{ textAlign: 'center' }}>
+                            <div className='biography'>
                                 {actor?.biography &&
                                     <div>
                                         {actor?.biography}

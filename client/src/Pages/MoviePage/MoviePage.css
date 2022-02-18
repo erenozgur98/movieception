@@ -16,6 +16,7 @@
 
 .page-organization {
     display: flex;
+    transition: transform 458mx ease-in-out;
 }
 
 .bottom-section {
@@ -35,6 +36,10 @@
     padding-bottom: 0.5rem;
 }
 
-.buttons {
-    /* border: 1px solid white; */
+@media screen and (max-width: 1042px) {
+    .page-organization {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
 }

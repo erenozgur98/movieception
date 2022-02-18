@@ -15,8 +15,7 @@
 
 .overview {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    text-align: center;
     margin-bottom: 2rem;
 }
 
@@ -33,6 +32,7 @@
 
 .biography {
     margin-bottom: 2rem;
+    text-align: center;
 }
 
 .actor-movie-poster {

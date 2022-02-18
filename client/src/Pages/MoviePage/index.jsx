@@ -112,7 +112,7 @@ function MoviePage({ user }) {
 
     const StyledImg = styled.img`
         max-width: 324px;
-        padding-bottom: 1rem;
+        margin-bottom: 1rem;
         border-radius: 3rem;
     `
 
