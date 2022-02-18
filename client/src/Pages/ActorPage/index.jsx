@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useEffect } from 'react';
 import { Container } from 'react-bootstrap';
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import axios from '../../components/Axios';
 import Banner from '../../components/Banner';
 import ExternalId from '../../components/ExternalId';
@@ -14,10 +14,9 @@ function ActorPage() {
     const [actorPictures, setActorPictures] = useState([]);
     const [externalId, setExternalId] = useState();
     const [movieCredits, setMovieCredits] = useState([]);
-    const [randomInt,] = useState(Math.floor(Math.random() * 5))
+    const [randomInt,] = useState(Math.floor(Math.random() * 10))
     const { ActorId } = useParams();
 
-    const history = useHistory()
     const base_url = 'https://image.tmdb.org/t/p/original';
     const apiKey = 'af737f76cdba5b7435e17cc94568c07d';
 
@@ -60,10 +59,14 @@ function ActorPage() {
     const slicedPictures = actorPictures.slice(0, 10);
     const date = new Date(actor?.birthday);
     const options = {
+
+
         year: 'numeric',
         month: 'long',
         day: 'numeric'
     };
+
+    movieCredits.sort((a, b) => (a.release_date > b.release_date) ? -1 : ((b.release_date > a.release_date) ? 1 : 0))
 
     return (
         <div>
