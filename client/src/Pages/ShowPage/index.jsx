@@ -14,6 +14,7 @@ import Seasons from '../../components/Seasons';
 import API from '../../utils/API';
 import styled from 'styled-components';
 import Trailer from '../../components/Trailer';
+import { useTitle } from '../../components/useTitle';
 
 function ShowPage({ user }) {
     const [, setLoading] = useState(false);
@@ -21,11 +22,16 @@ function ShowPage({ user }) {
     const [externalId, setExternalId] = useState();
     const [videos, setVideos] = useState();
     const [trailerModal, setTrailerModal] = useState(false);
+    const [documentTitle, setDocumentTitle] = useTitle();
     const [favorites, setFavorites] = useState([]);
     const [watched, setWatched] = useState([]);
     const { ShowId } = useParams();
 
     const apiKey = 'af737f76cdba5b7435e17cc94568c07d';
+
+    useEffect(() => {
+        document.title = documentTitle ?? 'True Story';
+    }, [documentTitle])
 
     useEffect(() => {
         // API.getOneMovie, will be set later
@@ -39,9 +45,9 @@ function ShowPage({ user }) {
             setExternalId(requestExternalId.data);
             setVideos(requestVideos.data.results);
             setLoading(false);
+            setDocumentTitle(request.data?.title || request.data?.name || request.data?.original_title)
         }
         fetchData();
-        document.title = `${show?.title || show?.name || show?.original_title}`;
     }, [ShowId]);
 
     useEffect(() => {

@@ -8,14 +8,20 @@ import './SeasonPage.css';
 import Episodes from '../../components/Episodes';
 import Credits from '../../components/Credits';
 import styled from 'styled-components';
+import { useTitle } from '../../components/useTitle';
 
 const apiKey = 'af737f76cdba5b7435e17cc94568c07d';
 
 function SeasonPage() {
     const [show, setShow] = useState({});
     const [credits, setCredits] = useState();
+    const [documentTitle, setDocumentTitle] = useTitle();
     const { SeasonId } = useParams();
     const { ShowId } = useParams();
+
+    useEffect(() => {
+        document.title = documentTitle ?? 'True Story';
+    }, [documentTitle])
 
     useEffect(() => {
         const fetchData = async () => {
@@ -23,9 +29,9 @@ function SeasonPage() {
             const request = await axios.get(`/tv/${ShowId}?api_key=${apiKey}`);
             setCredits(requestCredits.data);
             setShow(request.data.seasons[SeasonId - 1]);
+            setDocumentTitle(show?.original_title || show?.title || show?.name)
         }
         fetchData();
-        document.title = `${show?.original_title || show?.title || show?.name}`;
     }, [SeasonId, ShowId]);
 
     const StyledMainContainer = styled(Container)`
@@ -60,7 +66,7 @@ function SeasonPage() {
                                     <StyledImg src={`https://image.tmdb.org/t/p/original${show?.poster_path}`} alt="black-widow" className='movie-poster' />
                                 </div>
                             </div>
-                            <div className="bottom-section">
+                            <div className="bottom-section" style={{ marginTop: '15rem' }}>
                                 <Overview link={show} />
                                 <Credits credits={credits} />
                             </div>

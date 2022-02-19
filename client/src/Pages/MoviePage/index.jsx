@@ -14,6 +14,7 @@ import Recommendations from '../../components/Recommendations';
 import API from '../../utils/API';
 import styled from 'styled-components';
 import Trailer from '../../components/Trailer';
+import { useTitle } from '../../components/useTitle';
 
 function MoviePage({ user }) {
     const [movie, setMovie] = useState({});
@@ -22,9 +23,14 @@ function MoviePage({ user }) {
     const [trailerModal, setTrailerModal] = useState(false);
     const [favorites, setFavorites] = useState([]);
     const [watched, setWatched] = useState([]);
+    const [documentTitle, setDocumentTitle] = useTitle();
     const { MovieId } = useParams();
 
     const apiKey = 'af737f76cdba5b7435e17cc94568c07d';
+
+    useEffect(() => {
+        document.title = documentTitle ?? 'True Story';
+    }, [documentTitle])
 
     useEffect(() => {
         const fetchData = async () => {
@@ -34,10 +40,10 @@ function MoviePage({ user }) {
             setMovie(request.data);
             setExternalId(requestExternalId.data);
             setVideos(requestVideos.data.results);
+            setDocumentTitle(request.data?.original_title || request.data?.title || request.data?.name)
         }
         fetchData();
-        document.title = `${movie?.original_title || movie?.title || movie?.name}`;
-    }, [MovieId])
+    }, [])
 
     useEffect(() => {
         API.getAllFavorites(user?.username)

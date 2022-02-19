@@ -8,6 +8,7 @@ import ExternalId from '../../components/ExternalId';
 import MovieCredits from '../../components/MovieCredits';
 import './ActorPage.css'
 import styled from 'styled-components';
+import { useTitle } from '../../components/useTitle';
 
 function ActorPage() {
     const [actor, setActor] = useState({});
@@ -15,10 +16,15 @@ function ActorPage() {
     const [externalId, setExternalId] = useState();
     const [movieCredits, setMovieCredits] = useState([]);
     const [randomInt,] = useState(Math.floor(Math.random() * 10))
+    const [documentTitle, setDocumentTitle] = useTitle();
     const { ActorId } = useParams();
 
     const base_url = 'https://image.tmdb.org/t/p/original';
     const apiKey = 'af737f76cdba5b7435e17cc94568c07d';
+
+    useEffect(() => {
+        document.title = documentTitle ?? 'True Story'
+    }, [documentTitle])
 
     useEffect(() => {
         const fetchData = async () => {
@@ -30,9 +36,9 @@ function ActorPage() {
             setExternalId(requestExternalId.data);
             setActorPictures(requestActorImages.data.profiles);
             setMovieCredits(requestMovieCredits.data.cast);
+            setDocumentTitle(request.data?.name)
         }
         fetchData()
-        document.title = `${actor?.name}`;
     }, [ActorId]);
 
     const StyledMainContainer = styled(Container)`
