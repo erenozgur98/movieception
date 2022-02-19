@@ -3,7 +3,8 @@ import People from '../../components/People';
 import requests from '../../components/Requests';
 
 function Actors() {
-
+    document.title = 'Actors';
+    
     return (
         <div className='movie'>
             <People fetchUrl={requests.fetchActors} title='Popular Actors' />

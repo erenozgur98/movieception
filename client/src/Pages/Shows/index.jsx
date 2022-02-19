@@ -11,6 +11,8 @@ function Shows() {
     const urlGenre = useLocation().search
     const selectedGenre = new URLSearchParams(urlGenre).get('genre');
 
+    document.title = 'TV Shows'
+
     useEffect(() => {
         const fetchData = async () => {
             setGenre(selectedGenre);
