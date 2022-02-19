@@ -7,6 +7,7 @@ import Overview from '../../components/Overview';
 import './SeasonPage.css';
 import Episodes from '../../components/Episodes';
 import Credits from '../../components/Credits';
+import styled from 'styled-components';
 
 const apiKey = 'af737f76cdba5b7435e17cc94568c07d';
 
@@ -28,6 +29,22 @@ function SeasonPage() {
         document.title = `${show?.original_title || show?.title || show?.name}`;
     }, [SeasonId, ShowId]);
 
+    const StyledMainContainer = styled(Container)`
+        position: relative;
+        bottom: 22rem;
+        @media (max-width: 1048px) {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    `
+
+    const StyledImg = styled.img`
+        max-width: 324px;
+        margin-bottom: 1rem;
+        border-radius: 3rem;
+    `
+
     return (
         <div>
             {show?.poster_path ?
@@ -35,13 +52,13 @@ function SeasonPage() {
                 :
                 null
             }
-            <Container>
+            <StyledMainContainer>
                 {show?.poster_path ?
                     <div>
                         <div className="page-organization">
                             <div>
                                 <div className="poster-picture">
-                                    <img src={`https://image.tmdb.org/t/p/original${show?.poster_path}`} alt="black-widow" className='movie-poster' />
+                                    <StyledImg src={`https://image.tmdb.org/t/p/original${show?.poster_path}`} alt="black-widow" className='movie-poster' />
                                 </div>
                             </div>
                             <div className="bottom-section">
@@ -58,7 +75,7 @@ function SeasonPage() {
                         </Container>
                     </>
                 }
-            </Container>
+            </StyledMainContainer>
         </div>
     )
 }

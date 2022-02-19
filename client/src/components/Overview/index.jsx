@@ -35,7 +35,7 @@ const Overview = ({ link }) => {
         day: 'numeric'
     };
 
-    const date = new Date(link?.release_date || link?.first_air_date);
+    const date = new Date(link?.release_date || link?.first_air_date || link?.air_date);
     const nextEpisodeDate = new Date(link?.next_episode_to_air?.air_date);
     const lastEpisodeDate = new Date(link?.last_episode_to_air?.air_date);
 
