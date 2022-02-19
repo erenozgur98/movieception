@@ -34,7 +34,7 @@ function Episodes({ show, ShowId, SeasonId }) {
             {episodeRequest?.map((x) => (
                 <div className='episode-picture'>
                     <img
-                        src={`https://image.tmdb.org/t/p/original${x?.still_path}`} alt={`${x?.name}`}
+                        src={x?.still_path && `https://image.tmdb.org/t/p/original${x?.still_path}`} alt={`${x?.name}`}
                         className='episode-poster'
                         onClick={() => redirect(x)}
                     />

@@ -22,7 +22,6 @@ function SeasonPage() {
             const requestCredits = await axios.get(`tv/${ShowId}/season/${SeasonId}/credits?api_key=${apiKey}`);
             const request = await axios.get(`/tv/${ShowId}?api_key=${apiKey}`);
             setCredits(requestCredits.data);
-            console.log(request.data)
             setShow(request.data.seasons[SeasonId - 1]);
         }
         fetchData();
