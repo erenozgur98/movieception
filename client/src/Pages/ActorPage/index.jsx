@@ -20,7 +20,6 @@ function ActorPage() {
     const { ActorId } = useParams();
 
     const base_url = 'https://image.tmdb.org/t/p/original';
-    const apiKey = 'af737f76cdba5b7435e17cc94568c07d';
 
     useEffect(() => {
         document.title = documentTitle ?? 'True Story'
@@ -28,10 +27,10 @@ function ActorPage() {
 
     useEffect(() => {
         const fetchData = async () => {
-            const request = await axios.get(`/person/${ActorId}?api_key=${apiKey}`);
-            const requestExternalId = await axios.get(`person/${ActorId}/external_ids?api_key=${apiKey}`);
-            const requestActorImages = await axios.get(`person/${ActorId}/images?api_key=${apiKey}`)
-            const requestMovieCredits = await axios.get(`/person/${ActorId}/combined_credits?api_key=${apiKey}`);
+            const request = await axios.get(`/person/${ActorId}?api_key=${process.env.REACT_APP_API_KEY}`);
+            const requestExternalId = await axios.get(`person/${ActorId}/external_ids?api_key=${process.env.REACT_APP_API_KEY}`);
+            const requestActorImages = await axios.get(`person/${ActorId}/images?api_key=${process.env.REACT_APP_API_KEY}`)
+            const requestMovieCredits = await axios.get(`/person/${ActorId}/combined_credits?api_key=${process.env.REACT_APP_API_KEY}`);
             setActor(request.data);
             setExternalId(requestExternalId.data);
             setActorPictures(requestActorImages.data.profiles);

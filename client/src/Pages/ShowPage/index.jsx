@@ -27,8 +27,6 @@ function ShowPage({ user }) {
     const [watched, setWatched] = useState([]);
     const { ShowId } = useParams();
 
-    const apiKey = 'af737f76cdba5b7435e17cc94568c07d';
-
     useEffect(() => {
         document.title = documentTitle ?? 'True Story';
     }, [documentTitle])
@@ -37,9 +35,9 @@ function ShowPage({ user }) {
         // API.getOneMovie, will be set later
         const fetchData = async () => {
             setLoading(true);
-            const request = await axios.get(`/tv/${ShowId}?api_key=${apiKey}`);
-            const requestExternalId = await axios.get(`tv/${ShowId}/external_ids?api_key=${apiKey}`);
-            const requestVideos = await axios.get(`tv/${ShowId}/videos?api_key=${apiKey}`);
+            const request = await axios.get(`/tv/${ShowId}?api_key=${process.env.REACT_APP_API_KEY}`);
+            const requestExternalId = await axios.get(`tv/${ShowId}/external_ids?api_key=${process.env.REACT_APP_API_KEY}`);
+            const requestVideos = await axios.get(`tv/${ShowId}/videos?api_key=${process.env.REACT_APP_API_KEY}`);
             // const seasons = await axios.get(`/tv/${ShowId}/season`)
             setShow(request.data);
             setExternalId(requestExternalId.data);

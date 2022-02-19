@@ -3,14 +3,12 @@ import React, { useState, useEffect } from 'react';
 import './Episodes.css';
 import { useHistory } from 'react-router';
 
-const apiKey = 'af737f76cdba5b7435e17cc94568c07d';
-
 function Episodes({ show, ShowId, SeasonId }) {
     const [episodeRequest, setEpisodeRequest] = useState([]);
 
     useEffect(() => {
         const fetchData = async () => {
-            const request = await axios.get(`tv/${ShowId}/season/${show?.season_number}?api_key=${apiKey}`);
+            const request = await axios.get(`tv/${ShowId}/season/${show?.season_number}?api_key=${process.env.REACT_APP_API_KEY}`);
             setEpisodeRequest(request.data.episodes);
         }
         fetchData();

@@ -26,17 +26,15 @@ function MoviePage({ user }) {
     const [documentTitle, setDocumentTitle] = useTitle();
     const { MovieId } = useParams();
 
-    const apiKey = 'af737f76cdba5b7435e17cc94568c07d';
-
     useEffect(() => {
         document.title = documentTitle ?? 'True Story';
     }, [documentTitle])
 
     useEffect(() => {
         const fetchData = async () => {
-            const request = await axios.get(`/movie/${MovieId}?api_key=${apiKey}`);
-            const requestExternalId = await axios.get(`movie/${MovieId}/external_ids?api_key=${apiKey}`);
-            const requestVideos = await axios.get(`/movie/${MovieId}/videos?api_key=${apiKey}`)
+            const request = await axios.get(`/movie/${MovieId}?api_key=${process.env.REACT_APP_API_KEY}`);
+            const requestExternalId = await axios.get(`movie/${MovieId}/external_ids?api_key=${process.env.REACT_APP_API_KEY}`);
+            const requestVideos = await axios.get(`/movie/${MovieId}/videos?api_key=${process.env.REACT_APP_API_KEY}`)
             setMovie(request.data);
             setExternalId(requestExternalId.data);
             setVideos(requestVideos.data.results);

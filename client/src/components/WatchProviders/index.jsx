@@ -4,7 +4,6 @@ import axios from '../Axios';
 import './WatchProviders.css';
 
 const base_url = 'https://image.tmdb.org/t/p/original/';
-const apiKey = 'af737f76cdba5b7435e17cc94568c07d';
 
 function WatchProviders({ movie, show }) {
     const [movieProviders, setMovieProviders] = useState([]);
@@ -15,13 +14,13 @@ function WatchProviders({ movie, show }) {
     useEffect(() => {
         if (movie?.id) {
             const fetchData = async () => {
-                const requestMovie = await axios.get(`/movie/${movie?.id}/watch/providers?api_key=${apiKey}`);
+                const requestMovie = await axios.get(`/movie/${movie?.id}/watch/providers?api_key=${process.env.REACT_APP_API_KEY}`);
                 setMovieProviders(requestMovie?.data.results);
             }
             fetchData();
         } else {
             const fetchData = async () => {
-                const requestShow = await axios.get(`/tv/${show?.id}/watch/providers?api_key=${apiKey}`);
+                const requestShow = await axios.get(`/tv/${show?.id}/watch/providers?api_key=${process.env.REACT_APP_API_KEY}`);
                 setShowProviders(requestShow?.data.results);
             }
             fetchData();

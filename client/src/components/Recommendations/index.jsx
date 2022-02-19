@@ -5,7 +5,6 @@ import './Recommendations.css';
 
 
 const base_url = 'https://image.tmdb.org/t/p/original/';
-const apiKey = 'af737f76cdba5b7435e17cc94568c07d';
 
 
 function Recommendations({ movie, show }) {
@@ -17,13 +16,13 @@ function Recommendations({ movie, show }) {
     useEffect(() => {
         if (movie?.id) {
             const fetchData = async () => {
-                const requestMovieRecommendations = await axios.get(`movie/${movie?.id}/recommendations?api_key=${apiKey}`);
+                const requestMovieRecommendations = await axios.get(`movie/${movie?.id}/recommendations?api_key=${process.env.REACT_APP_API_KEY}`);
                 setMovieRecommendations(requestMovieRecommendations.data.results);
             }
             fetchData();
         } else {
             const fetchData = async () => {
-                const requestShowRecommendations = await axios.get(`tv/${show?.id}/recommendations?api_key=${apiKey}`);
+                const requestShowRecommendations = await axios.get(`tv/${show?.id}/recommendations?api_key=${process.env.REACT_APP_API_KEY}`);
                 setShowRecommendations(requestShowRecommendations.data.results);
             }
             fetchData();

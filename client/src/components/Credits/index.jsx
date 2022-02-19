@@ -5,7 +5,6 @@ import './Credits.css'
 
 // change original to w200 or w300 if not styled
 const base_url = 'https://image.tmdb.org/t/p/original/';
-const apiKey = 'af737f76cdba5b7435e17cc94568c07d';
 
 function Credits({ movie, show, credits }) {
     const [cast, setCast] = useState([]);
@@ -15,13 +14,13 @@ function Credits({ movie, show, credits }) {
     useEffect(() => {
         if (movie?.id) {
             const fetchData = async () => {
-                const requestMovie = await axios.get(`/movie/${movie?.id}/credits?api_key=${apiKey}`);
+                const requestMovie = await axios.get(`/movie/${movie?.id}/credits?api_key=${process.env.REACT_APP_API_KEY}`);
                 setCast(requestMovie?.data.cast);
             }
             fetchData();
         } else if (show?.id) {
             const fetchData = async () => {
-                const requestShow = await axios.get(`/tv/${show?.id}/credits?api_key=${apiKey}`);
+                const requestShow = await axios.get(`/tv/${show?.id}/credits?api_key=${process.env.REACT_APP_API_KEY}`);
                 setCast(requestShow?.data.cast);
             }
             fetchData();

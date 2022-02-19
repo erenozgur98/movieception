@@ -5,7 +5,6 @@ import './MovieCredits.css'
 
 // change original to w200 or w300 if not styled
 const base_url = 'https://image.tmdb.org/t/p/original/';
-const apiKey = 'af737f76cdba5b7435e17cc94568c07d';
 
 function MovieCredits({ actor }) {
     const [movieCredits, setMovieCredits] = useState([]);
@@ -14,7 +13,7 @@ function MovieCredits({ actor }) {
 
     useEffect(() => {
         const fetchData = async () => {
-            const request = await axios.get(`/person/${actor?.id}/combined_credits?api_key=${apiKey}`);
+            const request = await axios.get(`/person/${actor?.id}/combined_credits?api_key=${process.env.REACT_APP_API_KEY}`);
             setMovieCredits(request.data.cast);
         }
         fetchData();

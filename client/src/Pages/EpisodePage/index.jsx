@@ -5,8 +5,6 @@ import axios from '../../components/Axios';
 import Banner from '../../components/Banner';
 import Credits from '../../components/Credits';
 
-const apiKey = 'af737f76cdba5b7435e17cc94568c07d';
-
 function EpisodePage() {
     const [show, setShow] = useState([]);
     const [episode, setEpisode] = useState({});
@@ -17,9 +15,9 @@ function EpisodePage() {
 
     useEffect(() => {
         const fetchData = async () => {
-            const requestEpisode = await axios.get(`/tv/${ShowId}/season/${SeasonId}/episode/${EpisodeId}?api_key=${apiKey}`);
-            const request = await axios.get(`/tv/${ShowId}?api_key=${apiKey}`);
-            const requestCredits = await axios.get(`tv/${ShowId}/season/${SeasonId}/credits?api_key=${apiKey}`);
+            const requestEpisode = await axios.get(`/tv/${ShowId}/season/${SeasonId}/episode/${EpisodeId}?api_key=${process.env.REACT_APP_API_KEY}`);
+            const request = await axios.get(`/tv/${ShowId}?api_key=${process.env.REACT_APP_API_KEY}`);
+            const requestCredits = await axios.get(`tv/${ShowId}/season/${SeasonId}/credits?api_key=${process.env.REACT_APP_API_KEY}`);
             setEpisode(requestEpisode.data);
             setCredits(requestCredits.data);
             // subtracting 1 because array starts from 0 but seasons start from 1
