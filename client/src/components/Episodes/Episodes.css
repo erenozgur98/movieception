@@ -14,3 +14,11 @@
     width: 300px;
     margin: 0.5rem;
 }
+
+@media screen and (max-width: 925px) {
+    .episode-picture {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}

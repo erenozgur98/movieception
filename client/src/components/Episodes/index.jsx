@@ -22,9 +22,15 @@ function Episodes({ show, ShowId, SeasonId }) {
         history.push(`/shows/${ShowId}/season/${SeasonId}/episode/${x?.episode_number}`);
     };
 
+    const options = {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+    };
+
     return (
         <div className='episodes-map'>
-            <div>{episodeRequest?.length} Episodes</div>
+            <div style={{ textAlign: 'center', margin: '2rem', fontSize: '2rem'}}>{episodeRequest?.length} Episodes</div>
             {episodeRequest?.map((x) => (
                 <div className='episode-picture'>
                     <img
@@ -38,7 +44,7 @@ function Episodes({ show, ShowId, SeasonId }) {
                             :
                             <div>{x?.season_number}x{x?.episode_number} {x?.name}</div>
                         }
-                        <div>{x?.air_date}</div>
+                        <div>{new Date(x?.air_date).toLocaleString('en-US', options)}</div>
                         <div className='truncate'>{x?.overview}</div>
                     </div>
                 </div>

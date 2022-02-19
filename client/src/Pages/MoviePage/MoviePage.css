@@ -42,4 +42,7 @@
         justify-content: center;
         align-items: center;
     }
+    .bottom-section {
+        padding-left: 0px;
+    }
 }

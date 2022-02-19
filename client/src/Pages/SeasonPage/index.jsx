@@ -53,7 +53,7 @@ function SeasonPage() {
                 null
             }
             <StyledMainContainer>
-                {show?.poster_path ?
+                {show?.poster_path &&
                     <div>
                         <div className="page-organization">
                             <div>
@@ -64,16 +64,12 @@ function SeasonPage() {
                             <div className="bottom-section">
                                 <Overview link={show} />
                                 <Credits credits={credits} />
-                                <Episodes show={show} ShowId={ShowId} SeasonId={SeasonId} />
                             </div>
                         </div>
+                        <div>
+                            <Episodes show={show} ShowId={ShowId} SeasonId={SeasonId} />
+                        </div>
                     </div>
-                    :
-                    <>
-                        <Container style={{ textAlign: 'center', paddingTop: '70px' }}>
-                            Oops, something went wrong, go back to <a href='/shows'>show</a> or <a href='/'>home</a> page
-                        </Container>
-                    </>
                 }
             </StyledMainContainer>
         </div>
