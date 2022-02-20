@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useLocation } from 'react-router-dom';
 import './ExternalId.css';
 
 function ExternalId({ externalId, link }) {
@@ -9,6 +10,10 @@ function ExternalId({ externalId, link }) {
         align-items: center;
         flex-direction: column;
     `
+
+    // setting imdb link either name or title depending on pathname
+    const search = useLocation();
+    const imdbNameOrTitle = search?.pathname.includes('actors');
 
     return (
         <StyledDiv>
@@ -22,9 +27,9 @@ function ExternalId({ externalId, link }) {
                 }
             </div>
             <div>
-                {link?.imdb_id &&
+                {externalId?.imdb_id &&
                     <a
-                        href={`https://www.imdb.com/title/${link?.imdb_id}/`}
+                        href={`https://www.imdb.com/${imdbNameOrTitle ? 'name' : 'title'}/${externalId?.imdb_id}/`}
                         target="_blank"
                         rel="noreferrer"
                         className='links'
