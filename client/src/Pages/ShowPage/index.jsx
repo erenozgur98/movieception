@@ -45,7 +45,9 @@ function ShowPage({ user }) {
             setLoading(false);
             setDocumentTitle(request.data?.title || request.data?.name || request.data?.original_title)
         }
-        fetchData();
+        if (ShowId) {
+            fetchData();
+        }
     }, [ShowId]);
 
     useEffect(() => {
@@ -237,7 +239,7 @@ function ShowPage({ user }) {
                         <Recommendations show={show} />
                     </StyledOverviewDiv>
                 </StyledContainer>
-                <Trailer 
+                <Trailer
                     videos={videos}
                     show={trailerModal}
                     handleClose={() => setTrailerModal(false)}
