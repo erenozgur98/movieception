@@ -28,23 +28,27 @@ function Episodes({ show, ShowId, SeasonId }) {
 
     return (
         <div className='episodes-map'>
-            <div style={{ textAlign: 'center', margin: '2rem', fontSize: '2rem'}}>{episodeRequest?.length} Episodes</div>
+            <div style={{ textAlign: 'center', margin: '2rem', fontSize: '2rem' }}>{episodeRequest?.length} Episodes</div>
             {episodeRequest?.map((x) => (
                 <div className='episode-picture'>
-                    <img
-                        src={x?.still_path && `https://image.tmdb.org/t/p/original${x?.still_path}`} alt={`${x?.name}`}
-                        className='episode-poster'
-                        onClick={() => redirect(x)}
-                    />
-                    <div className='overview'>
-                        {x?.season_number === 0 ?
-                            <div>{x?.season_number + 1}x{x?.episode_number} {x?.name}</div>
-                            :
-                            <div>{x?.season_number}x{x?.episode_number} {x?.name}</div>
-                        }
-                        <div>{new Date(x?.air_date).toLocaleString('en-US', options)}</div>
-                        <div className='truncate'>{x?.overview}</div>
-                    </div>
+                    {x?.still_path &&
+                        <>
+                            <img
+                                src={`https://image.tmdb.org/t/p/original${x?.still_path}`} alt={`${x?.name}`}
+                                className='episode-poster'
+                                onClick={() => redirect(x)}
+                            />
+                            <div className='overview'>
+                                {x?.season_number === 0 ?
+                                    <div>{x?.season_number + 1}x{x?.episode_number} {x?.name}</div>
+                                    :
+                                    <div>{x?.season_number}x{x?.episode_number} {x?.name}</div>
+                                }
+                                <div>{new Date(x?.air_date).toLocaleString('en-US', options)}</div>
+                                <div className='truncate'>{x?.overview}</div>
+                            </div>
+                        </>
+                    }
                 </div>
             ))}
         </div>
