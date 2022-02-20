@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom';
-import { DropdownButton, Dropdown } from 'react-bootstrap';
+// import { DropdownButton, Dropdown } from 'react-bootstrap';
 import axios from '../Axios';
-import moviesGenre from './moviesGenre';
-import showsGenre from './showsGenre';
+// import moviesGenre from './moviesGenre';
+// import showsGenre from './showsGenre';
 import './Row.css'
 
 const base_url = 'https://image.tmdb.org/t/p/original/';
@@ -19,7 +19,7 @@ function Row({ fetchUrl, title }) {
         const fetchData = async () => {
             setLoading(true);
             const request = await axios.get(`${fetchUrl}&page=${currentPage}`);
-            setMovies(request.data.results);
+            setMovies(request?.data?.results);
             setLoading(false);
         }
         fetchData();
@@ -45,7 +45,7 @@ function Row({ fetchUrl, title }) {
     return (
         <div className='row'>
             <h2 className='row-title'>{title}</h2>
-            <div className='movie-btn'>
+            {/* <div className='movie-btn'>
                 <DropdownButton variant='secondary' title="Movies Genres">
                     {moviesGenre.map(g => (
                         <Dropdown.Item href={g.route}>{g.title}</Dropdown.Item>
@@ -56,10 +56,10 @@ function Row({ fetchUrl, title }) {
                         <Dropdown.Item href={g.route}>{g.title}</Dropdown.Item>
                     ))}
                 </DropdownButton>
-            </div>
+            </div> */}
             <div className="row-posters">
                 {movies.map((movie) => (
-                    movie?.poster_path || movie?.backdrop_path ?
+                    movie?.poster_path || movie?.backdrop_path || movie?.profile_path ?
                         <div className="row-map" key={movie?.id}>
                             <img
                                 onClick={() => handleClick(movie)}
