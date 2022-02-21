@@ -26,7 +26,6 @@ function Row({ fetchUrl, title }) {
     }, [fetchUrl, currentPage]);
 
     const handleClick = (movie) => {
-        console.log(movie)
         if (movie.media_type === 'tv') {
             history.push(`/shows/${movie.id}`);
         } else if (movie.media_type === 'movie') {
