@@ -28,7 +28,7 @@ function Episodes({ show, ShowId, SeasonId }) {
 
     return (
         <div className='episodes-map'>
-            <div style={{ textAlign: 'center', margin: '2rem', fontSize: '2rem' }}>{episodeRequest?.length} Episodes</div>
+            <div style={{ textAlign: 'center' ,margin: '2rem', fontSize: '2rem' }}>{episodeRequest?.length} Episodes</div>
             {episodeRequest?.map((x) => (
                 <div className='episode-picture'>
                     {x?.still_path &&
@@ -38,14 +38,14 @@ function Episodes({ show, ShowId, SeasonId }) {
                                 className='episode-poster'
                                 onClick={() => redirect(x)}
                             />
-                            <div className='overview'>
+                            <div className='episode-overview'>
                                 {x?.season_number === 0 ?
                                     <div>{x?.season_number + 1}x{x?.episode_number} {x?.name}</div>
                                     :
                                     <div>{x?.season_number}x{x?.episode_number} {x?.name}</div>
                                 }
                                 <div>{new Date(x?.air_date).toLocaleString('en-US', options)}</div>
-                                <div className='truncate'>{x?.overview}</div>
+                                <div>{x?.overview}</div>
                             </div>
                         </>
                     }

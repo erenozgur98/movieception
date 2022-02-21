@@ -25,7 +25,7 @@ function SeasonPage() {
         const fetchData = async () => {
             const requestCredits = await axios.get(`tv/${ShowId}/season/${SeasonId}/credits?api_key=${process.env.REACT_APP_API_KEY}`);
             const request = await axios.get(`/tv/${ShowId}?api_key=${process.env.REACT_APP_API_KEY}`);
-            setCredits(requestCredits.data);
+            setCredits(requestCredits?.data);
             setShow(request.data.seasons[SeasonId - 1]);
             setDocumentTitle(show?.original_title || show?.title || show?.name)
         }
@@ -34,7 +34,7 @@ function SeasonPage() {
 
     const StyledMainContainer = styled(Container)`
         position: relative;
-        bottom: 22rem;
+        bottom: 25rem;
         @media (max-width: 1048px) {
             display: flex;
             justify-content: center;

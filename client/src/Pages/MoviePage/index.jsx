@@ -104,7 +104,7 @@ function MoviePage({ user }) {
 
     const StyledMainContainer = styled(Container)`
         position: relative;
-        bottom: 22rem;
+        bottom: 25rem;
         @media (max-width: 1048px) {
             display: flex;
             justify-content: center;
