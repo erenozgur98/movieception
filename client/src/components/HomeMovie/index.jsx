@@ -49,9 +49,9 @@ function HomeMovie({ fetchUrl }) {
                 />
                 {/* less than 9 because 0 is the starting index */}
                 {count < 9 ?
-                    <div onClick={() => count < 9 ? setCount(count + 1) : setCount(count)}><i className="arrow fas fa-angle-right"></i></div>
+                    <div onClick={() => count < 9 && setCount(count + 1)}><i className="arrow fas fa-angle-right"></i></div>
                     :
-                    <div className='hide' onClick={() => count < 9 ? setCount(count + 1) : setCount(count)}><i className="arrow fas fa-angle-right"></i></div>
+                    <div className='hide' onClick={() => count < 9 && setCount(count + 1)}><i className="arrow fas fa-angle-right"></i></div>
                 }
             </div>
         </div>

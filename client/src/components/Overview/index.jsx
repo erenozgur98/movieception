@@ -49,7 +49,7 @@ const Overview = ({ link }) => {
             </StyledDivCenter>
 
             <StyledDivCenter>
-                {link?.genres?.map(x => <StyledChip label={x?.name} color='warning' />)}
+                {link?.genres?.map(x => <StyledChip label={x?.name} color='success' />)}
             </StyledDivCenter>
 
             <StyledDivPadding style={{ textAlign: 'center', marginBottom: '2rem', marginTop: '1rem' }}>
