@@ -21,17 +21,14 @@ import './index.css';
 function App() {
   const [user, setUser] = useState({});
   const [loggedIn, setLoggedIn] = useState(false);
-  const [, setLoaded] = useState(false);
 
   useEffect(() => {
     API.loggedIn()
       .then(result => {
         setUser(result.data)
-        setLoaded(true);
       })
       .catch(err => {
         console.log(err);
-        setLoaded(true);
       })
   }, []);
 
@@ -54,7 +51,7 @@ function App() {
           <Route exact path='/actors/:ActorId' component={ActorPage} />
           <Route exact path='/profile' component={Profile} />
           {/* TODO: create UserProfile page, replace it with profile */}
-          <Route exact path='/profile/:username' component={Profile} />
+          <Route exact path='/profile/:username' render={() => <Profile user={user} />} />
           <Route exact path='/login' render={(props) => <Login {...props}
             loggedIn={loggedIn}
             setLoggedIn={setLoggedIn}
