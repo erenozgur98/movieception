@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom';
-// import { DropdownButton, Dropdown } from 'react-bootstrap';
 import axios from '../Axios';
-// import moviesGenre from './moviesGenre';
-// import showsGenre from './showsGenre';
+import { motion, AnimatePresence } from 'framer-motion/dist/framer-motion'
 import './Row.css'
 
 const base_url = 'https://image.tmdb.org/t/p/original/';
@@ -44,19 +42,8 @@ function Row({ fetchUrl, title }) {
     return (
         <div className='row'>
             <h2 className='row-title'>{title}</h2>
-            {/* <div className='movie-btn'>
-                <DropdownButton variant='secondary' title="Movies Genres">
-                    {moviesGenre.map(g => (
-                        <Dropdown.Item href={g.route}>{g.title}</Dropdown.Item>
-                    ))}
-                </DropdownButton>
-                <DropdownButton variant='secondary' title="Shows Genres">
-                    {showsGenre.map(g => (
-                        <Dropdown.Item href={g.route}>{g.title}</Dropdown.Item>
-                    ))}
-                </DropdownButton>
-            </div> */}
-            <div className="row-posters">
+            <motion.div Layout animate={{ opacity: 1 }} initial={{ opacity: 0 }} exit={{ opacity: 0 }} className="row-posters">
+                <AnimatePresence>
                 {movies.map((movie) => (
                     movie?.poster_path || movie?.backdrop_path || movie?.profile_path ?
                         <div className="row-map" key={movie?.id}>
@@ -81,7 +68,8 @@ function Row({ fetchUrl, title }) {
                         :
                         null
                 ))}
-            </div>
+                </AnimatePresence>
+            </motion.div>
             <div className='movie-btn'>
                 {/* find a way to add the &page=? to the link instead of here, because whenever you go back the page number is going to be resetted to 1 */}
                 {currentPage !== 1 ?

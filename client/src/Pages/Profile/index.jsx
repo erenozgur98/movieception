@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { Box, Tab } from '@mui/material'
 import { TabContext, TabList, TabPanel } from '@mui/lab'
-import styled from 'styled-components'
 
 function Profile({ user }) {
     const [value, setValue] = useState('1');
@@ -12,7 +11,7 @@ function Profile({ user }) {
 
 
     return (
-        <Box sx={{ backgroundColor: 'red', marginTop: '4rem' }}>
+        <Box sx={{ backgroundColor: 'gray', marginTop: '4rem' }}>
             <TabContext value={value}>
                 <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                     <TabList onChange={handleChange}>
@@ -30,6 +29,3 @@ function Profile({ user }) {
 }
 
 export default Profile
-
-
-
