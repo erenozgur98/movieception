@@ -42,10 +42,16 @@ function Row({ fetchUrl, title }) {
     return (
         <div className='row'>
             <h2 className='row-title'>{title}</h2>
-            <motion.div Layout animate={{ opacity: 1 }} initial={{ opacity: 0 }} exit={{ opacity: 0 }} className="row-posters">
+            <motion.div
+                Layout
+                animate={{ opacity: 1 }}
+                initial={{ opacity: 0 }}
+                exit={{ opacity: 0 }}
+                className="row-posters"
+            >
                 <AnimatePresence>
-                {movies.map((movie) => (
-                    movie?.poster_path || movie?.backdrop_path || movie?.profile_path ?
+                    {movies.map((movie) => (
+                        (movie?.poster_path || movie?.backdrop_path || movie?.profile_path) &&
                         <div className="row-map" key={movie?.id}>
                             <img
                                 onClick={() => handleClick(movie)}
@@ -65,17 +71,15 @@ function Row({ fetchUrl, title }) {
                             />
                             <i onClick={() => addToFavorite(movie)} className="fas fa-heart"></i>
                         </div>
-                        :
-                        null
-                ))}
+                    ))}
                 </AnimatePresence>
             </motion.div>
             <div className='movie-btn'>
                 {/* find a way to add the &page=? to the link instead of here, because whenever you go back the page number is going to be resetted to 1 */}
                 {currentPage !== 1 ?
                     <button
-                    className='movie-buttons'
-                    onClick={() => currentPage <= 1 ? setCurrentPage(currentPage) : setCurrentPage(currentPage - 1)}
+                        className='movie-buttons'
+                        onClick={() => currentPage <= 1 ? setCurrentPage(currentPage) : setCurrentPage(currentPage - 1)}
                     >
                         Previous Page
                     </button>
