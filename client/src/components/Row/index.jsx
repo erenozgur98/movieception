@@ -76,26 +76,22 @@ function Row({ fetchUrl, title }) {
             </motion.div>
             <div className='movie-btn'>
                 {/* find a way to add the &page=? to the link instead of here, because whenever you go back the page number is going to be resetted to 1 */}
-                {currentPage !== 1 ?
+                {currentPage !== 1 &&
                     <button
                         className='movie-buttons'
                         onClick={() => currentPage <= 1 ? setCurrentPage(currentPage) : setCurrentPage(currentPage - 1)}
                     >
                         Previous Page
                     </button>
-                    :
-                    null
                 }
                 Page: {currentPage}
-                {currentPage !== 10 ?
+                {currentPage !== 10 &&
                     <button
                         className='movie-buttons'
                         onClick={() => currentPage >= 10 ? setCurrentPage(currentPage) : setCurrentPage(currentPage + 1)}
                     >
                         Next Page
                     </button>
-                    :
-                    null
                 }
             </div>
         </div>

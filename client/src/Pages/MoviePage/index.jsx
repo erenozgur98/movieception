@@ -15,6 +15,7 @@ import API from '../../utils/API';
 import styled from 'styled-components';
 import Trailer from '../../components/Trailer';
 import { useTitle } from '../../components/useTitle';
+import Collections from '../../components/Collections';
 
 function MoviePage({ user }) {
     const [movie, setMovie] = useState({});
@@ -33,6 +34,7 @@ function MoviePage({ user }) {
     useEffect(() => {
         const fetchData = async () => {
             const request = await axios.get(`/movie/${MovieId}?api_key=${process.env.REACT_APP_API_KEY}`);
+            console.log(request)
             const requestExternalId = await axios.get(`movie/${MovieId}/external_ids?api_key=${process.env.REACT_APP_API_KEY}`);
             const requestVideos = await axios.get(`/movie/${MovieId}/videos?api_key=${process.env.REACT_APP_API_KEY}`)
             setMovie(request.data);
@@ -187,7 +189,7 @@ function MoviePage({ user }) {
                                 {watched?.includes(movie.id) ?
                                     (
                                         <button
-                                            onClick={() => removeFromWatchedList(movie)} 
+                                            onClick={() => removeFromWatchedList(movie)}
                                             className='btn btn-danger'
                                         >
                                             Remove From Watched List
@@ -208,6 +210,7 @@ function MoviePage({ user }) {
                     </StyledLeftSide>
                     <StyledOverviewDiv>
                         <Overview link={movie} />
+                        <Collections CollectionId={movie?.belongs_to_collection?.id} />
                         <div
                             style={{ textAlign: 'center', marginTop: '2rem' }}
                         >
