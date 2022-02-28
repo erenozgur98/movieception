@@ -1,6 +1,6 @@
 const requests = {
 
-    // TRENDING - NETFLIX //
+    //// TRENDING - NETFLIX ////
     // -------------------- //
 
     // fetching trending data / netflix originals
@@ -9,7 +9,7 @@ const requests = {
     fetchTrendingShows: `/trending/tv/day?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`,
     fetchNetflixOriginals: `/discover/tv?api_key=${process.env.REACT_APP_API_KEY}&with_networks=213`,
 
-    // POPULAR //
+    //// POPULAR ////
     // -------------------- //
 
     // fetching popular
@@ -17,12 +17,15 @@ const requests = {
     fetchPopularShows: `/tv/popular?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`,
     fetchPopularPeople: `/person/popular?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`,
 
-    // MOVIE DATA //
+    //// MOVIE DATA ////
     // -------------------- //
 
     // fetching movie data
     fetchTopRated: `/movie/top_rated?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`,
     fetchActionMovies: `/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&with_genres=28`,
+    // have to pass in &with_genres={number}
+    fetchMovies: `/discover/movie?api_key=${process.env.REACT_APP_API_KEY}`,
+    // 
     // fetchComedyMovies: `/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&with_genres=35`,
     // fetchHorrorMovies: `/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&with_genres=27`,
     // fetchRomanceMovies: `/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&with_genres=10749`,
@@ -40,13 +43,13 @@ const requests = {
     // fetchScienceFictionMovies: `/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&with_genres=878`,
     // fetchThrillerMovies: `/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&with_genres=53`,
     // fetchTVMovies: `/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&with_genres=10770`,
-    fetchNowPlayingMovies: `movie/now_playing?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`,
+    // fetchNowPlayingMovies: `movie/now_playing?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`,
 
-    // SHOW DATA //
+    //// SHOW DATA ////
     // -------------------- //
 
     // fetching show data
-    fetchActionShows: `/discover/tv?api_key=${process.env.REACT_APP_API_KEY}&with_genres=10759`,
+    // fetchActionShows: `/discover/tv?api_key=${process.env.REACT_APP_API_KEY}&with_genres=10759`,
     // fetchComedyShows: `/discover/tv?api_key=${process.env.REACT_APP_API_KEY}&with_genres=35`,
     // fetchRomanceShows: `/discover/tv?api_key=${process.env.REACT_APP_API_KEY}&with_genres=10749`,
     // fetchDocumentariesShows: `/discover/tv?api_key=${process.env.REACT_APP_API_KEY}&with_genres=99`,
@@ -59,9 +62,9 @@ const requests = {
     // fetchRealityShows: `/discover/tv?api_key=${process.env.REACT_APP_API_KEY}&with_genres=10764`,
     // fetchMysteryShows: `/discover/tv?api_key=${process.env.REACT_APP_API_KEY}&with_genres=9648`,
     // fetchWarShows: `/discover/tv?api_key=${process.env.REACT_APP_API_KEY}&with_genres=10752`,
-    fetchAiringTonight: `tv/airing_today?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`,
+    // fetchAiringTonight: `tv/airing_today?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`,
 
-    // ACTORS - PERSONS //
+    //// ACTORS - PERSONS ////
     // -------------------- //
 
     // fetching actors
@@ -91,17 +94,17 @@ const requests = {
     // searching keywords
     fetchSearchKeywords: `/search/keyword?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&query=`,
 
-    // CERTIFICATIONS //
+    //// CERTIFICATIONS ////
     // -------------------- //
-    
+
     // fetching movie certifications ( for explanations on things like PG )
     fetchMovieCertifications: `/certification/movie/list?api_key=${process.env.REACT_APP_API_KEY}`,
-    
+
     // fetching show certifications ( for explanations on things like PG )
     fetchShowCertifications: `/certification/tv/list?api_key=${process.env.REACT_APP_API_KEY}`,
-    
-    
-    // NOTES //
+
+
+    //// NOTES ////
     // -------------------- //
 
     // Get /movie/{movie_id}/reviews

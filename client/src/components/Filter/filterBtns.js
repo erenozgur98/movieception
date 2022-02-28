@@ -1,4 +1,8 @@
-const moviesGenre = [
+const filterBtns = [
+    {
+        id: 0,
+        name: 'All'
+    },
     {
         id: 28,
         name: "Action"
@@ -74,7 +78,27 @@ const moviesGenre = [
     {
         id: 37,
         name: "Western"
-    }
+    },
+    {
+        id: 10762,
+        name: "Kids"
+    },
+    {
+        id: 10763,
+        name: "News"
+    },
+    {
+        id: 10764,
+        name: "Reality"
+    },
+    {
+        id: 10766,
+        name: "Soap"
+    },
+    {
+        id: 10767,
+        name: "Talk"
+    },
 ]
 
-export default moviesGenre
+export default filterBtns

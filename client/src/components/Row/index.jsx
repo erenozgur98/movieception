@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom';
 import axios from '../Axios';
-import { motion, AnimatePresence } from 'framer-motion/dist/framer-motion'
+import { motion, AnimatePresence } from 'framer-motion/dist/framer-motion';
+import Filter from '../Filter';
 import './Row.css'
 
 const base_url = 'https://image.tmdb.org/t/p/original/';
@@ -10,6 +11,8 @@ function Row({ fetchUrl, title }) {
     const [movies, setMovies] = useState([]);
     const [, setLoading] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
+    const [filteredResults, setFilteredResults] = useState([]);
+    const [activeGenre, setActiveGenre] = useState(0);
 
     const history = useHistory()
 
@@ -18,21 +21,23 @@ function Row({ fetchUrl, title }) {
             setLoading(true);
             const request = await axios.get(`${fetchUrl}&page=${currentPage}`);
             setMovies(request?.data?.results);
+            setFilteredResults(request?.data?.results);
             setLoading(false);
         }
         fetchData();
     }, [fetchUrl, currentPage]);
 
     const handleClick = (movie) => {
-        if (movie.media_type === 'tv') {
-            history.push(`/shows/${movie.id}`);
-        } else if (movie.media_type === 'movie') {
-            history.push(`/movies/${movie.id}`);
-        } else if (movie.media_type === 'person') {
-            history.push(`/actors/${movie.id}`);
-        } else {
-            history.push('/');
-        }
+        console.log(movie)
+        // if (movie.media_type === 'tv') {
+        //     history.push(`/shows/${movie.id}`);
+        // } else if (movie.media_type === 'movie') {
+        //     history.push(`/movies/${movie.id}`);
+        // } else if (movie.media_type === 'person') {
+        //     history.push(`/actors/${movie.id}`);
+        // } else {
+        //     history.push('/');
+        // }
     };
 
     const addToFavorite = (movie) => {
@@ -42,6 +47,12 @@ function Row({ fetchUrl, title }) {
     return (
         <div className='row'>
             <h2 className='row-title'>{title}</h2>
+            <Filter
+                movies={filteredResults}
+                activeGenre={activeGenre}
+                setActiveGenre={setActiveGenre}
+                setFilteredResults={setFilteredResults}
+            />
             <motion.div
                 Layout
                 animate={{ opacity: 1 }}
@@ -50,7 +61,7 @@ function Row({ fetchUrl, title }) {
                 className="row-posters"
             >
                 <AnimatePresence>
-                    {movies.map((movie) => (
+                    {filteredResults.map((movie) => (
                         (movie?.poster_path || movie?.backdrop_path || movie?.profile_path) &&
                         <div className="row-map" key={movie?.id}>
                             <img

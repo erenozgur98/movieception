@@ -34,6 +34,9 @@ function Movies() {
             } else if (genre === 'drama') {
                 setFetchUrl(requests.fetchDramaMovies);
                 setTitle('Drama Movies')
+            } else if (genre === 'adventure') {
+                setFetchUrl(requests.fetchAdventureMovies)
+                setTitle('Adventure Movies')
             } else if (genre === 'animation') {
                 setFetchUrl(requests.fetchAnimationMovies);
                 setTitle('Animation Movies')
@@ -49,6 +52,12 @@ function Movies() {
             } else if (genre === 'thriller') {
                 setFetchUrl(requests.fetchThrillerMovies);
                 setTitle('Thriller Movies')
+            } else if (genre === 'crime') {
+                setFetchUrl(requests.fetchCrimeMovies)
+                setTitle('Crime Movies')
+            } else if (genre === 'history') {
+                setFetchUrl(requests.fetchHistoryMovies)
+                setTitle('History Movies')
             } else {
                 setFetchUrl(requests.fetchTrendingMovies);
                 setTitle('Trending Movies')
@@ -59,7 +68,9 @@ function Movies() {
 
     return (
         <div className='movie'>
-            <Row fetchUrl={fetchUrl} title={title} />
+            {/* <Row fetchUrl={fetchUrl} title={title} /> */}
+            <Row fetchUrl={requests.fetchPopularMovies} title={title} />
+            {/* <Row fetchUrl={`${requests.fetchMovies}&with_genres=18`} title={title} /> */}
         </div>
     )
 };
