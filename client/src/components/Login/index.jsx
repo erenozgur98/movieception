@@ -48,7 +48,7 @@ const LoginModal = ({ setUser, show, handleClose }) => {
                             value={username}
                             onChange={e => setUsername(e.target.value)}
                             autoFocus
-                            />
+                        />
                         <TextField
                             margin="normal"
                             required

@@ -21,7 +21,7 @@ router.get('/user', async (req, res) => {
                 username: req.session.username,
                 logged_in: true
             };
-            res.json(userInfo);
+            res.json(userInfo)
         } else {
             res.status(403).json({ message: 'Something went wrong getting the user, could mean that you are not logged in/signed up yet' });
         }
@@ -36,7 +36,15 @@ router.get('/user', async (req, res) => {
 router.get('/:username/favorites', (req, res) => {
     User.findOne({ username: req.params.username })
         .then(user => {
-            res.json(user.movieFavorites + user.showFavorites)
+            if (user.movieFavorites && user.showFavorites !== null) {
+                const favorites = {
+                    Movie: user.movieFavorites,
+                    Show: user.showFavorites
+                }
+                res.json(favorites)
+            } else {
+                res.json([])
+            }
         })
         .catch(err => {
             res.status(500).sendStatus(`Error ${err}`)
@@ -58,7 +66,8 @@ router.post('/:username/favorite/movies/:MovieId', (req, res) => {
             if (err) {
                 res.status(500).send('Error: ' + err)
             } else {
-                res.json(updatedUser)
+                console.log(updatedUser.movieFavorites)
+                res.json(updatedUser.movieFavorites)
             }
         }
     )
@@ -79,7 +88,7 @@ router.post('/:username/favorite/shows/:ShowId', (req, res) => {
             if (err) {
                 res.status(500).send('Error: ' + err)
             } else {
-                res.json(updatedUser)
+                res.json(updatedUser.showFavorites)
             }
         }
     )
@@ -93,12 +102,14 @@ router.delete('/:username/favorite/movies/:MovieId', (req, res) => {
         $pull: {
             movieFavorites: { $in: [req.params.MovieId] }
         }
+    }, {
+        new: true
     },
         function (err, updatedUser) {
             if (err) {
                 res.status(500).send('Error: ' + err)
             } else {
-                res.json(updatedUser)
+                res.json(updatedUser.movieFavorites)
             }
         })
 });
@@ -111,12 +122,14 @@ router.delete('/:username/favorite/shows/:ShowId', (req, res) => {
         $pull: {
             showFavorites: { $in: [req.params.ShowId] }
         }
+    }, {
+        new: true
     },
         function (err, updatedUser) {
             if (err) {
                 res.status(500).send('Error: ' + err)
             } else {
-                res.json(updatedUser)
+                res.json(updatedUser.showFavorites)
             }
         })
 });
@@ -128,7 +141,15 @@ router.delete('/:username/favorite/shows/:ShowId', (req, res) => {
 router.get('/:username/watched', (req, res) => {
     User.findOne({ username: req.params.username })
         .then(user => {
-            res.json(user.watchedMovies + user.watchedShows)
+            if (user.watchedMovies && user.watchedShows !== null) {
+                const watched = {
+                    Movie: user.watchedMovies,
+                    Show: user.watchedShows
+                }
+                res.json(watched)
+            } else {
+                res.json([])
+            }
         })
         .catch(err => {
             res.status(500).sendStatus(`Error ${err}`)
@@ -149,7 +170,7 @@ router.post('/:username/watched/movies/:MovieId', (req, res) => {
             if (err) {
                 res.status(500).send(`Error: ${err}`)
             } else {
-                res.json(updatedUser)
+                res.json(updatedUser.watchedMovies)
             }
         })
 });
@@ -168,7 +189,7 @@ router.post('/:username/watched/shows/:ShowId', (req, res) => {
             if (err) {
                 res.status(500).send(`Error: ${err}`)
             } else {
-                res.json(updatedUser)
+                res.json(updatedUser.watchedShows)
             }
         })
 });
@@ -180,12 +201,14 @@ router.delete('/:username/watched/movies/:MovieId', (req, res) => {
         $pull: {
             watchedMovies: { $in: [req.params.MovieId] }
         }
+    }, {
+        new: true
     },
         function (err, updatedUser) {
             if (err) {
                 res.status(500).send('Error: ' + err)
             } else {
-                res.json(updatedUser)
+                res.json(updatedUser.watchedMovies)
             }
         })
 });
@@ -197,12 +220,14 @@ router.delete('/:username/watched/shows/:ShowId', (req, res) => {
         $pull: {
             watchedShows: { $in: [req.params.ShowId] }
         }
+    }, {
+        new: true
     },
         function (err, updatedUser) {
             if (err) {
                 res.status(500).send('Error: ' + err)
             } else {
-                res.json(updatedUser)
+                res.json(updatedUser.watchedShows)
             }
         })
 });
@@ -213,6 +238,15 @@ router.delete('/:username/watched/shows/:ShowId', (req, res) => {
 router.get('/:username/watchlist', (req, res) => {
     User.findOne({ username: req.params.username })
         .then(user => {
+            if (user.watchedMovies && user.watchedShows !== null) {
+                const watchList = {
+                    Movie: user.movieWatchList,
+                    Show: user.showWatchList
+                }
+                res.json(watchList)
+            } else {
+                res.json([])
+            }
             res.json(user.movieWatchList + user.showWatchList)
         })
         .catch(err => {
@@ -234,7 +268,7 @@ router.post('/:username/watchlist/movies/:MovieId', (req, res) => {
             if (err) {
                 res.status(500).send(`Error: ${err}`)
             } else {
-                res.json(updatedUser)
+                res.json(updatedUser.movieWatchList)
             }
         })
 })
@@ -253,7 +287,7 @@ router.post('/:username/watchlist/shows/:ShowId', (req, res) => {
             if (err) {
                 res.status(500).send(`Error: ${err}`)
             } else {
-                res.json(updatedUser)
+                res.json(updatedUser.showWatchList)
             }
         })
 })
@@ -265,12 +299,14 @@ router.delete('/:username/watchlist/movies/:MovieId', (req, res) => {
         $pull: {
             movieWatchList: { $in: [req.params.MovieId] }
         }
+    }, {
+        new: true
     },
         function (err, updatedUser) {
             if (err) {
                 res.status(500).send('Error: ' + err)
             } else {
-                res.json(updatedUser)
+                res.json(updatedUser.movieWatchList)
             }
         })
 });
@@ -283,12 +319,14 @@ router.delete('/:username/watchlist/shows/:ShowId', (req, res) => {
         $pull: {
             showWatchList: { $in: [req.params.ShowId] }
         }
+    }, {
+        new: true
     },
         function (err, updatedUser) {
             if (err) {
                 res.status(500).send('Error: ' + err)
             } else {
-                res.json(updatedUser)
+                res.json(updatedUser.showWatchList)
             }
         })
 });

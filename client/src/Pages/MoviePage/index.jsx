@@ -27,6 +27,9 @@ function MoviePage({ user }) {
     const [documentTitle, setDocumentTitle] = useTitle();
     const { MovieId } = useParams();
 
+    console.log(watched)
+    console.log(favorites)
+
     useEffect(() => {
         document.title = documentTitle ?? 'True Story';
     }, [documentTitle])
@@ -34,7 +37,6 @@ function MoviePage({ user }) {
     useEffect(() => {
         const fetchData = async () => {
             const request = await axios.get(`/movie/${MovieId}?api_key=${process.env.REACT_APP_API_KEY}`);
-            console.log(request)
             const requestExternalId = await axios.get(`movie/${MovieId}/external_ids?api_key=${process.env.REACT_APP_API_KEY}`);
             const requestVideos = await axios.get(`/movie/${MovieId}/videos?api_key=${process.env.REACT_APP_API_KEY}`)
             setMovie(request.data);
@@ -46,25 +48,34 @@ function MoviePage({ user }) {
     }, [])
 
     useEffect(() => {
-        API.getAllFavorites(user?.username)
-            .then(res => setFavorites(res.data?.movieFavorites))
-            .catch(err => console.log(err))
-    }, [])
+        const fetchData = () => {
+            if (user?.username) {
+                API.getAllFavorites(user?.username)
+                    .then(res => setFavorites(res.data?.Movie))
+                    .catch(err => console.log(err))
+            }
+        }
+        fetchData()
+    }, [user])
 
     useEffect(() => {
-        API.getAllWatched(user?.username)
-            .then(res => {
-                setWatched(res?.data[0]?.watchedMovies)
-            })
-    }, [])
+        const fetchData = () => {
+            if (user?.username) {
+                API.getAllWatched(user?.username)
+                    .then(res => {
+                        setWatched(res.data?.Movie)
+                    })
+            }
+        }
+        fetchData()
+    }, [user])
 
     const addToFavorite = (movie) => {
         API.addMovieToFavorite(user?.username, movie?.id).then(res => {
             // add snackbar
-            console.log(res)
             if (res.status === 200) {
                 console.log('Successfull');
-                setFavorites(res?.data?.movieFavorites)
+                setFavorites(res.data)
             } else {
                 console.log('Soemthing went wrong')
             }
@@ -77,27 +88,32 @@ function MoviePage({ user }) {
             console.log(res)
             if (res.status === 200) {
                 console.log('Successfull')
-                setFavorites(res?.data?.movieFavorites);
+                setFavorites(res.data);
             } else {
                 console.log('Something went wrong')
             }
         })
     }
 
-    const addToWatchedList = (movie) => {
+    const addToWatchedHistory = (movie) => {
         API.addMovieToWatched(user?.username, movie?.id)
             .then(res => {
-                console.log(res)
+                if (res.status === 200) {
+                    console.log('Successfull')
+                    setWatched(res.data)
+                } else {
+                    console.log('Something went wrong')
+                }
             })
     }
 
-    const removeFromWatchedList = (movie) => {
+    const removeFromWatchedHistory = (movie) => {
         API.removeMovieFromWatched(user?.username, movie?.id).then(res => {
             // add snackbar
             console.log(res)
             if (res.status === 200) {
                 console.log('Successfull')
-                setWatched(res?.data?.watchedMovies)
+                setWatched(res.data)
             } else {
                 console.log('Something went wrong')
             }
@@ -189,19 +205,19 @@ function MoviePage({ user }) {
                                 {watched?.includes(movie.id) ?
                                     (
                                         <button
-                                            onClick={() => removeFromWatchedList(movie)}
+                                            onClick={() => removeFromWatchedHistory(movie)}
                                             className='btn btn-danger'
                                         >
-                                            Remove From Watched List
+                                            Remove From Watched History
                                         </button>
                                     )
                                     :
                                     (
                                         <button
-                                            onClick={() => addToWatchedList(movie)}
+                                            onClick={() => addToWatchedHistory(movie)}
                                             className='btn btn-danger'
                                         >
-                                            Add to Watched List
+                                            Add to Watched History
                                         </button>
                                     )
                                 }
