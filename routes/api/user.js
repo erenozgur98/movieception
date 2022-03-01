@@ -7,7 +7,6 @@ router.get('/', async (req, res) => {
         const user = await User.find();
         res.json(user);
     } catch (err) {
-        console.log(err);
         res.status(400).json(err);
     }
 });
@@ -24,7 +23,7 @@ router.get('/user', async (req, res) => {
             };
             res.json(userInfo);
         } else {
-            res.status(403).json({ message: 'Something went wrong getting the user, could mean that you are not logged in/signedup yet' });
+            res.status(403).json({ message: 'Something went wrong getting the user, could mean that you are not logged in/signed up yet' });
         }
     } catch (err) {
         console.log(err)
@@ -37,10 +36,9 @@ router.get('/user', async (req, res) => {
 router.get('/:username/favorites', (req, res) => {
     User.findOne({ username: req.params.username })
         .then(user => {
-            res.json(user)
+            res.json(user.movieFavorites + user.showFavorites)
         })
         .catch(err => {
-            console.log(err)
             res.status(500).sendStatus(`Error ${err}`)
         })
 });
@@ -58,7 +56,6 @@ router.post('/:username/favorite/movies/:MovieId', (req, res) => {
     },
         function (err, updatedUser) {
             if (err) {
-                console.log(err)
                 res.status(500).send('Error: ' + err)
             } else {
                 res.json(updatedUser)
@@ -80,7 +77,6 @@ router.post('/:username/favorite/shows/:ShowId', (req, res) => {
     },
         function (err, updatedUser) {
             if (err) {
-                console.log(err)
                 res.status(500).send('Error: ' + err)
             } else {
                 res.json(updatedUser)
@@ -100,7 +96,6 @@ router.delete('/:username/favorite/movies/:MovieId', (req, res) => {
     },
         function (err, updatedUser) {
             if (err) {
-                console.log(err)
                 res.status(500).send('Error: ' + err)
             } else {
                 res.json(updatedUser)
@@ -119,7 +114,6 @@ router.delete('/:username/favorite/shows/:ShowId', (req, res) => {
     },
         function (err, updatedUser) {
             if (err) {
-                console.log(err)
                 res.status(500).send('Error: ' + err)
             } else {
                 res.json(updatedUser)
@@ -132,12 +126,11 @@ router.delete('/:username/favorite/shows/:ShowId', (req, res) => {
 
 // Get all watched
 router.get('/:username/watched', (req, res) => {
-    User.find({ username: req.params.username })
+    User.findOne({ username: req.params.username })
         .then(user => {
-            res.json(user)
+            res.json(user.watchedMovies + user.watchedShows)
         })
         .catch(err => {
-            console.log(err)
             res.status(500).sendStatus(`Error ${err}`)
         })
 })
@@ -154,10 +147,8 @@ router.post('/:username/watched/movies/:MovieId', (req, res) => {
     },
         function (err, updatedUser) {
             if (err) {
-                console.log(err)
                 res.status(500).send(`Error: ${err}`)
             } else {
-                console.log('updatedUser: ', updatedUser)
                 res.json(updatedUser)
             }
         })
@@ -175,10 +166,8 @@ router.post('/:username/watched/shows/:ShowId', (req, res) => {
     },
         function (err, updatedUser) {
             if (err) {
-                console.log(err)
                 res.status(500).send(`Error: ${err}`)
             } else {
-                console.log('updatedUser: ', updatedUser)
                 res.json(updatedUser)
             }
         })
@@ -194,7 +183,6 @@ router.delete('/:username/watched/movies/:MovieId', (req, res) => {
     },
         function (err, updatedUser) {
             if (err) {
-                console.log(err)
                 res.status(500).send('Error: ' + err)
             } else {
                 res.json(updatedUser)
@@ -212,7 +200,6 @@ router.delete('/:username/watched/shows/:ShowId', (req, res) => {
     },
         function (err, updatedUser) {
             if (err) {
-                console.log(err)
                 res.status(500).send('Error: ' + err)
             } else {
                 res.json(updatedUser)
@@ -226,10 +213,9 @@ router.delete('/:username/watched/shows/:ShowId', (req, res) => {
 router.get('/:username/watchlist', (req, res) => {
     User.findOne({ username: req.params.username })
         .then(user => {
-            res.json(user)
+            res.json(user.movieWatchList + user.showWatchList)
         })
         .catch(err => {
-            console.log(err)
             res.status(500).sendStatus(`Error ${err}`)
         })
 })
@@ -246,10 +232,8 @@ router.post('/:username/watchlist/movies/:MovieId', (req, res) => {
     },
         function (err, updatedUser) {
             if (err) {
-                console.log(err)
                 res.status(500).send(`Error: ${err}`)
             } else {
-                console.log('updatedUser: ', updatedUser)
                 res.json(updatedUser)
             }
         })
@@ -267,10 +251,8 @@ router.post('/:username/watchlist/shows/:ShowId', (req, res) => {
     },
         function (err, updatedUser) {
             if (err) {
-                console.log(err)
                 res.status(500).send(`Error: ${err}`)
             } else {
-                console.log('updatedUser: ', updatedUser)
                 res.json(updatedUser)
             }
         })
@@ -286,7 +268,6 @@ router.delete('/:username/watchlist/movies/:MovieId', (req, res) => {
     },
         function (err, updatedUser) {
             if (err) {
-                console.log(err)
                 res.status(500).send('Error: ' + err)
             } else {
                 res.json(updatedUser)
@@ -305,7 +286,6 @@ router.delete('/:username/watchlist/shows/:ShowId', (req, res) => {
     },
         function (err, updatedUser) {
             if (err) {
-                console.log(err)
                 res.status(500).send('Error: ' + err)
             } else {
                 res.json(updatedUser)
@@ -341,7 +321,6 @@ router.post('/login', async (req, res) => {
         res.json(user);
 
     } catch (err) {
-        console.log(err);
         res.status(400).json(err);
     }
 });
@@ -359,7 +338,6 @@ router.post('/signup', async (req, res) => {
 
         res.json(newUser);
     } catch (err) {
-        console.log(err);
         res.status(404).json(err);
     }
 });
@@ -369,7 +347,6 @@ router.post('/logout', async (req, res) => {
         req.session.destroy(() => {
             res.status(204).end();
         });
-        console.log('Now logging out');
     } else {
         res.status(404).end();
     }
