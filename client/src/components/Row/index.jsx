@@ -28,16 +28,15 @@ function Row({ fetchUrl, title }) {
     }, [fetchUrl, currentPage]);
 
     const handleClick = (movie) => {
-        console.log(movie)
-        // if (movie.media_type === 'tv') {
-        //     history.push(`/shows/${movie.id}`);
-        // } else if (movie.media_type === 'movie') {
-        //     history.push(`/movies/${movie.id}`);
-        // } else if (movie.media_type === 'person') {
-        //     history.push(`/actors/${movie.id}`);
-        // } else {
-        //     history.push('/');
-        // }
+        if (movie.media_type === 'tv') {
+            history.push(`/shows/${movie.id}`);
+        } else if (movie.media_type === 'movie') {
+            history.push(`/movies/${movie.id}`);
+        } else if (movie.media_type === 'person') {
+            history.push(`/actors/${movie.id}`);
+        } else {
+            history.push('/');
+        }
     };
 
     const addToFavorite = (movie) => {
