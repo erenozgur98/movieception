@@ -50,11 +50,6 @@ const UserSchema = new Schema(
             {
                 type: Number,
             }
-        ],
-        actorFavorites: [
-            {
-                type: Number,
-            }
         ]
     }
 );
