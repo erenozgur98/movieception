@@ -7,11 +7,26 @@ import axios from '../../components/Axios';
 import { Container } from 'react-bootstrap';
 import { useEffect } from 'react';
 import { useHistory } from 'react-router-dom'
+import SearchForm from '../../components/SearchForm';
 import './Home.css';
 
-function Home() {
+function Home({ user }) {
     const [movie, setMovie] = useState([]);
+    const [greet, setGreet] = useState()
     const history = useHistory();
+
+    useEffect(() => {
+        const date = new Date();
+        const hours = date.getHours();
+
+        if (hours < 12) {
+            setGreet('Good Morning')
+        } else if (hours >= 12 && hours <= 17) {
+            setGreet('Good Afternoon')
+        } else {
+            setGreet('Good Evening')
+        }
+    }, [])
 
     useEffect(() => {
         const fetchData = async () => {
@@ -32,26 +47,33 @@ function Home() {
         }
     }
 
+
     return (
         <div>
             <Banner
                 link={movie?.backdrop_path}
             />
             <Container className='banner-text-container'>
-                <h1>True Story</h1>
-                <h5>
+                <h1>
+                    {user.username && `${greet}, ${user.username}! Welcome back to True Story!`}
+                    {!user.username && `${greet}, welcome to True Story!`}
+                </h1>
+                <h2>
                     What is True Story?
                     <br />
                     True Story is a website has been made to track/find tons of movies and tv shows
-                </h5>
+                </h2>
+                <SearchForm />
                 {(movie?.title || movie?.name) &&
                     <h2 className="header-banner-title">
-                        Background Image From: {movie?.title || movie?.name}
-                    </h2>
-                }
-                {(movie?.title || movie?.name) &&
-                    <button className='header-banner-btn' onClick={redirect}>Go To {movie?.title || movie?.name}</button>
-                }
+                        Background Image From:
+                        <span
+                            onClick={redirect}
+                            className='title-span'
+                        >
+                            {movie?.title || movie?.name}
+                        </span>
+                    </h2>}
             </Container>
             <Container className='homepage'>
                 <HomeMovie fetchUrl={requests.fetchTrendingMovies} />

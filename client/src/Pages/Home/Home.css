@@ -19,10 +19,13 @@
 .banner-text-container > h1 {
   /* font-weight: bold; */
   /* text-decoration: underline; */
+  margin-bottom: 1rem;
+  /* font-size: ; */
 }
 
-.banner-text-container > h5 {
+.banner-text-container > h2 {
   font-style: italic;
+  font-size: 1rem;
 }
 
 .header-banner-btn {
@@ -42,9 +45,20 @@
 
 .header-banner-title {
   position: absolute;
-  top: 17rem;
+  top: 20rem;
   margin-top: 1rem;
-  font-size: 0.9rem;
+  font-size: 1rem;
   font-style: italic;
   color: rgb(133, 132, 132);
+}
+
+.title-span {
+  text-decoration: underline;
+  color: rgb(133, 132, 132);
+  cursor: pointer;
+  padding-left: 0.4rem;
+}
+
+.title-span:hover {
+  color: white;
 }

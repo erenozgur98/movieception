@@ -39,8 +39,8 @@ function App() {
         <SnackbarProvider>
           <Header user={user} setUser={setUser} />
           <div className='main'>
-            <Route exact path='/' component={HomePage} />
-            <Route exact path='/home' component={HomePage} />
+            <Route exact path='/' render={() => <HomePage user={user} />} />
+            <Route exact path='/home' render={() => <HomePage user={user} />} />
             <Route exact path='/search' component={SearchResults} />
             <Route exact path='/discover' component={Discover} />
             <Route exact path='/discover/movies' component={Movies} />

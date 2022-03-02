@@ -13,6 +13,7 @@ function Collections({ CollectionId }) {
         fetchData()
     }, [])
 
+    console.log(collection)
 
     return (
         <></>
