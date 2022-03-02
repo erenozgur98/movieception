@@ -92,6 +92,9 @@ function MoviePage({ user }) {
             // add snackbar
             console.log(res)
             if (res.status === 200) {
+                enqueueSnackbar('The Movie has been successfully removed from your favorites', {
+                    variant: 'success'
+                })
                 console.log('Successfull')
                 setFavorites(res.data);
             } else {
@@ -104,6 +107,9 @@ function MoviePage({ user }) {
         API.addMovieToWatched(user?.username, movie?.id)
             .then(res => {
                 if (res.status === 200) {
+                    enqueueSnackbar('The Movie has been successfully added to your watched history', {
+                        variant: 'success'
+                    })
                     console.log('Successfull')
                     setWatched(res.data)
                 } else {
@@ -117,6 +123,9 @@ function MoviePage({ user }) {
             // add snackbar
             console.log(res)
             if (res.status === 200) {
+                enqueueSnackbar('The Movie has been successfully removed from your watched history', {
+                    variant: 'success'
+                })
                 console.log('Successfull')
                 setWatched(res.data)
             } else {
