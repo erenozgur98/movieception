@@ -1,7 +1,7 @@
 import React from 'react'
 import './Banner.css'
 
-function Banner({ link, movie }) {
+function Banner({ link }) {
 
     return (
         <div>
@@ -17,7 +17,7 @@ function Banner({ link, movie }) {
                     // position: 'fixed'
                 }}
             >
-                <div className="banner--fadeBottom"></div>
+                <div className="fadeBottom"></div>
             </div>
         </div>
     )

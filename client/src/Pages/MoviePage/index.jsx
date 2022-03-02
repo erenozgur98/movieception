@@ -16,6 +16,7 @@ import styled from 'styled-components';
 import Trailer from '../../components/Trailer';
 import { useTitle } from '../../components/useTitle';
 import Collections from '../../components/Collections';
+import { useSnackbar } from 'notistack';
 
 function MoviePage({ user }) {
     const [movie, setMovie] = useState({});
@@ -26,6 +27,7 @@ function MoviePage({ user }) {
     const [watched, setWatched] = useState([]);
     const [documentTitle, setDocumentTitle] = useTitle();
     const { MovieId } = useParams();
+    const { enqueueSnackbar } = useSnackbar();
 
     console.log(watched)
     console.log(favorites)
@@ -74,6 +76,9 @@ function MoviePage({ user }) {
         API.addMovieToFavorite(user?.username, movie?.id).then(res => {
             // add snackbar
             if (res.status === 200) {
+                enqueueSnackbar('The Movie has been successfully added to your favorites', {
+                    variant: 'success'
+                })
                 console.log('Successfull');
                 setFavorites(res.data)
             } else {

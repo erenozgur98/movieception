@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import HomeMovie from '../../components/HomeMovie';
 import HomeShow from '../../components/HomeShow';
 import requests from '../../components/Requests';
-// import Banner from '../../components/Banner';
+import Banner from '../../components/Banner';
 import axios from '../../components/Axios';
 import { Container } from 'react-bootstrap';
 import { useEffect } from 'react';
@@ -34,8 +34,10 @@ function Home() {
 
     return (
         <div>
-            {/* <Banner link={movie?.backdrop_path} title={movie?.title || movie?.name} movie={movie} /> */}
-            <header
+            <Banner
+                link={movie?.backdrop_path}
+            />
+            {/* <header
                 className='header-banner'
                 style={{
                     backgroundSize: 'cover',
@@ -46,23 +48,18 @@ function Home() {
                 }}
             >
                 <div className='header-banner-button-container'>
-                    {movie?.title ?
+                    {movie?.title &&
                         <h2 className="header-banner-title">
                             Image from: {movie?.title}
                         </h2>
-                        :
-                        null
                     }
                 </div>
-                {movie ?
+                {movie &&
                     <div className='header-banner-button-container'>
                         <button className='header-banner-btn' onClick={redirect}>Go To {movie?.title || movie?.name}</button>
                     </div>
-                    :
-                    null
                 }
-                <div className={movie ? "header-banner--fadeBottom-2" : "header-banner--fadeBottom"}></div>
-            </header>
+            </header> */}
             <Container className='homepage'>
                 <HomeMovie fetchUrl={requests.fetchTrendingMovies} />
                 <HomeShow fetchUrl={requests.fetchTrendingShows} />
