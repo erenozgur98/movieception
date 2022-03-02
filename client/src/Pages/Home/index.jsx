@@ -37,29 +37,22 @@ function Home() {
             <Banner
                 link={movie?.backdrop_path}
             />
-            {/* <header
-                className='header-banner'
-                style={{
-                    backgroundSize: 'cover',
-                    backgroundImage: `url(https://image.tmdb.org/t/p/original${movie?.backdrop_path})`,
-                    backgroundPosition: '50% 10%',
-                    // opacity: '0.521'
-                    // backgroundPosition: 'center center'
-                }}
-            >
-                <div className='header-banner-button-container'>
-                    {movie?.title &&
-                        <h2 className="header-banner-title">
-                            Image from: {movie?.title}
-                        </h2>
-                    }
-                </div>
-                {movie &&
-                    <div className='header-banner-button-container'>
-                        <button className='header-banner-btn' onClick={redirect}>Go To {movie?.title || movie?.name}</button>
-                    </div>
+            <Container className='banner-text-container'>
+                <h1>True Story</h1>
+                <h5>
+                    What is True Story?
+                    <br />
+                    True Story is a website has been made to track/find tons of movies and tv shows
+                </h5>
+                {(movie?.title || movie?.name) &&
+                    <h2 className="header-banner-title">
+                        Background Image From: {movie?.title || movie?.name}
+                    </h2>
                 }
-            </header> */}
+                {(movie?.title || movie?.name) &&
+                    <button className='header-banner-btn' onClick={redirect}>Go To {movie?.title || movie?.name}</button>
+                }
+            </Container>
             <Container className='homepage'>
                 <HomeMovie fetchUrl={requests.fetchTrendingMovies} />
                 <HomeShow fetchUrl={requests.fetchTrendingShows} />
