@@ -15,6 +15,7 @@ import API from '../../utils/API';
 import styled from 'styled-components';
 import Trailer from '../../components/Trailer';
 import { useTitle } from '../../components/useTitle';
+import { useSnackbar } from 'notistack';
 
 function ShowPage({ user }) {
     const [, setLoading] = useState(false);
@@ -26,19 +27,18 @@ function ShowPage({ user }) {
     const [favorites, setFavorites] = useState([]);
     const [watched, setWatched] = useState([]);
     const { ShowId } = useParams();
+    const { enqueueSnackbar } = useSnackbar();
 
     useEffect(() => {
         document.title = documentTitle ?? 'True Story';
     }, [documentTitle])
 
     useEffect(() => {
-        // API.getOneMovie, will be set later
         const fetchData = async () => {
             setLoading(true);
             const request = await axios.get(`/tv/${ShowId}?api_key=${process.env.REACT_APP_API_KEY}`);
             const requestExternalId = await axios.get(`tv/${ShowId}/external_ids?api_key=${process.env.REACT_APP_API_KEY}`);
             const requestVideos = await axios.get(`tv/${ShowId}/videos?api_key=${process.env.REACT_APP_API_KEY}`);
-            // const seasons = await axios.get(`/tv/${ShowId}/season`)
             setShow(request.data);
             setExternalId(requestExternalId.data);
             setVideos(requestVideos.data.results);
@@ -52,23 +52,24 @@ function ShowPage({ user }) {
 
     useEffect(() => {
         API.getAllFavorites(user?.username)
-            .then(res => setFavorites(res.data?.showFavorites))
+            .then(res => setFavorites(res.data?.Show))
             .catch(err => console.log(err))
     }, [])
 
     useEffect(() => {
         API.getAllWatched(user?.username)
             .then(res => {
-                setWatched(res?.data[0]?.watchedShows)
+                setWatched(res.data?.Show)
             })
     }, [])
 
     const addToFavorite = (show) => {
         API.addShowToFavorite(user?.username, show?.id).then(res => {
-            // add snackbar
             if (res.status === 200) {
-                console.log('Successfull');
-                setFavorites(res?.showFavorites);
+                enqueueSnackbar('The Show has been successfully added to your favorites', {
+                    variant: 'success'
+                })
+                setFavorites(res.data);
             } else {
                 console.log('Soemthing went wrong');
             }
@@ -77,9 +78,11 @@ function ShowPage({ user }) {
 
     const removeFromFavorites = (show) => {
         API.removeShowFromFavorites(user?.username, show?.id).then(res => {
-            // add snackbar
             if (res.status === 200) {
-                console.log('Successfull');
+                enqueueSnackbar('The Show has been successfully removed from your favorites', {
+                    variant: 'success'
+                })
+                setFavorites(res.data);
             } else {
                 console.log('Something went wrong');
             }
@@ -89,19 +92,26 @@ function ShowPage({ user }) {
     const addToWatchedList = (movie) => {
         API.addShowToWatched(user?.username, movie?.id)
             .then(res => {
-                console.log(res)
+                if (res.status === 200) {
+                    enqueueSnackbar('The Show has been successfully added to your Watched History', {
+                        variant: 'success'
+                    })
+                    setWatched(res.data);
+                } else {
+                    console.log('Something went wrong');
+                }
             })
     }
 
     const removeFromWatchedList = (movie) => {
-        API.removeMovieFromWatched(user?.username, movie?.id).then(res => {
-            // add snackbar
-            console.log(res)
+        API.removeShowFromWatched(user?.username, movie?.id).then(res => {
             if (res.status === 200) {
-                console.log('Successfull')
-                setWatched(res?.data?.watchedMovies)
+                enqueueSnackbar('The Show has been successfully removed from your Watched History', {
+                    variant: 'success'
+                })
+                setWatched(res.data);
             } else {
-                console.log('Something went wrong')
+                console.log('Something went wrong');
             }
         })
     }

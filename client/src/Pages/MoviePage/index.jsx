@@ -74,7 +74,6 @@ function MoviePage({ user }) {
 
     const addToFavorite = (movie) => {
         API.addMovieToFavorite(user?.username, movie?.id).then(res => {
-            // add snackbar
             if (res.status === 200) {
                 enqueueSnackbar('The Movie has been successfully added to your favorites', {
                     variant: 'success'
@@ -89,8 +88,6 @@ function MoviePage({ user }) {
 
     const removeFromFavorites = (movie) => {
         API.removeMovieFromFavorites(user?.username, movie?.id).then(res => {
-            // add snackbar
-            console.log(res)
             if (res.status === 200) {
                 enqueueSnackbar('The Movie has been successfully removed from your favorites', {
                     variant: 'success'
@@ -120,8 +117,6 @@ function MoviePage({ user }) {
 
     const removeFromWatchedHistory = (movie) => {
         API.removeMovieFromWatched(user?.username, movie?.id).then(res => {
-            // add snackbar
-            console.log(res)
             if (res.status === 200) {
                 enqueueSnackbar('The Movie has been successfully removed from your watched history', {
                     variant: 'success'
@@ -240,7 +235,6 @@ function MoviePage({ user }) {
                     </StyledLeftSide>
                     <StyledOverviewDiv>
                         <Overview link={movie} />
-                        <Collections CollectionId={movie?.belongs_to_collection?.id} />
                         <div
                             style={{ textAlign: 'center', marginTop: '2rem' }}
                         >
@@ -262,6 +256,7 @@ function MoviePage({ user }) {
                             The cast of {movie?.original_title}
                         </div>
                         <Credits movie={movie} />
+                        <Collections CollectionId={movie?.belongs_to_collection?.id} />
                         <Recommendations movie={movie} />
                     </StyledOverviewDiv>
                 </StyledContainer>

@@ -45,7 +45,7 @@ export default {
     removeMovieFromFavorites: (username, MovieId) => {
         return axios.delete(`/api/users/${username}/favorite/movies/${MovieId}`)
     },
-    
+
     removeShowFromFavorites: (username, ShowId) => {
         return axios.delete(`/api/users/${username}/favorite/shows/${ShowId}`)
     },
@@ -60,5 +60,13 @@ export default {
 
     removeMovieFromWatched: (username, MovieId) => {
         return axios.delete(`/api/users/${username}/watched/movies/${MovieId}`)
+    },
+
+    addShowToWatched: (username, MovieId) => {
+        return axios.post(`/api/users/${username}/watched/shows/${MovieId}`)
+    },
+
+    removeShowFromWatched: (username, MovieId) => {
+        return axios.delete(`/api/users/${username}/watched/shows/${MovieId}`)
     },
 };
