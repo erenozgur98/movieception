@@ -13,13 +13,16 @@ function Profile({ user }) {
     useEffect(() => {
         const hours = new Date().getHours();
 
-        if (hours < 12) {
+        if (hours < 12 && hours > 6) {
             setGreet('Good Morning')
         } else if (hours >= 12 && hours <= 17) {
             setGreet('Good Afternoon')
-        } else {
+        } else if (hours > 17) {
             setGreet('Good Evening')
+        } else {
+            setGreet('Good Night')
         }
+
     }, [])
 
     useEffect(() => {
