@@ -246,9 +246,9 @@ router.get('/:username/watchlist', (req, res) => {
             } else {
                 res.json([])
             }
-            res.json(user.movieWatchList + user.showWatchList)
         })
         .catch(err => {
+            console.log('askjhasdkjhads', err)
             res.status(500).sendStatus(`Error ${err}`)
         })
 })
