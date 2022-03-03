@@ -16,8 +16,7 @@ function Home({ user }) {
     const history = useHistory();
 
     useEffect(() => {
-        const date = new Date();
-        const hours = date.getHours();
+        const hours = new Date().getHours();
 
         if (hours < 12) {
             setGreet('Good Morning')
