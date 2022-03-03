@@ -54,13 +54,13 @@ function Home({ user }) {
             />
             <Container className='banner-text-container'>
                 <h1>
-                    {user.username && `${greet}, ${user.username}! Welcome back to True Story!`}
+                    {user.username && `${greet}, ${user.username}!`} <br /> {`Welcome back to True Story!`}
                     {!user.username && `${greet}, welcome to True Story!`}
                 </h1>
                 <h2>
                     What is True Story?
                     <br />
-                    True Story is a website has been made to track/find tons of movies and tv shows
+                    True Story is a website has been made to track/find tons of movies and tv shows!
                 </h2>
                 <SearchForm />
                 {(movie?.title || movie?.name) &&
