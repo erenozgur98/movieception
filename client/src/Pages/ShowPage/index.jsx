@@ -26,6 +26,7 @@ function ShowPage({ user }) {
     const [documentTitle, setDocumentTitle] = useTitle();
     const [favorites, setFavorites] = useState([]);
     const [watched, setWatched] = useState([]);
+    const [watchList, setWatchList] = useState([]);
     const { ShowId } = useParams();
     const { enqueueSnackbar } = useSnackbar();
 
@@ -56,6 +57,18 @@ function ShowPage({ user }) {
                 API.getAllFavorites(user?.username)
                     .then(res => setFavorites(res.data?.Show))
                     .catch(err => console.log(err))
+            }
+        }
+        fetchData()
+    }, [user])
+
+    useEffect(() => {
+        const fetchData = () => {
+            if (user?.username) {
+                API.getAllWatchList(user?.username)
+                    .then(res => {
+                        setWatchList(res.data?.Show)
+                    })
             }
         }
         fetchData()
@@ -99,8 +112,34 @@ function ShowPage({ user }) {
         })
     }
 
-    const addToWatchedList = (movie) => {
-        API.addShowToWatched(user?.username, movie?.id)
+    const addToWatchList = (show) => {
+        API.addShowToWatchList(user?.username, show?.id).then(res => {
+            if (res.status === 200) {
+                enqueueSnackbar('The Show has been successfully added to your watch list', {
+                    variant: 'success'
+                })
+                setWatchList(res.data)
+            } else {
+                console.log('Soemthing went wrong')
+            }
+        })
+    }
+
+    const removeFromWatchList = (show) => {
+        API.removeShowFromWatchList(user?.username, show?.id).then(res => {
+            if (res.status === 200) {
+                enqueueSnackbar('The Show has been successfully removed from your watch list', {
+                    variant: 'success'
+                })
+                setWatchList(res.data);
+            } else {
+                console.log('Something went wrong')
+            }
+        })
+    }
+
+    const addToWatchedList = (show) => {
+        API.addShowToWatched(user?.username, show?.id)
             .then(res => {
                 if (res.status === 200) {
                     enqueueSnackbar('The Show has been successfully added to your Watched History', {
@@ -113,8 +152,8 @@ function ShowPage({ user }) {
             })
     }
 
-    const removeFromWatchedList = (movie) => {
-        API.removeShowFromWatched(user?.username, movie?.id).then(res => {
+    const removeFromWatchedList = (show) => {
+        API.removeShowFromWatched(user?.username, show?.id).then(res => {
             if (res.status === 200) {
                 enqueueSnackbar('The Show has been successfully removed from your Watched History', {
                     variant: 'success'
@@ -193,7 +232,7 @@ function ShowPage({ user }) {
                                     (
                                         <button
                                             onClick={() => removeFromFavorites(show)}
-                                            className='btn btn-warning'
+                                            className='btn btn-success'
                                         >
                                             Remove From Favorites
                                         </button>
@@ -202,9 +241,30 @@ function ShowPage({ user }) {
                                     (
                                         <button
                                             onClick={() => addToFavorite(show)}
-                                            className='btn btn-warning'
+                                            className='btn btn-success'
                                         >
                                             Add To Favorites
+                                        </button>
+                                    )
+                                }
+                            </div>}
+                            {user?.username && <div className='favorite-btn'>
+                                {watchList?.includes(show.id) ?
+                                    (
+                                        <button
+                                            onClick={() => removeFromWatchList(show)}
+                                            className='btn btn-warning'
+                                        >
+                                            Remove From Watch List
+                                        </button>
+                                    )
+                                    :
+                                    (
+                                        <button
+                                            onClick={() => addToWatchList(show)}
+                                            className='btn btn-warning'
+                                        >
+                                            Add To Watch List
                                         </button>
                                     )
                                 }

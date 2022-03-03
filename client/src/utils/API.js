@@ -30,6 +30,10 @@ export default {
         return axios.get('/api/users/user');
     },
 
+    getAllFavorites: (username) => {
+        return axios.get(`/api/users/${username}/favorites`)
+    },
+
     addMovieToFavorite: (username, MovieId) => {
         return axios.post(`/api/users/${username}/favorite/movies/${MovieId}`)
     },
@@ -38,16 +42,32 @@ export default {
         return axios.post(`/api/users/${username}/favorite/shows/${ShowId}`)
     },
 
-    getAllFavorites: (username) => {
-        return axios.get(`/api/users/${username}/favorites`)
-    },
-
     removeMovieFromFavorites: (username, MovieId) => {
         return axios.delete(`/api/users/${username}/favorite/movies/${MovieId}`)
     },
 
     removeShowFromFavorites: (username, ShowId) => {
         return axios.delete(`/api/users/${username}/favorite/shows/${ShowId}`)
+    },
+
+    getAllWatchList: (username) => {
+        return axios.get(`/api/users/${username}/watchlist`)
+    },
+
+    addMovieToWatchList: (username, MovieId) => {
+        return axios.post(`/api/users/${username}/watchlist/movies/${MovieId}`)
+    },
+
+    addShowToWatchList: (username, ShowId) => {
+        return axios.post(`/api/users/${username}/watchlist/shows/${ShowId}`)
+    },
+
+    removeMovieFromWatchList: (username, MovieId) => {
+        return axios.delete(`/api/users/${username}/watchlist/movies/${MovieId}`)
+    },
+
+    removeShowFromWatchList: (username, ShowId) => {
+        return axios.delete(`/api/users/${username}/watchlist/shows/${ShowId}`)
     },
 
     getAllWatched: (username) => {

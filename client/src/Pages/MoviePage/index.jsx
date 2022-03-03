@@ -25,6 +25,7 @@ function MoviePage({ user }) {
     const [trailerModal, setTrailerModal] = useState(false);
     const [favorites, setFavorites] = useState([]);
     const [watched, setWatched] = useState([]);
+    const [watchList, setWatchList] = useState([]);
     const [documentTitle, setDocumentTitle] = useTitle();
     const { MovieId } = useParams();
     const { enqueueSnackbar } = useSnackbar();
@@ -63,6 +64,18 @@ function MoviePage({ user }) {
     useEffect(() => {
         const fetchData = () => {
             if (user?.username) {
+                API.getAllWatchList(user?.username)
+                    .then(res => {
+                        setWatchList(res.data?.Movie)
+                    })
+            }
+        }
+        fetchData()
+    }, [user])
+
+    useEffect(() => {
+        const fetchData = () => {
+            if (user?.username) {
                 API.getAllWatched(user?.username)
                     .then(res => {
                         setWatched(res.data?.Movie)
@@ -92,6 +105,32 @@ function MoviePage({ user }) {
                     variant: 'success'
                 })
                 setFavorites(res.data);
+            } else {
+                console.log('Something went wrong')
+            }
+        })
+    }
+
+    const addToWatchList = (movie) => {
+        API.addMovieToWatchList(user?.username, movie?.id).then(res => {
+            if (res.status === 200) {
+                enqueueSnackbar('The Movie has been successfully added to your watch list', {
+                    variant: 'success'
+                })
+                setWatchList(res.data)
+            } else {
+                console.log('Soemthing went wrong')
+            }
+        })
+    }
+
+    const removeFromWatchList = (movie) => {
+        API.removeMovieFromWatchList(user?.username, movie?.id).then(res => {
+            if (res.status === 200) {
+                enqueueSnackbar('The Movie has been successfully removed from your watch list', {
+                    variant: 'success'
+                })
+                setWatchList(res.data);
             } else {
                 console.log('Something went wrong')
             }
@@ -190,7 +229,7 @@ function MoviePage({ user }) {
                                     (
                                         <button
                                             onClick={() => removeFromFavorites(movie)}
-                                            className='btn btn-warning'
+                                            className='btn btn-success'
                                         >
                                             Remove From Favorites
                                         </button>
@@ -199,9 +238,30 @@ function MoviePage({ user }) {
                                     (
                                         <button
                                             onClick={() => addToFavorite(movie)}
-                                            className='btn btn-warning'
+                                            className='btn btn-success'
                                         >
                                             Add To Favorites
+                                        </button>
+                                    )
+                                }
+                            </div>}
+                            {user?.username && <div className='favorite-btn'>
+                                {watchList?.includes(movie.id) ?
+                                    (
+                                        <button
+                                            onClick={() => removeFromWatchList(movie)}
+                                            className='btn btn-warning'
+                                        >
+                                            Remove From Watch List
+                                        </button>
+                                    )
+                                    :
+                                    (
+                                        <button
+                                            onClick={() => addToWatchList(movie)}
+                                            className='btn btn-warning'
+                                        >
+                                            Add To Watch List
                                         </button>
                                     )
                                 }
