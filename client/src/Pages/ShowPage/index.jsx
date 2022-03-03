@@ -51,17 +51,27 @@ function ShowPage({ user }) {
     }, [ShowId]);
 
     useEffect(() => {
-        API.getAllFavorites(user?.username)
-            .then(res => setFavorites(res.data?.Show))
-            .catch(err => console.log(err))
-    }, [])
+        const fetchData = () => {
+            if (user?.username) {
+                API.getAllFavorites(user?.username)
+                    .then(res => setFavorites(res.data?.Show))
+                    .catch(err => console.log(err))
+            }
+        }
+        fetchData()
+    }, [user])
 
     useEffect(() => {
-        API.getAllWatched(user?.username)
-            .then(res => {
-                setWatched(res.data?.Show)
-            })
-    }, [])
+        const fetchData = () => {
+            if (user?.username) {
+                API.getAllWatched(user?.username)
+                    .then(res => {
+                        setWatched(res.data?.Show)
+                    })
+            }
+        }
+        fetchData()
+    }, [user])
 
     const addToFavorite = (show) => {
         API.addShowToFavorite(user?.username, show?.id).then(res => {
@@ -206,7 +216,7 @@ function ShowPage({ user }) {
                                             onClick={() => removeFromWatchedList(show)}
                                             className='btn btn-danger'
                                         >
-                                            Remove From Watched List
+                                            Remove From Watched History
                                         </button>
                                     )
                                     :
@@ -215,7 +225,7 @@ function ShowPage({ user }) {
                                             onClick={() => addToWatchedList(show)}
                                             className='btn btn-danger'
                                         >
-                                            Add to Watched List
+                                            Add to Watched History
                                         </button>
                                     )
                                 }

@@ -78,7 +78,6 @@ function MoviePage({ user }) {
                 enqueueSnackbar('The Movie has been successfully added to your favorites', {
                     variant: 'success'
                 })
-                console.log('Successfull');
                 setFavorites(res.data)
             } else {
                 console.log('Soemthing went wrong')
@@ -92,7 +91,6 @@ function MoviePage({ user }) {
                 enqueueSnackbar('The Movie has been successfully removed from your favorites', {
                     variant: 'success'
                 })
-                console.log('Successfull')
                 setFavorites(res.data);
             } else {
                 console.log('Something went wrong')
@@ -107,7 +105,6 @@ function MoviePage({ user }) {
                     enqueueSnackbar('The Movie has been successfully added to your watched history', {
                         variant: 'success'
                     })
-                    console.log('Successfull')
                     setWatched(res.data)
                 } else {
                     console.log('Something went wrong')
@@ -121,7 +118,6 @@ function MoviePage({ user }) {
                 enqueueSnackbar('The Movie has been successfully removed from your watched history', {
                     variant: 'success'
                 })
-                console.log('Successfull')
                 setWatched(res.data)
             } else {
                 console.log('Something went wrong')

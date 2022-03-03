@@ -58,12 +58,12 @@ export default {
         return axios.post(`/api/users/${username}/watched/movies/${MovieId}`)
     },
 
-    removeMovieFromWatched: (username, MovieId) => {
-        return axios.delete(`/api/users/${username}/watched/movies/${MovieId}`)
-    },
-
     addShowToWatched: (username, MovieId) => {
         return axios.post(`/api/users/${username}/watched/shows/${MovieId}`)
+    },
+
+    removeMovieFromWatched: (username, MovieId) => {
+        return axios.delete(`/api/users/${username}/watched/movies/${MovieId}`)
     },
 
     removeShowFromWatched: (username, MovieId) => {

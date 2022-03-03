@@ -66,7 +66,6 @@ router.post('/:username/favorite/movies/:MovieId', (req, res) => {
             if (err) {
                 res.status(500).send('Error: ' + err)
             } else {
-                console.log(updatedUser.movieFavorites)
                 res.json(updatedUser.movieFavorites)
             }
         }
