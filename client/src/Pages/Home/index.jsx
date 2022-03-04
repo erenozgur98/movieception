@@ -22,10 +22,8 @@ function Home({ user }) {
             setGreet('Good Morning')
         } else if (hours >= 12 && hours <= 17) {
             setGreet('Good Afternoon')
-        } else if (hours > 17) {
-            setGreet('Good Evening')
         } else {
-            setGreet('Good Night')
+            setGreet('Good Evening')
         }
 
     }, [])
