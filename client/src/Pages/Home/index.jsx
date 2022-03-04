@@ -55,7 +55,7 @@ function Home({ user }) {
             />
             <Container className='banner-text-container'>
                 <h1>
-                    {user.username && `${greet}, ${user.username}!`} <br /> {`Welcome back!`}
+                    {user.username && `${greet}, ${user.username}!`}
                     {!user.username && `${greet}, welcome to True Story!`}
                 </h1>
                 <h2>
