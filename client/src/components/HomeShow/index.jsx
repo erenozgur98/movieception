@@ -27,7 +27,6 @@ function HomeShow({ fetchUrl }) {
     const indexOfLastShow = currentPage * showsPerPage;
     const indexOfFirstShow = indexOfLastShow - showsPerPage;
     const currentShows = shows.slice(indexOfFirstShow, indexOfLastShow);
-    console.log(currentShows)
 
     return (
         <div className='home'>
@@ -49,7 +48,7 @@ function HomeShow({ fetchUrl }) {
                         }
                         alt={currentShows[count]?.name}
                     />
-                    {currentShows[count].name}
+                    {currentShows[count]?.name}
                 </div>
                 {count < 9 ?
                     <div onClick={() => count < 9 ? setCount(count + 1) : setCount(count)}><i className="arrow fas fa-angle-right"></i></div>

@@ -27,7 +27,6 @@ function HomeMovie({ fetchUrl }) {
     const indexOfLastMovie = currentPage * moviesPerPage;
     const indexOfFirstMovie = indexOfLastMovie - moviesPerPage;
     const currentMovies = movies.slice(indexOfFirstMovie, indexOfLastMovie);
-    console.log(currentMovies)
 
     return (
         <div className='home'>
@@ -49,7 +48,7 @@ function HomeMovie({ fetchUrl }) {
                         }
                         alt={currentMovies[count]?.name}
                     />
-                    {currentMovies[count].title}
+                    {currentMovies[count]?.title}
                 </div>
                 {/* less than 9 because 0 is the starting index */}
                 {count < 9 ?

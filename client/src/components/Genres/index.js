@@ -1,4 +1,4 @@
-const filterBtns = [
+const genres = [
     {
         id: 0,
         name: 'All'
@@ -101,4 +101,4 @@ const filterBtns = [
     },
 ]
 
-export default filterBtns
+export default genres

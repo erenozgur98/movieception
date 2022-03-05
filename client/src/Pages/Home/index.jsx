@@ -9,11 +9,14 @@ import { useHistory } from 'react-router-dom'
 import SearchForm from '../../components/SearchForm';
 import NowPlaying from '../../components/NowPlaying'
 import NowAiring from '../../components/NowAiring'
+import RandomModal from '../../components/RandomModal';
+import LoopIcon from '@mui/icons-material/Loop';
 import './Home.css';
 
 function Home({ user, setUser }) {
     const [movie, setMovie] = useState([]);
     const [greet, setGreet] = useState();
+    const [randomModal, setRandomModal] = useState(false);
     const history = useHistory();
 
     useEffect(() => {
@@ -84,8 +87,13 @@ function Home({ user, setUser }) {
                         </span>
                     </h2>}
                 <div className="home-random-btn">
-                    <button onClick={randomMovie} className='btn btn-danger home-btn'>Random Movie</button>
-                    <button onClick={randomShow} className='btn btn-danger home-btn'>Random Show</button>
+                    <button
+                        onClick={() => setRandomModal(true)}
+                        className='btn btn-success home-btn'
+                    >
+                        Random
+                        <LoopIcon />
+                    </button>
                 </div>
             </Container>
             <Container className='homepage'>
@@ -99,6 +107,10 @@ function Home({ user, setUser }) {
                     <HomeShow fetchUrl={requests.fetchTrendingShows} />
                 </div>
             </Container>
+            <RandomModal
+                show={randomModal}
+                handleClose={() => setRandomModal(false)}
+            />
         </div>
     )
 }

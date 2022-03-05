@@ -1,0 +1,24 @@
+.random-flex {
+  display: 'flex';
+  flex-direction: 'column';
+  align-items: 'center';
+}
+
+.random-main {
+  margin-top: 3rem;
+  background-color: rgb(0, 0, 0);
+  border-radius: 25px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  padding: 2rem;
+}
+
+.forms {
+  margin-top: 2rem;
+}
+
+.get-btn {
+  margin: 2rem;
+}
