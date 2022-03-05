@@ -1,8 +1,13 @@
 .homepage {
   display: flex;
   justify-content: center;
+  flex-direction: column;
   align-items: center;
   flex-wrap: wrap;
+}
+
+.homepage-items {
+  display: flex;
 }
 
 .banner-text-container {
@@ -61,4 +66,8 @@
 
 .title-span:hover {
   color: white;
+}
+
+.home-btn {
+  margin-top: 2rem;
 }

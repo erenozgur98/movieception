@@ -9,11 +9,13 @@ import { useHistory } from 'react-router-dom'
 import SearchForm from '../../components/SearchForm';
 import NowPlaying from '../../components/NowPlaying'
 import NowAiring from '../../components/NowAiring'
+import LoginModal from '../../components/Login';
 import './Home.css';
 
-function Home({ user }) {
+function Home({ user, setUser }) {
     const [movie, setMovie] = useState([]);
-    const [greet, setGreet] = useState()
+    const [greet, setGreet] = useState();
+    const [loginModal, setLoginModal] = useState(false);
     const history = useHistory();
 
     useEffect(() => {
@@ -75,13 +77,23 @@ function Home({ user }) {
                             {movie?.title || movie?.name}
                         </span>
                     </h2>}
+                {!user.username && <button onClick={() => setLoginModal(true)} className='btn btn-danger home-btn'>Login / Signup</button>}
             </Container>
             <Container className='homepage'>
-                <NowPlaying />
-                <NowAiring />
-                <HomeMovie fetchUrl={requests.fetchTrendingMovies} />
-                <HomeShow fetchUrl={requests.fetchTrendingShows} />
+                <div className='homepage-items'>
+                    <NowPlaying />
+                    <NowAiring />
+                </div>
+                <div className='homepage-items'>
+                    <HomeMovie fetchUrl={requests.fetchTrendingMovies} />
+                    <HomeShow fetchUrl={requests.fetchTrendingShows} />
+                </div>
             </Container>
+            <LoginModal
+                setUser={setUser}
+                show={loginModal}
+                handleClose={() => setLoginModal(false)}
+            />
         </div>
     )
 }
