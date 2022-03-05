@@ -1,13 +1,14 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import HomeMovie from '../../components/HomeMovie';
 import HomeShow from '../../components/HomeShow';
 import requests from '../../components/Requests';
 import Banner from '../../components/Banner';
 import axios from '../../components/Axios';
 import { Container } from 'react-bootstrap';
-import { useEffect } from 'react';
 import { useHistory } from 'react-router-dom'
 import SearchForm from '../../components/SearchForm';
+import NowPlaying from '../../components/NowPlaying'
+import NowAiring from '../../components/NowAiring'
 import './Home.css';
 
 function Home({ user }) {
@@ -76,6 +77,8 @@ function Home({ user }) {
                     </h2>}
             </Container>
             <Container className='homepage'>
+                <NowPlaying />
+                <NowAiring />
                 <HomeMovie fetchUrl={requests.fetchTrendingMovies} />
                 <HomeShow fetchUrl={requests.fetchTrendingShows} />
             </Container>

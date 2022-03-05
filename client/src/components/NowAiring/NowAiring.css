@@ -1,0 +1,26 @@
+.airing-posters {
+  position: relative;
+  bottom: 12rem;
+  /* padding: 1rem; */
+}
+
+.airing-poster {
+  object-fit: contain;
+  width: 12rem;
+  border-radius: 5%;
+  margin: 1rem;
+}
+
+.airing-name {
+  text-align: center;
+}
+
+.airing-name-2 {
+  text-align: center;
+  font-style: italic;
+  font-size: small;
+}
+
+.airing-header {
+  text-align: center;
+}

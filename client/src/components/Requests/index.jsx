@@ -43,7 +43,7 @@ const requests = {
     // fetchScienceFictionMovies: `/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&with_genres=878`,
     // fetchThrillerMovies: `/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&with_genres=53`,
     // fetchTVMovies: `/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&with_genres=10770`,
-    // fetchNowPlayingMovies: `movie/now_playing?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`,
+    fetchNowPlaying: `movie/now_playing?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`,
 
     //// SHOW DATA ////
     // -------------------- //
@@ -62,7 +62,7 @@ const requests = {
     // fetchRealityShows: `/discover/tv?api_key=${process.env.REACT_APP_API_KEY}&with_genres=10764`,
     // fetchMysteryShows: `/discover/tv?api_key=${process.env.REACT_APP_API_KEY}&with_genres=9648`,
     // fetchWarShows: `/discover/tv?api_key=${process.env.REACT_APP_API_KEY}&with_genres=10752`,
-    // fetchAiringTonight: `tv/airing_today?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`,
+    fetchAiringTonight: `tv/airing_today?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`,
 
     //// ACTORS - PERSONS ////
     // -------------------- //
