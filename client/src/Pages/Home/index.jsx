@@ -9,13 +9,11 @@ import { useHistory } from 'react-router-dom'
 import SearchForm from '../../components/SearchForm';
 import NowPlaying from '../../components/NowPlaying'
 import NowAiring from '../../components/NowAiring'
-import LoginModal from '../../components/Login';
 import './Home.css';
 
 function Home({ user, setUser }) {
     const [movie, setMovie] = useState([]);
     const [greet, setGreet] = useState();
-    const [loginModal, setLoginModal] = useState(false);
     const history = useHistory();
 
     useEffect(() => {
@@ -50,6 +48,14 @@ function Home({ user, setUser }) {
         }
     }
 
+    const randomMovie = () => {
+
+    }
+
+    const randomShow = () => {
+
+    }
+
 
     return (
         <div>
@@ -77,7 +83,10 @@ function Home({ user, setUser }) {
                             {movie?.title || movie?.name}
                         </span>
                     </h2>}
-                {!user.username && <button onClick={() => setLoginModal(true)} className='btn btn-danger home-btn'>Login / Signup</button>}
+                <div className="home-random-btn">
+                    <button onClick={randomMovie} className='btn btn-danger home-btn'>Random Movie</button>
+                    <button onClick={randomShow} className='btn btn-danger home-btn'>Random Show</button>
+                </div>
             </Container>
             <Container className='homepage'>
                 <div className='homepage-items'>
@@ -89,11 +98,6 @@ function Home({ user, setUser }) {
                     <HomeShow fetchUrl={requests.fetchTrendingShows} />
                 </div>
             </Container>
-            <LoginModal
-                setUser={setUser}
-                show={loginModal}
-                handleClose={() => setLoginModal(false)}
-            />
         </div>
     )
 }
