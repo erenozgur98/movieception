@@ -11,6 +11,10 @@
   margin: 1rem;
 }
 
+.playing-poster:hover {
+  cursor: pointer;
+}
+
 .playing-name {
   text-align: center;
 }

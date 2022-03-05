@@ -11,6 +11,10 @@
   margin: 1rem;
 }
 
+.airing-poster:hover {
+  cursor: pointer;
+}
+
 .airing-name {
   text-align: center;
 }
