@@ -3,6 +3,14 @@
   flex-direction: column;
   align-items: center;
   padding: 2rem 0rem;
+  position: relative;
+  bottom: 10rem;
+}
+
+.home-image-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .home-movie {

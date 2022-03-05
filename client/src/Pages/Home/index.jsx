@@ -93,6 +93,7 @@ function Home({ user, setUser }) {
                     <NowPlaying />
                     <NowAiring />
                 </div>
+                <h1 className='homepage-divider-title'>Top 10 This Week</h1>
                 <div className='homepage-items'>
                     <HomeMovie fetchUrl={requests.fetchTrendingMovies} />
                     <HomeShow fetchUrl={requests.fetchTrendingShows} />
