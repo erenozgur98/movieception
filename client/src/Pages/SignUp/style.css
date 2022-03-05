@@ -1,14 +1,9 @@
-.login-main {
-    position: fixed;
-    margin-top: 3rem;
-}
-
 .signup-main {
-    margin-top: 5rem;
+  margin-top: 5rem;
 }
 
 .signup-main2 {
-    background-color: white;
-    padding: 1.8rem;
-    border-radius: 12%;
+  background-color: white;
+  padding: 1.8rem;
+  border-radius: 12%;
 }

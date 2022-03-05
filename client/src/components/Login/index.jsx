@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 // import { useHistory } from 'react-router-dom';
-import { Modal } from 'react-bootstrap';
-import { Button, Container, Box, Typography, TextField, Grid, Link } from '@mui/material';
+import { Button, Container, Box, Typography, TextField, Grid, Link, Modal } from '@mui/material';
 import API from '../../utils/API';
+import './LoginModal.css'
 
 const LoginModal = ({ setUser, show, handleClose }) => {
     // const history = useHistory();
@@ -23,16 +23,9 @@ const LoginModal = ({ setUser, show, handleClose }) => {
     }
 
     return (
-        <Modal show={show} onHide={handleClose}>
+        <Modal open={show} onClose={handleClose}>
             <Container className="login-main" maxWidth="xs">
-                <Box
-                    sx={{
-                        display: 'flex',
-                        flexDirection: 'column',
-                        alignItems: 'center',
-                    }}
-                    className='signup-main2'
-                >
+                <Box className='login-main-2'>
                     <Typography component="h1" variant="h5" style={{ color: 'black' }}>
                         Sign in
                     </Typography>
