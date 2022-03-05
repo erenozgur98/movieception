@@ -36,25 +36,6 @@ function Login({ setUser }) {
         }
     }
 
-    // export function useTitle(title) {
-    //     useEffect(() => {
-    //       const prevTitle = document.title
-    //       document.title = title
-    //       return () => {
-    //         document.title = prevTitle
-    //       }
-    //     })
-    //   }
-
-    // const MyComponent = () => {
-    //     useTitle("New Title")
-    //     return (
-    //       <div>
-    //        ...
-    //       </div>
-    //     )
-    //   }
-
     return (
         <div>
             <Container className="signup-main" maxWidth="xs">
@@ -82,7 +63,7 @@ function Login({ setUser }) {
                             value={username}
                             onChange={handleUsername}
                             autoFocus
-                            />
+                        />
                         <TextField
                             margin="normal"
                             required
@@ -114,13 +95,6 @@ function Login({ setUser }) {
                     </Box>
                 </Box>
             </Container>
-            {/* <form onSubmit={handleLogin}>
-                <label htmlFor="username">Username</label>
-                <input type="text" name='username' ref={username} />
-                <label htmlFor="password">Password</label>
-                <input type="password" name='password' ref={password} />
-                <button className='' type='submit'>Login</button>
-            </form> */}
         </div >
     )
 };
