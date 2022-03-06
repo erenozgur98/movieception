@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { useHistory } from 'react-router-dom';
 import axios from '../Axios';
 import './MovieCredits.css'
 
@@ -9,7 +8,6 @@ const base_url = 'https://image.tmdb.org/t/p/original/';
 function MovieCredits({ actor }) {
     const [movieCredits, setMovieCredits] = useState([]);
 
-    const history = useHistory()
 
     useEffect(() => {
         const fetchData = async () => {
@@ -21,9 +19,9 @@ function MovieCredits({ actor }) {
 
     const redirect = (credits) => {
         if (credits.media_type === 'tv') {
-            history.replace(`/shows/${credits.id}`)
+            window.location.assign(`/shows/${credits.id}`)
         } else {
-            history.replace(`/movies/${credits.id}`)
+            window.location.assign(`/movies/${credits.id}`)
         }
     };
 

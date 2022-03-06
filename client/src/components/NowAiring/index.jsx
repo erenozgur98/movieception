@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { useHistory } from 'react-router-dom';
 import requests from '../Requests';
 import axios from '../Axios';
 import './NowAiring.css';
 
 function NowAiring() {
     const [nowAiring, setNowAiring] = useState();
-    const history = useHistory();
 
     const base_url = 'https://image.tmdb.org/t/p/original/';
 
@@ -19,7 +17,7 @@ function NowAiring() {
     }, [])
 
     const redirect = () => {
-        history.push(`/shows/${nowAiring && nowAiring[0].id}`)
+        window.location.assign(`/shows/${nowAiring && nowAiring[0].id}`)
     }
 
     return (

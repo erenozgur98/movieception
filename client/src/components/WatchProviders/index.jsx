@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import { useHistory } from 'react-router-dom';
 import axios from '../Axios';
 import './WatchProviders.css';
 
@@ -9,7 +8,6 @@ function WatchProviders({ movie, show }) {
     const [movieProviders, setMovieProviders] = useState([]);
     const [showProviders, setShowProviders] = useState([]);
 
-    const history = useHistory()
 
     useEffect(() => {
         if (movie?.id) {
@@ -29,7 +27,7 @@ function WatchProviders({ movie, show }) {
     }, [movie?.id, show?.id]);
 
     const redirect = (provider) => {
-        history.push(``);
+        // window.location.assign(``);
     }
 
     return (
@@ -64,18 +62,18 @@ function WatchProviders({ movie, show }) {
                         <div className='providers' key={showProviders?.id}>
                             <div>Available on</div>
                             <div className="providers-map">
-                            {showProviders?.US.flatrate?.map((provider) => (
-                                <div key={provider?.id}>
-                                    <img
-                                        key={provider?.id}
-                                        onClick={() => redirect(provider)}
-                                        src={`${base_url}${provider?.logo_path}`}
-                                        alt={provider?.provider_name}
-                                        className='provider-logo'
-                                    />
-                                    {/* <h2 className='provider-name'>{provider?.provider_name}</h2> */}
-                                </div>
-                            ))}
+                                {showProviders?.US.flatrate?.map((provider) => (
+                                    <div key={provider?.id}>
+                                        <img
+                                            key={provider?.id}
+                                            onClick={() => redirect(provider)}
+                                            src={`${base_url}${provider?.logo_path}`}
+                                            alt={provider?.provider_name}
+                                            className='provider-logo'
+                                        />
+                                        {/* <h2 className='provider-name'>{provider?.provider_name}</h2> */}
+                                    </div>
+                                ))}
                             </div>
                         </div>
                         :

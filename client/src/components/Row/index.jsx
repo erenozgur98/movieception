@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { useHistory } from 'react-router-dom';
 import axios from '../Axios';
 import './Row.css'
 
@@ -10,7 +9,6 @@ function Row({ fetchUrl, title }) {
     const [, setLoading] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
 
-    const history = useHistory()
 
     useEffect(() => {
         const fetchData = async () => {
@@ -24,13 +22,13 @@ function Row({ fetchUrl, title }) {
 
     const handleClick = (movie) => {
         if (movie.media_type === 'tv') {
-            history.push(`/shows/${movie.id}`);
+            window.location.assign(`/shows/${movie.id}`);
         } else if (movie.media_type === 'movie') {
-            history.push(`/movies/${movie.id}`);
+            window.location.assign(`/movies/${movie.id}`);
         } else if (movie.media_type === 'person') {
-            history.push(`/actors/${movie.id}`);
+            window.location.assign(`/actors/${movie.id}`);
         } else {
-            history.push('/');
+            window.location.assign('/');
         }
     };
 

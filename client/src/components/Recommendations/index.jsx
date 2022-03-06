@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
 import axios from '../Axios';
 import './Recommendations.css';
 
@@ -11,7 +10,6 @@ function Recommendations({ movie, show }) {
     const [movieRecommendations, setMovieRecommendations] = useState([]);
     const [showRecommendations, setShowRecommendations] = useState([]);
 
-    const history = useHistory();
 
     useEffect(() => {
         if (movie?.id) {
@@ -31,9 +29,9 @@ function Recommendations({ movie, show }) {
 
     const redirect = (recommendations) => {
         if (recommendations.media_type === 'movie') {
-            history.push(`/movies/${recommendations.id}`);
+            window.location.assign(`/movies/${recommendations.id}`);
         } else {
-            history.push(`/shows/${recommendations.id}`);
+            window.location.assign(`/shows/${recommendations.id}`);
         }
     };
 

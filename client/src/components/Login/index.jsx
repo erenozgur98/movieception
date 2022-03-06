@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
-// import { useHistory } from 'react-router-dom';
 import { Button, Container, Box, Typography, TextField, Grid, Link, Modal } from '@mui/material';
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import API from '../../utils/API';
 import './LoginModal.css'
 
 const LoginModal = ({ setUser, show, handleClose }) => {
-    // const history = useHistory();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 

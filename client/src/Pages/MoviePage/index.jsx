@@ -7,7 +7,6 @@ import Banner from '../../components/Banner';
 import Credits from '../../components/Credits';
 import ExternalId from '../../components/ExternalId';
 import WatchProviders from '../../components/WatchProviders';
-// import YouTube from 'react-youtube';
 import "./MoviePage.css"
 import Overview from '../../components/Overview';
 import Recommendations from '../../components/Recommendations';
@@ -29,9 +28,6 @@ function MoviePage({ user }) {
     const [documentTitle, setDocumentTitle] = useTitle();
     const { MovieId } = useParams();
     const { enqueueSnackbar } = useSnackbar();
-
-    console.log(watched)
-    console.log(favorites)
 
     useEffect(() => {
         document.title = documentTitle ?? 'True Story';

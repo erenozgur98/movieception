@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
 import './Seasons.css';
 
 function Seasons({ show }) {
@@ -9,12 +8,11 @@ function Seasons({ show }) {
         setSeasons(show?.seasons);
     }, [show]);
 
-    const history = useHistory();
     const base_url = 'https://image.tmdb.org/t/p/original/';
 
     const redirect = (x) => {
         const result = season[0].name === 'Specials'
-        history.push(`/shows/${show?.id}/season/${result ? x?.season_number + 1 : x?.season_number}`)
+        window.location.assign(`/shows/${show?.id}/season/${result ? x?.season_number + 1 : x?.season_number}`)
     };
 
 

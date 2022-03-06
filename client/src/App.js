@@ -51,7 +51,7 @@ function App() {
             <Route exact path='/shows/:ShowId/season/:SeasonId/episode/:EpisodeId' component={EpisodePage} />
             <Route exact path='/actors' component={Actors} />
             <Route exact path='/actors/:ActorId' component={ActorPage} />
-            <Route exact path='/profile/:username' render={() => <Profile user={user} />} />
+            <Route exact path='/users/:username' render={() => <Profile user={user} />} />
             <Route exact path='/login' render={(props) => <Login {...props}
               loggedIn={loggedIn}
               setLoggedIn={setLoggedIn}

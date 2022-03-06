@@ -1,16 +1,14 @@
 import React from "react";
-import { useHistory } from 'react-router-dom';
 import { styled, alpha } from '@mui/material/styles';
 import SearchIcon from '@mui/icons-material/Search';
 import InputBase from '@mui/material/InputBase';
 
 function SearchForm() {
-  const history = useHistory();
 
   const handleSearchEnter = (e) => {
     if (e.charCode === 13) {
       const search = e.target.value
-      history.replace(`/search?query=${search}`);
+      window.location.assign(`/search?query=${search}`);
     }
   };
 

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
 import axios from '../Axios';
 import './HomeShow.css'
 
@@ -9,7 +8,6 @@ function HomeShow({ fetchUrl }) {
     const [currentPage,] = useState(1);
     const [showsPerPage,] = useState(20);
 
-    const history = useHistory();
     const base_url = 'https://image.tmdb.org/t/p/w300/';
 
     useEffect(() => {
@@ -21,7 +19,7 @@ function HomeShow({ fetchUrl }) {
     }, [fetchUrl, currentPage]);
 
     const handleClick = () => {
-        history.push(`/shows/${shows[count].id}`);
+        window.location.assign(`/shows/${shows[count].id}`);
     };
 
     const indexOfLastShow = currentPage * showsPerPage;

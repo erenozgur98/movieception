@@ -30,7 +30,7 @@ function Login({ setUser }) {
             const newLogin = await API.logIn({ username: username, password: password });
             delete newLogin.data.password;
             setUser(newLogin.data);
-            history.push('/');
+            history.replace('/');
         } catch (err) {
             console.log(err)
         }

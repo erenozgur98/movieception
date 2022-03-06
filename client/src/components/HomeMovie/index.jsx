@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
 import axios from '../Axios';
 import './HomeMovie.css'
 
@@ -9,7 +8,6 @@ function HomeMovie({ fetchUrl }) {
     const [currentPage,] = useState(1);
     const [moviesPerPage,] = useState(20);
 
-    const history = useHistory();
     const base_url = 'https://image.tmdb.org/t/p/w300/';
 
     useEffect(() => {
@@ -21,7 +19,7 @@ function HomeMovie({ fetchUrl }) {
     }, [fetchUrl, currentPage]);
 
     const handleClick = () => {
-        history.push(`/movies/${currentMovies[count].id}`);
+        window.location.assign(`/movies/${currentMovies[count].id}`);
     };
 
     const indexOfLastMovie = currentPage * moviesPerPage;

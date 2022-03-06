@@ -1,7 +1,6 @@
 import axios from '../../components/Axios';
 import React, { useState, useEffect } from 'react';
 import './Episodes.css';
-import { useHistory } from 'react-router';
 
 function Episodes({ show, ShowId, SeasonId }) {
     const [episodeRequest, setEpisodeRequest] = useState([]);
@@ -14,10 +13,9 @@ function Episodes({ show, ShowId, SeasonId }) {
         fetchData();
     }, [show, ShowId]);
 
-    const history = useHistory();
 
     const redirect = x => {
-        history.push(`/shows/${ShowId}/season/${SeasonId}/episode/${x?.episode_number}`);
+        window.location.assign(`/shows/${ShowId}/season/${SeasonId}/episode/${x?.episode_number}`);
     };
 
     const options = {
@@ -28,7 +26,7 @@ function Episodes({ show, ShowId, SeasonId }) {
 
     return (
         <div className='episodes-map'>
-            <div style={{ textAlign: 'center' ,margin: '2rem', fontSize: '2rem' }}>{episodeRequest?.length} Episodes</div>
+            <div style={{ textAlign: 'center', margin: '2rem', fontSize: '2rem' }}>{episodeRequest?.length} Episodes</div>
             {episodeRequest?.map((x) => (
                 <div className='episode-picture'>
                     {x?.still_path &&

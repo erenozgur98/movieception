@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { useHistory } from 'react-router-dom';
 import requests from "../Requests";
 import axios from '../Axios';
 import './NowPlaying.css'
 
 function NowPlaying() {
     const [nowPlaying, setNowPlaying] = useState();
-    const history = useHistory();
 
     const base_url = 'https://image.tmdb.org/t/p/original/';
 
@@ -19,7 +17,7 @@ function NowPlaying() {
     }, [])
 
     const redirect = () => {
-        history.push(`/movies/${nowPlaying && nowPlaying[0].id}`)
+        window.location.assign(`/movies/${nowPlaying && nowPlaying[0].id}`)
     }
 
     return (

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { useHistory } from 'react-router-dom';
 import axios from '../Axios';
 import './People.css'
 
@@ -9,7 +8,6 @@ const base_url = 'https://image.tmdb.org/t/p/original/';
 function People({ fetchUrl, title }) {
     const [actors, setActors] = useState([]);
 
-    const history = useHistory()
 
     useEffect(() => {
         const fetchData = async () => {
@@ -20,9 +18,7 @@ function People({ fetchUrl, title }) {
     }, [fetchUrl]);
 
     const handleClick = (actor) => {
-        // setCurrentActor(actor);
-        // console.log(currentActor);
-        history.push(`/actors/${actor.id}`)
+        window.location.assign(`/actors/${actor.id}`)
     };
 
     return (

@@ -106,7 +106,7 @@ const Overview = ({ link }) => {
                     </StyledDivInBottomSection>
                 }
                 {/* add logos to companies later */}
-                {link?.production_companies.length &&
+                {link?.production_companies &&
                     <StyledDivInBottomSection>
                         Production Company: <StyledSpan>{link?.production_companies[0]?.name}</StyledSpan>
                     </StyledDivInBottomSection>

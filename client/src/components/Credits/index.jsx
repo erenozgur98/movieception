@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { useHistory } from 'react-router-dom';
 import axios from '../Axios';
 import './Credits.css'
 
@@ -8,8 +7,6 @@ const base_url = 'https://image.tmdb.org/t/p/original/';
 
 function Credits({ movie, show, credits }) {
     const [cast, setCast] = useState([]);
-
-    const history = useHistory();
 
     useEffect(() => {
         if (movie?.id) {
@@ -30,7 +27,7 @@ function Credits({ movie, show, credits }) {
     }, [movie?.id, show?.id, credits]);
 
     const redirect = (theCast) => {
-        history.push(`/actors/${theCast?.id}`)
+        window.location.assign(`/actors/${theCast?.id}`)
     };
 
     const slicedCast = cast?.slice(0, 10);

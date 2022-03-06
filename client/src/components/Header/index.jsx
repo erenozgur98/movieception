@@ -151,7 +151,7 @@ function Header({ user, setUser }) {
                 setAccountAnchorEl(null)
             }}
         >
-            <StyledMenuLink href='/profile'>Profile</StyledMenuLink>
+            <StyledMenuLink href={`/users/${user?.username}`}>Profile</StyledMenuLink>
             <StyledMenuLink href='/settings'>Settings</StyledMenuLink>
             <StyledMenuLink onClick={() => {
                 setAccountAnchorEl(null)

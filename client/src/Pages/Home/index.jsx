@@ -5,7 +5,6 @@ import requests from '../../components/Requests';
 import Banner from '../../components/Banner';
 import axios from '../../components/Axios';
 import { Container } from 'react-bootstrap';
-import { useHistory } from 'react-router-dom'
 import SearchForm from '../../components/SearchForm';
 import NowPlaying from '../../components/NowPlaying'
 import NowAiring from '../../components/NowAiring'
@@ -17,7 +16,6 @@ function Home({ user, setUser }) {
     const [movie, setMovie] = useState([]);
     const [greet, setGreet] = useState();
     const [randomModal, setRandomModal] = useState(false);
-    const history = useHistory();
 
     useEffect(() => {
         const hours = new Date().getHours();
@@ -45,20 +43,11 @@ function Home({ user, setUser }) {
 
     const redirect = () => {
         if (movie.media_type === 'tv') {
-            history.push(`/shows/${movie.id}`)
+            window.location.assign(`/shows/${movie.id}`)
         } else {
-            history.push(`/movies/${movie.id}`)
+            window.location.assign(`/movies/${movie.id}`)
         }
     }
-
-    const randomMovie = () => {
-
-    }
-
-    const randomShow = () => {
-
-    }
-
 
     return (
         <div>
