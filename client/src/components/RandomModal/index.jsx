@@ -4,7 +4,7 @@ import requests from '../Requests'
 import axios from '../Axios'
 import { useHistory } from 'react-router-dom';
 import { ThemeProvider, createTheme } from "@mui/material/styles";
-import { Container, Modal, InputLabel, MenuItem, Select, FormControl, Typography } from '@mui/material';
+import { Container, Modal, InputLabel, MenuItem, Select, FormControl, Typography, FormHelperText } from '@mui/material';
 import './randomModal.css'
 
 function RandomModal({ show, handleClose }) {
@@ -28,10 +28,17 @@ function RandomModal({ show, handleClose }) {
                 Math.floor(Math.random() * request.data.results.length - 1)
             ]?.id}`)
         } else {
-            const request = await axios.get(requests.fetchPopularShows)
-            history.push(`/shows/${request.data.results[
-                Math.floor(Math.random() * request.data.results.length - 1)
-            ]?.id}`)
+            const request = await axios.get(`${requests.fetchShows}&with_genres=${genre}`)
+            if (request.data.results) {
+                history.push(`/shows/${request.data.results[
+                    Math.floor(Math.random() * request.data.results.length - 1)
+                ]?.id}`)
+            } else {
+                const request = await axios.get(requests.fetchPopularShows)
+                history.push(`/shows/${request.data.results[
+                    Math.floor(Math.random() * request.data.results.length - 1)
+                ]}`)
+            }
         }
     }
 
@@ -73,6 +80,7 @@ function RandomModal({ show, handleClose }) {
                             </Select>
                         </FormControl>
                     </div>
+                    <em><FormHelperText style={{ textAlign: 'center' }}>Note, if we can't find any matches with the genre, we'll get some random popular show/movie!</FormHelperText></em>
                     <button
                         onClick={handleSearch}
                         className='btn btn-primary get-btn'
