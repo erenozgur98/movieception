@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import { Button, Container, Box, Typography, TextField, Grid, Link, Modal } from '@mui/material';
 import { ThemeProvider, createTheme } from "@mui/material/styles";
+import { useSnackbar } from 'notistack';
 import API from '../../utils/API';
 import './LoginModal.css'
 
 const LoginModal = ({ setUser, show, handleClose }) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [error, setError] = useState(false);
+    const { enqueueSnackbar } = useSnackbar();
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -17,7 +20,11 @@ const LoginModal = ({ setUser, show, handleClose }) => {
             handleClose();
             window.location.reload();
         } catch (err) {
-            console.log(err)
+            setError(true);
+            enqueueSnackbar('Incorrect username or password', {
+                variant: 'error',
+                anchorOrigin: { horizontal: 'center', vertical: 'bottom' }
+            })
         }
     }
 
@@ -37,27 +44,37 @@ const LoginModal = ({ setUser, show, handleClose }) => {
                         </Typography>
                         <Box component="form" onSubmit={handleLogin} noValidate sx={{ mt: 1 }}>
                             <TextField
+                                error={error}
                                 margin="normal"
                                 required
                                 fullWidth
                                 id="username"
                                 label="Username"
+                                helperText={error && 'Incorrect Username/Password'}
                                 name="username"
                                 autoComplete="username"
                                 value={username}
-                                onChange={e => setUsername(e.target.value)}
+                                onChange={e => {
+                                    setError(false);
+                                    setUsername(e.target.value)
+                                }}
                                 autoFocus
                             />
                             <TextField
+                                error={error}
                                 margin="normal"
                                 required
                                 fullWidth
                                 name="password"
                                 label="Password"
+                                helperText={error && 'Incorrect Username/Password'}
                                 type="password"
                                 id="password"
                                 autoComplete="password"
-                                onChange={e => setPassword(e.target.value)}
+                                onChange={e => {
+                                    setError(false);
+                                    setPassword(e.target.value)
+                                }}
                                 value={password}
                             />
                             <Button

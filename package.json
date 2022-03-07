@@ -37,7 +37,6 @@
     "if-env": "^1.0.4",
     "mongoose": "^5.12.9",
     "react-bootstrap": "^1.6.1",
-    "react-toastify": "^7.0.4",
     "react-transition-group": "^4.4.2",
     "react-youtube": "^7.13.1",
     "styled-components": "^5.3.3"

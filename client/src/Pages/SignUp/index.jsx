@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom';
+import { useSnackbar } from 'notistack';
 import API from '../../utils/API';
 import './style.css';
 import Button from '@mui/material/Button';
@@ -15,39 +16,65 @@ function SignUp({ setUser, user }) {
     const [email, setEmail] = useState('');
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [emailError, setEmailError] = useState(false);
+    const [usernameError, setUsernameError] = useState(false);
+    const [passwordError, setPasswordError] = useState(false);
+    const { enqueueSnackbar } = useSnackbar();
+
+    const mailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
     useEffect(() => {
         if (user.username) history.replace('/');
-    }, [user, history])
+    }, [user])
 
     const handleEmail = e => {
+        setEmailError(false)
         setEmail(e.target.value)
     }
 
     const handleUsername = e => {
+        setUsernameError(false)
         setUsername(e.target.value)
     }
 
     const handlePassword = e => {
+        setPasswordError(false)
         setPassword(e.target.value)
     }
 
     const handleSignUp = async (e) => {
         e.preventDefault();
+        if (email === '') {
+            setEmailError(true)
+            return
+        } else if (username === '') {
+            setUsernameError(true)
+            return
+        } else if (password === '') {
+            setPasswordError(true)
+            return
+        }
+
         try {
-            const newUser = await API.signUp({ email: email, username: username, password: password });
-            delete newUser.data.password;
-            window.location.reload();
-            setUser(newUser.data);
+            if (email.match(mailFormat)) {
+                const newUser = await API.signUp({ email: email, username: username, password: password })
+                delete newUser.data.password;
+                window.location.assign('/');
+                setUser(newUser.data);
+            } else {
+                setEmailError(true)
+            }
         } catch (err) {
-            console.log(err);
+            enqueueSnackbar('Something went wrong, please try again!', {
+                variant: 'error',
+                anchorOrigin: { horizontal: 'center', vertical: 'bottom' }
+            })
         }
     }
 
     return (
         <>
             <Container className="signup-main" maxWidth="xs">
-                {/* <CssBaseline /> */}
                 <Box
                     sx={{
                         display: 'flex',
@@ -56,48 +83,53 @@ function SignUp({ setUser, user }) {
                     }}
                     className='signup-main2'
                 >
-                    <Typography component="h1" variant="h5" style={{color:'black'}}>
+                    <Typography component="h1" variant="h5" style={{ color: 'black' }}>
                         Sign up
                     </Typography>
                     <Box component="form" noValidate onSubmit={handleSignUp} sx={{ mt: 3 }}>
                         <Grid container spacing={2}>
                             <Grid item xs={12}>
                                 <TextField
+                                    error={emailError}
                                     required
                                     fullWidth
                                     id="email"
                                     label="Email Address"
+                                    helperText={emailError && 'Email must contain @ and .com'}
+                                    type="email"
                                     name="email"
                                     value={email}
                                     onChange={handleEmail}
-                                    autoComplete="email"
                                     className='textField'
                                 />
                             </Grid>
                             <Grid item xs={12}>
                                 <TextField
+                                    error={usernameError}
                                     required
                                     fullWidth
                                     id="username"
                                     label="Username"
+                                    helperText={usernameError && 'Username is either taken or not valid'}
+                                    type="username"
                                     name="username"
                                     value={username}
                                     onChange={handleUsername}
-                                    autoComplete="user-name"
                                     className='textField'
                                 />
                             </Grid>
                             <Grid item xs={12}>
                                 <TextField
+                                    error={passwordError}
                                     required
                                     fullWidth
                                     name="password"
                                     label="Password"
+                                    helperText={passwordError && 'Invalid Password'}
                                     type="password"
                                     id="password"
                                     value={password}
                                     onChange={handlePassword}
-                                    autoComplete="new-password"
                                     className='textField'
                                 />
                             </Grid>

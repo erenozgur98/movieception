@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react'
+import Heart from 'react-heart';
+import API from '../../utils/API';
 import axios from '../Axios';
+import { useSnackbar } from 'notistack'
 import './Row.css'
 
 const base_url = 'https://image.tmdb.org/t/p/original/';
@@ -8,6 +11,20 @@ function Row({ fetchUrl, title }) {
     const [movies, setMovies] = useState([]);
     const [, setLoading] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
+    const [user, setUser] = useState({});
+    const [active, setActive] = useState(false);
+    const [favoriteKey, setFavoriteKey] = useState();
+    const { enqueueSnackbar } = useSnackbar();
+
+    const isMovie = window.location.href.includes('movies')
+    const isShow = window.location.href.includes('shows')
+
+    useEffect(() => {
+        API.loggedIn()
+            .then(result => {
+                setUser(result.data)
+            })
+    }, [])
 
 
     useEffect(() => {
@@ -27,13 +44,26 @@ function Row({ fetchUrl, title }) {
             window.location.assign(`/movies/${movie.id}`);
         } else if (movie.media_type === 'person') {
             window.location.assign(`/actors/${movie.id}`);
-        } else {
-            window.location.assign('/');
+        }
+
+        if (isMovie) {
+            window.location.assign(`/movies/${movie.id}`)
+        } else if (isShow) {
+            window.location.assign(`/shows/${movie.id}`)
         }
     };
 
     const addToFavorite = (movie) => {
-        console.log(movie)
+        setActive(!active);
+        // setActive(favoriteKey === movie.id && !active);
+        if (user.username) {
+            // API.add
+        } else {
+            enqueueSnackbar('You are not logged in!', {
+                variant: 'warning'
+            })
+        }
+        console.log(movie.id)
     };
 
     return (
@@ -42,7 +72,7 @@ function Row({ fetchUrl, title }) {
             <div
                 className="row-posters"
             >
-                {movies.map((movie) => (
+                {movies.map((movie, key) => (
                     (movie?.poster_path || movie?.backdrop_path || movie?.profile_path) &&
                     <div className="row-map" key={movie?.id}>
                         <img
@@ -61,7 +91,20 @@ function Row({ fetchUrl, title }) {
                             }
                             alt={movie?.name}
                         />
-                        <i onClick={() => addToFavorite(movie)} className="fas fa-heart"></i>
+                        <div className='icon-container'>
+                            <Heart
+                                key={key}
+                                isActive={user?.username ? active : false}
+                                animationScale={2}
+                                animationDuration={0.10000}
+                                inactiveColor={'white'}
+                                className='icon'
+                                onClick={() => {
+                                    setFavoriteKey(key)
+                                    addToFavorite(movie)
+                                }}
+                            />
+                        </div>
                     </div>
                 ))}
             </div>

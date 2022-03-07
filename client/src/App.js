@@ -28,9 +28,6 @@ function App() {
       .then(result => {
         setUser(result.data)
       })
-      .catch(err => {
-        console.log(err);
-      })
   }, []);
 
   return (

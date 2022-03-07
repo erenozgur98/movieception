@@ -375,7 +375,7 @@ router.post('/signup', async (req, res) => {
 
         res.json(newUser);
     } catch (err) {
-        res.status(404).json(err);
+        res.status(404).json({ err });
     }
 });
 
