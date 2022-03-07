@@ -50,7 +50,7 @@ function SignUp({ setUser, user }) {
         } else if (username === '') {
             setUsernameError(true)
             return
-        } else if (password === '') {
+        } else if (password === '' || password.length < 8) {
             setPasswordError(true)
             return
         }
@@ -125,7 +125,7 @@ function SignUp({ setUser, user }) {
                                     fullWidth
                                     name="password"
                                     label="Password"
-                                    helperText={passwordError && 'Invalid Password'}
+                                    helperText={passwordError && 'Password must be 8 characters long / Wrong Password'}
                                     type="password"
                                     id="password"
                                     value={password}

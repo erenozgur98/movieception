@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom';
+import { useSnackbar } from 'notistack';
 import API from '../../utils/API';
 import './style.css'
 import Button from '@mui/material/Button';
@@ -11,28 +12,49 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 
-function Login({ setUser }) {
+function Login({ user, setUser }) {
     const history = useHistory();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [usernameError, setUsernameError] = useState(false);
+    const [passwordError, setPasswordError] = useState(false);
+
+    const { enqueueSnackbar } = useSnackbar();
+
+    useEffect(() => {
+        if (user.username) history.replace('/')
+    }, [user])
 
     const handleUsername = e => {
+        setUsernameError(false)
         setUsername(e.target.value)
     }
 
     const handlePassword = e => {
+        setPasswordError(false)
         setPassword(e.target.value)
     }
 
     const handleLogin = async (e) => {
         e.preventDefault();
+        if (username === '') {
+            setUsernameError(true)
+            return
+        } else if (password === '' || password.length < 8) {
+            setPasswordError(true)
+            return
+        }
+
         try {
             const newLogin = await API.logIn({ username: username, password: password });
             delete newLogin.data.password;
             setUser(newLogin.data);
-            history.replace('/');
+            window.location.assign('/');
         } catch (err) {
-            console.log(err)
+            enqueueSnackbar('Something went wrong, please try again!', {
+                variant: 'error',
+                anchorOrigin: { horizontal: 'center', vertical: 'bottom' }
+            })
         }
     }
 
@@ -53,11 +75,13 @@ function Login({ setUser }) {
                     </Typography>
                     <Box component="form" onSubmit={handleLogin} noValidate sx={{ mt: 1 }}>
                         <TextField
+                            error={usernameError}
                             margin="normal"
                             required
                             fullWidth
                             id="username"
                             label="Username"
+                            helperText={usernameError && 'Username is either taken or not valid'}
                             name="username"
                             autoComplete="username"
                             value={username}
@@ -65,11 +89,13 @@ function Login({ setUser }) {
                             autoFocus
                         />
                         <TextField
+                            error={passwordError}
                             margin="normal"
                             required
                             fullWidth
                             name="password"
                             label="Password"
+                            helperText={passwordError && 'Password is not 8 characters long / Wrong Password'}
                             type="password"
                             id="password"
                             autoComplete="password"
