@@ -48,6 +48,10 @@ function HistoryIcon({ user, movie }) {
                                 enqueueSnackbar('Successfully removed from your watched history!', {
                                     variant: 'success'
                                 })
+                            } else {
+                                enqueueSnackbar('Something went wrong, please try again later', {
+                                    variant: 'error'
+                                })
                             }
                         })
                         .catch(err => {
@@ -61,6 +65,10 @@ function HistoryIcon({ user, movie }) {
                                 setActive(false)
                                 enqueueSnackbar('Successfully removed from your watched history!', {
                                     variant: 'success'
+                                })
+                            } else {
+                                enqueueSnackbar('Something went wrong, please try again later', {
+                                    variant: 'error'
                                 })
                             }
                         })
@@ -78,6 +86,10 @@ function HistoryIcon({ user, movie }) {
                                 enqueueSnackbar('Successfully removed from your watched history!', {
                                     variant: 'success'
                                 })
+                            } else {
+                                enqueueSnackbar('Something went wrong, please try again later', {
+                                    variant: 'error'
+                                })
                             }
                         })
                         .catch(err => {
@@ -91,6 +103,10 @@ function HistoryIcon({ user, movie }) {
                                 setActive(false)
                                 enqueueSnackbar('Successfully removed from your watched history!', {
                                     variant: 'success'
+                                })
+                            } else {
+                                enqueueSnackbar('Something went wrong, please try again later', {
+                                    variant: 'error'
                                 })
                             }
                         })
@@ -108,6 +124,10 @@ function HistoryIcon({ user, movie }) {
                                 enqueueSnackbar('Successfully added to your watched history!', {
                                     variant: 'success'
                                 })
+                            } else {
+                                enqueueSnackbar('Something went wrong, please try again later', {
+                                    variant: 'error'
+                                })
                             }
                         })
                         .catch(err => {
@@ -121,6 +141,10 @@ function HistoryIcon({ user, movie }) {
                                 setActive(true)
                                 enqueueSnackbar('Successfully added to your watched history!', {
                                     variant: 'success'
+                                })
+                            } else {
+                                enqueueSnackbar('Something went wrong, please try again later', {
+                                    variant: 'error'
                                 })
                             }
                         })
@@ -138,6 +162,10 @@ function HistoryIcon({ user, movie }) {
                                 enqueueSnackbar('Successfully added to your watched history!', {
                                     variant: 'success'
                                 })
+                            } else {
+                                enqueueSnackbar('Something went wrong, please try again later', {
+                                    variant: 'error'
+                                })
                             }
                         })
                         .catch(err => {
@@ -151,6 +179,10 @@ function HistoryIcon({ user, movie }) {
                                 setActive(true)
                                 enqueueSnackbar('Successfully added to your watched history!', {
                                     variant: 'success'
+                                })
+                            } else {
+                                enqueueSnackbar('Something went wrong, please try again later', {
+                                    variant: 'error'
                                 })
                             }
                         })

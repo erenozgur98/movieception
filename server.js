@@ -27,14 +27,14 @@ app.use(routes);
 
 // Connect to the Mongo DB
 mongoose.connect(
-  process.env.MONGODB_URI || "mongodb://localhost/true-story", 
-  { 
+  process.env.MONGODB_URI || "mongodb://localhost/true-story",
+  {
     useUnifiedTopology: true,
     useNewUrlParser: true,
   }
 );
 
 // Start the API server
-app.listen(PORT, function() {
+app.listen(PORT, function () {
   console.log(`🌎 ==> API server now on port ${PORT}!`);
 });

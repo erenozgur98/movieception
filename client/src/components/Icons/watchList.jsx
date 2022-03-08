@@ -49,6 +49,10 @@ function WatchList({ user, movie }) {
                                 enqueueSnackbar('Successfully removed from your watch list!', {
                                     variant: 'success'
                                 })
+                            } else {
+                                enqueueSnackbar('Something went wrong, please try again later', {
+                                    variant: 'error'
+                                })
                             }
                         })
                         .catch(err => {
@@ -62,6 +66,10 @@ function WatchList({ user, movie }) {
                                 setActive(false)
                                 enqueueSnackbar('Successfully removed from your watch list!', {
                                     variant: 'success'
+                                })
+                            } else {
+                                enqueueSnackbar('Something went wrong, please try again later', {
+                                    variant: 'error'
                                 })
                             }
                         })
@@ -79,6 +87,10 @@ function WatchList({ user, movie }) {
                                 enqueueSnackbar('Successfully removed from your watch list!', {
                                     variant: 'success'
                                 })
+                            } else {
+                                enqueueSnackbar('Something went wrong, please try again later', {
+                                    variant: 'error'
+                                })
                             }
                         })
                         .catch(err => {
@@ -92,6 +104,10 @@ function WatchList({ user, movie }) {
                                 setActive(false)
                                 enqueueSnackbar('Successfully removed from your watch list!', {
                                     variant: 'success'
+                                })
+                            } else {
+                                enqueueSnackbar('Something went wrong, please try again later', {
+                                    variant: 'error'
                                 })
                             }
                         })
@@ -109,6 +125,10 @@ function WatchList({ user, movie }) {
                                 enqueueSnackbar('Successfully added to your watch list!', {
                                     variant: 'success'
                                 })
+                            } else {
+                                enqueueSnackbar('Something went wrong, please try again later', {
+                                    variant: 'error'
+                                })
                             }
                         })
                         .catch(err => {
@@ -122,6 +142,10 @@ function WatchList({ user, movie }) {
                                 setActive(true)
                                 enqueueSnackbar('Successfully added to your watch list!', {
                                     variant: 'success'
+                                })
+                            } else {
+                                enqueueSnackbar('Something went wrong, please try again later', {
+                                    variant: 'error'
                                 })
                             }
                         })
@@ -139,6 +163,10 @@ function WatchList({ user, movie }) {
                                 enqueueSnackbar('Successfully added to your watch list!', {
                                     variant: 'success'
                                 })
+                            } else {
+                                enqueueSnackbar('Something went wrong, please try again later', {
+                                    variant: 'error'
+                                })
                             }
                         })
                         .catch(err => {
@@ -152,6 +180,10 @@ function WatchList({ user, movie }) {
                                 setActive(true)
                                 enqueueSnackbar('Successfully added to your watch list!', {
                                     variant: 'success'
+                                })
+                            } else {
+                                enqueueSnackbar('Something went wrong, please try again later', {
+                                    variant: 'error'
                                 })
                             }
                         })

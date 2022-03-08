@@ -1,12 +1,15 @@
 .heart-icon {
   margin: 0.8rem 1rem;
+  cursor: pointer;
 }
 
 .heart-icon-animate {
 }
 
-.watch-icon {
+.watch-icon:hover {
+  cursor: pointer;
 }
 
-.history-icon {
+.history-icon:hover {
+  cursor: pointer;
 }

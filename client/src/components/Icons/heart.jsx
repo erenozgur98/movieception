@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSnackbar } from 'notistack'
 import Tooltip from '@mui/material/Tooltip';
-import Heart from 'react-heart';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import API from '../../utils/API'
@@ -63,6 +62,10 @@ function HeartIcon({ user, movie }) {
                                 enqueueSnackbar('Successfully removed from your favorites!', {
                                     variant: 'success'
                                 })
+                            } else {
+                                enqueueSnackbar('Something went wrong, please try again later', {
+                                    variant: 'error'
+                                })
                             }
                         })
                         .catch(err => {
@@ -79,6 +82,10 @@ function HeartIcon({ user, movie }) {
                                 enqueueSnackbar('Successfully removed from your favorites!', {
                                     variant: 'success'
                                 })
+                            } else {
+                                enqueueSnackbar('Something went wrong, please try again later', {
+                                    variant: 'error'
+                                })
                             }
                         })
                         .catch(err => {
@@ -92,6 +99,10 @@ function HeartIcon({ user, movie }) {
                                 setActive(false)
                                 enqueueSnackbar('Successfully removed from your favorites!', {
                                     variant: 'success'
+                                })
+                            } else {
+                                enqueueSnackbar('Something went wrong, please try again later', {
+                                    variant: 'error'
                                 })
                             }
                         })
@@ -109,6 +120,10 @@ function HeartIcon({ user, movie }) {
                                 enqueueSnackbar('Successfully added to your favorites!', {
                                     variant: 'success'
                                 })
+                            } else {
+                                enqueueSnackbar('Something went wrong, please try again later', {
+                                    variant: 'error'
+                                })
                             }
                         })
                         .catch(err => {
@@ -122,6 +137,10 @@ function HeartIcon({ user, movie }) {
                                 setActive(true)
                                 enqueueSnackbar('Successfully added to your favorites!', {
                                     variant: 'success'
+                                })
+                            } else {
+                                enqueueSnackbar('Something went wrong, please try again later', {
+                                    variant: 'error'
                                 })
                             }
                         })
@@ -139,6 +158,10 @@ function HeartIcon({ user, movie }) {
                                 enqueueSnackbar('Successfully added to your favorites!', {
                                     variant: 'success'
                                 })
+                            } else {
+                                enqueueSnackbar('Something went wrong, please try again later', {
+                                    variant: 'error'
+                                })
                             }
                         })
                         .catch(err => {
@@ -152,6 +175,10 @@ function HeartIcon({ user, movie }) {
                                 setActive(true)
                                 enqueueSnackbar('Successfully added to your favorites!', {
                                     variant: 'success'
+                                })
+                            } else {
+                                enqueueSnackbar('Something went wrong, please try again later', {
+                                    variant: 'error'
                                 })
                             }
                         })
