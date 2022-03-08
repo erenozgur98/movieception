@@ -85,7 +85,7 @@ function Home({ user, setUser }) {
                     </button>
                 </div>
             </Container>
-            <Container className='homepage'>
+            <Container className='home-homepage'>
                 <div className='homepage-items'>
                     <NowPlaying />
                     <NowAiring />

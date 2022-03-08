@@ -1,4 +1,4 @@
-.homepage {
+.home-homepage {
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -83,4 +83,10 @@
   position: relative;
   bottom: 10rem;
   text-decoration: underline;
+}
+
+@media screen and (max-width: 925px) {
+  .homepage-items {
+    flex-direction: column;
+  }
 }
