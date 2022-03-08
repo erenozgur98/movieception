@@ -17,20 +17,24 @@ function WatchList({ user, movie }) {
     const isShow = window.location.href.includes('shows')
 
     useEffect(() => {
-        API.getAllWatchList(user.username)
-            .then(res => {
-                setMovieWatchList(res.data.Movie)
-                setShowWatchList(res.data.Show)
-            })
+        if (user.username) {
+            API.getAllWatchList(user.username)
+                .then(res => {
+                    setMovieWatchList(res.data.Movie)
+                    setShowWatchList(res.data.Show)
+                })
+        }
     }, [])
 
     useEffect(() => {
-        if (movieWatchList.includes(movie.id)) {
-            setActive(true)
-        } else if (showWatchList.includes(movie.id)) {
-            setActive(true)
-        } else {
-            setActive(false)
+        if (user.username) {
+            if (movieWatchList.includes(movie.id)) {
+                setActive(true)
+            } else if (showWatchList.includes(movie.id)) {
+                setActive(true)
+            } else {
+                setActive(false)
+            }
         }
     }, [movieWatchList, showWatchList])
 

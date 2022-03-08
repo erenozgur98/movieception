@@ -16,20 +16,24 @@ function HistoryIcon({ user, movie }) {
     const isShow = window.location.href.includes('shows')
 
     useEffect(() => {
-        API.getAllWatched(user.username)
-            .then(res => {
-                setWatchedMovie(res.data.Movie)
-                setWatchedShow(res.data.Show)
-            })
+        if (user.username) {
+            API.getAllWatched(user.username)
+                .then(res => {
+                    setWatchedMovie(res.data.Movie)
+                    setWatchedShow(res.data.Show)
+                })
+        }
     }, [])
 
     useEffect(() => {
-        if (watchedMovie.includes(movie.id)) {
-            setActive(true)
-        } else if (watchedShow.includes(movie.id)) {
-            setActive(true)
-        } else {
-            setActive(false)
+        if (user.username) {
+            if (watchedMovie.includes(movie.id)) {
+                setActive(true)
+            } else if (watchedShow.includes(movie.id)) {
+                setActive(true)
+            } else {
+                setActive(false)
+            }
         }
     }, [watchedMovie, watchedShow])
 

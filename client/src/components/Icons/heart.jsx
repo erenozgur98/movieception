@@ -17,20 +17,24 @@ function HeartIcon({ user, movie }) {
     const isShow = window.location.href.includes('shows')
 
     useEffect(() => {
-        API.getAllFavorites(user.username)
-            .then(res => {
-                setMovieFavorite(res.data.Movie)
-                setShowFavorite(res.data.Show)
-            })
+        if (user.username) {
+            API.getAllFavorites(user.username)
+                .then(res => {
+                    setMovieFavorite(res.data.Movie)
+                    setShowFavorite(res.data.Show)
+                })
+        }
     }, [])
 
     useEffect(() => {
-        if (movieFavorite.includes(movie.id)) {
-            setActive(true)
-        } else if (showFavorite.includes(movie.id)) {
-            setActive(true)
-        } else {
-            setActive(false)
+        if (user.username) {
+            if (movieFavorite.includes(movie.id)) {
+                setActive(true)
+            } else if (showFavorite.includes(movie.id)) {
+                setActive(true)
+            } else {
+                setActive(false)
+            }
         }
     }, [movieFavorite, showFavorite])
 
