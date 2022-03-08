@@ -4,6 +4,8 @@ import API from '../../utils/API';
 import axios from '../Axios';
 import './Row.css'
 import HeartIcon from '../Icons/heart';
+import HistoryIcon from '../Icons/history';
+import WatchListIcon from '../Icons/watchList';
 
 const base_url = 'https://image.tmdb.org/t/p/original/';
 
@@ -77,7 +79,15 @@ function Row({ fetchUrl, title }) {
                             alt={movie?.name}
                         />
                         <div className='icon-container'>
+                            <HistoryIcon
+                                movie={movie}
+                                user={user}
+                            />
                             <HeartIcon
+                                movie={movie}
+                                user={user}
+                            />
+                            <WatchListIcon
                                 movie={movie}
                                 user={user}
                             />

@@ -1,48 +1,48 @@
 import React, { useEffect, useState } from "react";
 import { useSnackbar } from 'notistack'
 import Tooltip from '@mui/material/Tooltip';
-import Heart from 'react-heart';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import FavoriteIcon from '@mui/icons-material/Favorite';
+import PlaylistAddRoundedIcon from '@mui/icons-material/PlaylistAddRounded';
+import PlaylistAddCheckRoundedIcon from '@mui/icons-material/PlaylistAddCheckRounded';
 import API from '../../utils/API'
 import './icons.css'
 
-function HeartIcon({ user, movie }) {
+
+function WatchList({ user, movie }) {
     const [active, setActive] = useState(false)
-    const [movieFavorite, setMovieFavorite] = useState([])
-    const [showFavorite, setShowFavorite] = useState([])
+    const [movieWatchList, setMovieWatchList] = useState([])
+    const [showWatchList, setShowWatchList] = useState([])
     const { enqueueSnackbar } = useSnackbar();
 
     const isMovie = window.location.href.includes('movies')
     const isShow = window.location.href.includes('shows')
 
     useEffect(() => {
-        API.getAllFavorites(user.username)
+        API.getAllWatchList(user.username)
             .then(res => {
-                setMovieFavorite(res.data.Movie)
-                setShowFavorite(res.data.Show)
+                setMovieWatchList(res.data.Movie)
+                setShowWatchList(res.data.Show)
             })
     }, [])
 
     useEffect(() => {
-        if (movieFavorite.includes(movie.id)) {
+        if (movieWatchList.includes(movie.id)) {
             setActive(true)
-        } else if (showFavorite.includes(movie.id)) {
+        } else if (showWatchList.includes(movie.id)) {
             setActive(true)
         } else {
             setActive(false)
         }
-    }, [movieFavorite, showFavorite])
+    }, [movieWatchList, showWatchList])
 
-    const addToFavorite = () => {
+    const handleChange = () => {
         if (user?.username) {
             if (active) {
                 if (movie.media_type === 'tv') {
-                    API.removeShowFromFavorites(user.username, movie.id)
+                    API.removeShowFromWatchList(user.username, movie.id)
                         .then(res => {
                             if (res.status === 200) {
                                 setActive(false)
-                                enqueueSnackbar('Successfully removed from your favorites!', {
+                                enqueueSnackbar('Successfully removed from your watch list!', {
                                     variant: 'success'
                                 })
                             }
@@ -52,11 +52,11 @@ function HeartIcon({ user, movie }) {
                         })
                     return
                 } else if (movie.media_type === 'movie') {
-                    API.removeMovieFromFavorites(user.username, movie.id)
+                    API.removeMovieFromWatchList(user.username, movie.id)
                         .then(res => {
                             if (res.status === 200) {
                                 setActive(false)
-                                enqueueSnackbar('Successfully removed from your favorites!', {
+                                enqueueSnackbar('Successfully removed from your watch list!', {
                                     variant: 'success'
                                 })
                             }
@@ -68,11 +68,11 @@ function HeartIcon({ user, movie }) {
                 }
 
                 if (isMovie) {
-                    API.removeMovieFromFavorites(user.username, movie.id)
+                    API.removeMovieFromWatchList(user.username, movie.id)
                         .then(res => {
                             if (res.status === 200) {
                                 setActive(false)
-                                enqueueSnackbar('Successfully removed from your favorites!', {
+                                enqueueSnackbar('Successfully removed from your watch list!', {
                                     variant: 'success'
                                 })
                             }
@@ -82,11 +82,11 @@ function HeartIcon({ user, movie }) {
                         })
                     return
                 } else if (isShow) {
-                    API.removeShowFromFavorites(user.username, movie.id)
+                    API.removeShowFromWatchList(user.username, movie.id)
                         .then(res => {
                             if (res.status === 200) {
                                 setActive(false)
-                                enqueueSnackbar('Successfully removed from your favorites!', {
+                                enqueueSnackbar('Successfully removed from your watch list!', {
                                     variant: 'success'
                                 })
                             }
@@ -98,11 +98,11 @@ function HeartIcon({ user, movie }) {
                 }
             } else {
                 if (movie.media_type === 'tv') {
-                    API.addShowToFavorite(user.username, movie.id)
+                    API.addShowToWatchList(user.username, movie.id)
                         .then(res => {
                             if (res.status === 200) {
                                 setActive(true)
-                                enqueueSnackbar('Successfully added to your favorites!', {
+                                enqueueSnackbar('Successfully added to your watch list!', {
                                     variant: 'success'
                                 })
                             }
@@ -112,11 +112,11 @@ function HeartIcon({ user, movie }) {
                         })
                     return
                 } else if (movie.media_type === 'movie') {
-                    API.addMovieToFavorite(user.username, movie.id)
+                    API.addMovieToWatchList(user.username, movie.id)
                         .then(res => {
                             if (res.status === 200) {
                                 setActive(true)
-                                enqueueSnackbar('Successfully added to your favorites!', {
+                                enqueueSnackbar('Successfully added to your watch list!', {
                                     variant: 'success'
                                 })
                             }
@@ -128,11 +128,11 @@ function HeartIcon({ user, movie }) {
                 }
 
                 if (isMovie) {
-                    API.addMovieToFavorite(user.username, movie.id)
+                    API.addMovieToWatchList(user.username, movie.id)
                         .then(res => {
                             if (res.status === 200) {
                                 setActive(true)
-                                enqueueSnackbar('Successfully added to your favorites!', {
+                                enqueueSnackbar('Successfully added to your watch list!', {
                                     variant: 'success'
                                 })
                             }
@@ -142,11 +142,11 @@ function HeartIcon({ user, movie }) {
                         })
                     return
                 } else if (isShow) {
-                    API.addShowToFavorite(user.username, movie.id)
+                    API.addShowToWatchList(user.username, movie.id)
                         .then(res => {
                             if (res.status === 200) {
                                 setActive(true)
-                                enqueueSnackbar('Successfully added to your favorites!', {
+                                enqueueSnackbar('Successfully added to your watch list!', {
                                     variant: 'success'
                                 })
                             }
@@ -164,32 +164,26 @@ function HeartIcon({ user, movie }) {
         }
     }
 
+
     return (
         <>
-            <div className='heart-icon'>
+            <div className="watch-icon">
                 <Tooltip
                     title={
                         active
-                            ? 'Remove From Favorites'
-                            : 'Add To Favorites'
+                            ? 'Remove From Watch List'
+                            : 'Add To Watch List'
                     }
                 >
-                    <div className='heart-icon-animate'>
-                        {/* <Heart
-                            isActive={user?.username ? active : false}
-                            animationScale={1.5}
-                            animationDuration={0.10000}
-                            inactiveColor={'white'}
-                            onClick={addToFavorite}
-                        /> */}
+                    <div>
                         {active ? (
-                            <FavoriteIcon
-                                style={{ fill: 'red' }}
-                                onClick={addToFavorite}
+                            <PlaylistAddCheckRoundedIcon
+                                style={{ fill: 'yellow' }}
+                                onClick={handleChange}
                             />
                         ) : (
-                            <FavoriteBorderIcon
-                                onClick={addToFavorite}
+                            <PlaylistAddRoundedIcon
+                                onClick={handleChange}
                             />
                         )}
                     </div>
@@ -199,4 +193,4 @@ function HeartIcon({ user, movie }) {
     )
 }
 
-export default HeartIcon;
+export default WatchList;
