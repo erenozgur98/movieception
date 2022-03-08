@@ -166,7 +166,13 @@ function HeartIcon({ user, movie }) {
     return (
         <>
             <div className='heart-icon'>
-                <Tooltip title={active ? 'Remove From Favorites' : 'Add To Favorites'}>
+                <Tooltip
+                    title={
+                        active
+                            ? 'Remove From Favorites'
+                            : 'Add To Favorites'
+                    }
+                >
                     <div>
                         <Heart
                             isActive={user?.username ? active : false}
