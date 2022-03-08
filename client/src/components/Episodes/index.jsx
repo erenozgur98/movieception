@@ -21,7 +21,8 @@ function Episodes({ show, ShowId, SeasonId }) {
     const options = {
         year: 'numeric',
         month: 'long',
-        day: 'numeric'
+        day: 'numeric',
+        timeZone: 'UTC'
     };
 
     return (

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import Heart from 'react-heart';
+import { useSnackbar } from 'notistack'
 import API from '../../utils/API';
 import axios from '../Axios';
-import { useSnackbar } from 'notistack'
 import './Row.css'
+import HeartIcon from '../Icons/heart';
 
 const base_url = 'https://image.tmdb.org/t/p/original/';
 
@@ -12,8 +12,6 @@ function Row({ fetchUrl, title }) {
     const [, setLoading] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
     const [user, setUser] = useState({});
-    const [active, setActive] = useState(false);
-    const [favoriteKey, setFavoriteKey] = useState();
     const { enqueueSnackbar } = useSnackbar();
 
     const isMovie = window.location.href.includes('movies')
@@ -53,19 +51,6 @@ function Row({ fetchUrl, title }) {
         }
     };
 
-    const addToFavorite = (movie) => {
-        setActive(!active);
-        // setActive(favoriteKey === movie.id && !active);
-        if (user.username) {
-            // API.add
-        } else {
-            enqueueSnackbar('You are not logged in!', {
-                variant: 'warning'
-            })
-        }
-        console.log(movie.id)
-    };
-
     return (
         <div className='row'>
             <h2 className='row-title'>{title}</h2>
@@ -92,17 +77,9 @@ function Row({ fetchUrl, title }) {
                             alt={movie?.name}
                         />
                         <div className='icon-container'>
-                            <Heart
-                                key={key}
-                                isActive={user?.username ? active : false}
-                                animationScale={2}
-                                animationDuration={0.10000}
-                                inactiveColor={'white'}
-                                className='icon'
-                                onClick={() => {
-                                    setFavoriteKey(key)
-                                    addToFavorite(movie)
-                                }}
+                            <HeartIcon
+                                movie={movie}
+                                user={user}
                             />
                         </div>
                     </div>
