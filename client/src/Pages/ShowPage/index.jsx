@@ -202,6 +202,7 @@ function ShowPage({ user }) {
         align-items: center;
         margin-bottom: 2rem;
     `
+    console.log(show)
 
     return (
         <div>
@@ -223,7 +224,10 @@ function ShowPage({ user }) {
                             </div>
                             <WatchProviders show={show} />
                             <div className="social-media-links">
-                                <ExternalId externalId={externalId} link={show} />
+                                <ExternalId
+                                    link={show}
+                                    externalId={externalId}
+                                />
                             </div>
                         </div>
                         <div className="buttons">

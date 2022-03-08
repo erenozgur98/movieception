@@ -16,6 +16,7 @@ import ActorPage from './Pages/ActorPage';
 import SearchResults from './components/SearchResults';
 import SeasonPage from './Pages/SeasonPage';
 import EpisodePage from './Pages/EpisodePage';
+import Collections from './components/Collections';
 import { SnackbarProvider } from "notistack";
 import './index.css';
 
@@ -42,6 +43,7 @@ function App() {
             <Route exact path='/discover' component={Discover} />
             <Route exact path='/discover/movies' component={Movies} />
             <Route exact path='/movies/:MovieId' render={() => <MoviePage user={user} />} />
+            <Route exact path='/movies/:MovieId/collections/:CollectionId' component={Collections} />
             <Route exact path='/discover/shows' component={Shows} />
             <Route exact path='/shows/:ShowId' render={() => <ShowPage user={user} />} />
             <Route exact path='/shows/:ShowId/season/:SeasonId' component={SeasonPage} />

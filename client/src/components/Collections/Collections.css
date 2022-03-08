@@ -1,0 +1,45 @@
+.collection-main {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.collection-container {
+  display: flex;
+  bottom: 25rem;
+  position: relative;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.collection-image {
+  max-width: 324px;
+  margin-bottom: 1rem;
+  border-radius: 3rem;
+}
+
+.collection-map {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.collection-poster {
+  margin: 2rem;
+  width: 12rem;
+  border-radius: 5%;
+  object-fit: contain;
+  transition: transform 0.6s ease-in-out;
+}
+
+.collection-overviews {
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+}
+
+.collection-poster:hover {
+  cursor: pointer;
+}

@@ -1,21 +1,19 @@
-import React, { useState } from 'react'
-import { useEffect } from 'react';
-import { Container } from 'react-bootstrap';
-import { useParams } from 'react-router-dom';
-import axios from '../../components/Axios';
-import Banner from '../../components/Banner';
-import Credits from '../../components/Credits';
-import ExternalId from '../../components/ExternalId';
-import WatchProviders from '../../components/WatchProviders';
-import "./MoviePage.css"
-import Overview from '../../components/Overview';
-import Recommendations from '../../components/Recommendations';
+import React, { useState, useEffect } from 'react'
 import API from '../../utils/API';
 import styled from 'styled-components';
-import Trailer from '../../components/Trailer';
-import { useTitle } from '../../components/useTitle';
-import Collections from '../../components/Collections';
 import { useSnackbar } from 'notistack';
+import axios from '../../components/Axios';
+import { Container } from 'react-bootstrap';
+import { useParams } from 'react-router-dom';
+import Banner from '../../components/Banner';
+import Credits from '../../components/Credits';
+import Trailer from '../../components/Trailer';
+import Overview from '../../components/Overview';
+import ExternalId from '../../components/ExternalId';
+import { useTitle } from '../../components/useTitle';
+import WatchProviders from '../../components/WatchProviders';
+import Recommendations from '../../components/Recommendations';
+import "./MoviePage.css"
 
 function MoviePage({ user }) {
     const [movie, setMovie] = useState({});
@@ -216,7 +214,11 @@ function MoviePage({ user }) {
                             </div>
                             <WatchProviders movie={movie} />
                             <div className='social-media-links'>
-                                <ExternalId externalId={externalId} link={movie} />
+                                <ExternalId
+                                    link={movie}
+                                    externalId={externalId}
+                                    CollectionId={movie?.belongs_to_collection?.id}
+                                />
                             </div>
                         </div>
                         <div className="buttons">
@@ -308,7 +310,6 @@ function MoviePage({ user }) {
                             The cast of {movie?.original_title}
                         </div>
                         <Credits movie={movie} />
-                        <Collections CollectionId={movie?.belongs_to_collection?.id} />
                         <Recommendations movie={movie} />
                     </StyledOverviewDiv>
                 </StyledContainer>

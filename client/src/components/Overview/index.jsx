@@ -32,7 +32,8 @@ const Overview = ({ link }) => {
     const options = {
         year: 'numeric',
         month: 'long',
-        day: 'numeric'
+        day: 'numeric',
+        timeZone: 'UTC'
     };
 
     const date = new Date(link?.release_date || link?.first_air_date || link?.air_date);

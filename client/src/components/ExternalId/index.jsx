@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { useLocation } from 'react-router-dom';
 import './ExternalId.css';
 
-function ExternalId({ externalId, link }) {
+function ExternalId({ externalId, link, CollectionId }) {
     const StyledDiv = styled.div`
         display: flex;
         justify-content: center;
@@ -75,6 +75,16 @@ function ExternalId({ externalId, link }) {
                         className='btn btn-primary'
                     >
                         Homepage
+                    </button>
+                }
+            </div>
+            <div className='collection'>
+                {CollectionId &&
+                    <button
+                        className='btn btn-secondary'
+                        onClick={() => window.location.assign(`/movies/${link.id}/collections/${CollectionId}`)}
+                    >
+                        Go To Collection
                     </button>
                 }
             </div>
