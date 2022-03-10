@@ -26,7 +26,7 @@ function NowAiring() {
                 {nowAiring && <div>
                     <div className='airing-header'>Airing Tonight</div>
                     <img
-                        src={`${base_url}${nowAiring[0].poster_path}`}
+                        src={nowAiring[0].poster_path ? `${base_url}${nowAiring[0].poster_path}` : 'https://via.placeholder.com/150'}
                         alt={nowAiring[0].original_title}
                         onClick={() => redirect()}
                         className='airing-poster'

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Redirect } from 'react-router-dom';
+// import { Redirect } from 'react-router-dom';
 import API from '../../utils/API';
 
 function Profile({ user }) {
@@ -10,11 +10,6 @@ function Profile({ user }) {
     const [showWatchList, setShowWatchList] = useState([]);
     const [watchedMovies, setWatchedMovies] = useState([]);
     const [watchedShows, setWatchedShows] = useState([]);
-    const [redirect, setRedirect] = useState(false);
-
-    useEffect(() => {
-        if (!user.username) setRedirect(true)
-    }, [user]);
 
     useEffect(() => {
         const hours = new Date().getHours();
@@ -52,7 +47,7 @@ function Profile({ user }) {
 
     return (
         <>
-            {redirect && <Redirect to="/" />}
+            {/* {!user?.username && <Redirect to="/" />} */}
             <div
                 style={{
                     marginTop: '5rem',

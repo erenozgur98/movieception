@@ -1,29 +1,20 @@
 import React, { useState } from 'react'
-import './style.css';
-import SearchForm from '../SearchForm';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
-import Link from '@mui/material/Link';
-import MenuItem from '@mui/material/MenuItem';
-import Menu from '@mui/material/Menu';
-import Button from '@mui/material/Button';
-import Chip from '@mui/material/Chip';
-import AccountCircle from '@mui/icons-material/AccountCircle';
-import { Nav, NavDropdown } from 'react-bootstrap';
-import { styled } from '@mui/material/styles';
-import StyledComponents from 'styled-components';
 import LoginModal from '../Login'
 import API from '../../utils/API';
+import SearchForm from '../SearchForm';
+import { styled } from '@mui/material/styles';
+import MenuIcon from '@mui/icons-material/Menu';
+import StyledComponents from 'styled-components';
+import { Nav, NavDropdown } from 'react-bootstrap';
+import AccountCircle from '@mui/icons-material/AccountCircle';
+import { Box, Link, Menu, Chip, AppBar, Button, MenuItem, IconButton, Toolbar } from '@mui/material';
+import './style.css';
 
 function Header({ user, setUser }) {
     const [anchorEl, setAnchorEl] = useState(null);
     const [accountAnchorEl, setAccountAnchorEl] = useState(null);
     const [loginModal, setLoginModal] = useState(false);
     const [backgroundColor, setBackgroundColor] = useState('rgba(0, 0, 0, 0)');
-    // const [opacity, setOpacity] = useState('0.8');
     const isMenuOpen = Boolean(anchorEl);
 
     const StyledNavLink = StyledComponents(Nav.Link)`
