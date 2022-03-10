@@ -1,67 +1,71 @@
 .actor-pictures {
-    display: flex;
-    flex-wrap: wrap;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 .movie-credits-map {
-    text-align: center;
-    margin-top: 1rem;
-    transition: transform 450ms;
+  text-align: center;
+  margin-top: 1rem;
+  transition: transform 450ms;
 }
 
 .actor-pictures::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
 
 .overview {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin-bottom: 2rem;
 }
 
 .actor-images {
-    width: 8rem;
-    margin: 0.5rem;
-    border-radius: 5%;
+  width: 8rem;
+  margin: 0.5rem;
+  border-radius: 5%;
 }
 
 .movie-credits {
-    display: flex;
-    flex-wrap: wrap;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 .biography {
-    margin-bottom: 2rem;
-    text-align: center;
+  margin-bottom: 2rem;
+  text-align: center;
 }
 
 .actor-movie-poster {
-    object-fit: contain;
-    width: 8rem;
-    margin: 0.5rem;
-    border-radius: 5%;
-    transition: transform 450ms;
+  object-fit: contain;
+  width: 8rem;
+  margin: 0.5rem;
+  border-radius: 5%;
+  transition: transform 450ms;
 }
 
 .actor-movie-name {
-    width: 9em;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    font-size: 0.9rem;
-    transition: white-space 0.6s ease-in-out;
+  width: 9em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 0.9rem;
+  transition: white-space 0.6s ease-in-out;
 }
 
 .movie-credits::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
 
 .movie-credits-map:hover {
-    cursor: pointer;
-    transform: scale(1.10);
+  cursor: pointer;
+  transform: scale(1.1);
 }
 
 .movie-credits-map:hover > .actor-movie-name {
-    overflow: visible;
+  overflow: visible;
 }

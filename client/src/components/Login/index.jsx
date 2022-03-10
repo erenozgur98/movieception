@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
-import { Button, Container, Box, Typography, TextField, Grid, Link, Modal } from '@mui/material';
-import { ThemeProvider, createTheme } from "@mui/material/styles";
-import { useSnackbar } from 'notistack';
 import API from '../../utils/API';
+import { useSnackbar } from 'notistack';
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+import { Button, Container, Box, Typography, TextField, Grid, Link, Modal } from '@mui/material';
 import './LoginModal.css'
 
 const LoginModal = ({ setUser, show, handleClose }) => {
+    const { enqueueSnackbar } = useSnackbar();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [usernameError, setUsernameError] = useState(false);
     const [passwordError, setPasswordError] = useState(false);
-    const { enqueueSnackbar } = useSnackbar();
 
     const handleLogin = async (e) => {
         e.preventDefault();

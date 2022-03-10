@@ -12,20 +12,22 @@ import Overview from '../../components/Overview';
 import ExternalId from '../../components/ExternalId';
 import { useTitle } from '../../components/useTitle';
 import WatchProviders from '../../components/WatchProviders';
+import CircularProgress from '@mui/material/CircularProgress';
 import Recommendations from '../../components/Recommendations';
 import "./MoviePage.css"
 
 function MoviePage({ user }) {
-    const [movie, setMovie] = useState({});
-    const [externalId, setExternalId] = useState();
-    const [videos, setVideos] = useState();
-    const [trailerModal, setTrailerModal] = useState(false);
-    const [favorites, setFavorites] = useState([]);
-    const [watched, setWatched] = useState([]);
-    const [watchList, setWatchList] = useState([]);
-    const [documentTitle, setDocumentTitle] = useTitle();
     const { MovieId } = useParams();
+    const [movie, setMovie] = useState({});
+    const [videos, setVideos] = useState();
     const { enqueueSnackbar } = useSnackbar();
+    const [watched, setWatched] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const [watchList, setWatchList] = useState([]);
+    const [favorites, setFavorites] = useState([]);
+    const [externalId, setExternalId] = useState();
+    const [documentTitle, setDocumentTitle] = useTitle();
+    const [trailerModal, setTrailerModal] = useState(false);
 
     useEffect(() => {
         document.title = documentTitle ?? 'True Story';
@@ -33,6 +35,7 @@ function MoviePage({ user }) {
 
     useEffect(() => {
         const fetchData = async () => {
+            setLoading(true)
             const request = await axios.get(`/movie/${MovieId}?api_key=${process.env.REACT_APP_API_KEY}`);
             const requestExternalId = await axios.get(`movie/${MovieId}/external_ids?api_key=${process.env.REACT_APP_API_KEY}`);
             const requestVideos = await axios.get(`/movie/${MovieId}/videos?api_key=${process.env.REACT_APP_API_KEY}`)
@@ -40,6 +43,7 @@ function MoviePage({ user }) {
             setExternalId(requestExternalId.data);
             setVideos(requestVideos.data.results);
             setDocumentTitle(request.data?.original_title || request.data?.title || request.data?.name)
+            setLoading(false)
         }
         fetchData();
     }, [])
@@ -80,55 +84,67 @@ function MoviePage({ user }) {
     }, [user])
 
     const addToFavorite = (movie) => {
-        API.addMovieToFavorite(user?.username, movie?.id).then(res => {
-            if (res.status === 200) {
-                enqueueSnackbar('The Movie has been successfully added to your favorites', {
-                    variant: 'success'
-                })
-                setFavorites(res.data)
-            } else {
-                console.log('Soemthing went wrong')
-            }
-        })
+        API.addMovieToFavorite(user?.username, movie?.id)
+            .then(res => {
+                setLoading(true)
+                if (res.status === 200) {
+                    enqueueSnackbar('The Movie has been successfully added to your favorites', {
+                        variant: 'success'
+                    })
+                    setFavorites(res.data)
+                } else {
+                    console.log('Soemthing went wrong')
+                }
+            })
+            .finally(() => {
+                setLoading(false)
+            })
     }
 
     const removeFromFavorites = (movie) => {
-        API.removeMovieFromFavorites(user?.username, movie?.id).then(res => {
-            if (res.status === 200) {
-                enqueueSnackbar('The Movie has been successfully removed from your favorites', {
-                    variant: 'success'
-                })
-                setFavorites(res.data);
-            } else {
-                console.log('Something went wrong')
-            }
-        })
+        API.removeMovieFromFavorites(user?.username, movie?.id)
+            .then(res => {
+                setLoading(true)
+                if (res.status === 200) {
+                    enqueueSnackbar('The Movie has been successfully removed from your favorites', {
+                        variant: 'success'
+                    })
+                    setFavorites(res.data);
+                } else {
+                    console.log('Something went wrong')
+                }
+            })
+            .finally(() => {
+                setLoading(false)
+            })
     }
 
     const addToWatchList = (movie) => {
-        API.addMovieToWatchList(user?.username, movie?.id).then(res => {
-            if (res.status === 200) {
-                enqueueSnackbar('The Movie has been successfully added to your watch list', {
-                    variant: 'success'
-                })
-                setWatchList(res.data)
-            } else {
-                console.log('Soemthing went wrong')
-            }
-        })
+        API.addMovieToWatchList(user?.username, movie?.id)
+            .then(res => {
+                if (res.status === 200) {
+                    enqueueSnackbar('The Movie has been successfully added to your watch list', {
+                        variant: 'success'
+                    })
+                    setWatchList(res.data)
+                } else {
+                    console.log('Soemthing went wrong')
+                }
+            })
     }
 
     const removeFromWatchList = (movie) => {
-        API.removeMovieFromWatchList(user?.username, movie?.id).then(res => {
-            if (res.status === 200) {
-                enqueueSnackbar('The Movie has been successfully removed from your watch list', {
-                    variant: 'success'
-                })
-                setWatchList(res.data);
-            } else {
-                console.log('Something went wrong')
-            }
-        })
+        API.removeMovieFromWatchList(user?.username, movie?.id)
+            .then(res => {
+                if (res.status === 200) {
+                    enqueueSnackbar('The Movie has been successfully removed from your watch list', {
+                        variant: 'success'
+                    })
+                    setWatchList(res.data);
+                } else {
+                    console.log('Something went wrong')
+                }
+            })
     }
 
     const addToWatchedHistory = (movie) => {
@@ -146,16 +162,17 @@ function MoviePage({ user }) {
     }
 
     const removeFromWatchedHistory = (movie) => {
-        API.removeMovieFromWatched(user?.username, movie?.id).then(res => {
-            if (res.status === 200) {
-                enqueueSnackbar('The Movie has been successfully removed from your watched history', {
-                    variant: 'success'
-                })
-                setWatched(res.data)
-            } else {
-                console.log('Something went wrong')
-            }
-        })
+        API.removeMovieFromWatched(user?.username, movie?.id)
+            .then(res => {
+                if (res.status === 200) {
+                    enqueueSnackbar('The Movie has been successfully removed from your watched history', {
+                        variant: 'success'
+                    })
+                    setWatched(res.data)
+                } else {
+                    console.log('Something went wrong')
+                }
+            })
     }
 
     const StyledMainContainer = styled(Container)`
@@ -199,127 +216,148 @@ function MoviePage({ user }) {
 
     return (
         <div>
-            <Banner link={movie?.backdrop_path} />
-            <StyledMainContainer>
-                <StyledContainer>
-                    <StyledLeftSide>
-                        <div>
-                            <div>
-                                <StyledImg
-                                    src={
-                                        `https://image.tmdb.org/t/p/original${movie?.poster_path}`
-                                    }
-                                    alt={movie?.original_title}
-                                />
-                            </div>
-                            <WatchProviders movie={movie} />
-                            <div className='social-media-links'>
-                                <ExternalId
-                                    link={movie}
-                                    externalId={externalId}
-                                    CollectionId={movie?.belongs_to_collection?.id}
-                                />
-                            </div>
-                        </div>
-                        <div className="buttons">
-                            {user?.username && <div className='favorite-btn'>
-                                {favorites?.includes(movie.id) ?
-                                    (
-                                        <button
-                                            onClick={() => removeFromFavorites(movie)}
-                                            className='btn btn-success'
-                                        >
-                                            Remove From Favorites
-                                        </button>
-                                    )
-                                    :
-                                    (
-                                        <button
-                                            onClick={() => addToFavorite(movie)}
-                                            className='btn btn-success'
-                                        >
-                                            Add To Favorites
-                                        </button>
-                                    )
-                                }
-                            </div>}
-                            {user?.username && <div className='favorite-btn'>
-                                {watchList?.includes(movie.id) ?
-                                    (
-                                        <button
-                                            onClick={() => removeFromWatchList(movie)}
-                                            className='btn btn-warning'
-                                        >
-                                            Remove From Watch List
-                                        </button>
-                                    )
-                                    :
-                                    (
-                                        <button
-                                            onClick={() => addToWatchList(movie)}
-                                            className='btn btn-warning'
-                                        >
-                                            Add To Watch List
-                                        </button>
-                                    )
-                                }
-                            </div>}
-                            {user?.username && <div className='favorite-btn'>
-                                {watched?.includes(movie.id) ?
-                                    (
-                                        <button
-                                            onClick={() => removeFromWatchedHistory(movie)}
-                                            className='btn btn-danger'
-                                        >
-                                            Remove From Watched History
-                                        </button>
-                                    )
-                                    :
-                                    (
-                                        <button
-                                            onClick={() => addToWatchedHistory(movie)}
-                                            className='btn btn-danger'
-                                        >
-                                            Add to Watched History
-                                        </button>
-                                    )
-                                }
-                            </div>}
-                        </div>
-                    </StyledLeftSide>
-                    <StyledOverviewDiv>
-                        <Overview link={movie} />
-                        <div
-                            style={{ textAlign: 'center', marginTop: '2rem' }}
-                        >
-                            <button
-                                onClick={() => setTrailerModal(true)}
-                                className='btn btn-success'
-                            >
-                                Watch Trailer
-                            </button>
-                        </div>
-                        <div
-                            style={{
-                                textAlign: 'center',
-                                marginTop: '2rem',
-                                textDecoration: 'underline',
-                                fontSize: '1.3rem'
-                            }}
-                        >
-                            The cast of {movie?.original_title}
-                        </div>
-                        <Credits movie={movie} />
-                        <Recommendations movie={movie} />
-                    </StyledOverviewDiv>
-                </StyledContainer>
-                <Trailer
-                    videos={videos}
-                    show={trailerModal}
-                    handleClose={() => setTrailerModal(false)}
-                />
-            </StyledMainContainer>
-        </div>
+            {loading ? (
+                <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    marginTop: '10rem'
+                }}>
+                    <CircularProgress size={70} />
+                </div>
+            ) : (
+                <>
+                    <Banner link={movie?.backdrop_path} />
+                    <StyledMainContainer>
+                        <StyledContainer>
+                            <StyledLeftSide>
+                                <div>
+                                    <div>
+                                        {loading ? (
+                                            <CircularProgress />
+                                        ) : (
+                                            <>
+                                                <StyledImg
+                                                    src={
+                                                        `https://image.tmdb.org/t/p/original${movie?.poster_path}`
+                                                    }
+                                                    alt={movie?.original_title}
+                                                />
+
+                                            </>
+                                        )}
+                                    </div>
+                                    <WatchProviders movie={movie} />
+                                    <div className='social-media-links'>
+                                        <ExternalId
+                                            link={movie}
+                                            externalId={externalId}
+                                            CollectionId={movie?.belongs_to_collection?.id}
+                                        />
+                                    </div>
+                                </div>
+                                <div className="buttons">
+                                    {user?.username && <div className='favorite-btn'>
+                                        {favorites?.includes(movie.id) ?
+                                            (
+                                                <button
+                                                    onClick={() => removeFromFavorites(movie)}
+                                                    className='btn btn-success'
+                                                >
+                                                    Remove From Favorites
+                                                </button>
+                                            )
+                                            :
+                                            (
+                                                <button
+                                                    onClick={() => addToFavorite(movie)}
+                                                    className='btn btn-success'
+                                                >
+                                                    Add To Favorites
+                                                </button>
+                                            )
+                                        }
+                                    </div>}
+                                    {user?.username && <div className='favorite-btn'>
+                                        {watchList?.includes(movie.id) ?
+                                            (
+                                                <button
+                                                    onClick={() => removeFromWatchList(movie)}
+                                                    className='btn btn-warning'
+                                                >
+                                                    Remove From Watch List
+                                                </button>
+                                            )
+                                            :
+                                            (
+                                                <button
+                                                    onClick={() => addToWatchList(movie)}
+                                                    className='btn btn-warning'
+                                                >
+                                                    Add To Watch List
+                                                </button>
+                                            )
+                                        }
+                                    </div>}
+                                    {user?.username && <div className='favorite-btn'>
+                                        {watched?.includes(movie.id) ?
+                                            (
+                                                <button
+                                                    onClick={() => removeFromWatchedHistory(movie)}
+                                                    className='btn btn-danger'
+                                                >
+                                                    Remove From Watched History
+                                                </button>
+                                            )
+                                            :
+                                            (
+                                                <button
+                                                    onClick={() => addToWatchedHistory(movie)}
+                                                    className='btn btn-danger'
+                                                >
+                                                    Add to Watched History
+                                                </button>
+                                            )
+                                        }
+                                    </div>}
+                                </div>
+                            </StyledLeftSide>
+                            <StyledOverviewDiv>
+                                <Overview link={movie} />
+                                <div
+                                    style={{ textAlign: 'center', marginTop: '2rem' }}
+                                >
+                                    <button
+                                        onClick={() => setTrailerModal(true)}
+                                        className='btn btn-success'
+                                    >
+                                        Watch Trailer
+                                    </button>
+                                </div>
+                                <div
+                                    style={{
+                                        textAlign: 'center',
+                                        marginTop: '2rem',
+                                        textDecoration: 'underline',
+                                        fontSize: '1.3rem'
+                                    }}
+                                >
+                                    The cast of {movie?.original_title}
+                                </div>
+                                <Credits movie={movie} />
+                                <Recommendations movie={movie} />
+                            </StyledOverviewDiv>
+                        </StyledContainer>
+                        <Trailer
+                            videos={videos}
+                            show={trailerModal}
+                            handleClose={() => setTrailerModal(false)}
+                        />
+                    </StyledMainContainer>
+                </>
+            )
+            }
+        </div >
     )
 }
 

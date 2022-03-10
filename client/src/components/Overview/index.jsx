@@ -18,6 +18,7 @@ const Overview = ({ link }) => {
     const StyledBottomSection = styled.div`
         display: flex;
         flex-wrap: wrap;
+        text-align: center;
         align-items: center;
         justify-content: center;
     `

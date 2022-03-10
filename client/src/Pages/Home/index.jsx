@@ -1,21 +1,23 @@
 import React, { useState, useEffect } from 'react'
-import HomeMovie from '../../components/HomeMovie';
-import HomeShow from '../../components/HomeShow';
-import requests from '../../components/Requests';
-import Banner from '../../components/Banner';
 import axios from '../../components/Axios';
 import { Container } from 'react-bootstrap';
-import SearchForm from '../../components/SearchForm';
-import NowPlaying from '../../components/NowPlaying'
-import NowAiring from '../../components/NowAiring'
-import RandomModal from '../../components/RandomModal';
+import Banner from '../../components/Banner';
 import LoopIcon from '@mui/icons-material/Loop';
+import HomeShow from '../../components/HomeShow';
+import requests from '../../components/Requests';
+import NowAiring from '../../components/NowAiring'
+import HomeMovie from '../../components/HomeMovie';
+import NowPlaying from '../../components/NowPlaying';
+import SearchForm from '../../components/SearchForm';
+import RandomModal from '../../components/RandomModal';
+import CircularProgress from '@mui/material/CircularProgress';
 import './Home.css';
 
 function Home({ user, setUser }) {
     const [movie, setMovie] = useState([]);
     const [greet, setGreet] = useState();
     const [randomModal, setRandomModal] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         const hours = new Date().getHours();
@@ -32,10 +34,12 @@ function Home({ user, setUser }) {
 
     useEffect(() => {
         const fetchData = async () => {
+            setLoading(true)
             const request = await axios.get(requests.fetchTrending);
             setMovie(request.data.results[
                 Math.floor(Math.random() * request.data.results.length - 1)
             ]);
+            setLoading(false)
         }
         fetchData();
         document.title = 'Home';
@@ -51,55 +55,61 @@ function Home({ user, setUser }) {
 
     return (
         <div>
-            <Banner
-                link={movie?.backdrop_path}
-            />
-            <Container className='banner-text-container'>
-                <h1>
-                    {user.username && `${greet}, ${user.username}!`}
-                    {!user.username && `${greet}, welcome to True Story!`}
-                </h1>
-                <h2>
-                    What is True Story?
-                    <br />
-                    True Story is a website has been made to track/find tons of movies and tv shows!
-                </h2>
-                <SearchForm />
-                {(movie?.title || movie?.name) &&
-                    <h2 className="header-banner-title">
-                        Background Image From:
-                        <span
-                            onClick={redirect}
-                            className='title-span'
-                        >
-                            {movie?.title || movie?.name}
-                        </span>
-                    </h2>}
-                <div className="home-random-btn">
-                    <button
-                        onClick={() => setRandomModal(true)}
-                        className='btn btn-success home-btn'
-                    >
-                        Random
-                        <LoopIcon />
-                    </button>
-                </div>
-            </Container>
-            <Container className='home-homepage'>
-                <div className='homepage-items'>
-                    <NowPlaying />
-                    <NowAiring />
-                </div>
-                <h1 className='homepage-divider-title'>Top 10 This Week</h1>
-                <div className='homepage-items'>
-                    <HomeMovie fetchUrl={requests.fetchTrendingMovies} />
-                    <HomeShow fetchUrl={requests.fetchTrendingShows} />
-                </div>
-            </Container>
-            <RandomModal
-                show={randomModal}
-                handleClose={() => setRandomModal(false)}
-            />
+            {loading ? (
+                <CircularProgress />
+            ) : (
+                <>
+                    <Banner
+                        link={movie?.backdrop_path}
+                    />
+                    <Container className='banner-text-container'>
+                        <h1>
+                            {user.username && `${greet}, ${user.username}!`}
+                            {!user.username && `${greet}, welcome to True Story!`}
+                        </h1>
+                        <h2>
+                            What is True Story?
+                            <br />
+                            True Story is a website has been made to track/find tons of movies and tv shows!
+                        </h2>
+                        <SearchForm />
+                        {(movie?.title || movie?.name) &&
+                            <h2 className="header-banner-title">
+                                Background Image From:
+                                <span
+                                    onClick={redirect}
+                                    className='title-span'
+                                >
+                                    {movie?.title || movie?.name}
+                                </span>
+                            </h2>}
+                        <div className="home-random-btn">
+                            <button
+                                onClick={() => setRandomModal(true)}
+                                className='btn btn-success home-btn'
+                            >
+                                Random
+                                <LoopIcon />
+                            </button>
+                        </div>
+                    </Container>
+                    <Container className='home-homepage'>
+                        <div className='homepage-items'>
+                            <NowPlaying />
+                            <NowAiring />
+                        </div>
+                        <h1 className='homepage-divider-title'>Top 10 This Week</h1>
+                        <div className='homepage-items'>
+                            <HomeMovie fetchUrl={requests.fetchTrendingMovies} />
+                            <HomeShow fetchUrl={requests.fetchTrendingShows} />
+                        </div>
+                    </Container>
+                    <RandomModal
+                        show={randomModal}
+                        handleClose={() => setRandomModal(false)}
+                    />
+                </>
+            )}
         </div>
     )
 }
