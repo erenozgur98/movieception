@@ -6,6 +6,7 @@ import axios from '../../components/Axios';
 import { Container } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 import Banner from '../../components/Banner';
+import Skeleton from '@mui/material/Skeleton';
 import Credits from '../../components/Credits';
 import Trailer from '../../components/Trailer';
 import Overview from '../../components/Overview';
@@ -26,8 +27,10 @@ function MoviePage({ user }) {
     const [watchList, setWatchList] = useState([]);
     const [favorites, setFavorites] = useState([]);
     const [externalId, setExternalId] = useState();
+    const [disabled, setDisabled] = useState(false);
     const [documentTitle, setDocumentTitle] = useTitle();
     const [trailerModal, setTrailerModal] = useState(false);
+    console.log(disabled)
 
     useEffect(() => {
         document.title = documentTitle ?? 'True Story';
@@ -87,6 +90,7 @@ function MoviePage({ user }) {
         API.addMovieToFavorite(user?.username, movie?.id)
             .then(res => {
                 setLoading(true)
+                setDisabled(true)
                 if (res.status === 200) {
                     enqueueSnackbar('The Movie has been successfully added to your favorites', {
                         variant: 'success'
@@ -98,6 +102,7 @@ function MoviePage({ user }) {
             })
             .finally(() => {
                 setLoading(false)
+                setDisabled(false)
             })
     }
 
@@ -105,6 +110,7 @@ function MoviePage({ user }) {
         API.removeMovieFromFavorites(user?.username, movie?.id)
             .then(res => {
                 setLoading(true)
+                setDisabled(true)
                 if (res.status === 200) {
                     enqueueSnackbar('The Movie has been successfully removed from your favorites', {
                         variant: 'success'
@@ -116,12 +122,14 @@ function MoviePage({ user }) {
             })
             .finally(() => {
                 setLoading(false)
+                setDisabled(false)
             })
     }
 
     const addToWatchList = (movie) => {
         API.addMovieToWatchList(user?.username, movie?.id)
             .then(res => {
+                setDisabled(true)
                 if (res.status === 200) {
                     enqueueSnackbar('The Movie has been successfully added to your watch list', {
                         variant: 'success'
@@ -131,11 +139,15 @@ function MoviePage({ user }) {
                     console.log('Soemthing went wrong')
                 }
             })
+            .finally(() => {
+                setDisabled(false)
+            })
     }
 
     const removeFromWatchList = (movie) => {
         API.removeMovieFromWatchList(user?.username, movie?.id)
             .then(res => {
+                setDisabled(true)
                 if (res.status === 200) {
                     enqueueSnackbar('The Movie has been successfully removed from your watch list', {
                         variant: 'success'
@@ -145,11 +157,15 @@ function MoviePage({ user }) {
                     console.log('Something went wrong')
                 }
             })
+            .finally(() => {
+                setDisabled(false)
+            })
     }
 
     const addToWatchedHistory = (movie) => {
         API.addMovieToWatched(user?.username, movie?.id)
             .then(res => {
+                setDisabled(true)
                 if (res.status === 200) {
                     enqueueSnackbar('The Movie has been successfully added to your watched history', {
                         variant: 'success'
@@ -159,11 +175,15 @@ function MoviePage({ user }) {
                     console.log('Something went wrong')
                 }
             })
+            .finally(() => {
+                setDisabled(false)
+            })
     }
 
     const removeFromWatchedHistory = (movie) => {
         API.removeMovieFromWatched(user?.username, movie?.id)
             .then(res => {
+                setDisabled(true)
                 if (res.status === 200) {
                     enqueueSnackbar('The Movie has been successfully removed from your watched history', {
                         variant: 'success'
@@ -172,6 +192,9 @@ function MoviePage({ user }) {
                 } else {
                     console.log('Something went wrong')
                 }
+            })
+            .finally(() => {
+                setDisabled(false)
             })
     }
 
@@ -233,8 +256,14 @@ function MoviePage({ user }) {
                             <StyledLeftSide>
                                 <div>
                                     <div>
-                                        {loading ? (
-                                            <CircularProgress />
+                                        {!movie?.poster_path ? (
+                                            // <CircularProgress />
+                                            <Skeleton
+                                                width={324}
+                                                height={486}
+                                                variant='rectangular'
+                                                sx={{ bgcolor: 'rgba(133, 132, 132, 0.5)' }}
+                                            />
                                         ) : (
                                             <>
                                                 <StyledImg
@@ -263,6 +292,7 @@ function MoviePage({ user }) {
                                                 <button
                                                     onClick={() => removeFromFavorites(movie)}
                                                     className='btn btn-success'
+                                                    disabled={disabled}
                                                 >
                                                     Remove From Favorites
                                                 </button>
@@ -272,6 +302,7 @@ function MoviePage({ user }) {
                                                 <button
                                                     onClick={() => addToFavorite(movie)}
                                                     className='btn btn-success'
+                                                    disabled={disabled}
                                                 >
                                                     Add To Favorites
                                                 </button>
@@ -284,6 +315,7 @@ function MoviePage({ user }) {
                                                 <button
                                                     onClick={() => removeFromWatchList(movie)}
                                                     className='btn btn-warning'
+                                                    disabled={disabled}
                                                 >
                                                     Remove From Watch List
                                                 </button>
@@ -293,6 +325,7 @@ function MoviePage({ user }) {
                                                 <button
                                                     onClick={() => addToWatchList(movie)}
                                                     className='btn btn-warning'
+                                                    disabled={disabled}
                                                 >
                                                     Add To Watch List
                                                 </button>
@@ -305,6 +338,7 @@ function MoviePage({ user }) {
                                                 <button
                                                     onClick={() => removeFromWatchedHistory(movie)}
                                                     className='btn btn-danger'
+                                                    disabled={disabled}
                                                 >
                                                     Remove From Watched History
                                                 </button>
@@ -314,6 +348,7 @@ function MoviePage({ user }) {
                                                 <button
                                                     onClick={() => addToWatchedHistory(movie)}
                                                     className='btn btn-danger'
+                                                    disabled={disabled}
                                                 >
                                                     Add to Watched History
                                                 </button>

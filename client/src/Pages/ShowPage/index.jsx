@@ -202,7 +202,6 @@ function ShowPage({ user }) {
         align-items: center;
         margin-bottom: 2rem;
     `
-    console.log(show)
 
     return (
         <div>
