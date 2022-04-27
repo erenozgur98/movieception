@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import LoginModal from '../Login'
+import LoginModal from '../Login';
 import API from '../../utils/API';
 import SearchForm from '../SearchForm';
 import { styled } from '@mui/material/styles';
@@ -220,11 +220,6 @@ function Header({ user, setUser }) {
                                         <AccountCircle />
                                     </IconButton>
                                 ) : (
-                                    // <StyledLoginButton
-                                    //     onClick={() => setLoginModal(true)}
-                                    // >
-                                    //     Login
-                                    // </StyledLoginButton>
                                     <StyledDiv>
                                         <Chip label='Login' color="success" onClick={() => setLoginModal(true)} />
                                     </StyledDiv>

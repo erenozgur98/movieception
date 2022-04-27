@@ -8,7 +8,7 @@ function Trailer({ videos, show, handleClose }) {
     const [trailerUrl, setTrailerUrl] = useState('');
 
     useEffect(() => {
-        { show && playTrailer() }
+        show && playTrailer()
     }, [])
 
     const playTrailer = () => {

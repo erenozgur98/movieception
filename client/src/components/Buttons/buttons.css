@@ -1,0 +1,10 @@
+.buttons-under-homepage-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.buttons-under-homrpage-btn-sizes {
+    padding: 0.5rem;
+    transform: scale(1.5);
+}

@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react'
-import API from '../../utils/API';
 import styled from 'styled-components';
-import { useSnackbar } from 'notistack';
 import axios from '../../components/Axios';
 import { Container } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 import Banner from '../../components/Banner';
 import Skeleton from '@mui/material/Skeleton';
 import Credits from '../../components/Credits';
+import Buttons from '../../components/Buttons';
 import Trailer from '../../components/Trailer';
 import Overview from '../../components/Overview';
 import ExternalId from '../../components/ExternalId';
@@ -21,16 +20,10 @@ function MoviePage({ user }) {
     const { MovieId } = useParams();
     const [movie, setMovie] = useState({});
     const [videos, setVideos] = useState();
-    const { enqueueSnackbar } = useSnackbar();
-    const [watched, setWatched] = useState([]);
     const [loading, setLoading] = useState(false);
-    const [watchList, setWatchList] = useState([]);
-    const [favorites, setFavorites] = useState([]);
     const [externalId, setExternalId] = useState();
-    const [disabled, setDisabled] = useState(false);
     const [documentTitle, setDocumentTitle] = useTitle();
     const [trailerModal, setTrailerModal] = useState(false);
-    console.log(disabled)
 
     useEffect(() => {
         document.title = documentTitle ?? 'True Story';
@@ -40,8 +33,8 @@ function MoviePage({ user }) {
         const fetchData = async () => {
             setLoading(true)
             const request = await axios.get(`/movie/${MovieId}?api_key=${process.env.REACT_APP_API_KEY}`);
-            const requestExternalId = await axios.get(`movie/${MovieId}/external_ids?api_key=${process.env.REACT_APP_API_KEY}`);
             const requestVideos = await axios.get(`/movie/${MovieId}/videos?api_key=${process.env.REACT_APP_API_KEY}`)
+            const requestExternalId = await axios.get(`movie/${MovieId}/external_ids?api_key=${process.env.REACT_APP_API_KEY}`);
             setMovie(request.data);
             setExternalId(requestExternalId.data);
             setVideos(requestVideos.data.results);
@@ -50,153 +43,6 @@ function MoviePage({ user }) {
         }
         fetchData();
     }, [])
-
-    useEffect(() => {
-        const fetchData = () => {
-            if (user?.username) {
-                API.getAllFavorites(user?.username)
-                    .then(res => setFavorites(res.data?.Movie))
-                    .catch(err => console.log(err))
-            }
-        }
-        fetchData()
-    }, [user])
-
-    useEffect(() => {
-        const fetchData = () => {
-            if (user?.username) {
-                API.getAllWatchList(user?.username)
-                    .then(res => {
-                        setWatchList(res.data?.Movie)
-                    })
-            }
-        }
-        fetchData()
-    }, [user])
-
-    useEffect(() => {
-        const fetchData = () => {
-            if (user?.username) {
-                API.getAllWatched(user?.username)
-                    .then(res => {
-                        setWatched(res.data?.Movie)
-                    })
-            }
-        }
-        fetchData()
-    }, [user])
-
-    const addToFavorite = (movie) => {
-        API.addMovieToFavorite(user?.username, movie?.id)
-            .then(res => {
-                setLoading(true)
-                setDisabled(true)
-                if (res.status === 200) {
-                    enqueueSnackbar('The Movie has been successfully added to your favorites', {
-                        variant: 'success'
-                    })
-                    setFavorites(res.data)
-                } else {
-                    console.log('Soemthing went wrong')
-                }
-            })
-            .finally(() => {
-                setLoading(false)
-                setDisabled(false)
-            })
-    }
-
-    const removeFromFavorites = (movie) => {
-        API.removeMovieFromFavorites(user?.username, movie?.id)
-            .then(res => {
-                setLoading(true)
-                setDisabled(true)
-                if (res.status === 200) {
-                    enqueueSnackbar('The Movie has been successfully removed from your favorites', {
-                        variant: 'success'
-                    })
-                    setFavorites(res.data);
-                } else {
-                    console.log('Something went wrong')
-                }
-            })
-            .finally(() => {
-                setLoading(false)
-                setDisabled(false)
-            })
-    }
-
-    const addToWatchList = (movie) => {
-        API.addMovieToWatchList(user?.username, movie?.id)
-            .then(res => {
-                setDisabled(true)
-                if (res.status === 200) {
-                    enqueueSnackbar('The Movie has been successfully added to your watch list', {
-                        variant: 'success'
-                    })
-                    setWatchList(res.data)
-                } else {
-                    console.log('Soemthing went wrong')
-                }
-            })
-            .finally(() => {
-                setDisabled(false)
-            })
-    }
-
-    const removeFromWatchList = (movie) => {
-        API.removeMovieFromWatchList(user?.username, movie?.id)
-            .then(res => {
-                setDisabled(true)
-                if (res.status === 200) {
-                    enqueueSnackbar('The Movie has been successfully removed from your watch list', {
-                        variant: 'success'
-                    })
-                    setWatchList(res.data);
-                } else {
-                    console.log('Something went wrong')
-                }
-            })
-            .finally(() => {
-                setDisabled(false)
-            })
-    }
-
-    const addToWatchedHistory = (movie) => {
-        API.addMovieToWatched(user?.username, movie?.id)
-            .then(res => {
-                setDisabled(true)
-                if (res.status === 200) {
-                    enqueueSnackbar('The Movie has been successfully added to your watched history', {
-                        variant: 'success'
-                    })
-                    setWatched(res.data)
-                } else {
-                    console.log('Something went wrong')
-                }
-            })
-            .finally(() => {
-                setDisabled(false)
-            })
-    }
-
-    const removeFromWatchedHistory = (movie) => {
-        API.removeMovieFromWatched(user?.username, movie?.id)
-            .then(res => {
-                setDisabled(true)
-                if (res.status === 200) {
-                    enqueueSnackbar('The Movie has been successfully removed from your watched history', {
-                        variant: 'success'
-                    })
-                    setWatched(res.data)
-                } else {
-                    console.log('Something went wrong')
-                }
-            })
-            .finally(() => {
-                setDisabled(false)
-            })
-    }
 
     const StyledMainContainer = styled(Container)`
         position: relative;
@@ -285,76 +131,14 @@ function MoviePage({ user }) {
                                         />
                                     </div>
                                 </div>
-                                <div className="buttons">
-                                    {user?.username && <div className='favorite-btn'>
-                                        {favorites?.includes(movie.id) ?
-                                            (
-                                                <button
-                                                    onClick={() => removeFromFavorites(movie)}
-                                                    className='btn btn-success'
-                                                    disabled={disabled}
-                                                >
-                                                    Remove From Favorites
-                                                </button>
-                                            )
-                                            :
-                                            (
-                                                <button
-                                                    onClick={() => addToFavorite(movie)}
-                                                    className='btn btn-success'
-                                                    disabled={disabled}
-                                                >
-                                                    Add To Favorites
-                                                </button>
-                                            )
-                                        }
-                                    </div>}
-                                    {user?.username && <div className='favorite-btn'>
-                                        {watchList?.includes(movie.id) ?
-                                            (
-                                                <button
-                                                    onClick={() => removeFromWatchList(movie)}
-                                                    className='btn btn-warning'
-                                                    disabled={disabled}
-                                                >
-                                                    Remove From Watch List
-                                                </button>
-                                            )
-                                            :
-                                            (
-                                                <button
-                                                    onClick={() => addToWatchList(movie)}
-                                                    className='btn btn-warning'
-                                                    disabled={disabled}
-                                                >
-                                                    Add To Watch List
-                                                </button>
-                                            )
-                                        }
-                                    </div>}
-                                    {user?.username && <div className='favorite-btn'>
-                                        {watched?.includes(movie.id) ?
-                                            (
-                                                <button
-                                                    onClick={() => removeFromWatchedHistory(movie)}
-                                                    className='btn btn-danger'
-                                                    disabled={disabled}
-                                                >
-                                                    Remove From Watched History
-                                                </button>
-                                            )
-                                            :
-                                            (
-                                                <button
-                                                    onClick={() => addToWatchedHistory(movie)}
-                                                    className='btn btn-danger'
-                                                    disabled={disabled}
-                                                >
-                                                    Add to Watched History
-                                                </button>
-                                            )
-                                        }
-                                    </div>}
+                                <div>
+                                    {
+                                        user?.username &&
+                                        <Buttons
+                                            user={user}
+                                            movie={movie}
+                                        />
+                                    }
                                 </div>
                             </StyledLeftSide>
                             <StyledOverviewDiv>
