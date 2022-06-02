@@ -206,13 +206,6 @@ function HeartIcon({ user, movie }) {
                     }
                 >
                     <div className='heart-icon-animate'>
-                        {/* <Heart
-                            isActive={user?.username ? active : false}
-                            animationScale={1.5}
-                            animationDuration={0.10000}
-                            inactiveColor={'white'}
-                            onClick={addToFavorite}
-                        /> */}
                         {active ? (
                             <FavoriteIcon
                                 style={{ fill: 'red' }}

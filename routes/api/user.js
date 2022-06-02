@@ -330,6 +330,87 @@ router.delete('/:username/watchlist/shows/:ShowId', (req, res) => {
         })
 });
 
+////////// WATCHED EPISODES //////////
+
+router.get('/:username/episodes', (req, res) => {
+    let WubbaLubbaDubDub = {
+        'Show': [],
+        'Season': [],
+        'Episodes': []
+    }
+
+    const addToArr = (z, v) => {
+        WubbaLubbaDubDub[z].push(v)
+    }
+
+    User.findOne({ username: req.params.username })
+        .then(user => {
+            if (user.watchedEpisodes != null) {
+                user.watchedEpisodes.forEach(x => {
+                    addToArr('Show', x.show[0])
+                    addToArr('Season', x.season[0])
+                    addToArr('Episodes', x.episode[0])
+                })
+                res.json(WubbaLubbaDubDub)
+            } else {
+                res.json([])
+            }
+        })
+        .catch(err => {
+            res.status(500).sendStatus(`Error ${err}`)
+        })
+})
+
+router.post('/:username/shows/:ShowId/seasons/:SeasonId/episodes/:EpisodeId', (req, res) => {
+    User.findOneAndUpdate({
+        username: req.params.username
+    }, {
+        $push: {
+            watchedEpisodes: [
+                {
+                    show: req.params.ShowId,
+                    season: req.params.SeasonId,
+                    episode: req.params.EpisodeId
+                }
+            ]
+        }
+    }, {
+        new: true
+    },
+        function (err, updatedUser) {
+            if (err) {
+                res.status(500).send(`Error: ${err}`)
+            } else {
+                res.json(updatedUser.watchedEpisodes)
+            }
+        })
+})
+
+router.delete('/:username/shows/:ShowId/seasons/:SeasonId/episodes/:EpisodeId', (req, res) => {
+    User.findOneAndUpdate({
+        username: req.params.username
+    }, {
+        $pull: {
+            watchedEpisodes: [
+                {
+                    show: { $in: [req.params.ShowId] },
+                    season: { $in: [req.params.SeasonId] },
+                    episode: { $in: [req.params.EpisodeId] }
+                }
+            ]
+        }
+    }, {
+        new: true
+    },
+        function (err, updatedUser) {
+            if (err) {
+                res.status(500).send('Error: ' + err)
+            } else {
+                res.json(updatedUser.watchedEpisodes)
+            }
+        })
+});
+
 
 ////////// LOGIN - SIGNUP - LOGOUT //////////
 

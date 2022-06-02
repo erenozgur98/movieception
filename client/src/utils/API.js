@@ -89,4 +89,16 @@ export default {
     removeShowFromWatched: (username, MovieId) => {
         return axios.delete(`/api/users/${username}/watched/shows/${MovieId}`)
     },
+
+    getAllEpisodes: (username) => {
+        return axios.get(`/api/users/${username}/episodes`)
+    },
+
+    addEpisodetoWatched: (username, ShowId, SeasonId, EpisodeId) => {
+        return axios.post(`/api/users/${username}/shows/${ShowId}/seasons/${SeasonId}/episodes/${EpisodeId}`)
+    },
+
+    removeEpisodeFromWatched: (username, ShowId, SeasonId, EpisodeId) => {
+        return axios.delete(`/api/users/${username}/shows/${ShowId}/seasons/${SeasonId}/episodes/${EpisodeId}`)
+    }
 };

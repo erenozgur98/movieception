@@ -1,25 +1,40 @@
 .episode-overview {
     display: flex;
+    text-align: center;
+    margin-left: 0.5rem;
     flex-direction: column;
     justify-content: center;
-    /* align-items: center; */
-    margin-left: 0.5rem;
 }
 
 .episode-picture {
     display: flex;
-    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .episode-poster {
-    width: 300px;
+    width: 70%;
     margin: 0.5rem;
+}
+
+.episodes-text {
+    margin: 2rem;
+    font-size: 2rem;
+    text-align: center;
+}
+
+.episode-checkbox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 @media screen and (max-width: 925px) {
     .episode-picture {
+        align-items: center;
         flex-direction: column;
         justify-content: center;
-        align-items: center;
     }
 }

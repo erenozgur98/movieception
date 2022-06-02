@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
 import axios from '../Axios';
-import Details from "../Details";
 import './MovieDetail.css'
 
 const base_url = 'https://image.tmdb.org/t/p/original/';
@@ -18,7 +17,7 @@ function MovieDetail({ fetchUrl }) {
   }, [fetchUrl])
 
   const handleClick = (movie) => {
-    
+    console.log('Movie: ', movie)
   };
 
   return (

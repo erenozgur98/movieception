@@ -23,7 +23,7 @@ function Login({ user, setUser }) {
 
     useEffect(() => {
         if (user.username) history.replace('/')
-    }, [user])
+    }, [user, history])
 
     const handleUsername = e => {
         setUsernameError(false)

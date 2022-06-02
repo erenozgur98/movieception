@@ -10,7 +10,7 @@ import Credits from '../../components/Credits';
 import styled from 'styled-components';
 import { useTitle } from '../../components/useTitle';
 
-function SeasonPage() {
+function SeasonPage({ user }) {
     const [show, setShow] = useState({});
     const [credits, setCredits] = useState();
     const [documentTitle, setDocumentTitle] = useTitle();
@@ -66,11 +66,11 @@ function SeasonPage() {
                             </div>
                             <div className="bottom-section" style={{ marginTop: '15rem' }}>
                                 <Overview link={show} />
-                                <Credits credits={credits} />
+                                {/* <Credits credits={credits} /> */}
                             </div>
                         </div>
                         <div>
-                            <Episodes show={show} ShowId={ShowId} SeasonId={SeasonId} />
+                            <Episodes show={show} ShowId={ShowId} SeasonId={SeasonId} user={user} />
                         </div>
                     </div>
                 }

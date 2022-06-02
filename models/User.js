@@ -50,6 +50,25 @@ const UserSchema = new Schema(
             {
                 type: Number,
             }
+        ],
+        watchedEpisodes: [
+            {
+                show: [
+                    {
+                        type: Number,
+                    }
+                ],
+                season: [
+                    {
+                        type: Number,
+                    }
+                ],
+                episode: [
+                    {
+                        type: Number,
+                    }
+                ]
+            }
         ]
     }
 );
