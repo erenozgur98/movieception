@@ -11,7 +11,7 @@ function SearchResults() {
     const searchedQuery = new URLSearchParams(search).get('query');
 
     useEffect(() => {
-        document.title = documentTitle ?? 'True Story'
+        document.title = documentTitle ?? 'Movieception'
     }, [documentTitle])
 
     useEffect(() => {

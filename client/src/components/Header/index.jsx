@@ -183,7 +183,8 @@ function Header({ user, setUser }) {
                 <AppBar position="fixed" style={AppBarStyle}>
                     <Toolbar>
                         <Link href='/' style={{ color: 'white', textDecoration: 'none', fontSize: '1.3rem', marginRight: '0.8rem' }}>
-                            True<span style={{ paddingLeft: '5px' }}>Story</span>
+                            {/* True<span style={{ paddingLeft: '5px' }}>Story</span> */}
+                            Movieception
                         </Link>
                         <SearchForm />
                         <Box sx={{ flexGrow: 1 }} />

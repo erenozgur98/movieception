@@ -15,18 +15,19 @@ import styled from 'styled-components';
 import Trailer from '../../components/Trailer';
 import { useTitle } from '../../components/useTitle';
 import Buttons from '../../components/Buttons';
+import CircularProgress from '@mui/material/CircularProgress';
 
 function ShowPage({ user }) {
-    const [, setLoading] = useState(false);
     const [show, setShow] = useState({});
     const [externalId, setExternalId] = useState();
     const [videos, setVideos] = useState();
     const [trailerModal, setTrailerModal] = useState(false);
     const [documentTitle, setDocumentTitle] = useTitle();
+    const [loading, setLoading] = useState(false);
     const { ShowId } = useParams();
 
     useEffect(() => {
-        document.title = documentTitle ?? 'True Story';
+        document.title = documentTitle ?? 'Movieception';
     }, [documentTitle])
 
     useEffect(() => {
@@ -38,8 +39,8 @@ function ShowPage({ user }) {
             setShow(request.data);
             setExternalId(requestExternalId.data);
             setVideos(requestVideos.data.results);
-            setLoading(false);
             setDocumentTitle(request.data?.title || request.data?.name || request.data?.original_title)
+            setLoading(false);
         }
         if (ShowId) {
             fetchData();
@@ -86,70 +87,83 @@ function ShowPage({ user }) {
 
     return (
         <div>
-            <Banner link={show?.backdrop_path} />
-            <StyledMainContainer>
-                <StyledContainer>
-                    <StyledLeftSide>
-                        <div>
-                            <div>
-                                <StyledImg
-                                    src={
-                                        `https://image.tmdb.org/t/p/original${show?.poster_path}`
+            {loading ? (
+                <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    marginTop: '10rem'
+                }}>
+                    <CircularProgress size={70} />
+                </div>
+            ) : (
+                <>
+                    <Banner link={show?.backdrop_path} />
+                    <StyledMainContainer>
+                        <StyledContainer>
+                            <StyledLeftSide>
+                                <div>
+                                    <div>
+                                        <StyledImg
+                                            src={
+                                                `https://image.tmdb.org/t/p/original${show?.poster_path}`
+                                            }
+                                            alt={show?.original_title}
+                                        />
+                                    </div>
+                                    <WatchProviders show={show} />
+                                    <div className="social-media-links">
+                                        <ExternalId
+                                            link={show}
+                                            externalId={externalId}
+                                        />
+                                    </div>
+                                </div>
+                                <div>
+                                    {
+                                        user?.username &&
+                                        <Buttons
+                                            user={user}
+                                            movie={show}
+                                        />
                                     }
-                                    alt={show?.original_title}
-                                />
-                            </div>
-                            <WatchProviders show={show} />
-                            <div className="social-media-links">
-                                <ExternalId
-                                    link={show}
-                                    externalId={externalId}
-                                />
-                            </div>
-                        </div>
-                        <div>
-                            {
-                                user?.username &&
-                                <Buttons
-                                    user={user}
-                                    movie={show}
-                                />
-                            }
-                        </div>
-                    </StyledLeftSide>
-                    <StyledOverviewDiv>
-                        <Overview link={show} />
-                        <Seasons show={show} />
-                        <div
-                            style={{ textAlign: 'center', marginTop: '2rem' }}
-                        >
-                            <button
-                                onClick={() => setTrailerModal(true)}
-                                className='btn btn-success'
-                            >
-                                Watch Trailer
-                            </button>
-                        </div>
-                        <div
-                            style={{
-                                textAlign: 'center',
-                                marginTop: '2rem',
-                                textDecoration: 'underline',
-                                fontSize: '1.3rem'
-                            }}
-                        >
-                            The cast of {show?.original_title || show?.name}
-                        </div>
-                        <Credits show={show} />
-                        <Recommendations show={show} />
-                    </StyledOverviewDiv>
-                </StyledContainer>
-                <Trailer
-                    videos={videos}
-                    show={trailerModal}
-                    handleClose={() => setTrailerModal(false)}
-                />
-            </StyledMainContainer>
+                                </div>
+                            </StyledLeftSide>
+                            <StyledOverviewDiv>
+                                <Overview link={show} />
+                                <Seasons show={show} />
+                                <div
+                                    style={{ textAlign: 'center', marginTop: '2rem' }}
+                                >
+                                    <button
+                                        onClick={() => setTrailerModal(true)}
+                                        className='btn btn-success'
+                                    >
+                                        Watch Trailer
+                                    </button>
+                                </div>
+                                <div
+                                    style={{
+                                        textAlign: 'center',
+                                        marginTop: '2rem',
+                                        textDecoration: 'underline',
+                                        fontSize: '1.3rem'
+                                    }}
+                                >
+                                    The cast of {show?.original_title || show?.name}
+                                </div>
+                                <Credits show={show} />
+                                <Recommendations show={show} />
+                            </StyledOverviewDiv>
+                        </StyledContainer>
+                        <Trailer
+                            videos={videos}
+                            show={trailerModal}
+                            handleClose={() => setTrailerModal(false)}
+                        />
+                    </StyledMainContainer>
+                </>
+            )}
         </div>
     )
 }

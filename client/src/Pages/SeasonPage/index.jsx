@@ -18,7 +18,7 @@ function SeasonPage({ user }) {
     const { ShowId } = useParams();
 
     useEffect(() => {
-        document.title = documentTitle ?? 'True Story';
+        document.title = documentTitle ?? 'Movieception';
     }, [documentTitle])
 
     useEffect(() => {

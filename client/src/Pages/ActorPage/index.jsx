@@ -9,6 +9,7 @@ import MovieCredits from '../../components/MovieCredits';
 import './ActorPage.css'
 import styled from 'styled-components';
 import { useTitle } from '../../components/useTitle';
+import CircularProgress from '@mui/material/CircularProgress';
 
 function ActorPage() {
     const [actor, setActor] = useState({});
@@ -17,16 +18,18 @@ function ActorPage() {
     const [movieCredits, setMovieCredits] = useState([]);
     const [randomInt,] = useState(Math.floor(Math.random() * 10))
     const [documentTitle, setDocumentTitle] = useTitle();
+    const [loading, setLoading] = useState(false);
     const { ActorId } = useParams();
 
     const base_url = 'https://image.tmdb.org/t/p/original';
 
     useEffect(() => {
-        document.title = documentTitle ?? 'True Story'
+        document.title = documentTitle ?? 'Movieception'
     }, [documentTitle])
 
     useEffect(() => {
         const fetchData = async () => {
+            setLoading(true)
             const request = await axios.get(`/person/${ActorId}?api_key=${process.env.REACT_APP_API_KEY}`);
             const requestExternalId = await axios.get(`person/${ActorId}/external_ids?api_key=${process.env.REACT_APP_API_KEY}`);
             const requestActorImages = await axios.get(`person/${ActorId}/images?api_key=${process.env.REACT_APP_API_KEY}`)
@@ -36,6 +39,7 @@ function ActorPage() {
             setActorPictures(requestActorImages.data.profiles);
             setMovieCredits(requestMovieCredits.data.cast);
             setDocumentTitle(request.data?.name)
+            setLoading(false)
         }
         fetchData()
     }, [ActorId]);
@@ -83,63 +87,76 @@ function ActorPage() {
     movieCredits.sort((a, b) => (a.release_date > b.release_date) ? -1 : ((b.release_date > a.release_date) ? 1 : 0))
 
     return (
-        <div>
-            {movieCredits[randomInt]?.backdrop_path ?
-                <Banner link={movieCredits[randomInt]?.backdrop_path} title={movieCredits[randomInt]?.title} />
-                :
-                <Banner link={movieCredits[randomInt + 1]?.backdrop_path} title={movieCredits[randomInt + 1]?.title} />
-            }
-            <StyledMainContainer>
-                <StyledContainer>
-                    <div className='page-organization'>
-                        <div>
-                            <StyledImg
-                                src={`https://image.tmdb.org/t/p/original/${actor?.profile_path}`}
-                                alt={actor?.name}
-                            />
-                            <div className='social-media-links'>
-                                <ExternalId externalId={externalId} link={actor} />
-                            </div>
-                        </div>
-                        <StyledOverviewDiv>
-                            <div className="overview">
-                                <h2>{actor?.name}</h2>
+        <>
+            {loading ? (
+                <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    marginTop: '10rem'
+                }}>
+                    <CircularProgress size={70} />
+                </div>
+            ) : (
+                <div>
+                    {movieCredits[randomInt]?.backdrop_path ?
+                        <Banner link={movieCredits[randomInt]?.backdrop_path} title={movieCredits[randomInt]?.title} />
+                        :
+                        <Banner link={movieCredits[randomInt + 1]?.backdrop_path} title={movieCredits[randomInt + 1]?.title} />
+                    }
+                    <StyledMainContainer>
+                        <StyledContainer>
+                            <div className='page-organization'>
                                 <div>
-                                    {actor?.birthday &&
-                                        <div>
-                                            Born <StyledSpan>{date.toLocaleString('en-US', options)}</StyledSpan> in <StyledSpan>{actor?.place_of_birth}</StyledSpan>
-                                        </div>
-                                    }
-                                </div>
-                            </div>
-                            <div className='biography'>
-                                {actor?.biography &&
-                                    <div>
-                                        {actor?.biography}
-                                    </div>
-                                }
-                            </div>
-                            <div>
-                                <h4 style={{ textAlign: 'center' }}>Known For</h4>
-                                <MovieCredits actor={actor} />
-                            </div>
-                            <h4 style={{ textAlign: 'center', marginTop: '2rem' }}>{actor?.name}'s Images</h4>
-                            <div className='actor-pictures'>
-                                {slicedPictures.map((x) => (
-                                    x?.file_path &&
-                                    <img
-                                        key={x.id}
-                                        src={`${base_url}${x.file_path}`}
-                                        alt={x?.width}
-                                        className='actor-images'
+                                    <StyledImg
+                                        src={`https://image.tmdb.org/t/p/original/${actor?.profile_path}`}
+                                        alt={actor?.name}
                                     />
-                                ))}
+                                    <div className='social-media-links'>
+                                        <ExternalId externalId={externalId} link={actor} />
+                                    </div>
+                                </div>
+                                <StyledOverviewDiv>
+                                    <div className="overview">
+                                        <h2>{actor?.name}</h2>
+                                        <div>
+                                            {actor?.birthday &&
+                                                <div>
+                                                    Born <StyledSpan>{date.toLocaleString('en-US', options)}</StyledSpan> in <StyledSpan>{actor?.place_of_birth}</StyledSpan>
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                    <div className='biography'>
+                                        {actor?.biography &&
+                                            <div>
+                                                {actor?.biography}
+                                            </div>
+                                        }
+                                    </div>
+                                    <div>
+                                        <h4 style={{ textAlign: 'center' }}>Known For</h4>
+                                        <MovieCredits actor={actor} />
+                                    </div>
+                                    <h4 style={{ textAlign: 'center', marginTop: '2rem' }}>{actor?.name}'s Images</h4>
+                                    <div className='actor-pictures'>
+                                        {slicedPictures.map((x) => (
+                                            x?.file_path &&
+                                            <img
+                                                key={x.id}
+                                                src={`${base_url}${x.file_path}`}
+                                                alt={x?.width}
+                                                className='actor-images'
+                                            />
+                                        ))}
+                                    </div>
+                                </StyledOverviewDiv>
                             </div>
-                        </StyledOverviewDiv>
-                    </div>
-                </StyledContainer>
-            </StyledMainContainer>
-        </div>
+                        </StyledContainer>
+                    </StyledMainContainer>
+                </div>
+            )}
+        </>
     )
 }
 

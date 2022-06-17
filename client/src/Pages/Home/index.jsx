@@ -65,12 +65,12 @@ function Home({ user, setUser }) {
                     <Container className='banner-text-container'>
                         <h1>
                             {user.username && `${greet}, ${user.username}!`}
-                            {!user.username && `${greet}, welcome to True Story!`}
+                            {!user.username && `${greet}, welcome to Movieception!`}
                         </h1>
                         <h2>
-                            What is True Story?
+                            What is Movieception?
                             <br />
-                            True Story is a website has been made to track/find tons of movies and tv shows!
+                            Movieception is a website has been made to track/find tons of movies and tv shows!
                         </h2>
                         <SearchForm />
                         {(movie?.title || movie?.name) &&
@@ -94,10 +94,11 @@ function Home({ user, setUser }) {
                         </div>
                     </Container>
                     <Container className='home-homepage'>
-                        <div className='homepage-items'>
+                        {/* commented out for now, might not implement it */}
+                        {/* <div className='homepage-items'>
                             <NowPlaying />
                             <NowAiring />
-                        </div>
+                        </div> */}
                         <h1 className='homepage-divider-title'>Top 10 This Week</h1>
                         <div className='homepage-items'>
                             <HomeMovie fetchUrl={requests.fetchTrendingMovies} />

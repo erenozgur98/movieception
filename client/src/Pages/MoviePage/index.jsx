@@ -26,7 +26,7 @@ function MoviePage({ user }) {
     const [trailerModal, setTrailerModal] = useState(false);
 
     useEffect(() => {
-        document.title = documentTitle ?? 'True Story';
+        document.title = documentTitle ?? 'Movieception';
     }, [documentTitle])
 
     useEffect(() => {
@@ -174,8 +174,7 @@ function MoviePage({ user }) {
                         />
                     </StyledMainContainer>
                 </>
-            )
-            }
+            )}
         </div >
     )
 }
