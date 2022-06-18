@@ -48,7 +48,7 @@ function Profile({ user }) {
     return (
         <>
             {/* {!user?.username && <Redirect to="/" />} */}
-            <div
+            {/* <div
                 style={{
                     marginTop: '5rem',
                     display: 'flex',
@@ -60,7 +60,8 @@ function Profile({ user }) {
             </div>
             1{favoriteMovies?.map(x => <p>{x}</p>)} <br /> {favoriteShows?.map(x => <p>{x}</p>)}
             2{movieWatchList?.map(x => <p>{x}</p>)} <br /> {showWatchList?.map(x => <p>{x}</p>)}
-            3{watchedMovies?.map(x => <p>{x}</p>)} <br /> {watchedShows?.map(x => <p>{x}</p>)}
+            3{watchedMovies?.map(x => <p>{x}</p>)} <br /> {watchedShows?.map(x => <p>{x}</p>)} */}
+            <h2 style={{ marginTop: '5rem', textAlign: 'center' }}>Profile page is under construction. Please wait patiently, thank you!</h2>
         </>
     )
 }

@@ -10,6 +10,7 @@ import Movies from './Pages/Movies';
 import Profile from './Pages/Profile';
 import ShowPage from './Pages/ShowPage';
 import Discover from './Pages/Discover';
+import Settings from './Pages/Settings';
 import Header from './components/Header';
 import MoviePage from './Pages/MoviePage';
 import ActorPage from './Pages/ActorPage';
@@ -49,6 +50,7 @@ function App() {
             <Route exact path='/actors' component={Actors} />
             <Route exact path='/actors/:ActorId' component={ActorPage} />
             <Route exact path='/users/:username' render={() => <Profile user={user} />} />
+            <Route exact path='/settings' render={() => <Settings user={user} />} />
             <Route exact path='/login' render={(props) => <Login {...props}
               loggedIn={loggedIn}
               setLoggedIn={setLoggedIn}
