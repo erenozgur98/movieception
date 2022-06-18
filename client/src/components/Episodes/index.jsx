@@ -1,4 +1,3 @@
-import useSnackbar from 'notistack';
 import axios from '../../components/Axios';
 import React, { useState, useEffect } from 'react';
 import Checkbox from '../../components/Icons/checkbox';
@@ -16,6 +15,7 @@ function Episodes({ show, ShowId, SeasonId, user }) {
         fetchData();
     }, [show, ShowId]);
 
+    // for checkbox
     const handleWatched = id => {
         setChecked(!checked)
     }
@@ -34,13 +34,14 @@ function Episodes({ show, ShowId, SeasonId, user }) {
     return (
         <div className='episodes-map'>
             <div className='episodes-text'>{episodeRequest?.length} Episodes</div>
-            <Checkbox
+            {/* Checkbox to be implemented */}
+            {/* <Checkbox
                 user={user}
                 show={show}
                 seasonId={SeasonId}
                 labelChecked={'Watched All'}
                 labelNotChecked={'Add All To Watched'}
-            />
+            /> */}
             {episodeRequest?.map((x) => (
                 <div className='episode-picture'>
                     {x?.still_path &&
@@ -59,7 +60,8 @@ function Episodes({ show, ShowId, SeasonId, user }) {
                                 <div>{new Date(x?.air_date).toLocaleString('en-US', options)}</div>
                                 <div>{x?.overview}</div>
                             </div>
-                            <Checkbox
+                            {/* Checkbox to be implemented */}
+                            {/* <Checkbox
                                 user={user}
                                 show={show}
                                 episodeId={x.episode_number}
@@ -67,7 +69,7 @@ function Episodes({ show, ShowId, SeasonId, user }) {
                                 seasonId={SeasonId}
                                 labelChecked={'Watched'}
                                 labelNotChecked={'Add To Watched'}
-                            />
+                            /> */}
                         </>
                     }
                 </div>
