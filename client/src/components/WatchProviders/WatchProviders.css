@@ -10,6 +10,8 @@
     /* overflow-y: hidden; */
     /* overflow-x: scroll; */
     padding: 10px 0px;
+    border-bottom: 1px solid rgb(200, 186, 186);
+    margin-bottom: 1rem;
 }
 
 .providers-map {
@@ -27,5 +29,4 @@
     max-height: 50px;
     margin-right: 10px;
     font-size: 0.5rem;
-    border-radius: 5%;
 }

@@ -27,6 +27,7 @@ function WatchProviders({ movie, show }) {
     }, [movie?.id, show?.id]);
 
     const redirect = (provider) => {
+        // will be implemented later
         // window.location.assign(``);
     }
 
@@ -34,9 +35,9 @@ function WatchProviders({ movie, show }) {
         <div>
             {movie?.id ?
                 <div className='' key={movie?.id}>
-                    {movieProviders?.US?.flatrate ?
+                    {movieProviders?.US?.flatrate &&
                         <div className='providers' key={movieProviders?.id}>
-                            <div>Available on</div>
+                            <div style={{ marginBottom: '1rem' }}>Available on</div>
                             <div className="providers-map">
                                 {movieProviders?.US?.flatrate?.map((provider) => (
                                     <div key={provider?.id}>
@@ -47,13 +48,10 @@ function WatchProviders({ movie, show }) {
                                             alt={provider?.provider_name}
                                             className='provider-logo'
                                         />
-                                        {/* <h2 className='provider-name'>{provider?.provider_name}</h2> */}
                                     </div>
                                 ))}
                             </div>
                         </div>
-                        :
-                        null
                     }
                 </div>
                 :
