@@ -46,21 +46,27 @@
     padding: 4px 4px 0px;
   }
 
-  @media screen and (max-width: 1460px) {
+  @media screen and (max-width: 1560px) {
     .people-posters {
       grid-template-columns: repeat(4, 1fr);
     }
   }
   
-  @media screen and (max-width: 1082px) {
+  @media screen and (max-width: 1261px) {
     .people-posters {
       grid-template-columns: repeat(3, 1fr);
     }
   }
   
-  @media screen and (max-width: 798px) {
+  @media screen and (max-width: 1000px) {
     .people-posters {
       grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media screen and (max-width: 798px) {
+    .people-posters {
+      grid-template-columns: repeat(1, 1fr);
     }
   }
   

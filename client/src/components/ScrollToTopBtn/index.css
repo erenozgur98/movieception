@@ -1,0 +1,16 @@
+.scroll-to-top-btn {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    margin: 2rem 1rem;
+    z-index: 10;
+    background-color: rgb(116, 15, 15);
+    padding: .8rem;
+    border-radius: 15px;
+    transition: 0.6s all ease-in-out;
+    /* transform: scale(1); */
+}
+
+.scroll-to-top-btn:hover {
+    cursor: pointer;
+}

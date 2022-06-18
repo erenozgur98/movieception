@@ -16,6 +16,7 @@ import MoviePage from './Pages/MoviePage';
 import ActorPage from './Pages/ActorPage';
 import SeasonPage from './Pages/SeasonPage';
 import Collections from './components/Collections';
+import ScrollToTop from './components/ScrollToTopBtn';
 import SearchResults from './components/SearchResults';
 import { SnackbarProvider } from "notistack";
 import './index.css';
@@ -36,6 +37,7 @@ function App() {
       <Router>
         <SnackbarProvider>
           <Header user={user} setUser={setUser} />
+          <ScrollToTop />
           <div className='main'>
             <Route exact path='/' render={() => <HomePage user={user} setUser={setUser} />} />
             <Route exact path='/home' render={() => <HomePage user={user} setUser={setUser} />} />

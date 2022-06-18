@@ -17,7 +17,6 @@ function ExternalId({ externalId, link, CollectionId }) {
 
     return (
         <StyledDiv>
-            <div style={{ marginBottom: '1rem' }}>Social Links</div>
             <div>
                 {link?.vote_average > 0 &&
                     <div style={{ display: 'flex', alignItems: 'center' }}>

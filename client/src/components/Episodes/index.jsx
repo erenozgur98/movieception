@@ -74,9 +74,10 @@ function Episodes({ show, ShowId, SeasonId, user }) {
                     }
                 </div>
             ))}
-            <div>ADD:</div>
+            {/* TODO: */}
+            {/* <div>ADD:</div>
             <div>Previous Season Button</div>
-            <div>Next Season Button</div>
+            <div>Next Season Button</div> */}
         </div>
     )
 };

@@ -63,7 +63,7 @@ function Home({ user, setUser }) {
                         link={movie?.backdrop_path}
                     />
                     <Container className='banner-text-container'>
-                        <h1>
+                        <h1 className='home-main-text'>
                             {user.username && `${greet}, ${user.username}!`}
                             {!user.username && `${greet}, welcome to Movieception!`}
                         </h1>
