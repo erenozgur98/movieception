@@ -14,7 +14,14 @@ body::-webkit-scrollbar {
 body {
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
+  /* overflow: auto;
+  height: 100%; */
 }
+
+/* html {
+  overflow: hidden;
+  height: 100%;
+} */
 
 #root {
   background-color: rgba(0, 0, 0, 1);

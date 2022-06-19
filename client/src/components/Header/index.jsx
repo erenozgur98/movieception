@@ -57,8 +57,16 @@ function Header({ user, setUser }) {
         }
     }));
 
+    // const mainHeader = window.document.getElementById('main-header')
+    // console.log(mainHeader)
+    // mainHeader.bind('mousewheel', e => {
+    //     console.log(e.originalEvent.wheelDelta)
+    // })
+    // mainHeader.mouseenter(e => console.log(e))
+    // mainHeader.mouseleave(e => console.log(e))
+
     const scrollHandler = () => {
-        if (window.scrollY >= 20) {
+        if (window.pageYOffset >= 20) {
             setBackgroundColor('rgba(0, 0, 0, 1)');
         } else {
             setBackgroundColor('rgba(0, 0, 0, 0)');
@@ -180,7 +188,7 @@ function Header({ user, setUser }) {
     return (
         <>
             <Box sx={{ flexGrow: 1 }}>
-                <AppBar position="fixed" style={AppBarStyle}>
+                <AppBar id="main-header" position="fixed" style={AppBarStyle}>
                     <Toolbar>
                         <Link href='/' style={{ color: 'white', textDecoration: 'none', fontSize: '1.3rem', marginRight: '0.8rem' }}>
                             {/* True<span style={{ paddingLeft: '5px' }}>Story</span> */}
@@ -222,7 +230,7 @@ function Header({ user, setUser }) {
                                     </IconButton>
                                 ) : (
                                     <StyledDiv>
-                                        <Chip label='Login' color="success" onClick={() => setLoginModal(true)} />
+                                        <Chip label='Login' variant='outlined' onClick={() => setLoginModal(true)} />
                                     </StyledDiv>
                                 )}
                             </Nav>
