@@ -15,8 +15,6 @@ function Row({ fetchUrl, title }) {
     const [currentPage, setCurrentPage] = useState(1);
     const [user, setUser] = useState({});
 
-    console.log(movies)
-
     const isMovie = window.location.href.includes('movies')
     const isShow = window.location.href.includes('shows')
 
