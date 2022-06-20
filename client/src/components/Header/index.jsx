@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
 import LoginModal from '../Login';
 import API from '../../utils/API';
+import { Nav } from 'react-bootstrap';
 import SearchForm from '../SearchForm';
 import { styled } from '@mui/material/styles';
 import MenuIcon from '@mui/icons-material/Menu';
 import StyledComponents from 'styled-components';
-import { Nav, NavDropdown } from 'react-bootstrap';
 import AccountCircle from '@mui/icons-material/AccountCircle';
-import { Box, Link, Menu, Chip, AppBar, Button, MenuItem, IconButton, Toolbar } from '@mui/material';
+import { Box, Link, Menu, AppBar, Button, MenuItem, IconButton, Toolbar } from '@mui/material';
 import './style.css';
 
 function Header({ user, setUser }) {
@@ -17,11 +17,12 @@ function Header({ user, setUser }) {
     const [backgroundColor, setBackgroundColor] = useState('rgba(0, 0, 0, 0)');
     const isMenuOpen = Boolean(anchorEl);
 
-    const StyledNavLink = StyledComponents(Nav.Link)`
+    const StyledIconButton = StyledComponents(IconButton)`
     color: white;
-    font-size: 1.1rem;
+    font-size 1.1rem;
     &:hover {
         color: white;
+        text-decoration: none;
     }
     `
     const StyledMenuLink = StyledComponents(Nav.Link)`
@@ -57,14 +58,6 @@ function Header({ user, setUser }) {
         }
     }));
 
-    // const mainHeader = window.document.getElementById('main-header')
-    // console.log(mainHeader)
-    // mainHeader.bind('mousewheel', e => {
-    //     console.log(e.originalEvent.wheelDelta)
-    // })
-    // mainHeader.mouseenter(e => console.log(e))
-    // mainHeader.mouseleave(e => console.log(e))
-
     const scrollHandler = () => {
         if (window.pageYOffset >= 20) {
             setBackgroundColor('rgba(0, 0, 0, 1)');
@@ -81,14 +74,14 @@ function Header({ user, setUser }) {
         window.location.reload();
     };
 
-    const handleProfileMenuOpen = (event) => {
+    const handleProfileMenuOpen = e => {
         setBackgroundColor('rgba(0, 0, 0, 1)');
-        setAnchorEl(event.currentTarget);
+        setAnchorEl(e.currentTarget);
     };
 
-    const handleAccountMenu = (event) => {
+    const handleAccountMenu = e => {
         setBackgroundColor('rgba(0, 0, 0, 1)');
-        setAccountAnchorEl(event.currentTarget);
+        setAccountAnchorEl(e.currentTarget);
     };
 
     const handleMenuClose = () => {
@@ -114,27 +107,18 @@ function Header({ user, setUser }) {
             open={isMenuOpen}
             onClose={handleMenuClose}
         >
-            <StyledMenuItem
-                onClick={handleMenuClose}
-            >
-                <StyledButton href='/home'>Home</StyledButton>
-            </StyledMenuItem>
-            <StyledMenuItem
-                onClick={handleMenuClose}
-            >
-                <StyledButton href='/discover'>Discover</StyledButton>
-            </StyledMenuItem>
-            <StyledMenuItem
-                onClick={handleMenuClose}
-            >
-                <StyledButton href='/actors'>Actors</StyledButton>
-            </StyledMenuItem>
+            <StyledMenuLink href={'/home'} onClick={handleMenuClose}>Home</StyledMenuLink>
+            <StyledMenuLink href='/discover' onClick={handleMenuClose}>Discover</StyledMenuLink>
+            <StyledMenuLink href='/discover/movies' onClick={handleMenuClose}>Movies</StyledMenuLink>
+            <StyledMenuLink href='/discover/shows' onClick={handleMenuClose}>Shows</StyledMenuLink>
+            <StyledMenuLink href='/actor' onClick={handleMenuClose}>Actors</StyledMenuLink>
             {!user?.username && (
-                <StyledMenuItem
-                    onClick={handleMenuClose}
-                >
-                    <StyledButton onClick={() => setLoginModal(true)}>Login</StyledButton>
-                </StyledMenuItem>
+                <StyledMenuLink onClick={() => {
+                    setAccountAnchorEl(null)
+                    setLoginModal(true)
+                }}>
+                    Login
+                </StyledMenuLink>
             )}
         </StyledMenu>
     );
@@ -161,25 +145,6 @@ function Header({ user, setUser }) {
         </StyledMenu>
     )
 
-    const discover = [
-        {
-            title: 'All',
-            route: '/discover'
-        },
-        {
-            title: 'Movies',
-            route: '/discover/movies'
-        },
-        {
-            title: 'Shows',
-            route: '/discover/shows'
-        },
-        {
-            title: 'Actors',
-            route: '/actors'
-        },
-    ]
-
     const AppBarStyle = {
         backgroundColor: backgroundColor,
         transition: '0.6s all ease-in-out'
@@ -198,24 +163,35 @@ function Header({ user, setUser }) {
                         <Box sx={{ flexGrow: 1 }} />
                         <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
                             <Nav>
-                                <StyledNavLink
+                                {/* <StyledNavLink
                                     href='/home'
                                 >
                                     Home
-                                </StyledNavLink>
-                                <NavDropdown
-                                    style={{ fontSize: '1.1rem' }}
-                                    title={<span style={{ color: 'white' }}>Discover</span>}
-                                    id="basic-nav-dropdown"
+                                </StyledNavLink> */}
+                                <StyledIconButton
+                                    color='inherit'
+                                    href='/home'
                                 >
-                                    {discover.map(g => (
-                                        <NavDropdown.Item
-                                            href={g.route}
-                                        >
-                                            {g.title}
-                                        </NavDropdown.Item>
-                                    ))}
-                                </NavDropdown>
+                                    Home
+                                </StyledIconButton>
+                                <StyledIconButton
+                                    color='inherit'
+                                    href='/discover'
+                                >
+                                    Discover
+                                </StyledIconButton>
+                                <StyledIconButton
+                                    color='inherit'
+                                    href='/discover/movies'
+                                >
+                                    Movies
+                                </StyledIconButton>
+                                <StyledIconButton
+                                    color='inherit'
+                                    href='/discover/shows'
+                                >
+                                    Shows
+                                </StyledIconButton>
                                 {user?.username ? (
                                     <IconButton
                                         size="small"
@@ -229,9 +205,12 @@ function Header({ user, setUser }) {
                                         <AccountCircle />
                                     </IconButton>
                                 ) : (
-                                    <StyledDiv>
-                                        <Chip label='Login' variant='outlined' onClick={() => setLoginModal(true)} />
-                                    </StyledDiv>
+                                    <StyledIconButton
+                                        color='inherit'
+                                        onClick={() => setLoginModal(true)}
+                                    >
+                                        Login
+                                    </StyledIconButton>
                                 )}
                             </Nav>
                         </Box>
