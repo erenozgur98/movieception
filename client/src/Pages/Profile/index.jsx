@@ -1,15 +1,34 @@
 import React, { useState, useEffect } from 'react'
-// import { Redirect } from 'react-router-dom';
 import API from '../../utils/API';
+import styled from 'styled-components';
+import Lists from '../../components/Lists';
+import axios from '../../components/Axios';
+import { Container } from 'react-bootstrap';
+import Banner from '../../components/Banner';
+import requests from '../../components/Requests';
+import CircularProgress from '@mui/material/CircularProgress';
 
 function Profile({ user }) {
     const [greet, setGreet] = useState();
+    const [trending, setTrending] = useState([]);
+    const [loading, setLoading] = useState(false);
     const [favoriteMovies, setFavoriteMovies] = useState([]);
     const [favoriteShows, setFavoriteShows] = useState([]);
     const [movieWatchList, setMovieWatchList] = useState([]);
     const [showWatchList, setShowWatchList] = useState([]);
     const [watchedMovies, setWatchedMovies] = useState([]);
     const [watchedShows, setWatchedShows] = useState([]);
+    const [randomInt,] = useState(Math.floor(Math.random() * 20));
+
+    useEffect(() => {
+        const fetchData = async () => {
+            setLoading(true);
+            const request = await axios.get(requests.fetchTrending);
+            setTrending(request?.data?.results);
+            setLoading(false);
+        }
+        fetchData();
+    }, [])
 
     useEffect(() => {
         const hours = new Date().getHours();
@@ -44,24 +63,33 @@ function Profile({ user }) {
         fetchData()
     }, [user])
 
+    const StyledMainContainer = styled(Container)`
+        position: relative;
+        bottom: 15rem;
+        text-align: center;
+    `
+
 
     return (
         <>
-            {/* {!user?.username && <Redirect to="/" />} */}
-            {/* <div
-                style={{
-                    marginTop: '5rem',
+            {loading ? (
+                <div style={{
                     display: 'flex',
+                    alignItems: 'center',
                     justifyContent: 'center',
-                    alignContent: 'center'
-                }}
-            >
-                {user?.username && <h1>{greet}, {user?.username}</h1>}
-            </div>
-            1{favoriteMovies?.map(x => <p>{x}</p>)} <br /> {favoriteShows?.map(x => <p>{x}</p>)}
-            2{movieWatchList?.map(x => <p>{x}</p>)} <br /> {showWatchList?.map(x => <p>{x}</p>)}
-            3{watchedMovies?.map(x => <p>{x}</p>)} <br /> {watchedShows?.map(x => <p>{x}</p>)} */}
-            <h2 style={{ marginTop: '5rem', textAlign: 'center' }}>Profile page is under construction. Please wait patiently, thank you!</h2>
+                    marginTop: '10rem'
+                }}>
+                    <CircularProgress size={70} />
+                </div>
+            ) : (
+                <>
+                    <Banner link={trending[randomInt]?.backdrop_path} />
+                    <StyledMainContainer>
+                        <h1>{greet}, {user?.username}</h1>
+                        <Lists />
+                    </StyledMainContainer>
+                </>
+            )}
         </>
     )
 }
