@@ -74,15 +74,17 @@ function Home({ user, setUser }) {
                         </h2>
                         <SearchForm />
                         {(movie?.title || movie?.name) &&
-                            <h2 className="header-banner-title">
-                                Background Image From:
-                                <span
+                            <div className="header-banner-title">
+                                <div>
+                                    Background Image From:
+                                </div>
+                                <div
                                     onClick={redirect}
                                     className='title-span'
                                 >
                                     {movie?.title || movie?.name}
-                                </span>
-                            </h2>}
+                                </div>
+                            </div>}
                         <div className="home-random-btn">
                             <button
                                 onClick={() => setRandomModal(true)}

@@ -55,6 +55,7 @@
   font-size: 1rem;
   font-style: italic;
   color: rgb(133, 132, 132);
+  display: flex;
 }
 
 .title-span {
@@ -94,5 +95,10 @@
 @media screen and (max-width: 500px) {
   .home-main-text {
     font-size: x-large;
+  }
+  .header-banner-title {
+    display: flex;
+    margin-top: 0rem;
+    flex-direction: column;
   }
 }
