@@ -6,7 +6,7 @@ import { Grid, Typography, List, ListItem, ListItemAvatar, ListItemText, Avatar,
 
 const Lists = () => {
     function generate(element) {
-        return [0, 1, 2].map((value) =>
+        return [0].map((value) =>
             React.cloneElement(element, {
                 key: value,
             }),

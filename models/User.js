@@ -23,32 +23,32 @@ const UserSchema = new Schema(
         },
         movieFavorites: [
             {
-                type: Number,
+                type: Array,
             }
         ],
         showFavorites: [
             {
-                type: Number,
+                type: Array,
             }
         ],
         watchedMovies: [
             {
-                type: Number,
+                type: Array,
             }
         ],
         watchedShows: [
             {
-                type: Number,
+                type: Array,
             }
         ],
         movieWatchList: [
             {
-                type: Number,
+                type: Array,
             }
         ],
         showWatchList: [
             {
-                type: Number,
+                type: Array,
             }
         ],
         watchedEpisodes: [

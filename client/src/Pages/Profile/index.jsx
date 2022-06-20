@@ -20,6 +20,8 @@ function Profile({ user }) {
     const [watchedShows, setWatchedShows] = useState([]);
     const [randomInt,] = useState(Math.floor(Math.random() * 20));
 
+    console.log(favoriteMovies)
+
     useEffect(() => {
         const fetchData = async () => {
             setLoading(true);

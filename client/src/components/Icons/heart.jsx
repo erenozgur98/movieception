@@ -131,7 +131,7 @@ function HeartIcon({ user, movie }) {
                         })
                     return
                 } else if (movie.media_type === 'movie') {
-                    API.addMovieToFavorite(user.username, movie.id)
+                    API.addMovieToFavorite(user.username, movie.id, movie.poster_path)
                         .then(res => {
                             if (res.status === 200) {
                                 setActive(true)
@@ -151,7 +151,7 @@ function HeartIcon({ user, movie }) {
                 }
 
                 if (isMovie) {
-                    API.addMovieToFavorite(user.username, movie.id)
+                    API.addMovieToFavorite(user.username, movie.id, movie.poster_path)
                         .then(res => {
                             if (res.status === 200) {
                                 setActive(true)
