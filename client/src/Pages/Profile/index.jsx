@@ -21,16 +21,6 @@ function Profile({ user }) {
     const [randomInt,] = useState(Math.floor(Math.random() * 20));
 
     useEffect(() => {
-        const fetchData = async () => {
-            setLoading(true);
-            const request = await axios.get(requests.fetchTrending);
-            setTrending(request?.data?.results);
-            setLoading(false);
-        }
-        fetchData();
-    }, [])
-
-    useEffect(() => {
         const hours = new Date().getHours();
 
         if (hours < 12 && hours > 6) {
@@ -44,8 +34,19 @@ function Profile({ user }) {
     }, [])
 
     useEffect(() => {
+        const fetchData = async () => {
+            setLoading(true);
+            const request = await axios.get(requests.fetchTrending);
+            setTrending(request?.data?.results);
+            setLoading(false);
+        }
+        fetchData();
+    }, [])
+
+    useEffect(() => {
         const fetchData = () => {
             if (user?.username) {
+                setLoading(true);
                 API.getAllFavorites(user.username).then(res => {
                     setFavoriteMovies(res.data?.Movie)
                     setFavoriteShows(res.data?.Show)
@@ -58,6 +59,7 @@ function Profile({ user }) {
                     setWatchedMovies(res.data?.Movie)
                     setWatchedShows(res.data?.Show)
                 })
+                setLoading(false);
             }
         }
         fetchData()
@@ -67,12 +69,6 @@ function Profile({ user }) {
         position: relative;
         bottom: 15rem;
         text-align: center;
-    `
-
-    const StyledContainer = styled(Container)`
-        margin-top: 3rem;
-        display: flex;
-        justify-content: space-evenly;
     `
 
 
@@ -92,11 +88,14 @@ function Profile({ user }) {
                     <Banner link={trending[randomInt]?.backdrop_path} />
                     <StyledMainContainer>
                         <h1>{greet}, {user?.username}</h1>
-                        <StyledContainer>
-                            <Lists />
-                            <Lists />
-                            <Lists />
-                        </StyledContainer>
+                        <Lists
+                            favoriteMovies={favoriteMovies}
+                            favoriteShows={favoriteShows}
+                            movieWatchList={movieWatchList}
+                            showWatchList={showWatchList}
+                            watchedMovies={watchedMovies}
+                            watchedShows={watchedShows}
+                        />
                     </StyledMainContainer>
                 </>
             )}

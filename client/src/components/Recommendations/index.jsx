@@ -18,7 +18,7 @@ function Recommendations({ movie, show }) {
                 setMovieRecommendations(requestMovieRecommendations.data.results);
             }
             fetchData();
-        } else {
+        } else if (show?.id) {
             const fetchData = async () => {
                 const requestShowRecommendations = await axios.get(`tv/${show?.id}/recommendations?api_key=${process.env.REACT_APP_API_KEY}`);
                 setShowRecommendations(requestShowRecommendations.data.results);

@@ -16,7 +16,7 @@ function WatchProviders({ movie, show }) {
                 setMovieProviders(requestMovie?.data.results);
             }
             fetchData();
-        } else {
+        } else if (show?.id) {
             const fetchData = async () => {
                 const requestShow = await axios.get(`/tv/${show?.id}/watch/providers?api_key=${process.env.REACT_APP_API_KEY}`);
                 setShowProviders(requestShow?.data.results);
