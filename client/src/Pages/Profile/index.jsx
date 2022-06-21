@@ -20,8 +20,6 @@ function Profile({ user }) {
     const [watchedShows, setWatchedShows] = useState([]);
     const [randomInt,] = useState(Math.floor(Math.random() * 20));
 
-    console.log(favoriteMovies)
-
     useEffect(() => {
         const fetchData = async () => {
             setLoading(true);
@@ -71,6 +69,12 @@ function Profile({ user }) {
         text-align: center;
     `
 
+    const StyledContainer = styled(Container)`
+        margin-top: 3rem;
+        display: flex;
+        justify-content: space-evenly;
+    `
+
 
     return (
         <>
@@ -88,7 +92,11 @@ function Profile({ user }) {
                     <Banner link={trending[randomInt]?.backdrop_path} />
                     <StyledMainContainer>
                         <h1>{greet}, {user?.username}</h1>
-                        <Lists />
+                        <StyledContainer>
+                            <Lists />
+                            <Lists />
+                            <Lists />
+                        </StyledContainer>
                     </StyledMainContainer>
                 </>
             )}

@@ -28,9 +28,9 @@ function WatchList({ user, movie }) {
 
     useEffect(() => {
         if (user.username) {
-            if (movieWatchList.find(y => y[0] === movie.id)) {
+            if (movieWatchList.find(y => y.includes(movie.id.toString()))) {
                 setActive(true)
-            } else if (showWatchList.find(y => y[0] === movie.id)) {
+            } else if (showWatchList.find(y => y.includes(movie.id.toString()))) {
                 setActive(true)
             } else {
                 setActive(false)

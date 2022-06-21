@@ -35,7 +35,6 @@ export default {
     },
 
     addMovieToFavorite: (username, MovieId, PosterPath) => {
-        // const poster = PosterPath.split(".")[0]
         return axios.post(`/api/users/${username}/favorite/movies/${MovieId}${PosterPath}`)
     },
 

@@ -27,9 +27,9 @@ function HistoryIcon({ user, movie }) {
 
     useEffect(() => {
         if (user.username) {
-            if (watchedMovie.find(y => y[0] === movie.id)) {
+            if (watchedMovie.find(y => y.includes(movie.id.toString()))) {
                 setActive(true)
-            } else if (watchedShow.find(y => y[0] === movie.id)) {
+            } else if (watchedShow.find(y => y.includes(movie.id.toString()))) {
                 setActive(true)
             } else {
                 setActive(false)

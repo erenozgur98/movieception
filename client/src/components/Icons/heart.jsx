@@ -27,9 +27,9 @@ function HeartIcon({ user, movie }) {
 
     useEffect(() => {
         if (user?.username) {
-            if (movieFavorite.find(y => y[0] === movie.id)) {
+            if (movieFavorite.find(x => x.includes(movie.id.toString()))) {
                 setActive(true)
-            } else if (showFavorite.find(y => y[0] === movie.id)) {
+            } else if (showFavorite.find(x => x.includes(movie.id.toString()))) {
                 setActive(true)
             } else {
                 setActive(false)
