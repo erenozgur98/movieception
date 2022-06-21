@@ -26,12 +26,10 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false);
 
   useEffect(() => {
-    if (![user]) {
-      API.loggedIn()
-        .then(result => {
-          setUser(result.data)
-        })
-    }
+    API.loggedIn()
+      .then(result => {
+        setUser(result.data)
+      })
   }, []);
 
   useEffect(() => {

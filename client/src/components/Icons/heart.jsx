@@ -113,7 +113,7 @@ function HeartIcon({ user, movie }) {
                 }
             } else {
                 if (movie.media_type === 'tv') {
-                    API.addShowToFavorite(user.username, movie.id, movie.poster_path)
+                    API.addShowToFavorite(user.username, movie.id, movie.poster_path, movie.original_name)
                         .then(res => {
                             if (res.status === 200) {
                                 setActive(true)
@@ -131,7 +131,7 @@ function HeartIcon({ user, movie }) {
                         })
                     return
                 } else if (movie.media_type === 'movie') {
-                    API.addMovieToFavorite(user.username, movie.id, movie.poster_path)
+                    API.addMovieToFavorite(user.username, movie.id, movie.poster_path, movie.original_title)
                         .then(res => {
                             if (res.status === 200) {
                                 setActive(true)
@@ -151,7 +151,7 @@ function HeartIcon({ user, movie }) {
                 }
 
                 if (isMovie) {
-                    API.addMovieToFavorite(user.username, movie.id, movie.poster_path)
+                    API.addMovieToFavorite(user.username, movie.id, movie.poster_path, movie.original_title)
                         .then(res => {
                             if (res.status === 200) {
                                 setActive(true)
@@ -169,7 +169,7 @@ function HeartIcon({ user, movie }) {
                         })
                     return
                 } else if (isShow) {
-                    API.addShowToFavorite(user.username, movie.id, movie.poster_path)
+                    API.addShowToFavorite(user.username, movie.id, movie.poster_path, movie.original_name)
                         .then(res => {
                             if (res.status === 200) {
                                 setActive(true)

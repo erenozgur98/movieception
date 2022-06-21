@@ -52,12 +52,12 @@ router.get('/:username/favorites', (req, res) => {
 });
 
 // add a movie to user's list of favorites
-router.post('/:username/favorite/movies/:MovieId/:PosterPath', (req, res) => {
+router.post('/:username/favorite/movies/:MovieId/:PosterPath/title/:Title', (req, res) => {
     User.findOneAndUpdate({
         username: req.params.username
     }, {
         $push: {
-            movieFavorites: [req.params.MovieId, req.params.PosterPath]
+            movieFavorites: [req.params.MovieId, req.params.PosterPath, req.params.Title]
         }
     }, {
         new: true
@@ -73,12 +73,12 @@ router.post('/:username/favorite/movies/:MovieId/:PosterPath', (req, res) => {
 });
 
 // add a show to user's list of favorites
-router.post('/:username/favorite/shows/:ShowId/:PosterPath', (req, res) => {
+router.post('/:username/favorite/shows/:ShowId/:PosterPath/title/:Title', (req, res) => {
     User.findOneAndUpdate({
         username: req.params.username
     }, {
         $push: {
-            showFavorites: [req.params.ShowId, req.params.PosterPath]
+            showFavorites: [req.params.ShowId, req.params.PosterPath, req.params.Title]
         }
     }, {
         new: true
@@ -155,12 +155,12 @@ router.get('/:username/watched', (req, res) => {
         })
 })
 
-router.post('/:username/watched/movies/:MovieId/:PosterPath', (req, res) => {
+router.post('/:username/watched/movies/:MovieId/:PosterPath/title/:Title', (req, res) => {
     User.findOneAndUpdate({
         username: req.params.username
     }, {
         $push: {
-            watchedMovies: [req.params.MovieId, req.params.PosterPath]
+            watchedMovies: [req.params.MovieId, req.params.PosterPath, req.params.Title]
         }
     }, {
         new: true
@@ -174,12 +174,12 @@ router.post('/:username/watched/movies/:MovieId/:PosterPath', (req, res) => {
         })
 });
 
-router.post('/:username/watched/shows/:ShowId/:PosterPath', (req, res) => {
+router.post('/:username/watched/shows/:ShowId/:PosterPath/title/:Title', (req, res) => {
     User.findOneAndUpdate({
         username: req.params.username
     }, {
         $push: {
-            watchedShows: [req.params.ShowId, req.params.PosterPath]
+            watchedShows: [req.params.ShowId, req.params.PosterPath, req.params.Title]
         }
     }, {
         new: true
@@ -253,12 +253,12 @@ router.get('/:username/watchlist', (req, res) => {
         })
 })
 
-router.post('/:username/watchlist/movies/:MovieId/:PosterPath', (req, res) => {
+router.post('/:username/watchlist/movies/:MovieId/:PosterPath/title/:Title', (req, res) => {
     User.findOneAndUpdate({
         username: req.params.username
     }, {
         $push: {
-            movieWatchList: [req.params.MovieId, req.params.PosterPath]
+            movieWatchList: [req.params.MovieId, req.params.PosterPath, req.params.Title]
         }
     }, {
         new: true
@@ -272,12 +272,12 @@ router.post('/:username/watchlist/movies/:MovieId/:PosterPath', (req, res) => {
         })
 })
 
-router.post('/:username/watchlist/shows/:ShowId/:PosterPath', (req, res) => {
+router.post('/:username/watchlist/shows/:ShowId/:PosterPath/title/:Title', (req, res) => {
     User.findOneAndUpdate({
         username: req.params.username
     }, {
         $push: {
-            showWatchList: [req.params.ShowId, req.params.PosterPath]
+            showWatchList: [req.params.ShowId, req.params.PosterPath, req.params.Title]
         }
     }, {
         new: true

@@ -34,12 +34,12 @@ export default {
         return axios.get(`/api/users/${username}/favorites`)
     },
 
-    addMovieToFavorite: (username, MovieId, PosterPath) => {
-        return axios.post(`/api/users/${username}/favorite/movies/${MovieId}${PosterPath}`)
+    addMovieToFavorite: (username, MovieId, PosterPath, Title) => {
+        return axios.post(`/api/users/${username}/favorite/movies/${MovieId}${PosterPath}/title/${Title}`)
     },
 
-    addShowToFavorite: (username, ShowId, PosterPath) => {
-        return axios.post(`/api/users/${username}/favorite/shows/${ShowId}${PosterPath}`)
+    addShowToFavorite: (username, ShowId, PosterPath, Title) => {
+        return axios.post(`/api/users/${username}/favorite/shows/${ShowId}${PosterPath}/title/${Title}`)
     },
 
     removeMovieFromFavorites: (username, MovieId) => {
@@ -54,12 +54,12 @@ export default {
         return axios.get(`/api/users/${username}/watchlist`)
     },
 
-    addMovieToWatchList: (username, MovieId, PosterPath) => {
-        return axios.post(`/api/users/${username}/watchlist/movies/${MovieId}${PosterPath}`)
+    addMovieToWatchList: (username, MovieId, PosterPath, Title) => {
+        return axios.post(`/api/users/${username}/watchlist/movies/${MovieId}${PosterPath}/title/${Title}`)
     },
 
-    addShowToWatchList: (username, ShowId, PosterPath) => {
-        return axios.post(`/api/users/${username}/watchlist/shows/${ShowId}${PosterPath}`)
+    addShowToWatchList: (username, ShowId, PosterPath, Title) => {
+        return axios.post(`/api/users/${username}/watchlist/shows/${ShowId}${PosterPath}/title/${Title}`)
     },
 
     removeMovieFromWatchList: (username, MovieId) => {
@@ -74,12 +74,12 @@ export default {
         return axios.get(`/api/users/${username}/watched`)
     },
 
-    addMovieToWatched: (username, MovieId, PosterPath) => {
-        return axios.post(`/api/users/${username}/watched/movies/${MovieId}${PosterPath}`)
+    addMovieToWatched: (username, MovieId, PosterPath, Title) => {
+        return axios.post(`/api/users/${username}/watched/movies/${MovieId}${PosterPath}/title/${Title}`)
     },
 
-    addShowToWatched: (username, MovieId, PosterPath) => {
-        return axios.post(`/api/users/${username}/watched/shows/${MovieId}${PosterPath}`)
+    addShowToWatched: (username, MovieId, PosterPath, Title) => {
+        return axios.post(`/api/users/${username}/watched/shows/${MovieId}${PosterPath}/title/${Title}`)
     },
 
     removeMovieFromWatched: (username, MovieId) => {
@@ -94,8 +94,8 @@ export default {
         return axios.get(`/api/users/${username}/episodes`)
     },
 
-    addEpisodetoWatched: (username, ShowId, SeasonId, EpisodeId, PosterPath) => {
-        return axios.post(`/api/users/${username}/shows/${ShowId}/seasons/${SeasonId}/episodes/${EpisodeId}${PosterPath}`)
+    addEpisodetoWatched: (username, ShowId, SeasonId, EpisodeId, PosterPath, Title) => {
+        return axios.post(`/api/users/${username}/shows/${ShowId}/seasons/${SeasonId}/episodes/${EpisodeId}${PosterPath}/title/${Title}`)
     },
 
     removeEpisodeFromWatched: (username, ShowId, SeasonId, EpisodeId) => {

@@ -4,28 +4,29 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import FolderIcon from '@mui/icons-material/Folder';
 import { Grid, Typography, List, ListItem, ListItemAvatar, ListItemText, Avatar, IconButton, Checkbox } from '@mui/material';
 
-const Lists = () => {
-    function generate(element) {
-        return [0].map((value) =>
-            React.cloneElement(element, {
-                key: value,
-            }),
-        );
-    }
-
+const Lists = ({
+    favoriteMovies,
+    favoriteShows,
+    movieWatchList,
+    showWatchList,
+    watchedMovies,
+    watchedShows
+}) => {
     const Demo = styled('div')(({ theme }) => ({
         backgroundColor: 'black',
+        borderRadius: '15px'
     }));
 
+    console.log(favoriteMovies)
 
     return (
-        <Grid item xs={12} md={3}>
-            <Typography variant="h6">
-                Avatar with text and icon
-            </Typography>
-            <Demo>
-                <List>
-                    {generate(
+        <>
+            <Grid item xs={12} md={3}>
+                <Typography variant="h6">
+                    Avatar with text and icon
+                </Typography>
+                <Demo>
+                    <List>
                         <ListItem
                             secondaryAction={
                                 <IconButton edge="end" aria-label="delete">
@@ -41,11 +42,11 @@ const Lists = () => {
                             <ListItemText
                                 primary="Single-line item"
                             />
-                        </ListItem>,
-                    )}
-                </List>
-            </Demo>
-        </Grid>
+                        </ListItem>
+                    </List>
+                </Demo>
+            </Grid>
+        </>
     )
 }
 

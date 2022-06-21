@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
 import API from '../../utils/API';
 import styled from 'styled-components';
 import Lists from '../../components/Lists';

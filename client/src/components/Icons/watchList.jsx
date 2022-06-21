@@ -118,7 +118,7 @@ function WatchList({ user, movie }) {
                 }
             } else {
                 if (movie.media_type === 'tv') {
-                    API.addShowToWatchList(user.username, movie.id, movie.poster_path)
+                    API.addShowToWatchList(user.username, movie.id, movie.poster_path, movie.original_name)
                         .then(res => {
                             if (res.status === 200) {
                                 setActive(true)
@@ -136,7 +136,7 @@ function WatchList({ user, movie }) {
                         })
                     return
                 } else if (movie.media_type === 'movie') {
-                    API.addMovieToWatchList(user.username, movie.id, movie.poster_path)
+                    API.addMovieToWatchList(user.username, movie.id, movie.poster_path, movie.original_title)
                         .then(res => {
                             if (res.status === 200) {
                                 setActive(true)
@@ -156,7 +156,7 @@ function WatchList({ user, movie }) {
                 }
 
                 if (isMovie) {
-                    API.addMovieToWatchList(user.username, movie.id, movie.poster_path)
+                    API.addMovieToWatchList(user.username, movie.id, movie.poster_path, movie.original_title)
                         .then(res => {
                             if (res.status === 200) {
                                 setActive(true)
@@ -174,7 +174,7 @@ function WatchList({ user, movie }) {
                         })
                     return
                 } else if (isShow) {
-                    API.addShowToWatchList(user.username, movie.id, movie.poster_path)
+                    API.addShowToWatchList(user.username, movie.id, movie.poster_path, movie.original_name)
                         .then(res => {
                             if (res.status === 200) {
                                 setActive(true)

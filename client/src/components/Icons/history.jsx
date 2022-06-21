@@ -117,7 +117,7 @@ function HistoryIcon({ user, movie }) {
                 }
             } else {
                 if (movie.media_type === 'tv') {
-                    API.addShowToWatched(user.username, movie.id, movie.poster_path)
+                    API.addShowToWatched(user.username, movie.id, movie.poster_path, movie.original_name)
                         .then(res => {
                             if (res.status === 200) {
                                 setActive(true)
@@ -135,7 +135,7 @@ function HistoryIcon({ user, movie }) {
                         })
                     return
                 } else if (movie.media_type === 'movie') {
-                    API.addMovieToWatched(user.username, movie.id, movie.poster_path)
+                    API.addMovieToWatched(user.username, movie.id, movie.poster_path, movie.original_title)
                         .then(res => {
                             if (res.status === 200) {
                                 setActive(true)
@@ -155,7 +155,7 @@ function HistoryIcon({ user, movie }) {
                 }
 
                 if (isMovie) {
-                    API.addMovieToWatched(user.username, movie.id, movie.poster_path)
+                    API.addMovieToWatched(user.username, movie.id, movie.poster_path, movie.original_title)
                         .then(res => {
                             if (res.status === 200) {
                                 setActive(true)
@@ -173,7 +173,7 @@ function HistoryIcon({ user, movie }) {
                         })
                     return
                 } else if (isShow) {
-                    API.addShowToWatched(user.username, movie.id, movie.poster_path)
+                    API.addShowToWatched(user.username, movie.id, movie.poster_path, movie.original_name)
                         .then(res => {
                             if (res.status === 200) {
                                 setActive(true)
