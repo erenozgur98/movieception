@@ -26,11 +26,17 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false);
 
   useEffect(() => {
-    API.loggedIn()
-      .then(result => {
-        setUser(result.data)
-      })
+    if (![user]) {
+      API.loggedIn()
+        .then(result => {
+          setUser(result.data)
+        })
+    }
   }, []);
+
+  useEffect(() => {
+    API.getAllUsers().then(res => console.log(res))
+  }, [])
 
   return (
     <div>

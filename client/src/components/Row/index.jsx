@@ -19,10 +19,12 @@ function Row({ fetchUrl, title }) {
     const isShow = window.location.href.includes('shows')
 
     useEffect(() => {
-        API.loggedIn()
-            .then(result => {
-                setUser(result.data)
-            })
+        if (!user.username) {
+            API.loggedIn()
+                .then(result => {
+                    setUser(result.data)
+                })
+        }
     }, [])
 
 
