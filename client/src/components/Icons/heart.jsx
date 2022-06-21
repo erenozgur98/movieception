@@ -26,10 +26,10 @@ function HeartIcon({ user, movie }) {
     }, [])
 
     useEffect(() => {
-        if (user.username) {
-            if (movieFavorite.includes(movie.id)) {
+        if (user?.username) {
+            if (movieFavorite.find(y => y[0] === movie.id)) {
                 setActive(true)
-            } else if (showFavorite.includes(movie.id)) {
+            } else if (showFavorite.find(y => y[0] === movie.id)) {
                 setActive(true)
             } else {
                 setActive(false)
@@ -113,7 +113,7 @@ function HeartIcon({ user, movie }) {
                 }
             } else {
                 if (movie.media_type === 'tv') {
-                    API.addShowToFavorite(user.username, movie.id)
+                    API.addShowToFavorite(user.username, movie.id, movie.poster_path)
                         .then(res => {
                             if (res.status === 200) {
                                 setActive(true)
@@ -169,7 +169,7 @@ function HeartIcon({ user, movie }) {
                         })
                     return
                 } else if (isShow) {
-                    API.addShowToFavorite(user.username, movie.id)
+                    API.addShowToFavorite(user.username, movie.id, movie.poster_path)
                         .then(res => {
                             if (res.status === 200) {
                                 setActive(true)

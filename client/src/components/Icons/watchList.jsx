@@ -28,9 +28,9 @@ function WatchList({ user, movie }) {
 
     useEffect(() => {
         if (user.username) {
-            if (movieWatchList.includes(movie.id)) {
+            if (movieWatchList.find(y => y[0] === movie.id)) {
                 setActive(true)
-            } else if (showWatchList.includes(movie.id)) {
+            } else if (showWatchList.find(y => y[0] === movie.id)) {
                 setActive(true)
             } else {
                 setActive(false)
@@ -118,7 +118,7 @@ function WatchList({ user, movie }) {
                 }
             } else {
                 if (movie.media_type === 'tv') {
-                    API.addShowToWatchList(user.username, movie.id)
+                    API.addShowToWatchList(user.username, movie.id, movie.poster_path)
                         .then(res => {
                             if (res.status === 200) {
                                 setActive(true)
@@ -136,7 +136,7 @@ function WatchList({ user, movie }) {
                         })
                     return
                 } else if (movie.media_type === 'movie') {
-                    API.addMovieToWatchList(user.username, movie.id)
+                    API.addMovieToWatchList(user.username, movie.id, movie.poster_path)
                         .then(res => {
                             if (res.status === 200) {
                                 setActive(true)
@@ -156,7 +156,7 @@ function WatchList({ user, movie }) {
                 }
 
                 if (isMovie) {
-                    API.addMovieToWatchList(user.username, movie.id)
+                    API.addMovieToWatchList(user.username, movie.id, movie.poster_path)
                         .then(res => {
                             if (res.status === 200) {
                                 setActive(true)
@@ -174,7 +174,7 @@ function WatchList({ user, movie }) {
                         })
                     return
                 } else if (isShow) {
-                    API.addShowToWatchList(user.username, movie.id)
+                    API.addShowToWatchList(user.username, movie.id, movie.poster_path)
                         .then(res => {
                             if (res.status === 200) {
                                 setActive(true)
