@@ -7,6 +7,7 @@ import { Container } from 'react-bootstrap';
 import Banner from '../../components/Banner';
 import requests from '../../components/Requests';
 import CircularProgress from '@mui/material/CircularProgress';
+import NotLoggedIn from '../../components/NotLoggedIn';
 
 function Profile({ user }) {
     const [greet, setGreet] = useState();
@@ -67,7 +68,7 @@ function Profile({ user }) {
 
     const StyledMainContainer = styled(Container)`
         position: relative;
-        bottom: 15rem;
+        bottom: 20rem;
         text-align: center;
     `
 
@@ -85,18 +86,24 @@ function Profile({ user }) {
                 </div>
             ) : (
                 <>
-                    <Banner link={trending[randomInt]?.backdrop_path} />
-                    <StyledMainContainer>
-                        <h1>{greet}, {user?.username}</h1>
-                        <Lists
-                            favoriteMovies={favoriteMovies}
-                            favoriteShows={favoriteShows}
-                            movieWatchList={movieWatchList}
-                            showWatchList={showWatchList}
-                            watchedMovies={watchedMovies}
-                            watchedShows={watchedShows}
-                        />
-                    </StyledMainContainer>
+                    {user.username ? (
+                        <>
+                            <Banner link={trending[randomInt]?.backdrop_path} />
+                            <StyledMainContainer>
+                                <h1>{greet}, {user?.username}</h1>
+                                <Lists
+                                    favoriteMovies={favoriteMovies}
+                                    favoriteShows={favoriteShows}
+                                    movieWatchList={movieWatchList}
+                                    showWatchList={showWatchList}
+                                    watchedMovies={watchedMovies}
+                                    watchedShows={watchedShows}
+                                />
+                            </StyledMainContainer>
+                        </>
+                    ) : (
+                        <NotLoggedIn />
+                    )}
                 </>
             )}
         </>
