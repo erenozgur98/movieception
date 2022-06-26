@@ -10,6 +10,7 @@ function HeartIcon({ user, movie }) {
     const [active, setActive] = useState(false)
     const [movieFavorite, setMovieFavorite] = useState([])
     const [showFavorite, setShowFavorite] = useState([])
+
     const { enqueueSnackbar } = useSnackbar();
 
     const isMovie = window.location.href.includes('movies')
@@ -19,17 +20,17 @@ function HeartIcon({ user, movie }) {
         if (user.username) {
             API.getAllFavorites(user.username)
                 .then(res => {
-                    setMovieFavorite(res.data.Movie)
-                    setShowFavorite(res.data.Show)
+                    setMovieFavorite(res.data?.movieFavorites)
+                    setShowFavorite(res.data?.showFavorites)
                 })
         }
     }, [])
 
     useEffect(() => {
         if (user?.username) {
-            if (movieFavorite.find(x => x.includes(movie.id.toString()))) {
+            if (movieFavorite?.some(e => e.id === movie.id.toString())) {
                 setActive(true)
-            } else if (showFavorite.find(x => x.includes(movie.id.toString()))) {
+            } else if (showFavorite?.some(e => e.id === movie.id.toString())) {
                 setActive(true)
             } else {
                 setActive(false)
@@ -133,6 +134,7 @@ function HeartIcon({ user, movie }) {
                 } else if (movie.media_type === 'movie') {
                     API.addMovieToFavorite(user.username, movie.id, movie.poster_path, movie.original_title)
                         .then(res => {
+                            console.log(res.data)
                             if (res.status === 200) {
                                 setActive(true)
                                 enqueueSnackbar('Successfully added to your favorites!', {
@@ -153,6 +155,7 @@ function HeartIcon({ user, movie }) {
                 if (isMovie) {
                     API.addMovieToFavorite(user.username, movie.id, movie.poster_path, movie.original_title)
                         .then(res => {
+                            console.log(res)
                             if (res.status === 200) {
                                 setActive(true)
                                 enqueueSnackbar('Successfully added to your favorites!', {

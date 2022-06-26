@@ -49,16 +49,16 @@ function Profile({ user }) {
             if (user?.username) {
                 setLoading(true);
                 API.getAllFavorites(user.username).then(res => {
-                    setFavoriteMovies(res.data?.Movie)
-                    setFavoriteShows(res.data?.Show)
+                    setFavoriteMovies(res.data?.movieFavorites)
+                    setFavoriteShows(res.data?.showFavorites)
                 })
                 API.getAllWatchList(user.username).then(res => {
-                    setMovieWatchList(res.data?.Movie)
-                    setShowWatchList(res.data?.Show)
+                    setMovieWatchList(res.data?.movieWatchList)
+                    setShowWatchList(res.data?.showWatchList)
                 })
                 API.getAllWatched(user.username).then(res => {
-                    setWatchedMovies(res.data?.Movie)
-                    setWatchedShows(res.data?.Show)
+                    setWatchedMovies(res.data?.movieHistory)
+                    setWatchedShows(res.data?.showHistory)
                 })
                 setLoading(false);
             }

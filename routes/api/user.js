@@ -4,431 +4,89 @@ const bcrypt = require('bcrypt');
 
 router.get('/', async (req, res) => {
     try {
-        const user = await User.find();
+        const user = await User.findAll();
         res.json(user);
+    } catch (err) {
+        console.log(err);
+        res.status(400).json(err);
+    }
+});
+
+router.get('/login', async (req, res) => {
+    try {
+        if (req.session.user_id) {
+            res.send({ logged_in: true, user_id: req.session.user_id });
+        } else {
+            res.send({ logged_in: false });
+        }
     } catch (err) {
         res.status(400).json(err);
     }
 });
 
-// get user
 router.get('/user', async (req, res) => {
     try {
         if (req.session.logged_in) {
+            const userData = await User.findByPk(req.session.user_id);
             const userInfo = {
-                _id: req.session.user_id,
-                email: req.session.email,
-                username: req.session.username,
+                role: userData.dataValues.role,
+                username: userData.dataValues.username,
+                email: userData.dataValues.email,
                 logged_in: true
             };
-            res.json(userInfo)
+            res.json(userInfo);
         } else {
-            res.status(403).json({ message: 'Something went wrong getting the user, could mean that you are not logged in/signed up yet' });
+            res.status(403).json({ message: 'Something went wrong getting the user, could mean that you are not logged in/signedup yet ' });
         }
     } catch (err) {
-        console.log(err)
+        console.log(err);
     };
 });
 
-////////// FAVORITES //////////
+router.post('/signup', async (req, res) => {
+    try {
+        if (!req.body.role) req.body.role = 'user';
 
-// Get all favorites
-router.get('/:username/favorites', (req, res) => {
-    User.findOne({ username: req.params.username })
-        .then(user => {
-            if (user.movieFavorites && user.showFavorites !== null) {
-                const favorites = {
-                    Movie: user.movieFavorites,
-                    Show: user.showFavorites
-                }
-                res.json(favorites)
-            } else {
-                res.json([])
-            }
-        })
-        .catch(err => {
-            res.status(500).sendStatus(`Error ${err}`)
-        })
-});
+        const email = await User.findOne({ where: { email: req.body.email } });
+        const user = await User.findOne({ where: { username: req.body.username } });
+        if (user) {
+            res.status(400).json({ message: 'That username is taken' });
+        } else if (email) {
+            res.status(400).json({ message: 'That email is taken' });
+        } else {
+            const newUser = await User.create(req.body);
+            delete newUser.password;
 
-// add a movie to user's list of favorites
-router.post('/:username/favorite/movies/:MovieId/:PosterPath/title/:Title', (req, res) => {
-    User.findOneAndUpdate({
-        username: req.params.username
-    }, {
-        $push: {
-            movieFavorites: [req.params.MovieId, req.params.PosterPath, req.params.Title]
-        }
-    }, {
-        new: true
-    },
-        function (err, updatedUser) {
-            if (err) {
-                res.status(500).send('Error: ' + err)
-            } else {
-                res.json(updatedUser.movieFavorites)
-            }
-        }
-    )
-});
+            req.session.user_id = newUser.id
+            req.session.logged_in = true;
+            req.session.username = newUser.username;
 
-// add a show to user's list of favorites
-router.post('/:username/favorite/shows/:ShowId/:PosterPath/title/:Title', (req, res) => {
-    User.findOneAndUpdate({
-        username: req.params.username
-    }, {
-        $push: {
-            showFavorites: [req.params.ShowId, req.params.PosterPath, req.params.Title]
-        }
-    }, {
-        new: true
-    },
-        function (err, updatedUser) {
-            if (err) {
-                res.status(500).send('Error: ' + err)
-            } else {
-                res.json(updatedUser.showFavorites)
-            }
-        }
-    )
-});
-
-// remove a movie from user's list of favorites
-router.delete('/:username/favorite/movies/:MovieId', (req, res) => {
-    User.findOneAndUpdate({
-        username: req.params.username
-    }, {
-        $pull: {
-            movieFavorites: { $in: [req.params.MovieId] }
-        }
-    }, {
-        new: true
-    },
-        function (err, updatedUser) {
-            if (err) {
-                res.status(500).send('Error: ' + err)
-            } else {
-                res.json(updatedUser.movieFavorites)
-            }
-        })
-});
-
-// remove a show from user's list of favorites
-router.delete('/:username/favorite/shows/:ShowId', (req, res) => {
-    User.findOneAndUpdate({
-        username: req.params.username
-    }, {
-        $pull: {
-            showFavorites: { $in: [req.params.ShowId] }
-        }
-    }, {
-        new: true
-    },
-        function (err, updatedUser) {
-            if (err) {
-                res.status(500).send('Error: ' + err)
-            } else {
-                res.json(updatedUser.showFavorites)
-            }
-        })
-});
-
-
-////////// WATCHED LIST //////////
-
-// Get all watched
-router.get('/:username/watched', (req, res) => {
-    User.findOne({ username: req.params.username })
-        .then(user => {
-            if (user.watchedMovies && user.watchedShows !== null) {
-                const watched = {
-                    Movie: user.watchedMovies,
-                    Show: user.watchedShows
-                }
-                res.json(watched)
-            } else {
-                res.json([])
-            }
-        })
-        .catch(err => {
-            res.status(500).sendStatus(`Error ${err}`)
-        })
-})
-
-router.post('/:username/watched/movies/:MovieId/:PosterPath/title/:Title', (req, res) => {
-    User.findOneAndUpdate({
-        username: req.params.username
-    }, {
-        $push: {
-            watchedMovies: [req.params.MovieId, req.params.PosterPath, req.params.Title]
-        }
-    }, {
-        new: true
-    },
-        function (err, updatedUser) {
-            if (err) {
-                res.status(500).send(`Error: ${err}`)
-            } else {
-                res.json(updatedUser.watchedMovies)
-            }
-        })
-});
-
-router.post('/:username/watched/shows/:ShowId/:PosterPath/title/:Title', (req, res) => {
-    User.findOneAndUpdate({
-        username: req.params.username
-    }, {
-        $push: {
-            watchedShows: [req.params.ShowId, req.params.PosterPath, req.params.Title]
-        }
-    }, {
-        new: true
-    },
-        function (err, updatedUser) {
-            if (err) {
-                res.status(500).send(`Error: ${err}`)
-            } else {
-                res.json(updatedUser.watchedShows)
-            }
-        })
-});
-
-router.delete('/:username/watched/movies/:MovieId', (req, res) => {
-    User.findOneAndUpdate({
-        username: req.params.username
-    }, {
-        $pull: {
-            watchedMovies: { $in: [req.params.MovieId] }
-        }
-    }, {
-        new: true
-    },
-        function (err, updatedUser) {
-            if (err) {
-                res.status(500).send('Error: ' + err)
-            } else {
-                res.json(updatedUser.watchedMovies)
-            }
-        })
-});
-
-router.delete('/:username/watched/shows/:ShowId', (req, res) => {
-    User.findOneAndUpdate({
-        username: req.params.username
-    }, {
-        $pull: {
-            watchedShows: { $in: [req.params.ShowId] }
-        }
-    }, {
-        new: true
-    },
-        function (err, updatedUser) {
-            if (err) {
-                res.status(500).send('Error: ' + err)
-            } else {
-                res.json(updatedUser.watchedShows)
-            }
-        })
-});
-
-
-////////// WATCHLIST //////////
-
-router.get('/:username/watchlist', (req, res) => {
-    User.findOne({ username: req.params.username })
-        .then(user => {
-            if (user.watchedMovies && user.watchedShows !== null) {
-                const watchList = {
-                    Movie: user.movieWatchList,
-                    Show: user.showWatchList
-                }
-                res.json(watchList)
-            } else {
-                res.json([])
-            }
-        })
-        .catch(err => {
-            console.log('askjhasdkjhads', err)
-            res.status(500).sendStatus(`Error ${err}`)
-        })
-})
-
-router.post('/:username/watchlist/movies/:MovieId/:PosterPath/title/:Title', (req, res) => {
-    User.findOneAndUpdate({
-        username: req.params.username
-    }, {
-        $push: {
-            movieWatchList: [req.params.MovieId, req.params.PosterPath, req.params.Title]
-        }
-    }, {
-        new: true
-    },
-        function (err, updatedUser) {
-            if (err) {
-                res.status(500).send(`Error: ${err}`)
-            } else {
-                res.json(updatedUser.movieWatchList)
-            }
-        })
-})
-
-router.post('/:username/watchlist/shows/:ShowId/:PosterPath/title/:Title', (req, res) => {
-    User.findOneAndUpdate({
-        username: req.params.username
-    }, {
-        $push: {
-            showWatchList: [req.params.ShowId, req.params.PosterPath, req.params.Title]
-        }
-    }, {
-        new: true
-    },
-        function (err, updatedUser) {
-            if (err) {
-                res.status(500).send(`Error: ${err}`)
-            } else {
-                res.json(updatedUser.showWatchList)
-            }
-        })
-})
-
-router.delete('/:username/watchlist/movies/:MovieId', (req, res) => {
-    User.findOneAndUpdate({
-        username: req.params.username
-    }, {
-        $pull: {
-            movieWatchList: { $in: [req.params.MovieId] }
-        }
-    }, {
-        new: true
-    },
-        function (err, updatedUser) {
-            if (err) {
-                res.status(500).send('Error: ' + err)
-            } else {
-                res.json(updatedUser.movieWatchList)
-            }
-        })
-});
-
-
-router.delete('/:username/watchlist/shows/:ShowId', (req, res) => {
-    User.findOneAndUpdate({
-        username: req.params.username
-    }, {
-        $pull: {
-            showWatchList: { $in: [req.params.ShowId] }
-        }
-    }, {
-        new: true
-    },
-        function (err, updatedUser) {
-            if (err) {
-                res.status(500).send('Error: ' + err)
-            } else {
-                res.json(updatedUser.showWatchList)
-            }
-        })
-});
-
-////////// WATCHED EPISODES //////////
-
-router.get('/:username/episodes', (req, res) => {
-    let WubbaLubbaDubDub = {
-        'Show': [],
-        'Season': [],
-        'Episodes': []
+            res.json(newUser);
+        };
+    } catch (err) {
+        console.log(err);
+        res.status(404).json(err);
     }
-
-    const addToArr = (z, v) => {
-        WubbaLubbaDubDub[z].push(v)
-    }
-
-    User.findOne({ username: req.params.username })
-        .then(user => {
-            if (user.watchedEpisodes != null) {
-                user.watchedEpisodes.forEach(x => {
-                    addToArr('Show', x.show[0])
-                    addToArr('Season', x.season[0])
-                    addToArr('Episodes', x.episode[0])
-                })
-                res.json(WubbaLubbaDubDub)
-            } else {
-                res.json([])
-            }
-        })
-        .catch(err => {
-            res.status(500).sendStatus(`Error ${err}`)
-        })
-})
-
-router.post('/:username/shows/:ShowId/seasons/:SeasonId/episodes/:EpisodeId', (req, res) => {
-    User.findOneAndUpdate({
-        username: req.params.username
-    }, {
-        $push: {
-            watchedEpisodes: [
-                {
-                    show: req.params.ShowId,
-                    season: req.params.SeasonId,
-                    episode: req.params.EpisodeId
-                }
-            ]
-        }
-    }, {
-        new: true
-    },
-        function (err, updatedUser) {
-            if (err) {
-                res.status(500).send(`Error: ${err}`)
-            } else {
-                res.json(updatedUser.watchedEpisodes)
-            }
-        })
-})
-
-router.delete('/:username/shows/:ShowId/seasons/:SeasonId/episodes/:EpisodeId', (req, res) => {
-    User.findOneAndUpdate({
-        username: req.params.username
-    }, {
-        $pull: {
-            watchedEpisodes: [
-                {
-                    show: { $in: [req.params.ShowId] },
-                    season: { $in: [req.params.SeasonId] },
-                    episode: { $in: [req.params.EpisodeId] }
-                }
-            ]
-        }
-    }, {
-        new: true
-    },
-        function (err, updatedUser) {
-            if (err) {
-                res.status(500).send('Error: ' + err)
-            } else {
-                res.json(updatedUser.watchedEpisodes)
-            }
-        })
 });
-
-
-////////// LOGIN - SIGNUP - LOGOUT //////////
 
 router.post('/login', async (req, res) => {
     try {
-        const user = await User.findOne({ username: req.body.username })
+        const user = await User.findOne({ where: { username: req.body.username } });
 
-        if (!user) return res.status(403).json({ message: 'Incorrect username' });
+        if (!user) {
+            res.status(403).json({ msg: 'Incorrect Username' });
+            return;
+        };
 
-        // checking to see if the passwords match
         const validPassword = await bcrypt.compare(
             req.body.password,
             user.password
         );
 
-        if (!validPassword) return res.status(401).json({ message: 'Incorrect Password' });
+        if (!validPassword) {
+            return;
+        }
 
-        // this is not working
         delete user.password
 
         req.session.user_id = user.id;
@@ -443,31 +101,55 @@ router.post('/login', async (req, res) => {
     }
 });
 
-router.post('/signup', async (req, res) => {
+// GET one user
+router.get('/:username', async (req, res) => {
     try {
-        const newUser = await User.create(req.body);
-
-        // this is not working
-        delete newUser.password;
-
-        req.session.user_id = newUser.id;
-        req.session.logged_in = true;
-        req.session.username = newUser.username;
-
-        res.json(newUser);
+        const userData = await User.findByPk(req.params.username);
+        if (!userData) {
+            res.status(404).json({ message: 'No user with this username!' });
+            return;
+        }
+        res.status(200).json(userData);
     } catch (err) {
-        res.status(404).json({ err });
+        res.status(500).json(err);
     }
 });
 
-router.post('/logout', async (req, res) => {
+// PUT update a user
+router.put('/:id', async (req, res) => {
+    try {
+        const user = await User.findById(
+            {
+                username: req.body.username,
+                email: req.body.email,
+                password: req.body.password
+            },
+            {
+                where: {
+                    id: req.params.id,
+                }
+            }
+        );
+        res.status(200).json(user);
+    } catch (err) {
+        console.log(err);
+        res.status(400).json(err);
+    }
+});
+
+router.post('/logout', (req, res) => {
     if (req.session) {
         req.session.destroy(() => {
             res.status(204).end();
         });
     } else {
         res.status(404).end();
-    }
+    };
 });
+
+
+router.delete('/username', (req, res) => {
+    // to be written
+})
 
 module.exports = router;

@@ -1,7 +1,7 @@
 module.exports = {
     User: require('./User'),
-    Favorite: require('./Favorite'),
-    Movie: require('./Movie'),
-    Show: require('./Show'),
-    Profile: require('./Profile')
+    History: require('./History'),
+    WatchList: require('./WatchList'),
+    Favorites: require('./Favorites'),
+    WatchedEpisodes: require('./WatchedEpisodes')
 };

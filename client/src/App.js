@@ -32,9 +32,9 @@ function App() {
       })
   }, []);
 
-  useEffect(() => {
-    API.getAllUsers().then(res => console.log(res))
-  }, [])
+  // useEffect(() => {
+  //   API.getAllUsers().then(res => console.log(res))
+  // }, [])
 
   return (
     <div>

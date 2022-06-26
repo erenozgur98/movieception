@@ -36,11 +36,11 @@ const Favorites = ({ favoriteMovies, favoriteShows }) => {
                             >
                                 <ListItemAvatar>
                                     <Avatar>
-                                        {x[1] ? <Avatar src={`${base_url}${x[1]}`} /> : <FolderIcon />}
+                                        {x.poster_path ? <Avatar src={`${base_url}${x.poster_path}`} /> : <FolderIcon />}
                                     </Avatar>
                                 </ListItemAvatar>
                                 <ListItemText
-                                    primary={x[2]}
+                                    primary={x.title}
                                 />
                             </ListItem>
                         </List>

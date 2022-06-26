@@ -1,0 +1,163 @@
+const WatchList = require("../models/WatchList");
+
+module.exports = {
+    findAllWatchList: (req, res) => {
+        WatchList.findOne({
+            where: {
+                username: req.params.username
+            }
+        })
+            .then(favorites => {
+                res.json(favorites)
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    },
+
+    addMovieToWatchList: async (req, res) => {
+        try {
+            const watchListArray = await WatchList.findOne({ where: { username: req.params.username } });
+
+            if (watchListArray?.dataValues.showWatchList !== null && watchListArray?.dataValues.movieWatchList === null) {
+                const newMovieWatchList = await WatchList.update(
+                    {
+                        movieWatchList: [
+                            {
+                                id: req.params.MovieId,
+                                title: req.params.Title,
+                                poster_path: req.params.PosterPath
+                            }
+                        ]
+                    },
+                    { where: { username: req.params.username } }
+                );
+                return res.json(newMovieWatchList)
+            } else if (watchListArray === null || watchListArray.dataValues?.movieWatchList === null) {
+                const newMovieWatchList = await WatchList.create({
+                    username: req.params.username,
+                    movieWatchList: [
+                        {
+                            id: req.params.MovieId,
+                            title: req.params.Title,
+                            poster_path: req.params.PosterPath
+                        }
+                    ]
+                });
+                return res.json(newMovieWatchList);
+            } else {
+                let movieArray = watchListArray.dataValues.movieWatchList;
+                if (movieArray?.some(e => e.id === req.params.MovieId)) {
+                    return res.status(400).json({ message: 'That movie is already in your favorites!' });
+                } else {
+                    const newFavoriteMovie = {
+                        id: req.params.MovieId,
+                        title: req.params.Title,
+                        poster_path: req.params.PosterPath
+                    };
+
+                    movieArray.push(newFavoriteMovie);
+
+                    WatchList.update(
+                        { movieWatchList: movieArray },
+                        { where: { username: req.params.username } }
+                    )
+
+                    res.json(movieArray)
+                }
+
+            }
+
+        } catch (err) {
+            console.log(`sflhsafljsafljsafhaslsahsaljfasd ${err}`)
+            res.status(500).json(err)
+        }
+    },
+
+    addShowToWatchList: async (req, res) => {
+        try {
+            const watchListArray = await WatchList.findOne({ where: { username: req.params.username } });
+
+            if (watchListArray?.dataValues.movieWatchList !== null && watchListArray.dataValues.showWatchList === null) {
+                const newShowFavorite = await WatchList.update(
+                    {
+                        showWatchList: [
+                            {
+                                id: req.params.ShowId,
+                                title: req.params.Title,
+                                poster_path: req.params.PosterPath
+                            }
+                        ]
+                    },
+                    { where: { username: req.params.username } }
+                );
+                return res.json(newShowFavorite)
+            } else if (watchListArray === null || watchListArray.dataValues?.showWatchList === null) {
+                const newShowFavorite = await WatchList.create({
+                    username: req.params.username,
+                    showWatchList: [
+                        {
+                            id: req.params.ShowId,
+                            title: req.params.Title,
+                            poster_path: req.params.PosterPath
+                        }
+                    ]
+                });
+                return res.json(newShowFavorite);
+            } else {
+                let showArray = watchListArray.dataValues.showWatchList;
+                if (showArray?.some(e => e.id === req.params.ShowId)) {
+                    return res.status(400).json({ message: 'That movie is already in your favorites!' });
+                } else {
+                    const newFavoriteShow = {
+                        id: req.params.ShowId,
+                        title: req.params.Title,
+                        poster_path: req.params.PosterPath
+                    };
+
+                    showArray.push(newFavoriteShow);
+
+                    WatchList.update(
+                        { showWatchList: showArray },
+                        { where: { username: req.params.username } }
+                    )
+
+                    res.json(showArray)
+                }
+
+            }
+
+        } catch (err) {
+            console.log(`sflhsafljsafljsafhaslsahsaljfasd ${err}`)
+            res.status(500).json(err)
+        }
+    },
+
+    deleteMovieFromWatchList: (req, res) => {
+        WatchList.findOne({
+            where: {
+                username: req.params.username
+            }
+        })
+            .then(res => {
+                console.log(res)
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    },
+
+    deleteShowFromWatchList: (req, res) => {
+        WatchList.findOne({
+            where: {
+                username: req.params.username
+            }
+        })
+            .then(res => {
+                console.log(res)
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    }
+}

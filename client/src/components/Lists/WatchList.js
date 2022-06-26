@@ -20,8 +20,7 @@ const WatchList = ({ movieWatchList, showWatchList }) => {
     }
 
     const redirect = id => {
-        console.log('here', id)
-        // window.location.assign(`/movies/${id}`)
+        window.location.assign(`/movies/${id}`)
     }
 
     const Demo = styled('div')(({ theme }) => ({
@@ -44,7 +43,7 @@ const WatchList = ({ movieWatchList, showWatchList }) => {
                     </ListItemButton>
                     {movieWatchList.map(x => (
                         <List>
-                            <ListItemButton onClick={() => console.log('clicked')}>
+                            <ListItemButton onClick={() => redirect(x.id)}>
                                 <ListItem
                                     secondaryAction={
                                         <IconButton edge="end" aria-label="delete">
@@ -54,11 +53,11 @@ const WatchList = ({ movieWatchList, showWatchList }) => {
                                 >
                                     <ListItemAvatar>
                                         <Avatar>
-                                            {x[1] ? <Avatar src={`${base_url}${x[1]}`} /> : <FolderIcon />}
+                                            {x.poster_path ? <Avatar src={`${base_url}${x.poster_path}`} /> : <FolderIcon />}
                                         </Avatar>
                                     </ListItemAvatar>
                                     <ListItemText
-                                        primary={x[2]}
+                                        primary={x.title}
                                     />
                                 </ListItem>
                             </ListItemButton>

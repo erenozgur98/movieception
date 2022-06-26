@@ -1,9 +1,14 @@
 const router = require('express').Router();
 const userRoutes = require('./user');
+const historyRoute = require('./historyRoute');
+const favoriteRoutes = require('./favoritesRoute');
+const watchListRoute = require('./watchListRoute');
+const watchedEpisodesRoute = require('./watchedEpisodesRoute');
 
-// User Routes
 router.use('/users', userRoutes);
-
-// Next routes will be in here
+router.use('/history', historyRoute);
+router.use('/favorites', favoriteRoutes);
+router.use('/watchlist', watchListRoute);
+// router.use('/watchedepisodes', watchedEpisodesRoute);
 
 module.exports = router;

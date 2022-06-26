@@ -2,16 +2,16 @@ import axios from 'axios';
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
-    getUser: (userId) => {
-        return axios.get('/api/users' + userId);
+    getUser: (username) => {
+        return axios.get(`/api/users/${username}`);
     },
 
     getAllUsers: () => {
         return axios.get('/api/users');
     },
 
-    deleteUser: (id) => {
-        return axios.delete('/api/users' + id)
+    deleteUser: (username) => {
+        return axios.delete(`/api/users/${username}`)
     },
 
     signUp: (userInfo) => {
@@ -31,63 +31,63 @@ export default {
     },
 
     getAllFavorites: (username) => {
-        return axios.get(`/api/users/${username}/favorites`)
+        return axios.get(`/api/favorites/${username}`)
     },
 
     addMovieToFavorite: (username, MovieId, PosterPath, Title) => {
-        return axios.post(`/api/users/${username}/favorite/movies/${MovieId}${PosterPath}/title/${Title}`)
+        return axios.post(`/api/favorites/${username}/movies/${MovieId}${PosterPath}/title/${Title}`)
     },
 
     addShowToFavorite: (username, ShowId, PosterPath, Title) => {
-        return axios.post(`/api/users/${username}/favorite/shows/${ShowId}${PosterPath}/title/${Title}`)
+        return axios.post(`/api/favorites/${username}/shows/${ShowId}${PosterPath}/title/${Title}`)
     },
 
     removeMovieFromFavorites: (username, MovieId) => {
-        return axios.delete(`/api/users/${username}/favorite/movies/${MovieId}`)
+        return axios.delete(`/api/favorites/${username}/movies/${MovieId}`)
     },
 
     removeShowFromFavorites: (username, ShowId) => {
-        return axios.delete(`/api/users/${username}/favorite/shows/${ShowId}`)
+        return axios.delete(`/api/favorites/${username}/shows/${ShowId}`)
     },
 
     getAllWatchList: (username) => {
-        return axios.get(`/api/users/${username}/watchlist`)
+        return axios.get(`/api/watchlist/${username}`)
     },
 
     addMovieToWatchList: (username, MovieId, PosterPath, Title) => {
-        return axios.post(`/api/users/${username}/watchlist/movies/${MovieId}${PosterPath}/title/${Title}`)
+        return axios.post(`/api/watchlist/${username}/movies/${MovieId}${PosterPath}/title/${Title}`)
     },
 
     addShowToWatchList: (username, ShowId, PosterPath, Title) => {
-        return axios.post(`/api/users/${username}/watchlist/shows/${ShowId}${PosterPath}/title/${Title}`)
+        return axios.post(`/api/watchlist/${username}/shows/${ShowId}${PosterPath}/title/${Title}`)
     },
 
     removeMovieFromWatchList: (username, MovieId) => {
-        return axios.delete(`/api/users/${username}/watchlist/movies/${MovieId}`)
+        return axios.delete(`/api/watchlist/${username}/movies/${MovieId}`)
     },
 
     removeShowFromWatchList: (username, ShowId) => {
-        return axios.delete(`/api/users/${username}/watchlist/shows/${ShowId}`)
+        return axios.delete(`/api/watchlist/${username}/shows/${ShowId}`)
     },
 
     getAllWatched: (username) => {
-        return axios.get(`/api/users/${username}/watched`)
+        return axios.get(`/api/history/${username}/watched`)
     },
 
     addMovieToWatched: (username, MovieId, PosterPath, Title) => {
-        return axios.post(`/api/users/${username}/watched/movies/${MovieId}${PosterPath}/title/${Title}`)
+        return axios.post(`/api/history/${username}/watched/movies/${MovieId}${PosterPath}/title/${Title}`)
     },
 
     addShowToWatched: (username, MovieId, PosterPath, Title) => {
-        return axios.post(`/api/users/${username}/watched/shows/${MovieId}${PosterPath}/title/${Title}`)
+        return axios.post(`/api/history/${username}/watched/shows/${MovieId}${PosterPath}/title/${Title}`)
     },
 
     removeMovieFromWatched: (username, MovieId) => {
-        return axios.delete(`/api/users/${username}/watched/movies/${MovieId}`)
+        return axios.delete(`/api/history/${username}/watched/movies/${MovieId}`)
     },
 
     removeShowFromWatched: (username, MovieId) => {
-        return axios.delete(`/api/users/${username}/watched/shows/${MovieId}`)
+        return axios.delete(`/api/history/${username}/watched/shows/${MovieId}`)
     },
 
     getAllEpisodes: (username) => {
