@@ -14,6 +14,8 @@ export default {
         return axios.delete(`/api/users/${username}`)
     },
 
+
+    //////// SIGNUP - LOGIN - LOGOUT ////////
     signUp: (userInfo) => {
         return axios.post('/api/users/signup', userInfo);
     },
@@ -30,6 +32,8 @@ export default {
         return axios.get('/api/users/user');
     },
 
+
+    //////// FAVORITES ////////
     getAllFavorites: (username) => {
         return axios.get(`/api/favorites/${username}`)
     },
@@ -50,6 +54,8 @@ export default {
         return axios.delete(`/api/favorites/${username}/shows/${ShowId}`)
     },
 
+
+    //////// WATCHLIST ////////
     getAllWatchList: (username) => {
         return axios.get(`/api/watchlist/${username}`)
     },
@@ -70,6 +76,8 @@ export default {
         return axios.delete(`/api/watchlist/${username}/shows/${ShowId}`)
     },
 
+
+    //////// HISTORY ////////
     getAllWatched: (username) => {
         return axios.get(`/api/history/${username}/watched`)
     },
@@ -90,6 +98,8 @@ export default {
         return axios.delete(`/api/history/${username}/watched/shows/${MovieId}`)
     },
 
+
+    //////// EPISODES ////////
     getAllEpisodes: (username) => {
         return axios.get(`/api/users/${username}/episodes`)
     },

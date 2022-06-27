@@ -20,17 +20,17 @@ function WatchList({ user, movie }) {
         if (user.username) {
             API.getAllWatchList(user.username)
                 .then(res => {
-                    setMovieWatchList(res.data.movieWatchList)
-                    setShowWatchList(res.data.showWatchList)
+                    setMovieWatchList(res.data?.movieWatchList)
+                    setShowWatchList(res.data?.showWatchList)
                 })
         }
     }, [])
 
     useEffect(() => {
         if (user.username) {
-            if (movieWatchList.some(y => y.id === movie.id.toString())) {
+            if (movieWatchList?.some(y => y.id === movie.id.toString())) {
                 setActive(true)
-            } else if (showWatchList.some(y => y.id === movie.id.toString())) {
+            } else if (showWatchList?.some(y => y.id === movie.id.toString())) {
                 setActive(true)
             } else {
                 setActive(false)

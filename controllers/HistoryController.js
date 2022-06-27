@@ -134,31 +134,43 @@ module.exports = {
         }
     },
 
-    deleteMovieFromHistory: (req, res) => {
-        History.findOne({
-            where: {
-                username: req.params.username
-            }
-        })
-            .then(res => {
-                console.log(res)
-            })
-            .catch(err => {
-                console.log(err)
-            })
+    deleteMovieFromHistory: async (req, res) => {
+        try {
+            const historyArray = await History.findOne({ where: { username: req.params.username } });
+
+            const movieArray = historyArray.dataValues.movieHistory;
+            const index = movieArray.findIndex(x => x.id === req.params.id);
+            movieArray.splice(index, 1);
+
+            History.update(
+                { movieHistory: movieArray },
+                { where: { username: req.params.username } }
+            );
+
+            res.json(historyArray);
+
+        } catch (err) {
+            res.status(500).json(err)
+        }
     },
 
-    deleteeShowFromHistory: (req, res) => {
-        History.findOne({
-            where: {
-                username: req.params.username
-            }
-        })
-            .then(res => {
-                console.log(res)
-            })
-            .catch(err => {
-                console.log(err)
-            })
+    deleteShowFromHistory: async (req, res) => {
+        try {
+            const historyArray = await History.findOne({ where: { username: req.params.username } });
+
+            const showArray = historyArray.dataValues.showHistory;
+            const index = showArray.findIndex(x => x.id === req.params.id);
+            showArray.splice(index, 1);
+
+            History.update(
+                { showHistory: showArray },
+                { where: { username: req.params.username } }
+            );
+
+            res.json(historyArray);
+
+        } catch (err) {
+            res.status(500).json(err)
+        }
     }
 }

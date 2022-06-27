@@ -133,31 +133,43 @@ module.exports = {
         }
     },
 
-    deleteMovieFromWatchList: (req, res) => {
-        WatchList.findOne({
-            where: {
-                username: req.params.username
-            }
-        })
-            .then(res => {
-                console.log(res)
-            })
-            .catch(err => {
-                console.log(err)
-            })
+    deleteMovieFromWatchList: async (req, res) => {
+        try {
+            const watchListArray = await WatchList.findOne({ where: { username: req.params.username } });
+
+            const movieArray = watchListArray.dataValues.movieWatchList;
+            const index = movieArray.findIndex(x => x.id === req.params.id);
+            movieArray.splice(index, 1);
+
+            WatchList.update(
+                { movieWatchList: movieArray },
+                { where: { username: req.params.username } }
+            );
+
+            res.json(watchListArray);
+
+        } catch (err) {
+            res.status(500).json(err)
+        }
     },
 
-    deleteShowFromWatchList: (req, res) => {
-        WatchList.findOne({
-            where: {
-                username: req.params.username
-            }
-        })
-            .then(res => {
-                console.log(res)
-            })
-            .catch(err => {
-                console.log(err)
-            })
+    deleteShowFromWatchList: async (req, res) => {
+        try {
+            const watchListArray = await WatchList.findOne({ where: { username: req.params.username } });
+
+            const showArray = watchListArray.dataValues.showWatchList;
+            const index = showArray.findIndex(x => x.id === req.params.id);
+            showArray.splice(index, 1);
+
+            WatchList.update(
+                { showWatchList: showArray },
+                { where: { username: req.params.username } }
+            );
+
+            res.json(watchListArray);
+
+        } catch (err) {
+            res.status(500).json(err)
+        }
     }
 }

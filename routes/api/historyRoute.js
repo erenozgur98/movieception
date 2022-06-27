@@ -6,7 +6,7 @@ router.route('/:username/watched').get(historyController.findAllHistory);
 router.route('/:username/watched/movies/:MovieId/:PosterPath/title/:Title').post(historyController.addMovieToHistory);
 router.route('/:username/watched/shows/:ShowId/:PosterPath/title/:Title').post(historyController.addShowToHistory);
 
-// router.route('/history/movies/:MovieId').delete(historyController.deleteMovieFromHistory);
-// router.route('/history/shows/:ShowId').delete(historyController.deleteShowFromHistory);
+router.route('/:username/watched/movies/:MovieId').delete(historyController.deleteMovieFromHistory);
+router.route('/:username/watched/shows/:ShowId').delete(historyController.deleteShowFromHistory);
 
 module.exports = router;

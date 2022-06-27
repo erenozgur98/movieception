@@ -122,7 +122,7 @@ module.exports = {
                         { where: { username: req.params.username } }
                     )
 
-                    res.json(showArray)
+                    res.status(200).json({ message: `Successfully deleted ${req.body.title} from your favorites.` })
                 }
 
             }
@@ -133,31 +133,43 @@ module.exports = {
         }
     },
 
-    deleteMovieFromFavorites: (req, res) => {
-        Favorites.findOne({
-            where: {
-                username: req.params.username
-            }
-        })
-            .then(response => {
-                res.json(response)
-            })
-            .catch(err => {
-                console.log(err)
-            })
+    deleteMovieFromFavorites: async (req, res) => {
+        try {
+            const favoritesArray = await Favorites.findOne({ where: { username: req.params.username } });
+
+            const movieArray = favoritesArray.dataValues.movieFavorites;
+            const index = movieArray.findIndex(x => x.id === req.params.id);
+            movieArray.splice(index, 1);
+
+            Favorites.update(
+                { movieFavorites: movieArray },
+                { where: { username: req.params.username } }
+            );
+
+            res.json(favoritesArray);
+
+        } catch (err) {
+            res.status(500).json(err)
+        }
     },
 
-    deleteeShowFromFavorites: (req, res) => {
-        Favorites.findOne({
-            where: {
-                username: req.params.username
-            }
-        })
-            .then(response => {
-                res.json(response)
-            })
-            .catch(err => {
-                console.log(err)
-            })
+    deleteShowFromFavorites: async (req, res) => {
+        try {
+            const favoritesArray = await Favorites.findOne({ where: { username: req.params.username } });
+
+            const showArray = favoritesArray.dataValues.showFavorites;
+            const index = showArray.findIndex(x => x.id === req.params.id);
+            showArray.splice(index, 1);
+
+            Favorites.update(
+                { showFavorites: showArray },
+                { where: { username: req.params.username } }
+            );
+
+            res.json(favoritesArray);
+
+        } catch (err) {
+            res.status(500).json(err)
+        }
     }
 }
