@@ -8,7 +8,6 @@ function WatchProviders({ movie, show }) {
     const [movieProviders, setMovieProviders] = useState([]);
     const [showProviders, setShowProviders] = useState([]);
 
-
     useEffect(() => {
         if (movie?.id) {
             const fetchData = async () => {
@@ -26,9 +25,8 @@ function WatchProviders({ movie, show }) {
 
     }, [movie?.id, show?.id]);
 
-    const redirect = (provider) => {
-        // will be implemented later
-        // window.location.assign(``);
+    const redirect = (provider, name) => {
+        window.open(`https://www.google.com/search?q=${name}&${provider.provider_name}`, '_blank');
     }
 
     return (
@@ -43,7 +41,7 @@ function WatchProviders({ movie, show }) {
                                     <div key={provider?.id}>
                                         <img
                                             key={provider?.id}
-                                            onClick={() => redirect(provider)}
+                                            onClick={() => redirect(provider, movie.title || movie.original_title)}
                                             src={`${base_url}${provider?.logo_path}`}
                                             alt={provider?.provider_name}
                                             className='provider-logo'
@@ -56,7 +54,7 @@ function WatchProviders({ movie, show }) {
                 </div>
                 :
                 <div className=''>
-                    {showProviders?.US?.flatrate ?
+                    {showProviders?.US?.flatrate &&
                         <div className='providers' key={showProviders?.id}>
                             <div>Available on</div>
                             <div className="providers-map">
@@ -64,7 +62,7 @@ function WatchProviders({ movie, show }) {
                                     <div key={provider?.id}>
                                         <img
                                             key={provider?.id}
-                                            onClick={() => redirect(provider)}
+                                            onClick={() => redirect(provider, show.name || show.original_name)}
                                             src={`${base_url}${provider?.logo_path}`}
                                             alt={provider?.provider_name}
                                             className='provider-logo'
@@ -74,8 +72,6 @@ function WatchProviders({ movie, show }) {
                                 ))}
                             </div>
                         </div>
-                        :
-                        null
                     }
                 </div>
             }

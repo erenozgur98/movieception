@@ -42,6 +42,7 @@ function HeartIcon({ user, movie }) {
         if (user?.username) {
             if (active) {
                 if (movie.media_type === 'tv') {
+                    console.log('here')
                     API.removeShowFromFavorites(user.username, movie.id)
                         .then(res => {
                             if (res.status === 200) {
@@ -94,6 +95,7 @@ function HeartIcon({ user, movie }) {
                         })
                     return
                 } else if (isShow) {
+                    console.log('here')
                     API.removeShowFromFavorites(user.username, movie.id)
                         .then(res => {
                             if (res.status === 200) {
@@ -134,7 +136,6 @@ function HeartIcon({ user, movie }) {
                 } else if (movie.media_type === 'movie') {
                     API.addMovieToFavorite(user.username, movie.id, movie.poster_path, movie.original_title)
                         .then(res => {
-                            console.log(res.data)
                             if (res.status === 200) {
                                 setActive(true)
                                 enqueueSnackbar('Successfully added to your favorites!', {
@@ -155,7 +156,6 @@ function HeartIcon({ user, movie }) {
                 if (isMovie) {
                     API.addMovieToFavorite(user.username, movie.id, movie.poster_path, movie.original_title)
                         .then(res => {
-                            console.log(res)
                             if (res.status === 200) {
                                 setActive(true)
                                 enqueueSnackbar('Successfully added to your favorites!', {
