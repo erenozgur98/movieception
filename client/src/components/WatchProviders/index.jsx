@@ -26,7 +26,7 @@ function WatchProviders({ movie, show }) {
     }, [movie?.id, show?.id]);
 
     const redirect = (provider, name) => {
-        window.open(`https://www.google.com/search?q=${name}&${provider.provider_name}`, '_blank');
+        window.open(`https://www.google.com/search?q=${name}+${provider.provider_name}`, '_blank');
     }
 
     return (

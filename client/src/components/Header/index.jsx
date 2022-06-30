@@ -111,7 +111,7 @@ function Header({ user, setUser }) {
             <StyledMenuLink href='/discover' onClick={handleMenuClose}>Discover</StyledMenuLink>
             <StyledMenuLink href='/discover/movies' onClick={handleMenuClose}>Movies</StyledMenuLink>
             <StyledMenuLink href='/discover/shows' onClick={handleMenuClose}>Shows</StyledMenuLink>
-            <StyledMenuLink href='/actor' onClick={handleMenuClose}>Actors</StyledMenuLink>
+            <StyledMenuLink href='/actors' onClick={handleMenuClose}>Actors</StyledMenuLink>
             {!user?.username && (
                 <StyledMenuLink onClick={() => {
                     setAccountAnchorEl(null)

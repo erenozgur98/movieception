@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { styled } from '@mui/material/styles';
 import DeleteIcon from '@mui/icons-material/Delete';
 import FolderIcon from '@mui/icons-material/Folder';
@@ -8,12 +8,19 @@ import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import { Grid, Typography, List, ListItem, ListItemAvatar, ListItemText, ListItemButton, Avatar, IconButton, Checkbox, Collapse } from '@mui/material';
 import './index.css'
+import ConfirmModal from "./ConfirmModal";
+import API from '../../utils/API'
+import { useSnackbar } from 'notistack'
 
 const base_url = 'https://image.tmdb.org/t/p/original/';
 
-const Favorites = ({ favoriteMovies, favoriteShows }) => {
-    const [open, setOpen] = React.useState(false);
+const Favorites = ({ favoriteMovies, setFavoriteMovies, favoriteShows, setFavoriteShows, user }) => {
+    const [open, setOpen] = useState(false);
+    const [modalOpen, setModalOpen] = useState(false);
+    const [information, setInformation] = useState({})
+    const [active, setActive] = useState(false)
 
+    const { enqueueSnackbar } = useSnackbar();
     const Demo = styled('div')(({ theme }) => ({
         backgroundColor: 'rgb(116, 15, 15)',
         borderRadius: '15px'
@@ -27,8 +34,34 @@ const Favorites = ({ favoriteMovies, favoriteShows }) => {
         window.location.assign(`/movies/${id}`)
     }
 
-    const remove = id => {
-        console.log(id)
+    const remove = (id, title, isMovie) => {
+        setModalOpen(true)
+        setInformation({
+            list: 'favorites',
+            id: id,
+            title: title,
+            isMovie: isMovie
+        })
+    }
+
+    const removeForReal = () => {
+        // use information
+        setActive(true)
+        if (information.isMovie) {
+            API.removeMovieFromFavorites(user.username, information.id)
+                .then(res => {
+                    console.log(res)
+                    if (res.status === 200) {
+                        setActive(false)
+                        setModalOpen(false)
+                        setFavoriteMovies(res.data.movieFavorites)
+                        enqueueSnackbar('Successfully removed from your favorites!', {
+                            variant: 'success'
+                        })
+                        setOpen(true)
+                    }
+                })
+        }
     }
 
     return (
@@ -51,7 +84,12 @@ const Favorites = ({ favoriteMovies, favoriteShows }) => {
                                 <List disablePadding>
                                     <ListItem
                                         secondaryAction={
-                                            <IconButton edge="end" aria-label="delete" onClick={() => remove(x.id)}>
+                                            <IconButton
+                                                edge="end"
+                                                aria-label="delete"
+                                                onClick={() => remove(x.id, x.title, true)}
+                                                disabled={active}
+                                            >
                                                 <DeleteIcon />
                                             </IconButton>
                                         }
@@ -73,8 +111,15 @@ const Favorites = ({ favoriteMovies, favoriteShows }) => {
                     </Demo>
                 </Grid>
             </div>
+            <ConfirmModal
+                open={modalOpen}
+                handleClose={() => setModalOpen(false)}
+                information={information}
+                removeForReal={removeForReal}
+                setInformation={setInformation}
+            />
         </>
     )
-} 
+}
 
 export default Favorites

@@ -93,11 +93,18 @@ function Profile({ user }) {
                                 <h1>{greet}, {user?.username}</h1>
                                 <Lists
                                     favoriteMovies={favoriteMovies}
+                                    setFavoriteMovies={setFavoriteMovies}
                                     favoriteShows={favoriteShows}
+                                    setFavoriteShows={setFavoriteShows}
                                     movieWatchList={movieWatchList}
+                                    setMovieWatchList={setMovieWatchList}
                                     showWatchList={showWatchList}
+                                    setShowWatchList={setShowWatchList}
                                     watchedMovies={watchedMovies}
+                                    setWatchedMovies={setWatchedMovies}
                                     watchedShows={watchedShows}
+                                    setWatchedShows={setWatchedShows}
+                                    user={user}
                                 />
                             </StyledMainContainer>
                         </>
