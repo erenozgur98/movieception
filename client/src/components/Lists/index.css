@@ -1,8 +1,6 @@
 .main-list-component {
     margin-top: 5rem;
     display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 .main-grid-component {
@@ -19,6 +17,8 @@
 @media screen and (max-width: 1250px) {
     .main-list-component {
         flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
 
     .main-grid-component {
