@@ -10,7 +10,6 @@ function RandomModal({ show, handleClose }) {
     const [genre, setGenre] = useState('')
     const [movie, setMovie] = useState('')
 
-
     const handleChange = (event) => {
         setMovie(event.target.value);
     };
@@ -21,12 +20,12 @@ function RandomModal({ show, handleClose }) {
 
     const handleSearch = async () => {
         if (movie === 'Movie') {
-            const request = await axios.get(`${requests.fetchMovies}&with_genres=${genre}`)
+            const request = await axios.get(`${requests.fetchMovies}${genre > 0 ? `&with_genres=${genre}` : ''}`)
             window.location.assign(`/movies/${request.data.results[
                 Math.floor(Math.random() * request.data.results.length - 1)
             ]?.id}`)
         } else {
-            const request = await axios.get(`${requests.fetchShows}&with_genres=${genre}`)
+            const request = await axios.get(`${requests.fetchShows}${genre > 0 ? `&with_genres=${genre}` : ''}`)
             if (request.data.results) {
                 window.location.assign(`/shows/${request.data.results[
                     Math.floor(Math.random() * request.data.results.length - 1)
