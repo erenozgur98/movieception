@@ -19,6 +19,16 @@
   white-space: nowrap;
   font-size: 0.9rem;
   text-align: center;
+  padding-top: 0.3rem;
+}
+
+.casts-episodes {
+  width: 9rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 0.8rem;
+  text-align: center;
 }
 
 .casts-character {

@@ -23,7 +23,7 @@ function SeasonPage({ user }) {
 
     useEffect(() => {
         const fetchData = async () => {
-            const requestCredits = await axios.get(`tv/${ShowId}/season/${SeasonId}/credits?api_key=${process.env.REACT_APP_API_KEY}`);
+            const requestCredits = await axios.get(`tv/${ShowId}/season/${SeasonId}/aggregate_credits?api_key=${process.env.REACT_APP_API_KEY}`);
             const request = await axios.get(`/tv/${ShowId}?api_key=${process.env.REACT_APP_API_KEY}`);
             setCredits(requestCredits?.data);
             setShow(request.data.seasons[SeasonId - 1]);
@@ -50,11 +50,7 @@ function SeasonPage({ user }) {
 
     return (
         <div>
-            {show?.poster_path ?
-                <Banner link={show?.poster_path} title={show?.name} />
-                :
-                null
-            }
+            {show?.poster_path && <Banner link={show?.poster_path} title={show?.name} />}
             <StyledMainContainer>
                 {show?.poster_path &&
                     <div>
@@ -66,7 +62,8 @@ function SeasonPage({ user }) {
                             </div>
                             <div className="bottom-section" style={{ marginTop: '15rem' }}>
                                 <Overview link={show} />
-                                {/* <Credits credits={credits} /> */}
+                                <h4 style={{ textAlign: 'center', marginTop: '1rem', textDecoration: 'underline' }}>The Cast of Season {SeasonId}</h4>
+                                <Credits credits={credits} />
                             </div>
                         </div>
                         <div>

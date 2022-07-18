@@ -6,6 +6,10 @@
 }
 
 .movie-credits-map {
+  min-width: 144px;
+  min-height: 295px;
+  max-width: 144px;
+  max-height: 295px;
   text-align: center;
   margin-top: 1rem;
   transition: transform 450ms;
@@ -42,7 +46,9 @@
 
 .actor-movie-poster {
   object-fit: contain;
-  width: 8rem;
+  min-height: 192px;
+  max-height: 200px;
+  max-width: 8rem;
   margin: 0.5rem;
   border-radius: 5%;
   transition: transform 450ms;

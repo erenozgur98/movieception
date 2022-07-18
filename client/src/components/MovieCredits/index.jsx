@@ -25,7 +25,12 @@ function MovieCredits({ actor }) {
     };
 
     // sorting the movie/shows by release year
-    movieCredits.sort((a, b) => ((a.release_date || a.first_air_date) > (b.release_date || b.first_air_date)) ? -1 : (((b.release_date || b.first_air_date) > (a.release_date || a.first_air_date)) ? 1 : 0));
+    movieCredits.sort((a, b) =>
+        ((a.release_date || a.first_air_date) > (b.release_date || b.first_air_date))
+            ? -1
+            : (((b.release_date || b.first_air_date) > (a.release_date || a.first_air_date))
+                ? 1
+                : 0));
 
     const slicedCredits = movieCredits.slice(0, loadMore);
 
@@ -43,6 +48,9 @@ function MovieCredits({ actor }) {
                             className='actor-movie-poster'
                         />
                         <div className='actor-movie-name'>{credits?.original_title || credits?.original_name}</div>
+                        {credits?.character && <div className='actor-movie-name'><em style={{ color: '#e94343' }}>{credits?.character}</em></div>}
+                        {(credits?.release_date || credits?.first_air_date) && <div className='actor-movie-name'>{credits?.release_date?.split('-')[0] || credits?.first_air_date?.split('-')[0]}</div>}
+                        {credits?.episode_count && <div className='actor-movie-name'>{`${credits?.episode_count} Episodes`}</div>}
                     </div>
                 ))}
             </div>

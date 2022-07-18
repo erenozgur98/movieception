@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import genres from '../Genres'
 import requests from '../Requests'
 import axios from '../Axios'
@@ -21,12 +21,19 @@ function RandomModal({ show, handleClose }) {
     const handleSearch = async () => {
         if (movie === 'Movie') {
             const request = await axios.get(`${requests.fetchMovies}${genre > 0 ? `&with_genres=${genre}` : ''}`)
-            window.location.assign(`/movies/${request.data.results[
-                Math.floor(Math.random() * request.data.results.length - 1)
-            ]?.id}`)
+            if (request.data.results.length) {
+                window.location.assign(`/movies/${request.data.results[
+                    Math.floor(Math.random() * request.data.results.length - 1)
+                ]?.id}`)
+            } else {
+                const request = await axios.get(requests.fetchPopularMovies)
+                window.location.assign(`/movies/${request.data.results[
+                    Math.floor(Math.random() * request.data.results.length - 1)
+                ]?.id}`)
+            }
         } else {
             const request = await axios.get(`${requests.fetchShows}${genre > 0 ? `&with_genres=${genre}` : ''}`)
-            if (request.data.results) {
+            if (request.data.results.length) {
                 window.location.assign(`/shows/${request.data.results[
                     Math.floor(Math.random() * request.data.results.length - 1)
                 ]?.id}`)
@@ -34,7 +41,7 @@ function RandomModal({ show, handleClose }) {
                 const request = await axios.get(requests.fetchPopularShows)
                 window.location.assign(`/shows/${request.data.results[
                     Math.floor(Math.random() * request.data.results.length - 1)
-                ]}`)
+                ]?.id}`)
             }
         }
     }

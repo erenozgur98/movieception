@@ -17,7 +17,7 @@ function Credits({ movie, show, credits }) {
             fetchData();
         } else if (show?.id) {
             const fetchData = async () => {
-                const requestShow = await axios.get(`/tv/${show?.id}/credits?api_key=${process.env.REACT_APP_API_KEY}`);
+                const requestShow = await axios.get(`/tv/${show?.id}/aggregate_credits?api_key=${process.env.REACT_APP_API_KEY}`);
                 setCast(requestShow?.data.cast);
             }
             fetchData();
@@ -47,7 +47,8 @@ function Credits({ movie, show, credits }) {
                                     className='cast-poster'
                                 />
                                 <div className='casts-name'>{theCast?.original_name}</div>
-                                <div className='casts-character'>{theCast?.character}</div>
+                                {theCast.roles ? <div className='casts-character'>{theCast.roles[0].character}</div> : <div className='casts-character'>{theCast.character}</div>}
+                                {theCast?.total_episode_count && <div className='casts-episodes'>{`${theCast?.total_episode_count} ${theCast?.total_episode_count > 1 ? 'Episodes' : 'Episode'}`}</div>}
                             </div>
                         )}
                     </>
