@@ -2,11 +2,10 @@ import React, { useState, useEffect } from "react";
 import requests from '../Requests';
 import axios from '../Axios';
 import './NowAiring.css';
+import { base_url } from '../../utils/helper';
 
 function NowAiring() {
     const [nowAiring, setNowAiring] = useState();
-
-    const base_url = 'https://image.tmdb.org/t/p/original/';
 
     useEffect(() => {
         const fetchData = async () => {

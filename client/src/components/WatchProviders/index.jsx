@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from '../Axios';
 import './WatchProviders.css';
-
-const base_url = 'https://image.tmdb.org/t/p/original/';
+import { base_url } from '../../utils/helper';
 
 function WatchProviders({ movie, show }) {
     const [movieProviders, setMovieProviders] = useState([]);

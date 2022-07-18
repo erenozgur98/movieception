@@ -4,9 +4,9 @@ import Banner from "../Banner";
 import { Container } from 'react-bootstrap'
 import { useParams } from 'react-router-dom';
 import CircularProgress from '@mui/material/CircularProgress';
+import { base_url } from "../../utils/helper";
 import './Collections.css';
 
-const base_url = 'https://image.tmdb.org/t/p/original/';
 
 function Collections() {
     const [collection, setCollection] = useState([])

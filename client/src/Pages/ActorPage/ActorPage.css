@@ -69,3 +69,10 @@
 .movie-credits-map:hover > .actor-movie-name {
   overflow: visible;
 }
+
+.movie-credits-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 2rem;
+}

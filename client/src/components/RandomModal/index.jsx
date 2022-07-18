@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Genres from '../Genres'
+import genres from '../Genres'
 import requests from '../Requests'
 import axios from '../Axios'
 import { ThemeProvider, createTheme } from "@mui/material/styles";
@@ -72,18 +72,20 @@ function RandomModal({ show, handleClose }) {
                                 label="Genre"
                                 onChange={handleGenreChange}
                             >
-                                {Genres.map(genre => (
+                                {genres.map(genre => (
                                     <MenuItem value={genre.id}>{genre.name}</MenuItem>
                                 ))}
                             </Select>
                         </FormControl>
                     </div>
                     <em><FormHelperText style={{ textAlign: 'center' }}>Note, if we can't find any matches with the genre, we'll get some random popular show/movie!</FormHelperText></em>
-                    <button
-                        onClick={handleSearch}
-                        className='btn btn-primary get-btn'
-                    >Get Some!
-                    </button>
+                    {movie &&
+                        <button
+                            onClick={handleSearch}
+                            className='btn btn-primary get-btn'
+                        >Get a random {movie}!
+                        </button>
+                    }
                 </ThemeProvider>
             </Container>
         </Modal>

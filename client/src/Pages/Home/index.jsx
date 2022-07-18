@@ -70,7 +70,7 @@ function Home({ user, setUser }) {
                         <h2>
                             What is Movieception?
                             <br />
-                            Movieception is a website has been made to track/find tons of movies and tv shows!
+                            Movieception is a website that has been made to track/find tons of movies and tv shows!
                         </h2>
                         <SearchForm />
                         {(movie?.title || movie?.name) &&

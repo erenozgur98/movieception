@@ -1,6 +1,7 @@
 import React from "react";
 import { Container, Button } from 'react-bootstrap';
 import Favorite from "../Favorite";
+import { base_url } from '../../utils/helper';
 import './Details.css'
 
 const Details = ({ movie, handleClose }) => {
@@ -13,8 +14,6 @@ const Details = ({ movie, handleClose }) => {
     const addToFavorites = (movie) => {
         console.log(movie)
     };
-
-    const base_url = 'https://image.tmdb.org/t/p/original/';
 
     // const truncate = (str, n) => {
     //     return str?.length > n ? str.substr(0, n - 1) + '...' : str;

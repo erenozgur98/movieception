@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import axios from '../Axios';
 import './MovieDetail.css'
-
-const base_url = 'https://image.tmdb.org/t/p/original/';
+import { base_url } from '../../utils/helper';
 
 function MovieDetail({ fetchUrl }) {
   const [movies, setMovies] = useState([]);

@@ -6,8 +6,7 @@ import HeartIcon from '../Icons/heart';
 import HistoryIcon from '../Icons/history';
 import WatchListIcon from '../Icons/watchList';
 import CircularProgress from '@mui/material/CircularProgress';
-
-const base_url = 'https://image.tmdb.org/t/p/original/';
+import { base_url } from '../../utils/helper';
 
 function Row({ fetchUrl, title }) {
     const [movies, setMovies] = useState([]);

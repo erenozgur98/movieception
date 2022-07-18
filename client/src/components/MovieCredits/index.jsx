@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react'
+import { Button } from 'react-bootstrap';
 import axios from '../Axios';
 import './MovieCredits.css'
-
-// change original to w200 or w300 if not styled
-const base_url = 'https://image.tmdb.org/t/p/original/';
+import { base_url } from '../../utils/helper';
 
 function MovieCredits({ actor }) {
     const [movieCredits, setMovieCredits] = useState([]);
-
+    const [loadMore, setLoadMore] = useState(10);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -26,26 +25,33 @@ function MovieCredits({ actor }) {
     };
 
     // sorting the movie/shows by release year
-    movieCredits.sort((a, b) => (a.release_date > b.release_date) ? -1 : ((b.release_date > a.release_date) ? 1 : 0));
+    movieCredits.sort((a, b) => ((a.release_date || a.first_air_date) > (b.release_date || b.first_air_date)) ? -1 : (((b.release_date || b.first_air_date) > (a.release_date || a.first_air_date)) ? 1 : 0));
 
-    const slicedCredits = movieCredits.slice(0, 10);
+    const slicedCredits = movieCredits.slice(0, loadMore);
 
     return (
-        <div className='movie-credits'>
-            {slicedCredits.map((credits) => (
-                credits?.poster_path &&
-                <div className='movie-credits-map'>
-                    <img
-                        key={credits.id}
-                        onClick={() => redirect(credits)}
-                        src={`${base_url}${credits?.poster_path}`}
-                        alt={credits?.original_name}
-                        className='actor-movie-poster'
-                    />
-                    <div className='actor-movie-name'>{credits?.original_title}</div>
+        <>
+            <div className='movie-credits'>
+                {slicedCredits.map((credits) => (
+                    credits?.poster_path &&
+                    <div className='movie-credits-map'>
+                        <img
+                            key={credits.id}
+                            onClick={() => redirect(credits)}
+                            src={`${base_url}${credits?.poster_path}`}
+                            alt={credits?.original_title || credits?.original_name}
+                            className='actor-movie-poster'
+                        />
+                        <div className='actor-movie-name'>{credits?.original_title || credits?.original_name}</div>
+                    </div>
+                ))}
+            </div>
+            {movieCredits.length > loadMore &&
+                <div className='movie-credits-button'>
+                    <Button onClick={() => setLoadMore(loadMore + 10)}>Load More</Button>
                 </div>
-            ))}
-        </div>
+            }
+        </>
     );
 };
 

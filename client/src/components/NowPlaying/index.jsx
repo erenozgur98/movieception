@@ -2,11 +2,10 @@ import React, { useState, useEffect } from "react";
 import requests from "../Requests";
 import axios from '../Axios';
 import './NowPlaying.css'
+import { base_url } from '../../utils/helper';
 
 function NowPlaying() {
     const [nowPlaying, setNowPlaying] = useState();
-
-    const base_url = 'https://image.tmdb.org/t/p/original/';
 
     useEffect(() => {
         const fetchData = async () => {

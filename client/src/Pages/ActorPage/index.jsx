@@ -10,6 +10,7 @@ import './ActorPage.css'
 import styled from 'styled-components';
 import { useTitle } from '../../components/useTitle';
 import CircularProgress from '@mui/material/CircularProgress';
+import { base_url } from '../../utils/helper';
 
 function ActorPage() {
     const [actor, setActor] = useState({});
@@ -20,8 +21,6 @@ function ActorPage() {
     const [documentTitle, setDocumentTitle] = useTitle();
     const [loading, setLoading] = useState(false);
     const { ActorId } = useParams();
-
-    const base_url = 'https://image.tmdb.org/t/p/original';
 
     useEffect(() => {
         document.title = documentTitle ?? 'Movieception'

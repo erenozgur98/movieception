@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from 'react';
+import { Button } from 'react-bootstrap';
 import axios from '../Axios';
 import './Recommendations.css';
-
-
-const base_url = 'https://image.tmdb.org/t/p/original/';
+import { base_url } from '../../utils/helper';
 
 
 function Recommendations({ movie, show }) {
     const [movieRecommendations, setMovieRecommendations] = useState([]);
     const [showRecommendations, setShowRecommendations] = useState([]);
-
+    const [loadMore, setLoadMore] = useState(10);
 
     useEffect(() => {
         if (movie?.id) {
@@ -35,8 +34,8 @@ function Recommendations({ movie, show }) {
         }
     };
 
-    const slicedMovie = movieRecommendations.slice(0, 10);
-    const slicedShow = showRecommendations.slice(0, 10);
+    const slicedMovie = movieRecommendations.slice(0, loadMore);
+    const slicedShow = showRecommendations.slice(0, loadMore);
 
     return (
         <div className='recommendations'>
@@ -69,6 +68,11 @@ function Recommendations({ movie, show }) {
                                     </div>
                                 ))}
                             </div>
+                            {movieRecommendations?.length > loadMore &&
+                                <div className='movie-credits-button'>
+                                    <Button onClick={() => setLoadMore(loadMore + 10)}>Load More</Button>
+                                </div>
+                            }
                         </div>
                     }
                 </div>
@@ -101,6 +105,11 @@ function Recommendations({ movie, show }) {
                                     </div>
                                 ))}
                             </div>
+                            {showRecommendations?.length > loadMore &&
+                                <div className='movie-credits-button'>
+                                    <Button onClick={() => setLoadMore(loadMore + 10)}>Load More</Button>
+                                </div>
+                            }
                         </div>
                     }
                 </div>

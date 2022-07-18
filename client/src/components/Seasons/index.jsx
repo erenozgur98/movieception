@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './Seasons.css';
+import { base_url } from '../../utils/helper';
 
 function Seasons({ show }) {
     const [season, setSeasons] = useState([]);
@@ -7,8 +8,6 @@ function Seasons({ show }) {
     useEffect(() => {
         setSeasons(show?.seasons);
     }, [show]);
-
-    const base_url = 'https://image.tmdb.org/t/p/original/';
 
     const redirect = (x) => {
         const result = season[0].name === 'Specials'

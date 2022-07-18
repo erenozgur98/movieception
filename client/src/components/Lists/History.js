@@ -8,8 +8,7 @@ import ExpandMore from '@mui/icons-material/ExpandMore';
 import AccessTimeFilledIcon from '@mui/icons-material/AccessTimeFilled';
 import { Grid, Typography, List, ListItem, ListItemAvatar, ListItemText, ListItemButton, Avatar, IconButton, Checkbox, Collapse } from '@mui/material';
 import './index.css'
-
-const base_url = 'https://image.tmdb.org/t/p/original/';
+import { base_url } from '../../utils/helper';
 
 const History = ({ watchedMovies, watchedShows }) => {
     const [open, setOpen] = React.useState(false);

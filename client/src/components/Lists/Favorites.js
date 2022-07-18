@@ -11,8 +11,7 @@ import './index.css'
 import ConfirmModal from "./ConfirmModal";
 import API from '../../utils/API'
 import { useSnackbar } from 'notistack'
-
-const base_url = 'https://image.tmdb.org/t/p/original/';
+import { base_url } from '../../utils/helper';
 
 const Favorites = ({ favoriteMovies, setFavoriteMovies, favoriteShows, setFavoriteShows, user }) => {
     const [open, setOpen] = useState(false);

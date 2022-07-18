@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from '../Axios';
 import './People.css'
-
-// change original to w200 or w300 if not styled
-const base_url = 'https://image.tmdb.org/t/p/original/';
+import { base_url } from '../../utils/helper';
 
 function People({ fetchUrl, title }) {
     const [actors, setActors] = useState([]);

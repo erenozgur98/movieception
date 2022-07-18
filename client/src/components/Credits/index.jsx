@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
+import { Button } from 'react-bootstrap';
 import axios from '../Axios';
-import './Credits.css'
-
-// change original to w200 or w300 if not styled
-const base_url = 'https://image.tmdb.org/t/p/original/';
+import { base_url } from '../../utils/helper';
+import './Credits.css';
 
 function Credits({ movie, show, credits }) {
     const [cast, setCast] = useState([]);
+    const [loadMore, setLoadMore] = useState(10);
 
     useEffect(() => {
         if (movie?.id) {
@@ -30,7 +30,7 @@ function Credits({ movie, show, credits }) {
         window.location.assign(`/actors/${theCast?.id}`)
     };
 
-    const slicedCast = cast?.slice(0, 10);
+    const slicedCast = cast?.slice(0, loadMore);
 
     return (
         <div className='casts'>
@@ -53,6 +53,11 @@ function Credits({ movie, show, credits }) {
                     </>
                 ))}
             </div>
+            {cast?.length > loadMore &&
+                <div className='movie-credits-button'>
+                    <Button onClick={() => setLoadMore(loadMore + 10)}>Load More</Button>
+                </div>
+            }
         </div>
     );
 };

@@ -7,9 +7,8 @@ import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import PlaylistAddCheckRoundedIcon from '@mui/icons-material/PlaylistAddCheckRounded';
 import { Grid, Typography, List, ListItem, ListItemAvatar, ListItemText, ListItemButton, Avatar, IconButton, Checkbox, Collapse } from '@mui/material';
-import './index.css'
-
-const base_url = 'https://image.tmdb.org/t/p/original/';
+import './index.css';
+import { base_url } from '../../utils/helper';
 
 const WatchList = ({ movieWatchList, showWatchList }) => {
     const [open, setOpen] = React.useState(false);
