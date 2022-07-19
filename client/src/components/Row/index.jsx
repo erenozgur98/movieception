@@ -18,7 +18,7 @@ function Row({ fetchUrl, title }) {
 
     const isMovie = window.location.href.includes('movies')
     const isShow = window.location.href.includes('shows')
-    const url = window.location.href
+    const url = window.location.href.split('?')[0]
 
     const search = useLocation().search;
     const page = new URLSearchParams(search).get('page');
@@ -132,14 +132,13 @@ function Row({ fetchUrl, title }) {
                     </div>
                     <div className='pagination'>
                         <StyledPagination
-                            count={10}
-                            page={JSON.parse(currentPage)}
-                            color="primary"
+                            count={50}
+                            color='primary'
                             shape="rounded"
                             hidePrevButton
                             hideNextButton
                             onChange={handleChange}
-                            root={{ color: 'white' }}
+                            page={JSON.parse(currentPage)}
                         />
                     </div>
                 </div>
