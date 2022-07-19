@@ -82,6 +82,12 @@
   transition: all 0.2s;
 }
 
+.pagination {
+  margin: 5rem;
+  display: flex;
+  align-items: center;
+}
+
 @media screen and (max-width: 1560px) {
   .row-posters {
     grid-template-columns: repeat(4, 1fr);

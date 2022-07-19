@@ -5,8 +5,10 @@ import './Row.css'
 import HeartIcon from '../Icons/heart';
 import HistoryIcon from '../Icons/history';
 import WatchListIcon from '../Icons/watchList';
-import CircularProgress from '@mui/material/CircularProgress';
 import { base_url } from '../../utils/helper';
+import { styled } from '@mui/material/styles';
+import { useLocation } from 'react-router-dom';
+import { Pagination, CircularProgress } from '@mui/material';
 
 function Row({ fetchUrl, title }) {
     const [movies, setMovies] = useState([]);
@@ -16,6 +18,18 @@ function Row({ fetchUrl, title }) {
 
     const isMovie = window.location.href.includes('movies')
     const isShow = window.location.href.includes('shows')
+    const url = window.location.href
+
+    const search = useLocation().search;
+    const page = new URLSearchParams(search).get('page');
+
+    const StyledPagination = styled(Pagination)(({ theme }) => ({
+        '& .MuiPagination-ul': {
+            backgroundColor: '#fff',
+            padding: '0.3rem',
+            borderRadius: '1rem'
+        }
+    }));
 
     useEffect(() => {
         if (!user.username) {
@@ -26,16 +40,16 @@ function Row({ fetchUrl, title }) {
         }
     }, [])
 
-
     useEffect(() => {
         const fetchData = async () => {
             setLoading(true);
+            if (page) setCurrentPage(page);
             const request = await axios.get(`${fetchUrl}&page=${currentPage}`);
             setMovies(request?.data?.results);
             setLoading(false);
         }
         fetchData();
-    }, [fetchUrl, currentPage]);
+    }, [fetchUrl, currentPage, page]);
 
     const handleClick = (movie) => {
         if (movie.media_type === 'tv') {
@@ -52,6 +66,10 @@ function Row({ fetchUrl, title }) {
             window.location.assign(`/shows/${movie.id}`)
         }
     };
+
+    const handleChange = event => {
+        window.location.assign(`${url}?page=${event.target.textContent}`)
+    }
 
     return (
         <>
@@ -112,27 +130,18 @@ function Row({ fetchUrl, title }) {
                             </div>
                         ))}
                     </div>
-                    {/* Will be implemented later */}
-                    {/* find a way to add the &page=? to the link instead of here, because whenever you go back the page number is going to be resetted to 1 */}
-                    {/* <div className='movie-btn'>
-                {currentPage !== 1 &&
-                    <button
-                        className='movie-buttons'
-                        onClick={() => currentPage <= 1 ? setCurrentPage(currentPage) : setCurrentPage(currentPage - 1)}
-                    >
-                        Previous Page
-                    </button>
-                }
-                Page: {currentPage}
-                {currentPage !== 10 &&
-                    <button
-                        className='movie-buttons'
-                        onClick={() => currentPage >= 10 ? setCurrentPage(currentPage) : setCurrentPage(currentPage + 1)}
-                    >
-                        Next Page
-                    </button>
-                }
-            </div> */}
+                    <div className='pagination'>
+                        <StyledPagination
+                            count={10}
+                            page={JSON.parse(currentPage)}
+                            color="primary"
+                            shape="rounded"
+                            hidePrevButton
+                            hideNextButton
+                            onChange={handleChange}
+                            root={{ color: 'white' }}
+                        />
+                    </div>
                 </div>
             )}
         </>
