@@ -22,6 +22,7 @@ function Row({ fetchUrl, title }) {
 
     const search = useLocation().search;
     const page = new URLSearchParams(search).get('page');
+    const query = new URLSearchParams(search).get('query');
 
     const StyledPagination = styled(Pagination)(({ theme }) => ({
         '& .MuiPagination-ul': {
@@ -130,7 +131,8 @@ function Row({ fetchUrl, title }) {
                             </div>
                         ))}
                     </div>
-                    <div className='pagination'>
+                    {/* disabling pagination for search query for now */}
+                    {!query && <div className='pagination'>
                         <StyledPagination
                             count={50}
                             color='primary'
@@ -140,7 +142,7 @@ function Row({ fetchUrl, title }) {
                             onChange={handleChange}
                             page={JSON.parse(currentPage)}
                         />
-                    </div>
+                    </div>}
                 </div>
             )}
         </>
