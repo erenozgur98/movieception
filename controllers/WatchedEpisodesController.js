@@ -26,7 +26,8 @@ module.exports = {
                             {
                                 id: req.params.EpisodeId,
                                 title: req.params.Title,
-                                poster_path: req.params.PosterPath
+                                poster_path: req.params.PosterPath,
+                                created_at: new Date()
                             }
                         ]
                     },
@@ -42,7 +43,8 @@ module.exports = {
                         {
                             id: req.params.EpisodeId,
                             title: req.params.Title,
-                            poster_path: req.params.PosterPath
+                            poster_path: req.params.PosterPath,
+                            created_at: new Date()
                         }
                     ]
                 })
@@ -57,7 +59,8 @@ module.exports = {
                     const newEpisode = {
                         id: req.params.EpisodeId,
                         title: req.params.Title,
-                        poster_path: req.params.PosterPath
+                        poster_path: req.params.PosterPath,
+                        created_at: new Date()
                     }
 
                     newEpisodeArray.push(newEpisode)

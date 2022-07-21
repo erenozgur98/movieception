@@ -37,6 +37,10 @@ User.init(
         role: {
             type: DataTypes.STRING,
             allowNull: false
+        },
+        createdAt: {
+            type: DataTypes.DATE,
+            default: Date.now
         }
     },
     {

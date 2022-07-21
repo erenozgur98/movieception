@@ -15,6 +15,10 @@ WatchList.init(
         },
         showWatchList: {
             type: DataTypes.JSON
+        },
+        createdAt: {
+            type: DataTypes.DATE,
+            default: Date.now
         }
     },
     {

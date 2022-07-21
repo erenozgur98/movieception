@@ -12,6 +12,10 @@ WatchedEpisodes.init(
         },
         watchedEpisodes: {
             type: DataTypes.JSON
+        },
+        createdAt: {
+            type: DataTypes.DATE,
+            default: Date.now
         }
     },
     {

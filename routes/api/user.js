@@ -1,11 +1,23 @@
 const router = require('express').Router();
-const User = require('../../models/User');
+const { User, Favorites, History, WatchList, WatchedEpisodes } = require('../../models');
 const bcrypt = require('bcrypt');
 
 router.get('/', async (req, res) => {
     try {
-        const user = await User.findAll();
-        res.json(user);
+        const users = await User.findAll();
+        users.forEach(user => {
+            delete user.dataValues.password;
+            delete user._previousDataValues.password;
+        });
+
+        // TODO: concat favorites, history, watchLists into userData array with corresponding usernames/id's for admin portal later on
+        // const favorites = await Favorites.findAll({ where: { username: users.map(user => user.dataValues.username) } });
+        // const history = await History.findAll({ where: { username: users.map(user => user.dataValues.username) } });
+        // const watchLists = await WatchList.findAll({ where: { username: users.map(user => user.dataValues.username) } });
+        // let userData = []
+
+
+        res.json(users);
     } catch (err) {
         console.log(err);
         res.status(400).json(err);
@@ -55,7 +67,7 @@ router.post('/signup', async (req, res) => {
             res.status(400).json({ message: 'That email is taken' });
         } else {
             const newUser = await User.create(req.body);
-            delete newUser.password;
+            delete user.password; newUser.password;
 
             req.session.user_id = newUser.id
             req.session.logged_in = true;

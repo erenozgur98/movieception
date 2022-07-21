@@ -26,7 +26,8 @@ module.exports = {
                             {
                                 id: req.params.MovieId,
                                 title: req.params.Title,
-                                poster_path: req.params.PosterPath
+                                poster_path: req.params.PosterPath,
+                                created_at: new Date()
                             }
                         ]
                     },
@@ -40,7 +41,8 @@ module.exports = {
                         {
                             id: req.params.MovieId,
                             title: req.params.Title,
-                            poster_path: req.params.PosterPath
+                            poster_path: req.params.PosterPath,
+                            created_at: new Date()
                         }
                     ]
                 });
@@ -53,7 +55,8 @@ module.exports = {
                     const newFavoriteMovie = {
                         id: req.params.MovieId,
                         title: req.params.Title,
-                        poster_path: req.params.PosterPath
+                        poster_path: req.params.PosterPath,
+                        created_at: new Date()
                     };
 
                     movieArray.push(newFavoriteMovie);
@@ -85,7 +88,8 @@ module.exports = {
                             {
                                 id: req.params.ShowId,
                                 title: req.params.Title,
-                                poster_path: req.params.PosterPath
+                                poster_path: req.params.PosterPath,
+                                created_at: new Date()
                             }
                         ]
                     },
@@ -99,7 +103,8 @@ module.exports = {
                         {
                             id: req.params.ShowId,
                             title: req.params.Title,
-                            poster_path: req.params.PosterPath
+                            poster_path: req.params.PosterPath,
+                            created_at: new Date()
                         }
                     ]
                 });
@@ -112,7 +117,8 @@ module.exports = {
                     const newFavoriteShow = {
                         id: req.params.ShowId,
                         title: req.params.Title,
-                        poster_path: req.params.PosterPath
+                        poster_path: req.params.PosterPath,
+                        created_at: new Date()
                     };
 
                     showArray.push(newFavoriteShow);
@@ -138,7 +144,7 @@ module.exports = {
             const favoritesArray = await Favorites.findOne({ where: { username: req.params.username } });
 
             const movieArray = favoritesArray.dataValues.movieFavorites;
-            const index = movieArray.findIndex(x => x.id === req.params.id);
+            const index = movieArray.findIndex(x => x.id === req.params.MovieId);
             movieArray.splice(index, 1);
 
             Favorites.update(
@@ -158,8 +164,10 @@ module.exports = {
             const favoritesArray = await Favorites.findOne({ where: { username: req.params.username } });
 
             const showArray = favoritesArray.dataValues.showFavorites;
-            const index = showArray.findIndex(x => x.id === req.params.id);
-            showArray.splice(index, 1);
+            showArray.findIndex(x => console.log(`id of showArray = ${x.id}`));
+            const index = showArray.findIndex(x => x.id === req.params.ShowId);
+
+            if (index !== -1) showArray.splice(index, 1);
 
             Favorites.update(
                 { showFavorites: showArray },

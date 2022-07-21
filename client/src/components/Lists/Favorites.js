@@ -17,13 +17,23 @@ const Favorites = ({ favoriteMovies, setFavoriteMovies, favoriteShows, setFavori
     const [open, setOpen] = useState(false);
     const [modalOpen, setModalOpen] = useState(false);
     const [information, setInformation] = useState({})
-    const [active, setActive] = useState(false)
+    const [disabled, setDisabled] = useState(false)
 
     const { enqueueSnackbar } = useSnackbar();
     const Demo = styled('div')(({ theme }) => ({
         backgroundColor: 'rgb(116, 15, 15)',
         borderRadius: '15px'
     }));
+
+    favoriteMovies?.forEach(movie => {
+        movie.isMovie = true
+    });
+    favoriteShows?.forEach(show => {
+        show.isMovie = false
+    });
+
+    const combinedArray = (favoriteMovies?.length && favoriteShows?.length) ? [].concat(favoriteMovies, favoriteShows) : favoriteMovies?.length ? favoriteMovies : favoriteShows
+    combinedArray?.sort((a, b) => (a.created_at > b.created_at) ? -1 : ((b.created_at > a.created_at) ? 1 : 0))
 
     const handleClick = () => {
         setOpen(!open);
@@ -45,15 +55,27 @@ const Favorites = ({ favoriteMovies, setFavoriteMovies, favoriteShows, setFavori
 
     const removeForReal = () => {
         // use information
-        setActive(true)
+        setDisabled(true)
         if (information.isMovie) {
             API.removeMovieFromFavorites(user.username, information.id)
                 .then(res => {
-                    console.log(res)
                     if (res.status === 200) {
-                        setActive(false)
+                        setDisabled(false)
                         setModalOpen(false)
                         setFavoriteMovies(res.data.movieFavorites)
+                        enqueueSnackbar('Successfully removed from your favorites!', {
+                            variant: 'success'
+                        })
+                        setOpen(true)
+                    }
+                })
+        } else {
+            API.removeShowFromFavorites(user.username, information.id)
+                .then(res => {
+                    if (res.status === 200) {
+                        setDisabled(false)
+                        setModalOpen(false)
+                        setFavoriteShows(res.data.showFavorites)
                         enqueueSnackbar('Successfully removed from your favorites!', {
                             variant: 'success'
                         })
@@ -79,15 +101,15 @@ const Favorites = ({ favoriteMovies, setFavoriteMovies, favoriteShows, setFavori
                             {open ? <ExpandLess /> : <ExpandMore />}
                         </ListItemButton>
                         <Collapse in={open} timeout="auto" unmountOnExit>
-                            {favoriteMovies.map(x => (
+                            {combinedArray?.map(x => (
                                 <List disablePadding>
                                     <ListItem
                                         secondaryAction={
                                             <IconButton
                                                 edge="end"
                                                 aria-label="delete"
-                                                onClick={() => remove(x.id, x.title, true)}
-                                                disabled={active}
+                                                onClick={() => remove(x.id, x.title, x.isMovie)}
+                                                disabled={disabled}
                                             >
                                                 <DeleteIcon />
                                             </IconButton>
@@ -96,7 +118,7 @@ const Favorites = ({ favoriteMovies, setFavoriteMovies, favoriteShows, setFavori
                                         <ListItemButton onClick={() => redirect(x.id)}>
                                             <ListItemAvatar>
                                                 <Avatar>
-                                                    {x.poster_path ? <Avatar src={`${base_url}${x.poster_path}`} /> : <FolderIcon />}
+                                                    {x.poster_path ? <Avatar src={`${base_url}/${x.poster_path}`} /> : <FolderIcon />}
                                                 </Avatar>
                                             </ListItemAvatar>
                                             <ListItemText

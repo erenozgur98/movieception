@@ -24,33 +24,36 @@ const Lists = ({
     return (
         <>
             <div className='main-list-component'>
-                <div>
-                    <History
-                        watchedMovies={watchedMovies}
-                        watchedShows={watchedShows}
-                        setWatchedMovies={setWatchedMovies}
-                        setWatchedShows={setWatchedShows}
-                        user={user}
-                    />
-                </div>
-                <div>
-                    <Favorites
-                        favoriteMovies={favoriteMovies}
-                        favoriteShows={favoriteShows}
-                        setFavoriteMovies={setFavoriteMovies}
-                        setFavoriteShows={setFavoriteShows}
-                        user={user}
-                    />
-                </div>
-                <div>
-                    <WatchList
-                        movieWatchList={movieWatchList}
-                        showWatchList={showWatchList}
-                        setMovieWatchList={setMovieWatchList}
-                        setShowWatchList={setShowWatchList}
-                        user={user}
-                    />
-                </div>
+                {(watchedMovies || watchedShows) &&
+                    <div>
+                        <History
+                            watchedMovies={watchedMovies}
+                            watchedShows={watchedShows}
+                            setWatchedMovies={setWatchedMovies}
+                            setWatchedShows={setWatchedShows}
+                            user={user}
+                        />
+                    </div>}
+                {(favoriteMovies || favoriteShows) &&
+                    <div>
+                        <Favorites
+                            favoriteMovies={favoriteMovies}
+                            favoriteShows={favoriteShows}
+                            setFavoriteMovies={setFavoriteMovies}
+                            setFavoriteShows={setFavoriteShows}
+                            user={user}
+                        />
+                    </div>}
+                {(movieWatchList || showWatchList) &&
+                    <div>
+                        <WatchList
+                            movieWatchList={movieWatchList}
+                            showWatchList={showWatchList}
+                            setMovieWatchList={setMovieWatchList}
+                            setShowWatchList={setShowWatchList}
+                            user={user}
+                        />
+                    </div>}
             </div>
         </>
     )

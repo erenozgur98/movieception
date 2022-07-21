@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { styled } from '@mui/material/styles';
 import DeleteIcon from '@mui/icons-material/Delete';
 import FolderIcon from '@mui/icons-material/Folder';
@@ -8,10 +8,17 @@ import ExpandMore from '@mui/icons-material/ExpandMore';
 import AccessTimeFilledIcon from '@mui/icons-material/AccessTimeFilled';
 import { Grid, Typography, List, ListItem, ListItemAvatar, ListItemText, ListItemButton, Avatar, IconButton, Checkbox, Collapse } from '@mui/material';
 import './index.css'
+import ConfirmModal from "./ConfirmModal";
+import API from '../../utils/API'
+import { useSnackbar } from 'notistack'
 import { base_url } from '../../utils/helper';
 
-const History = ({ watchedMovies, watchedShows }) => {
-    const [open, setOpen] = React.useState(false);
+const History = ({ watchedMovies, setWatchedMovies, watchedShows, setWatchedShows, user }) => {
+    const [open, setOpen] = useState(false);
+    const [modalOpen, setModalOpen] = useState(false);
+    const [information, setInformation] = useState({});
+    const [disabled, setDisabled] = useState(false);
+    const { enqueueSnackbar } = useSnackbar();
 
     const handleClick = () => {
         setOpen(!open);
@@ -21,14 +28,63 @@ const History = ({ watchedMovies, watchedShows }) => {
         window.location.assign(`/movies/${id}`)
     }
 
-    const remove = id => {
-        console.log(id)
+    const remove = (id, title, isMovie) => {
+        setModalOpen(true)
+        setInformation({
+            list: 'history',
+            id: id,
+            title: title,
+            isMovie: isMovie
+        })
     }
+
+    const removeForReal = () => {
+        // use information
+        setDisabled(true)
+        if (information.isMovie) {
+            API.removeMovieFromWatched(user.username, information.id)
+                .then(res => {
+                    if (res.status === 200) {
+                        setDisabled(false)
+                        setModalOpen(false)
+                        setWatchedMovies(res.data.movieFavorites)
+                        enqueueSnackbar('Successfully removed from your favorites!', {
+                            variant: 'success'
+                        })
+                        setOpen(true)
+                    }
+                })
+        } else {
+            API.removeShowFromWatched(user.username, information.id)
+                .then(res => {
+                    if (res.status === 200) {
+                        setDisabled(false)
+                        setModalOpen(false)
+                        setWatchedShows(res.data.movieFavorites)
+                        enqueueSnackbar('Successfully removed from your favorites!', {
+                            variant: 'success'
+                        })
+                        setOpen(true)
+                    }
+                })
+        }
+    }
+
+    watchedMovies?.forEach(movie => {
+        movie.isMovie = true;
+    })
+    watchedShows?.forEach(show => {
+        show.isMovie = false;
+    })
+
+    const combinedArray = (watchedMovies?.length && watchedShows?.length) ? [].concat(watchedMovies, watchedShows) : watchedMovies?.length ? watchedMovies : watchedShows
+    combinedArray?.sort((a, b) => (a.created_at > b.created_at) ? -1 : ((b.created_at > a.created_at) ? 1 : 0))
 
     const Demo = styled('div')(({ theme }) => ({
         backgroundColor: 'green',
         borderRadius: '15px'
     }));
+
     return (
         <>
             <div className='main-grid-component'>
@@ -45,11 +101,16 @@ const History = ({ watchedMovies, watchedShows }) => {
                             {open ? <ExpandLess /> : <ExpandMore />}
                         </ListItemButton>
                         <Collapse in={open} timeout="auto" unmountOnExit>
-                            {watchedMovies.map(x => (
+                            {combinedArray?.map(x => (
                                 <List disablePadding>
                                     <ListItem
                                         secondaryAction={
-                                            <IconButton edge="end" aria-label="delete" onClick={() => remove(x.id)}>
+                                            <IconButton
+                                                edge="end"
+                                                aria-label="delete"
+                                                onClick={() => remove(x.id, x.title, x.isMovie)}
+                                                disabled={disabled}
+                                            >
                                                 <DeleteIcon />
                                             </IconButton>
                                         }
@@ -57,7 +118,7 @@ const History = ({ watchedMovies, watchedShows }) => {
                                         <ListItemButton onClick={() => redirect(x.id)}>
                                             <ListItemAvatar>
                                                 <Avatar>
-                                                    {x.poster_path ? <Avatar src={`${base_url}${x.poster_path}`} /> : <FolderIcon />}
+                                                    {x.poster_path ? <Avatar src={`${base_url}/${x.poster_path}`} /> : <FolderIcon />}
                                                 </Avatar>
                                             </ListItemAvatar>
                                             <ListItemText
@@ -71,6 +132,13 @@ const History = ({ watchedMovies, watchedShows }) => {
                     </Demo>
                 </Grid>
             </div>
+            <ConfirmModal
+                open={modalOpen}
+                handleClose={() => setModalOpen(false)}
+                information={information}
+                removeForReal={removeForReal}
+                setInformation={setInformation}
+            />
         </>
     )
 }

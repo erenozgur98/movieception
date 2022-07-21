@@ -26,7 +26,8 @@ module.exports = {
                             {
                                 id: req.params.MovieId,
                                 title: req.params.Title,
-                                poster_path: req.params.PosterPath
+                                poster_path: req.params.PosterPath,
+                                created_at: new Date()
                             }
                         ]
                     },
@@ -40,7 +41,8 @@ module.exports = {
                         {
                             id: req.params.MovieId,
                             title: req.params.Title,
-                            poster_path: req.params.PosterPath
+                            poster_path: req.params.PosterPath,
+                            created_at: new Date()
                         }
                     ]
                 });
@@ -53,7 +55,8 @@ module.exports = {
                     const newMovieHistory = {
                         id: req.params.MovieId,
                         title: req.params.Title,
-                        poster_path: req.params.PosterPath
+                        poster_path: req.params.PosterPath,
+                        created_at: new Date()
                     };
 
                     movieArray.push(newMovieHistory);
@@ -86,7 +89,8 @@ module.exports = {
                             {
                                 id: req.params.ShowId,
                                 title: req.params.Title,
-                                poster_path: req.params.PosterPath
+                                poster_path: req.params.PosterPath,
+                                created_at: new Date()
                             }
                         ]
                     },
@@ -100,7 +104,8 @@ module.exports = {
                         {
                             id: req.params.ShowId,
                             title: req.params.Title,
-                            poster_path: req.params.PosterPath
+                            poster_path: req.params.PosterPath,
+                            created_at: new Date()
                         }
                     ]
                 });
@@ -113,7 +118,8 @@ module.exports = {
                     const newShowHistory = {
                         id: req.params.ShowId,
                         title: req.params.Title,
-                        poster_path: req.params.PosterPath
+                        poster_path: req.params.PosterPath,
+                        created_at: new Date()
                     };
 
                     showArray.push(newShowHistory);
@@ -139,7 +145,7 @@ module.exports = {
             const historyArray = await History.findOne({ where: { username: req.params.username } });
 
             const movieArray = historyArray.dataValues.movieHistory;
-            const index = movieArray.findIndex(x => x.id === req.params.id);
+            const index = movieArray.findIndex(x => x.id === req.params.MovieId);
             movieArray.splice(index, 1);
 
             History.update(
@@ -159,7 +165,7 @@ module.exports = {
             const historyArray = await History.findOne({ where: { username: req.params.username } });
 
             const showArray = historyArray.dataValues.showHistory;
-            const index = showArray.findIndex(x => x.id === req.params.id);
+            const index = showArray.findIndex(x => x.id === req.params.ShowId);
             showArray.splice(index, 1);
 
             History.update(
