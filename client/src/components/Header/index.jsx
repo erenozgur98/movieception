@@ -192,6 +192,12 @@ function Header({ user, setUser }) {
                                 >
                                     Shows
                                 </StyledIconButton>
+                                <StyledIconButton
+                                    color='inherit'
+                                    href='/actors'
+                                >
+                                    Actors
+                                </StyledIconButton>
                                 {user?.username ? (
                                     <IconButton
                                         size="small"
