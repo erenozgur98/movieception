@@ -129,7 +129,7 @@ function ActorPage() {
                                     </div>
                                     <div className='biography'>
                                         {/* at least 382 is required for the overview to have truncate class added into */}
-                                        {actor?.biography.length > 382 ? (
+                                        {actor.biography?.length > 382 ? (
                                             <>
                                                 <div className={`${truncate && 'truncate'}`}>
                                                     {actor?.biography}
