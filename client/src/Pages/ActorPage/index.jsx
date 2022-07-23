@@ -134,7 +134,7 @@ function ActorPage() {
                                                 <div className={`${truncate && 'truncate'}`}>
                                                     {actor?.biography}
                                                 </div>
-                                                <a href='#' onClick={() => setTruncate(!truncate)}>Read {truncate ? 'More' : 'Less'}</a>
+                                                <div className='actor-button' onClick={() => setTruncate(!truncate)}>Read {truncate ? 'More' : 'Less'}</div>
                                             </>
                                         ) : (
                                             <div>{actor?.biography}</div>

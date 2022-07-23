@@ -44,6 +44,15 @@
   text-align: center;
 }
 
+.actor-button {
+  color: rgb(43, 122, 233);
+}
+
+.actor-button:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
 .actor-movie-poster {
   object-fit: contain;
   min-height: 192px;
