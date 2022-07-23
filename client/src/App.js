@@ -20,6 +20,7 @@ import ScrollToTop from './components/ScrollToTopBtn';
 import SearchResults from './components/SearchResults';
 import { SnackbarProvider } from "notistack";
 import './index.css';
+import Footer from './components/Footer';
 
 function App() {
   const [user, setUser] = useState({});
@@ -32,8 +33,9 @@ function App() {
       })
   }, []);
 
+  // will be implemented after adding all movie and shows data for admin panel
   // useEffect(() => {
-  //   API.getAllUsers().then(res => console.log(res))
+  //   API.getAllUsers().then(res => console.log(res.data))
   // }, [])
 
   return (
@@ -69,6 +71,7 @@ function App() {
               user={user}
             />} />
           </div>
+          <Footer user={user} />
         </SnackbarProvider>
       </Router>
     </div>

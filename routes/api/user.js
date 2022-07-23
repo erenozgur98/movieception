@@ -40,11 +40,23 @@ router.get('/user', async (req, res) => {
     try {
         if (req.session.logged_in) {
             const userData = await User.findByPk(req.session.user_id);
+            delete userData.dataValues.password
+
+            const favorites = await Favorites.findByPk(req.session.user_id);
+            const history = await History.findByPk(req.session.user_id);
+            const watchList = await WatchList.findByPk(req.session.user_id);
+
             const userInfo = {
                 role: userData.dataValues.role,
                 username: userData.dataValues.username,
                 email: userData.dataValues.email,
-                logged_in: true
+                logged_in: true,
+                movieFavorites: favorites.dataValues.movieFavorites,
+                showFavorites: favorites.dataValues.showFavorites,
+                movieHistory: history.dataValues.movieHistory,
+                showHistory: history.dataValues.showHistory,
+                movieWatchList: watchList.dataValues.movieWatchList,
+                showWatchList: watchList.dataValues.showWatchList
             };
             res.json(userInfo);
         } else {
@@ -128,6 +140,10 @@ router.get('/:username', async (req, res) => {
 });
 
 // PUT update a user
+
+// UPDATE `movieception_db`.`user` SET `role` = 'admin' WHERE (`id` = '2');
+// updating a users role query
+
 router.put('/:id', async (req, res) => {
     try {
         const user = await User.findById(

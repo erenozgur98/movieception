@@ -115,16 +115,16 @@ function Row({ fetchUrl, title }) {
                                 ) : (
                                     <div className='icon-container'>
                                         <HistoryIcon
-                                            movie={movie}
                                             user={user}
+                                            movie={movie}
                                         />
                                         <HeartIcon
-                                            movie={movie}
                                             user={user}
+                                            movie={movie}
                                         />
                                         <WatchListIcon
-                                            movie={movie}
                                             user={user}
+                                            movie={movie}
                                         />
                                     </div>
                                 )}

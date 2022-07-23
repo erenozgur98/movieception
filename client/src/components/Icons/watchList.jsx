@@ -18,11 +18,8 @@ function WatchList({ user, movie }) {
 
     useEffect(() => {
         if (user.username) {
-            API.getAllWatchList(user.username)
-                .then(res => {
-                    setMovieWatchList(res.data?.movieWatchList)
-                    setShowWatchList(res.data?.showWatchList)
-                })
+            setMovieWatchList(user.movieWatchList)
+            setShowWatchList(user.showWatchList)
         }
     }, [])
 

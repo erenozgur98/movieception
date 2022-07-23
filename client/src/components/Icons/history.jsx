@@ -17,11 +17,8 @@ function HistoryIcon({ user, movie }) {
 
     useEffect(() => {
         if (user.username) {
-            API.getAllWatched(user.username)
-                .then(res => {
-                    setWatchedMovie(res.data?.movieHistory)
-                    setWatchedShow(res.data?.showHistory)
-                })
+            setWatchedMovie(user.movieHistory)
+            setWatchedShow(user.showHistory)
         }
     }, [])
 

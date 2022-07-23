@@ -18,11 +18,8 @@ function HeartIcon({ user, movie }) {
 
     useEffect(() => {
         if (user.username) {
-            API.getAllFavorites(user.username)
-                .then(res => {
-                    setMovieFavorite(res.data?.movieFavorites)
-                    setShowFavorite(res.data?.showFavorites)
-                })
+            setMovieFavorite(user.movieFavorites)
+            setShowFavorite(user.showFavorites)
         }
     }, [])
 

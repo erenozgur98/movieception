@@ -26,7 +26,8 @@
   border: solid rgb(133, 132, 132) 2px;
   margin: 5px;
   border-radius: 25px;
-  /* padding: 2px; */
+  min-width: 280px;
+  min-height: 450px;
 }
 
 /* animation for images before they load - if they take time to load */
@@ -44,9 +45,8 @@
 }
 
 .row-poster {
-  /* object-fit: contain; */
-  /* width: 100%; */
   min-width: 280px;
+  max-width: 280px;
   max-height: 400px;
   border-top-left-radius: 25px;
   border-top-right-radius: 25px;
