@@ -20,6 +20,7 @@ function ActorPage() {
     const [randomInt,] = useState(Math.floor(Math.random() * 10))
     const [documentTitle, setDocumentTitle] = useTitle();
     const [loading, setLoading] = useState(false);
+    const [truncate, setTruncate] = useState(true);
     const { ActorId } = useParams();
 
     useEffect(() => {
@@ -127,10 +128,17 @@ function ActorPage() {
                                         </div>
                                     </div>
                                     <div className='biography'>
-                                        {actor?.biography &&
-                                            <div>
-                                                {actor?.biography}
-                                            </div>
+                                        {/* at least 382 is required for the overview to have truncate class added into */}
+                                        {actor?.biography.length > 382 ? (
+                                            <>
+                                                <div className={`${truncate && 'truncate'}`}>
+                                                    {actor?.biography}
+                                                </div>
+                                                <a href='#' onClick={() => setTruncate(!truncate)}>Read {truncate ? 'More' : 'Less'}</a>
+                                            </>
+                                        ) : (
+                                            <div>{actor?.biography}</div>
+                                        )
                                         }
                                     </div>
                                     <div>
