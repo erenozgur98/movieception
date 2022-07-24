@@ -55,12 +55,7 @@ const Overview = ({ link }) => {
             </StyledDivCenter>
 
             <StyledDivPadding style={{ textAlign: 'center', marginBottom: '2rem', marginTop: '1rem' }}>
-                {link?.overview &&
-                    <>
-                        <div>{link?.overview}</div>
-                        <a href='#'>Read More</a>
-                    </>
-                }
+                {link?.overview && <div>{link?.overview}</div>}
             </StyledDivPadding>
 
             <div style={{ marginBottom: '2rem' }}>

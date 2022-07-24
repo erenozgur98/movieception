@@ -135,7 +135,8 @@ function Header({ user, setUser }) {
             }}
         >
             <StyledMenuLink href={`/users/${user?.username}`}>Profile</StyledMenuLink>
-            <StyledMenuLink href='/settings'>Settings</StyledMenuLink>
+            {/* will be implemented later */}
+            {/* <StyledMenuLink href='/settings'>Settings</StyledMenuLink> */}
             <StyledMenuLink onClick={() => {
                 setAccountAnchorEl(null)
                 handleLogout()
